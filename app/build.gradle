@@ -36,7 +36,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
-    implementation fileTree(dir: 'C:\\Users\\Ultimate\\AndroidStudioProjects\\ECommerce\\app\\libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation fileTree(dir: '/Users/edit-1/AndroidStudioProjects/ECommerce/app/libs/yslibrary-release.aar', include: ['*.aar', '*.jar'], exclude: [])
     implementation 'androidx.navigation:navigation-fragment:2.4.2'
     implementation 'androidx.navigation:navigation-ui:2.4.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -63,5 +63,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.0-beta01'
 
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }
