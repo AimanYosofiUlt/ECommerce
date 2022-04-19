@@ -12,7 +12,6 @@ import androidx.annotation.ColorInt;
 import com.ultimate.ecommerce.R;
 
 public class ThemeColors {
-
     private static final String NAME = "ThemeColors", KEY = "color";
 
     @ColorInt
