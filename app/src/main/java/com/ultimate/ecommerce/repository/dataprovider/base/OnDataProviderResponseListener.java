@@ -1,7 +1,7 @@
 package com.ultimate.ecommerce.repository.dataprovider.base;
 
 
-import com.ultimate.ecommerce.repository.server.response.base.GenResponseObject;
+import com.ultimate.ecommerce.repository.server.response.ysobjecs.GenResponseObject;
 
 public interface OnDataProviderResponseListener<T> {
 

@@ -1,4 +1,4 @@
-package com.ultimate.ecommerce.repository.server.response.base;
+package com.ultimate.ecommerce.repository.server.response.ysobjecs;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -1,20 +1,19 @@
 package com.ultimate.ecommerce.repository.dataprovider.base;
+
 import android.content.Context;
+import android.util.Log;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.repository.local.creation.AppDatabase;
 import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
-import com.ultimate.ecommerce.repository.server.response.base.GenResponseObject;
-import com.ultimate.ecommerce.repository.server.response.base.Result;
+import com.ultimate.ecommerce.repository.server.request.base.GenPostObject;
+import com.ultimate.ecommerce.repository.server.response.ysobjecs.GenResponseObject;
+import com.ultimate.ecommerce.repository.server.response.ysobjecs.Result;
 import com.ultimate.ecommerce.utilities.CommonMethods;
 import com.ultimate.ecommerce.utilities.NetworkUtil;
 import com.yemensoft.yslibrary.ConnictionManger.YsRequestBuilder;
 import com.yemensoft.yslibrary.ConnictionManger.YsResult;
 import com.yemensoft.yslibrary.InterFaces.YsRequestFinishedListener;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 
 /**
@@ -23,13 +22,16 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 public abstract class BaseDataProvider {
     protected AppDatabase mDb;
     protected Context context;
-    protected Executor executor = Executors.newSingleThreadExecutor();
-    public CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public BaseDataProvider(Context context) {
         this.context = context;
         this.mDb = AppDatabase.getInstance(context);
     }
+
+    public static <T> void doRequest(Context context, YsRequestFinishedListener<GenResponseObject<T>> callback, String methodName, Object request) {
+        doRequest(context, callback, false, false, methodName, new GenPostObject<>(request));
+    }
+
     public static <T> void doRequest(Context context, YsRequestFinishedListener<GenResponseObject<T>> finishedListener, boolean showerrormsg, boolean showloading, String methodName, Object... requestPara) {
         YsRequestFinishedListener<GenResponseObject<T>> LS = new YsRequestFinishedListener<GenResponseObject<T>>() {
             @Override
@@ -82,8 +84,7 @@ public abstract class BaseDataProvider {
                 doRequest(context, finishedListener, showerrormsg, showloading, methodName, requestPara);
             }
         };
-
-
+        Log.d("BaseDataProvider", "doRequest: 7859843");
         if (NetworkUtil.isConnectionAvailable(context)) {
             new YsRequestBuilder<GenResponseObject<T>>(context)
                     .setShowErrorMsgWithRetry(showerrormsg)
@@ -98,6 +99,4 @@ public abstract class BaseDataProvider {
         }
 
     }
-
-
 }

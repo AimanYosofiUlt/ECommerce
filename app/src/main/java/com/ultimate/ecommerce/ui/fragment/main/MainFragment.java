@@ -1,23 +1,26 @@
 package com.ultimate.ecommerce.ui.fragment.main;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.ultimate.ecommerce.R;
-import com.ultimate.ecommerce.databinding.FragmentHomeBinding;
 import com.ultimate.ecommerce.databinding.FragmentMainBinding;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
+import com.ultimate.ecommerce.ui.fragment.main.views.mainviewpager.MainViewPagerAdapter;
+import com.ultimate.ecommerce.ui.fragment.setting.SettingFragment;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainFragment extends BaseFragment {
     FragmentMainBinding bd;
+    MainViewPagerAdapter adapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -48,7 +51,9 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initLoading() {
-
+        adapter = new MainViewPagerAdapter(requireParentFragment());
+        adapter.addFragment(new SettingFragment());
+        bd.mainVP.setAdapter(adapter);
     }
 
     @Override

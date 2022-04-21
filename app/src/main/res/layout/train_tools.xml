@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <include layout="@layout/tools_title" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <include layout="@layout/tools_title_start" />
+
+        <include layout="@layout/view_product_info" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <include layout="@layout/view_setting" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <include layout="@layout/tools_search" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <include
+            android:id="@+id/section"
+            layout="@layout/view_section" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <include
+            android:id="@+id/banner"
+            layout="@layout/view_banner" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <include
+            android:id="@+id/banner2"
+            layout="@layout/view_banner2" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <include
+            android:id="@+id/main"
+            layout="@layout/tools_bottomnav" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <include
+            android:id="@+id/cusbtn"
+            layout="@layout/view_custom_button" />
+
+        <include layout="@layout/view_setting" />
+
+        <include layout="@layout/view_setting" />
+    </LinearLayout>
+
+</FrameLayout>

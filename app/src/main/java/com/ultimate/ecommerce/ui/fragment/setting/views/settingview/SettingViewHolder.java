@@ -24,9 +24,15 @@ public class SettingViewHolder extends RecyclerView.ViewHolder {
         bd.img.setImageDrawable(settingModel.drawable);
         bd.titleTV.setText(settingModel.title);
         if (settingModel.hasNextIcon)
+        {
             bd.nextImg.setVisibility(View.VISIBLE);
+            bd.bottomDivider.setVisibility(View.VISIBLE);
+        }
         else
+        {
             bd.nextImg.setVisibility(View.GONE);
+            bd.bottomDivider.setVisibility(View.GONE);
+        }
     }
 
     private void initEvent() {

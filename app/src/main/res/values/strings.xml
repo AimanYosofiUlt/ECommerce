@@ -30,4 +30,13 @@
     <string name="offers">Offers</string>
     <string name="login_register">دخول / اشتراك</string>
     <string name="orders">الطلبات</string>
+    <string name="address">العناوين</string>
+    <string name="favorate">المفضلات</string>
+    <string name="lang_cur">اللغة والعملة</string>
+    <string name="help">المساعدة</string>
+    <string name="about">عن المتجر</string>
+    <string name="contact_us">تواصل معنا</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="searchMsg">.ابحث عن منتج محدد</string>
+    <string name="agree">موافق</string>
 </resources>

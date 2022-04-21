@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:title="@string/orders"
-        android:id="orders"
+        android:id="@+id/orders"
         android:icon="@drawable/ic_orders" />
 </menu>

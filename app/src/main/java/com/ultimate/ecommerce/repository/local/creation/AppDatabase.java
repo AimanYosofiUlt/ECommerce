@@ -6,13 +6,14 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.ultimate.ecommerce.repository.local.tables.ToDeleteEntity;
+import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
+import com.ultimate.ecommerce.repository.local.tables.configuration.ConfigurationDao;
 
 @Database(version = 1,
-        entities = {ToDeleteEntity.class},
+        entities = {Configuration.class},
         exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
-
+    public abstract ConfigurationDao configurationDao();
 
     public static AppDatabase INSTANCE = null;
     public static synchronized AppDatabase getInstance(Context context) {
