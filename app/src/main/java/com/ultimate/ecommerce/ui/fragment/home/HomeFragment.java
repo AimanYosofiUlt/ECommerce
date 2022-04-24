@@ -1,23 +1,25 @@
 package com.ultimate.ecommerce.ui.fragment.home;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.ultimate.ecommerce.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+
+import com.ultimate.ecommerce.app.DynamicTheme;
 import com.ultimate.ecommerce.databinding.FragmentHomeBinding;
+import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
+import com.ultimate.ecommerce.repository.server.response.homepage.HomePageData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class HomeFragment extends BaseFragment<HomeFragmentViewModel>{
+public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
     FragmentHomeBinding bd;
 
     @Nullable
@@ -34,12 +36,28 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel>{
 
     @Override
     public void initObservers() {
+        viewModel.responseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
+            @Override
+            public void onChanged(ResponseState responseState) {
+                if (!responseState.isSuccessful()) {
+                    Toast.makeText(requireContext(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
+        viewModel.homePageDataMDL.observe(getViewLifecycleOwner(), new Observer<HomePageData>() {
+            @Override
+            public void onChanged(HomePageData homePageData) {
+
+            }
+        });
     }
 
     @Override
     public void initLoading() {
-
+        bd.topBack.setGradientDef();
+        bd.searchImg.setColorFilter(DynamicTheme.gradientStartColor);
+        viewModel.getHomePageData();
     }
 
     @Override

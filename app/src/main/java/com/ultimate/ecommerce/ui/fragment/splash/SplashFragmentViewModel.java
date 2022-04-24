@@ -11,6 +11,7 @@ import com.ultimate.ecommerce.repository.dataprovider.configuration.ConfigRepo;
 import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
+import com.ultimate.ecommerce.repository.server.response.configuration.ConfigData;
 import com.ultimate.ecommerce.repository.server.response.configuration.ConfigurationResponse;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
 
@@ -21,30 +22,47 @@ public class SplashFragmentViewModel extends BaseViewModel {
     @Inject
     ConfigRepo configRepo;
 
-    LiveData<Configuration> configLiveData;
+    LiveData<Configuration> configurationLiveData;
     MutableLiveData<ResponseState> responseMDL;
 
     @Inject
     public SplashFragmentViewModel(@NonNull Application application, ConfigRepo configRepo) {
         super(application);
-        configLiveData = configRepo.getConfig();
+        configRepo.initConfig();
+        configurationLiveData = configRepo.getConfiguration();
         responseMDL = new MutableLiveData<>();
     }
 
     void getConfiguration() {
-        configRepo.getConfigFromApi(new ResponsesCallBack<ConfigurationResponse>(){
+        configRepo.getConfigFromApi(new ResponsesCallBack<ConfigurationResponse>() {
             @Override
             public void onSuccess(ConfigurationResponse response) {
                 Log.d("SplashFragmentViewModel", "onSuccess: 845132.");
+                Configuration configuration = convertResponseToConfiguration(response);
+                configRepo.saveConfig(configuration);
+                configurationLiveData = configRepo.getConfiguration();
                 responseMDL.setValue(ResponseState.successState());
+            }
+
+            private Configuration convertResponseToConfiguration(ConfigurationResponse response) {
+                ConfigData configData = response.getData();
+                return new Configuration(configData.getDefaultLanguage()
+                        , configData.getTokenKey()
+                        , configData.getCountriesVersion()
+                        , configData.getLoginField()
+                        , configData.getColors().getMainColor()
+                        , configData.getColors().getSecondColor()
+                        , configData.getColors().getGradientStartColor()
+                        , configData.getColors().getGradientEndColor()
+                        , configData.getColors().getImageBackground()
+                        , configData.getColors().getReviewColor());
             }
 
             @Override
             public void onFailure(String state, String msg) {
-                Log.d("SplashFragmentViewModel", "onFailure: With State{"+state+"}:"+msg);
+                Log.d("SplashFragmentViewModel", "onFailure: With State{" + state + "}:" + msg);
                 responseMDL.setValue(ResponseState.failureState(msg));
             }
         });
-
     }
 }

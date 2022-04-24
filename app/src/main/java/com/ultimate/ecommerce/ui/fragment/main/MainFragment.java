@@ -12,6 +12,7 @@ import com.google.android.material.shape.MaterialShapeDrawable;
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentMainBinding;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
+import com.ultimate.ecommerce.ui.fragment.home.HomeFragment;
 import com.ultimate.ecommerce.ui.fragment.main.views.mainviewpager.MainViewPagerAdapter;
 import com.ultimate.ecommerce.ui.fragment.setting.SettingFragment;
 
@@ -52,6 +53,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public void initLoading() {
         adapter = new MainViewPagerAdapter(requireParentFragment());
+        adapter.addFragment(new HomeFragment());
         adapter.addFragment(new SettingFragment());
         bd.mainVP.setAdapter(adapter);
     }

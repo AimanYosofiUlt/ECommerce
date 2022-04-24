@@ -37,7 +37,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
-    implementation fileTree(dir: '/Users/edit-1/AndroidStudioProjects/ECommerce/app/libs/yslibrary-release.aar', include: ['*.aar', '*.jar'], exclude: [])
+    implementation fileTree(dir: 'C:\\Users\\Ultimate\\AndroidStudioProjects\\ECommerce\\app\\libs\\yslibrary-release.aar', include: ['*.aar', '*.jar'], exclude: [])
     implementation 'androidx.navigation:navigation-fragment:2.4.2'
     implementation 'androidx.navigation:navigation-ui:2.4.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -69,47 +69,11 @@ dependencies {
     implementation 'com.jaredrummler:colorpicker:1.1.0'
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
+    
     // to use YsLib
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 
-    //////////////////////////
-
-//    implementation fileTree(include: ['.aar', '.jar'], dir: 'lib')
-//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-//    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    })
-
-    implementation 'org.greenrobot:eventbus:3.2.0'
-
-
-    implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'com.github.clans:fab:1.6.4'
-
-    implementation 'commons-codec:commons-codec:1.14'
-
-    implementation "androidx.room:room-runtime:2.4.2"
-    annotationProcessor "androidx.room:room-compiler:2.4.2"
-    // For Java use annotationProcessor instead of kapt
-    implementation "androidx.room:room-rxjava2:2.4.2"
-    testImplementation "androidx.room:room-testing:2.4.2"
-
-    //RXjava components
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
-    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
-
-    implementation platform('com.google.firebase:firebase-bom:29.0.3')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-crashlytics'
-
-
-    implementation 'com.tbuonomo:dotsindicator:4.2'
-    implementation "androidx.work:work-runtime:2.7.1"
 }

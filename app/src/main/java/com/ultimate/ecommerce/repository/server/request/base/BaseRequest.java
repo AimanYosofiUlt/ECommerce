@@ -4,10 +4,19 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class BaseRequest {
-    public static RequestBody getConfigurationRequest(String page) {
+    public static RequestBody getConfigurationRequest(String userId) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("page", page)
+                .addFormDataPart("userID", userId)
                 .build();
     }
+
+    public static RequestBody getHomePageRequest(String page) {
+        return new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("userID", page)
+                .build();
+    }
+
+
 }

@@ -21,7 +21,7 @@ public class TrainActivityViewModel extends BaseViewModel {
     public TrainActivityViewModel(@NonNull Application application, ConfigRepo configRepo) {
         super(application);
         configRepo.initConfig();
-        configurationLiveData = configRepo.getConfig();
+        configurationLiveData = configRepo.getConfiguration();
     }
 
     public void saveConfigColor(String main, String sec,

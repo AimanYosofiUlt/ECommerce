@@ -29,7 +29,7 @@ public class ConfigRepo extends BaseDataProvider {
         super(context);
     }
 
-    public LiveData<Configuration> getConfig() {
+    public LiveData<Configuration> getConfiguration() {
         return dao.getConfig();
     }
 
@@ -49,18 +49,7 @@ public class ConfigRepo extends BaseDataProvider {
     }
 
     public void getConfigFromApi(ResponsesCallBack<ConfigurationResponse> callBack) {
-        RequestBody requestBody = BaseRequest.getConfigurationRequest("1");
-        api.getConfiguration(requestBody)
-                .enqueue(new ResponsesCallBack<ConfigurationResponse>() {
-                    @Override
-                    public void onSuccess(ConfigurationResponse response) {
-
-                    }
-
-                    @Override
-                    public void onFailure(String state, String msg) {
-
-                    }
-                });
+        RequestBody requestBody = BaseRequest.getConfigurationRequest("-1");
+        api.getConfiguration(requestBody).enqueue(callBack);
     }
 }

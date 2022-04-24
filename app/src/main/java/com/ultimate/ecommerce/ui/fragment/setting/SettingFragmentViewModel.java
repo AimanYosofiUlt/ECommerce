@@ -20,6 +20,6 @@ public class SettingFragmentViewModel extends BaseViewModel {
     @Inject
     public SettingFragmentViewModel(@NonNull Application application,ConfigRepo configRepo) {
         super(application);
-        configLiveData = configRepo.getConfig();
+        configLiveData = configRepo.getConfiguration();
     }
 }

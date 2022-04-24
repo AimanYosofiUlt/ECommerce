@@ -29,7 +29,6 @@ public abstract class AppModule {
     @Qualifier
     @Retention(RetentionPolicy.RUNTIME)
     private @interface UltimateApiBaseLink {
-
     }
 
     @ActivityScoped
