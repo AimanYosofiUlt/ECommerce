@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.ultimate.ecommerce.repository.dataprovider.configuration.ConfigRepo;
 import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
+import com.ultimate.ecommerce.repository.repos.configuration.ConfigRepo;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.configuration.ConfigData;
@@ -40,7 +40,6 @@ public class SplashFragmentViewModel extends BaseViewModel {
                 Log.d("SplashFragmentViewModel", "onSuccess: 845132.");
                 Configuration configuration = convertResponseToConfiguration(response);
                 configRepo.saveConfig(configuration);
-                configurationLiveData = configRepo.getConfiguration();
                 responseMDL.setValue(ResponseState.successState());
             }
 

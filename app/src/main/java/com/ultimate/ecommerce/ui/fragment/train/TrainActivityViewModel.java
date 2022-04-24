@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
-import com.ultimate.ecommerce.repository.dataprovider.configuration.ConfigRepo;
+import com.ultimate.ecommerce.repository.repos.configuration.ConfigRepo;
 import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
 

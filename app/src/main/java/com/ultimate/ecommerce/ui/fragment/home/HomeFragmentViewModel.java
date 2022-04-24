@@ -1,16 +1,24 @@
 package com.ultimate.ecommerce.ui.fragment.home;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.ultimate.ecommerce.repository.dataprovider.homepage.HomePageRepo;
+import com.ultimate.ecommerce.repository.local.tables.category.Category;
+import com.ultimate.ecommerce.repository.repos.category.CategoryRepo;
+import com.ultimate.ecommerce.repository.repos.homepage.HomePageRepo;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
+import com.ultimate.ecommerce.repository.server.response.get_categories.GetCategoryData;
+import com.ultimate.ecommerce.repository.server.response.get_categories.GetCategoryResponse;
 import com.ultimate.ecommerce.repository.server.response.homepage.HomePageData;
 import com.ultimate.ecommerce.repository.server.response.homepage.HomePageResponse;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -18,14 +26,26 @@ public class HomeFragmentViewModel extends BaseViewModel {
     @Inject
     HomePageRepo homePageRepo;
 
-    MutableLiveData<HomePageData> homePageDataMDL;
-    MutableLiveData<ResponseState> responseMDL;
+    private static final String TAG = "HomeFragmentViewModel";
 
     @Inject
-    public HomeFragmentViewModel(@NonNull Application application) {
+    CategoryRepo categoryRepo;
+
+    LiveData<List<Category>> categoriesLiveData;
+    MutableLiveData<HomePageData> homePageDataMDL;
+    MutableLiveData<ResponseState> homepageResponseMDL;
+    MutableLiveData<ResponseState> categoriesMDL;
+    MutableLiveData<ResponseState> getCategoriesResponseMDL;
+
+
+    @Inject
+    public HomeFragmentViewModel(@NonNull Application application, CategoryRepo categoryRepo) {
         super(application);
+        categoriesLiveData = categoryRepo.getCategories();
         homePageDataMDL = new MutableLiveData<>();
-        responseMDL = new MutableLiveData<>();
+        homepageResponseMDL = new MutableLiveData<>();
+        categoriesMDL = new MutableLiveData<>();
+        getCategoriesResponseMDL = new MutableLiveData<>();
     }
 
     public void getHomePageData() {
@@ -38,7 +58,40 @@ public class HomeFragmentViewModel extends BaseViewModel {
 
             @Override
             public void onFailure(String state, String msg) {
-                responseMDL.setValue(ResponseState.failureState(msg));
+                homepageResponseMDL.setValue(ResponseState.failureState(msg));
+            }
+        });
+    }
+
+    public void getCategory() {
+        categoryRepo.getCategoriesFromApi(new ResponsesCallBack<GetCategoryResponse>() {
+            @Override
+            public void onSuccess(GetCategoryResponse response) {
+                List<GetCategoryData> dataList = response.getData();
+                Log.d(TAG, "onSuccess : " + response.getData().size());
+                for (GetCategoryData responseData : dataList) {
+                    Category category = convertResponseToCategory(responseData);
+                    categoryRepo.addCategory(category);
+                }
+                getCategoriesResponseMDL.setValue(ResponseState.successState());
+                categoriesLiveData = categoryRepo.getCategories();
+            }
+
+            private Category convertResponseToCategory(GetCategoryData responseData) {
+                return new Category(responseData.getId()
+                        , responseData.getSlug()
+                        , responseData.getTitle()
+                        , responseData.getDescription()
+                        , responseData.getImage()
+                        , responseData.getParent()
+                        , responseData.getCount()
+                        , responseData.getGradientStartColor()
+                        , responseData.getGradientEndColor());
+            }
+
+            @Override
+            public void onFailure(String state, String msg) {
+                getCategoriesResponseMDL.setValue(ResponseState.failureState(msg));
             }
         });
     }

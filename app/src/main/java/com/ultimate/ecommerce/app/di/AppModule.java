@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.ultimate.ecommerce.repository.local.creation.AppDatabase;
+import com.ultimate.ecommerce.repository.local.tables.category.CategoryDao;
 import com.ultimate.ecommerce.repository.local.tables.configuration.ConfigurationDao;
 import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 
@@ -84,5 +85,11 @@ public abstract class AppModule {
     @Provides
     public static ConfigurationDao provideConfigurationDao(AppDatabase appDatabase) {
         return appDatabase.configurationDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static CategoryDao provideCategoryDao(AppDatabase appDatabase) {
+        return appDatabase.categoryDao();
     }
 }

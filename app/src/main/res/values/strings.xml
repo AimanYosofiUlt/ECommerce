@@ -40,4 +40,5 @@
     <string name="searchMsg">.ابحث عن منتج محدد</string>
     <string name="agree">موافق</string>
     <string name="home_title">!عروض لا تفوتك</string>
+    <string name="category">الأقسام</string>
 </resources>
