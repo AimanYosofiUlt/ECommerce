@@ -6,8 +6,10 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.ultimate.ecommerce.repository.local.creation.BaseDao;
+
 @Dao
-public interface ConfigurationDao {
+public interface ConfigurationDao extends BaseDao<Configuration> {
     @Query("INSERT INTO Configuration " +
             "SELECT 0,'en','123456','1','phone','#37123C','#AFA8B1','#FE938C','#FFF87C','#FFEDEC','#E7E3E7'" +
             " WHERE NOT EXISTS (SELECT 1 FROM Configuration WHERE id = 0)")
@@ -16,7 +18,5 @@ public interface ConfigurationDao {
     @Query("SELECT * FROM Configuration")
     LiveData<Configuration> getConfig();
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateConfig(Configuration configuration);
 }
 

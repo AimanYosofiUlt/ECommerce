@@ -34,8 +34,7 @@ public class Configuration {
     }
 
     @Ignore
-    public Configuration(Integer id, String defaultLanguage, String tokenKey, Integer countriesVersion, String loginField, String mainColor, String secondColor, String gradientStartColor, String gradientEndColor, String imageBackground, String reviewColor) {
-        this.id = id;
+    public Configuration(String defaultLanguage, String tokenKey, Integer countriesVersion, String loginField, String mainColor, String secondColor, String gradientStartColor, String gradientEndColor, String imageBackground, String reviewColor) {
         this.defaultLanguage = defaultLanguage;
         this.tokenKey = tokenKey;
         this.countriesVersion = countriesVersion;

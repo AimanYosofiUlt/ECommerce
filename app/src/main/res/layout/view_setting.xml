@@ -30,8 +30,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/titleTV"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/titleTV"
-            android:src="@drawable/ic_next"
-            android:tint="@{color.mainColor}"
+            android:src="@drawable/ic_back"
+            android:tint="@{color.gradientStartColor}"
             tools:ignore="UseAppTint" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:id="@+id/bottom_divider"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="@{color.mainColor}"
+            android:background="@{color.gradientStartColor}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/nextImg"
             app:layout_constraintStart_toStartOf="@+id/titleTV" />

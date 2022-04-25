@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
-import com.ultimate.ecommerce.repository.dataprovider.configuration.ConfigRepo;
+import com.ultimate.ecommerce.repository.repos.configuration.ConfigRepo;
 import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
 
@@ -20,6 +20,6 @@ public class SettingFragmentViewModel extends BaseViewModel {
     @Inject
     public SettingFragmentViewModel(@NonNull Application application,ConfigRepo configRepo) {
         super(application);
-        configLiveData = configRepo.getConfig();
+        configLiveData = configRepo.getConfiguration();
     }
 }
