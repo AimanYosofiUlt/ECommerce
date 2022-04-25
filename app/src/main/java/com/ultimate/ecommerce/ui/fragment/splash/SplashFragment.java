@@ -43,21 +43,21 @@ public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
 
     @Override
     public void initObservers() {
-        viewModel.configLiveData.observe(getViewLifecycleOwner(), new Observer<Configuration>() {
-            @Override
-            public void onChanged(Configuration configuration) {
-                setAppDynamicTheme(configuration);
-            }
-
-            private void setAppDynamicTheme(Configuration configuration) {
-                DynamicTheme.mainColor = Color.parseColor(configuration.getMainColor());
-                DynamicTheme.secondColor = Color.parseColor(configuration.getSecondColor());
-                DynamicTheme.gradientStartColor = Color.parseColor(configuration.getGradientStartColor());
-                DynamicTheme.gradientEndColor = Color.parseColor(configuration.getGradientEndColor());
-                DynamicTheme.imageBackground = Color.parseColor(configuration.getImageBackground());
-                DynamicTheme.reviewColor = Color.parseColor(configuration.getReviewColor());
-            }
-        });
+//        viewModel.configLiveData.observe(getViewLifecycleOwner(), new Observer<Configuration>() {
+//            @Override
+//            public void onChanged(Configuration configuration) {
+//                setAppDynamicTheme(configuration);
+//            }
+//
+//            private void setAppDynamicTheme(Configuration configuration) {
+//                DynamicTheme.mainColor = Color.parseColor(configuration.getMainColor());
+//                DynamicTheme.secondColor = Color.parseColor(configuration.getSecondColor());
+//                DynamicTheme.gradientStartColor = Color.parseColor(configuration.getGradientStartColor());
+//                DynamicTheme.gradientEndColor = Color.parseColor(configuration.getGradientEndColor());
+//                DynamicTheme.imageBackground = Color.parseColor(configuration.getImageBackground());
+//                DynamicTheme.reviewColor = Color.parseColor(configuration.getReviewColor());
+//            }
+//        });
 
         viewModel.responseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
@@ -78,7 +78,6 @@ public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
         // TODO
         //  THIS TO MAKE APP START AFTER INITIALIZE ANYTHING AND AFTER 1 SECOND AS A MINIMUM
         bd.back.setGradientDef();
-
         viewModel.getConfiguration();
         startSplash();
     }

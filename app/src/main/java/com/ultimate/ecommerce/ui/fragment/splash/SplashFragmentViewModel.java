@@ -32,19 +32,18 @@ public class SplashFragmentViewModel extends BaseViewModel {
     }
 
     void getConfiguration() {
-        configRepo.getConfigFromApi(new ResponsesCallBack<ConfigurationResponse>(){
-            @Override
-            public void onSuccess(ConfigurationResponse response) {
-                Log.d("SplashFragmentViewModel", "onSuccess: 845132.");
-                responseMDL.setValue(ResponseState.successState());
-            }
-
-            @Override
-            public void onFailure(String state, String msg) {
-                Log.d("SplashFragmentViewModel", "onFailure: With State{"+state+"}:"+msg);
-                responseMDL.setValue(ResponseState.failureState(msg));
-            }
-        });
-
+//        configRepo.getConfigFromApi(new ResponsesCallBack<ConfigurationResponse>(){
+//            @Override
+//            public void onSuccess(ConfigurationResponse response) {
+//                Log.d("SplashFragmentViewModel", "onSuccess: 845132.");
+//                responseMDL.setValue(ResponseState.successState());
+//            }
+//
+//            @Override
+//            public void onFailure(String state, String msg) {
+//                Log.d("SplashFragmentViewModel", "onFailure: With State{"+state+"}:"+msg);
+//                responseMDL.setValue(ResponseState.failureState(msg));
+//            }
+//        });
     }
 }
