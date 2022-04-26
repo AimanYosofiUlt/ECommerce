@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import com.ultimate.ecommerce.databinding.FragmentSubsectionsBinding;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class SubSectionsFragment extends BaseFragment<SubsectionsViewModel> {
 
     private FragmentSubsectionsBinding bd;
