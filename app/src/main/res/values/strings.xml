@@ -28,4 +28,26 @@
     <string name="ultimate_store">Ultimate Store</string>
     <string name="home">Home</string>
     <string name="offers">Offers</string>
+    <string name="login_register">دخول / اشتراك</string>
+    <string name="orders">الطلبات</string>
+    <string name="address">العناوين</string>
+    <string name="favorate">المفضلات</string>
+    <string name="lang_cur">اللغة والعملة</string>
+    <string name="help">المساعدة</string>
+    <string name="about">عن المتجر</string>
+    <string name="contact_us">تواصل معنا</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="searchMsg">.ابحث عن منتج محدد</string>
+    <string name="agree">موافق</string>
+    <string name="home_title">!عروض لا تفوتك</string>
+    <string name="category">الأقسام</string>
+    <string name="register_now_msg">اشترك بحساب جديد معنا</string>
+    <string name="or_enter_user">أو أدخل بياناتك يدوياً</string>
+    <string name="user_name">الاسم</string>
+    <string name="user_phone">رقم الجوال</string>
+    <string name="user_email">البريد الإلكتروني</string>
+    <string name="optional" >إختياري</string>
+    <string name="register" >اشتراك</string>
+    <string name="user_password">كلمة المرور</string>
+    <string name="register_with_us">اشترك معنا</string>
 </resources>

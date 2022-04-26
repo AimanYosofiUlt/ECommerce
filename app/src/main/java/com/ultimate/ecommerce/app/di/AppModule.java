@@ -1,8 +1,15 @@
 package com.ultimate.ecommerce.app.di;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.ultimate.ecommerce.repository.local.creation.AppDatabase;
+import com.ultimate.ecommerce.repository.local.tables.category.CategoryDao;
+import com.ultimate.ecommerce.repository.local.tables.configuration.ConfigurationDao;
+import com.ultimate.ecommerce.repository.local.tables.page.PageDao;
+import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
+import com.ultimate.ecommerce.repository.local.tables.setting.AppSettingDao;
+import com.ultimate.ecommerce.repository.local.user.UserDao;
 import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 
 import java.lang.annotation.Retention;
@@ -23,17 +30,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 @InstallIn(ActivityComponent.class)
 public abstract class AppModule {
+
     @Qualifier
     @Retention(RetentionPolicy.RUNTIME)
-    private @interface UltimateApiBaseLink{
+    private @interface UltimateApiBaseLink {
+    }
 
+    @ActivityScoped
+    @Provides
+    public static Context provideContext(Application application) {
+        return application;
     }
 
     @UltimateApiBaseLink
     @Provides
     public static String provideBaseUrl() {
-        return "https://ultimate-demos.com/app/wp-json/app/v1/";
+        return "https://samir.ultimate-demos.com/wp-json/app/v1/";
     }
+
 
     @ActivityScoped
     @Provides
@@ -69,5 +83,35 @@ public abstract class AppModule {
     @Provides
     public static AppDatabase provideAppDatabase(Application application) {
         return AppDatabase.getInstance(application);
+    }
+
+    @ActivityScoped
+    @Provides
+    public static ConfigurationDao provideConfigurationDao(AppDatabase appDatabase) {
+        return appDatabase.configurationDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static CategoryDao provideCategoryDao(AppDatabase appDatabase) {
+        return appDatabase.categoryDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static AppSettingDao provideAppSetting(AppDatabase appDatabase) {
+        return appDatabase.appSettingDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static PageDao providePageDao(AppDatabase appDatabase) {
+        return appDatabase.pageDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static UserDao provideUserDao(AppDatabase appDatabase) {
+        return appDatabase.userDao();
     }
 }

@@ -1,18 +1,23 @@
 package com.ultimate.ecommerce.ui.fragment.splash;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.R;
+import com.ultimate.ecommerce.app.DynamicTheme;
+import com.ultimate.ecommerce.app.GeneralVariable;
 import com.ultimate.ecommerce.databinding.FragmentSplashBinding;
+import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
+import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
+import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -39,7 +44,38 @@ public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
 
     @Override
     public void initObservers() {
+        viewModel.configurationLiveData.observe(getViewLifecycleOwner(), new Observer<Configuration>() {
+            @Override
+            public void onChanged(Configuration configuration) {
+                setAppDynamicTheme(configuration);
+            }
 
+            private void setAppDynamicTheme(Configuration configuration) {
+                DynamicTheme.mainColor = Color.parseColor(configuration.getMainColor());
+                DynamicTheme.secondColor = Color.parseColor(configuration.getSecondColor());
+                DynamicTheme.gradientStartColor = Color.parseColor(configuration.getGradientStartColor());
+                DynamicTheme.gradientEndColor = Color.parseColor(configuration.getGradientEndColor());
+                DynamicTheme.imageBackground = Color.parseColor(configuration.getImageBackground());
+                DynamicTheme.reviewColor = Color.parseColor(configuration.getReviewColor());
+
+                bd.back.setGradientDef();
+            }
+        });
+
+        viewModel.settingLiveData.observe(getViewLifecycleOwner(), new Observer<AppSetting>() {
+            @Override
+            public void onChanged(AppSetting appSetting) {
+                GeneralVariable.tokenKey = appSetting.getTokenKey();
+            }
+        });
+
+        viewModel.responseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
+            @Override
+            public void onChanged(ResponseState responseState) {
+                // todo what i should to do here after failure
+                tryGoMain();
+            }
+        });
     }
 
     @Override
@@ -49,14 +85,12 @@ public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
 
     @Override
     public void initLoading() {
-        // TODO
-        //  THIS TO MAKE APP START AFTER INITIALIZE ANYTHING AND AFTER 1 SECOND AS A MINIMUM
-        tryGoMain();
+        viewModel.getConfiguration();
         startSplash();
     }
 
     private void startSplash() {
-        new CountDownTimer(5000, 100) {
+        new CountDownTimer(100, 100) {
             @Override
             public void onFinish() {
                 tryGoMain();

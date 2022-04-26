@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.ultimate.ecommerce.app.DynamicTheme" />
+
+        <variable
+            name="color"
+            type="DynamicTheme" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="160dp"
+        android:minWidth="350dp">
+
+        <com.ultimate.ecommerce.utilities.GradiantView
+            android:id="@+id/gradiantView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:bottomLeft="24dp"
+            app:bottomRight="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:topLeft="24dp"
+            app:topRight="24dp" />
+
+        <ImageView
+            android:id="@+id/bannerImg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/gradiantView"
+            app:layout_constraintStart_toEndOf="@+id/bannerContent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/bannerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="خصم"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/bannerContent"
+            app:layout_constraintEnd_toEndOf="@+id/bannerContent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/bannerContent"
+            app:layout_constraintTop_toBottomOf="@+id/bannerSmallImg" />
+
+        <TextView
+            android:id="@+id/bannerContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="28dp"
+            android:text="على اجهزة APPLE"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/gradiantView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bannerTitle" />
+
+        <ImageView
+            android:id="@+id/bannerSmallImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/bannerTitle"
+            app:layout_constraintEnd_toEndOf="@+id/bannerTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/bannerTitle"
+            app:layout_constraintTop_toBottomOf="@+id/gradiantView"
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_chainStyle="spread"
+            app:srcCompat="@drawable/ic_video_games" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

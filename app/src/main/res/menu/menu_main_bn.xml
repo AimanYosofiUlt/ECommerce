@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/setting"
-        android:icon="@drawable/ic_ab_settings"
-        android:title="@string/home" />
-    <item
-        android:id="@+id/cart"
-        android:icon="@drawable/ic_ab_cart"
-        android:title="@string/home" />
 
     <item
-        android:id="@+id/placeholder"
-        android:title="" />
+        android:id="@+id/home"
+        android:icon="@drawable/ic_ab_home"
+        android:title="@string/home" />
 
     <item
         android:id="@+id/category"
@@ -19,8 +12,17 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/home"
-        android:icon="@drawable/ic_ab_home"
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
+        android:id="@+id/cart"
+        android:icon="@drawable/ic_ab_cart"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_ab_settings"
         android:title="@string/home" />
 
 </menu>

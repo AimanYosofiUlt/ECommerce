@@ -23,11 +23,4 @@
             </item>
         </selector>
     </item>
-
-
-    <item android:gravity="center">
-        <bitmap
-            android:gravity="fill_horizontal|center"
-            android:src="@drawable/ab_offers" />
-    </item>
 </layer-list>

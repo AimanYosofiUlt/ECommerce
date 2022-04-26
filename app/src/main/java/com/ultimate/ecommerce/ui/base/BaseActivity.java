@@ -7,10 +7,8 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static android.os.Build.VERSION.SDK_INT;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -28,7 +26,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -42,18 +39,24 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.inject.Inject;
 
-public abstract class BaseActivity extends AppCompatActivity {
+
+public abstract class BaseActivity<ViewModel extends BaseViewModel> extends AppCompatActivity {
     public static int langFlag = 1;
     public static final int PERMISSION_REQUEST_CODE = 1005;
     private ActivityResultLauncher<Intent> launcher;
+
+    @Inject
+    protected ViewModel viewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        initActivityResultLauncher();
-        checkAppPermission();
+        proceed();
+//        initActivityResultLauncher();
+//        checkAppPermission();
     }
 
 
@@ -73,8 +76,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         initViewModel();
         initObservers();
         initErrorObservers();
-        activityReadyToUse();
+        initLoading();
+        initEvent();
     }
+
+    protected abstract void initEvent();
 
 
     @Override
@@ -164,7 +170,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public abstract void initErrorObservers();
 
-    public abstract void activityReadyToUse();
+    public abstract void initLoading();
 
 
     public void changeLanguage() {

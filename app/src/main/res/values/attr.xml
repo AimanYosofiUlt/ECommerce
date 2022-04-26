@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GradiantView">
+        <attr format="dimension" name="topLeft"/>
+        <attr format="dimension" name="topRight"/>
+        <attr format="dimension" name="bottomLeft"/>
+        <attr format="dimension" name="bottomRight"/>
+    </declare-styleable>
+
+    <declare-styleable name="BorderedButton">
+        <attr format="dimension" name="radius"/>
+        <attr format="dimension" name="strokeWidth"/>
+    </declare-styleable>
+
+    <declare-styleable name="ColoredImage">
+        <attr format="string" name="colorName"/>
+    </declare-styleable>
+
+</resources>
