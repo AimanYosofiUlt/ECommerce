@@ -21,6 +21,33 @@
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/ECommerce/app/src/main/res/layout/view_product.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/ECommerce/app/src/main/res/layout/view_section.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/ECommerce/app/src/main/res/menu/menu_home_bottom_nav.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable-ldpi/ic_ab_cart_gray.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_ab_cart.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_ab_categories.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_ab_home.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_ab_offers.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_ab_settings.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_back.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_favourite.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_filters.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_loader.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_logo.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_rateing_star.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/ic_search.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/subsection_list_item_bg.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/subsection_type_item_bg.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/temp_back_fab.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/temp_gradint.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/drawable/temp_round_gradint.xml" value="0.2175" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/layout/activity_sub_section.xml" value="0.264" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/layout/fragment_blank.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/layout/fragment_main.xml" value="0.21302083333333333" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/layout/fragment_sections.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/layout/fragment_subsections.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/layout/subsection_list_item.xml" value="0.4" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/layout/subsection_type_item.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/samie/AndroidStudioProjects/ECommerce/app/src/main/res/layout/subsections_toolbar_layout.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>

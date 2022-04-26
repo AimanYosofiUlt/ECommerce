@@ -17,5 +17,13 @@
         android:id="@+id/mainFragment"
         android:name="com.ultimate.ecommerce.ui.fragment.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/actionMainToSubFragment"
+            app:destination="@+id/subsectionFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/subsectionFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.subSections.SubSectionsFragment"
+        android:label="fragment_subsection"/>
 </navigation>
