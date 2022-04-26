@@ -2,7 +2,7 @@ package com.ultimate.ecommerce.repository.server.response.contact_us;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PageContent {
+public class ContactUsContentData {
     @SerializedName("des")
     private String des;
     @SerializedName("title")
@@ -10,7 +10,7 @@ public class PageContent {
     @SerializedName("img")
     private String img;
 
-    public PageContent() {
+    public ContactUsContentData() {
     }
 
     public String getDes() {

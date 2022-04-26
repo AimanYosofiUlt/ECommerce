@@ -14,14 +14,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class CategoryFragmentViewModel extends BaseViewModel {
-    @Inject
     CategoryRepo categoryRepo;
-
     LiveData<List<Category>> categoriesLiveData;
 
     @Inject
     public CategoryFragmentViewModel(@NonNull Application application, CategoryRepo categoryRepo) {
         super(application);
+        this.categoryRepo = categoryRepo;
         categoriesLiveData = categoryRepo.getCategories();
     }
 }

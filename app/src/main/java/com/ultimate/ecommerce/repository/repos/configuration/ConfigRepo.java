@@ -34,12 +34,7 @@ public class ConfigRepo extends BaseRepo {
     }
 
     public void saveConfig(Configuration configuration) {
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                dao.update(configuration);
-            }
-        });
+        AsyncTask.execute(() -> dao.update(configuration));
     }
 
     public void getConfigFromApi(ResponsesCallBack<ConfigurationResponse> callBack) {

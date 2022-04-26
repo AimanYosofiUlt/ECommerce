@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ContactUsData {
     @SerializedName("pageContent")
-    private List<PageContent> pageContent;
+    private List<ContactUsContentData> pageContent;
     @SerializedName("pageDescription")
     private String pageDescription;
     @SerializedName("pageTitle")
@@ -15,11 +15,11 @@ public class ContactUsData {
     public ContactUsData() {
     }
 
-    public List<PageContent> getPageContent() {
+    public List<ContactUsContentData> getPageContent() {
         return pageContent;
     }
 
-    public void setPageContent(List<PageContent> pageContent) {
+    public void setPageContent(List<ContactUsContentData> pageContent) {
         this.pageContent = pageContent;
     }
 

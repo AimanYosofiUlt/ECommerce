@@ -87,7 +87,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
 
     @Override
     public void initLoading() {
-        bd.topBack.setGradientDef();
         bd.searchImg.setColorFilter(DynamicTheme.gradientStartColor);
 //        viewModel.getHomePageData();
         viewModel.getCategory();

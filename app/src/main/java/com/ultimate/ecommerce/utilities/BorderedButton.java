@@ -18,7 +18,7 @@ import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.DynamicTheme;
 
 public class BorderedButton extends View {
-    int mainColor = Color.BLACK;
+    int mainColor = DynamicTheme.gradientStartColor;
     float radius = 100f;
     float strockWidth = 8f;
 
@@ -49,6 +49,7 @@ public class BorderedButton extends View {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.BorderedButton);
         radius = typedArray.getDimension(R.styleable.BorderedButton_radius, 100f);
         strockWidth = typedArray.getDimension(R.styleable.BorderedButton_strokeWidth, 8f);
+        typedArray.recycle();
     }
 
 
@@ -60,21 +61,30 @@ public class BorderedButton extends View {
 
     private void drawRoundBack(Canvas canvas) {
         Paint paint = new Paint();
-        Path path = getRoundRectPath();
-        paint.setColor(Color.WHITE);
-        canvas.drawPath(path, paint);
+        Path bottomPath = getRoundRectPathBottom();
         paint.setColor(mainColor);
-        paint.setStrokeWidth(strockWidth);
-        paint.setStyle(Paint.Style.STROKE);
-        canvas.drawPath(path, paint);
+        paint.setAntiAlias(true);
+        canvas.drawPath(bottomPath, paint);
+
+        Path topPath = getRoundRectPathTop();
+        paint.setColor(Color.WHITE);
+        canvas.drawPath(topPath, paint);
     }
 
-    private Path getRoundRectPath() {
+    private Path getRoundRectPathBottom() {
         Path path = new Path();
         float[] corners = getTheCorners();
         path.addRoundRect(new RectF(getLeft(), getTop(), getRight(), getBottom()), corners, Path.Direction.CW);
         return path;
     }
+
+    private Path getRoundRectPathTop() {
+        Path path = new Path();
+        float[] corners = getTheCorners();
+        path.addRoundRect(new RectF(getLeft() + strockWidth, getTop() + strockWidth, getRight() - strockWidth, getBottom() - strockWidth), corners, Path.Direction.CW);
+        return path;
+    }
+
 
     private float[] getTheCorners() {
         return new float[]{

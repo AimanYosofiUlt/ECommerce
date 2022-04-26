@@ -6,6 +6,10 @@ import android.content.Context;
 import com.ultimate.ecommerce.repository.local.creation.AppDatabase;
 import com.ultimate.ecommerce.repository.local.tables.category.CategoryDao;
 import com.ultimate.ecommerce.repository.local.tables.configuration.ConfigurationDao;
+import com.ultimate.ecommerce.repository.local.tables.page.PageDao;
+import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
+import com.ultimate.ecommerce.repository.local.tables.setting.AppSettingDao;
+import com.ultimate.ecommerce.repository.local.user.UserDao;
 import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 
 import java.lang.annotation.Retention;
@@ -91,5 +95,23 @@ public abstract class AppModule {
     @Provides
     public static CategoryDao provideCategoryDao(AppDatabase appDatabase) {
         return appDatabase.categoryDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static AppSettingDao provideAppSetting(AppDatabase appDatabase) {
+        return appDatabase.appSettingDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static PageDao providePageDao(AppDatabase appDatabase) {
+        return appDatabase.pageDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static UserDao provideUserDao(AppDatabase appDatabase) {
+        return appDatabase.userDao();
     }
 }

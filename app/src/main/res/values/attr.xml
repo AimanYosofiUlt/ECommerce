@@ -12,4 +12,8 @@
         <attr format="dimension" name="strokeWidth"/>
     </declare-styleable>
 
+    <declare-styleable name="ColoredImage">
+        <attr format="string" name="colorName"/>
+    </declare-styleable>
+
 </resources>

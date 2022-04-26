@@ -6,9 +6,6 @@ public class Caps {
     @SerializedName("subscriber")
     private boolean subscriber;
 
-    public Caps() {
-    }
-
     public boolean getSubscriber() {
         return subscriber;
     }

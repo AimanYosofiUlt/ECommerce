@@ -14,7 +14,7 @@ public class BaseRequest {
     public static RequestBody getBaseRequest() {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("tokenKey", UltimateApi.TOKEN_KEY)
+                .addFormDataPart("tokenKey", UltimateApi.tokenKey)
                 .addFormDataPart("secretKey", UltimateApi.SECRET_KEY)
                 .build();
     }
@@ -159,7 +159,7 @@ public class BaseRequest {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userID", userId)
-                .addFormDataPart("tokenKey", UltimateApi.TOKEN_KEY)
+                .addFormDataPart("tokenKey", UltimateApi.tokenKey)
                 .addFormDataPart("secretKey", UltimateApi.SECRET_KEY)
                 .build();
     }

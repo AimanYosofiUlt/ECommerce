@@ -3,30 +3,27 @@ package com.ultimate.ecommerce.repository.server.response.add_user;
 import com.google.gson.annotations.SerializedName;
 
 public class Allcaps {
-    @SerializedName("subscriber")
-    private boolean subscriber;
+    @SerializedName("subscriber2")
+    private boolean subscriber2;
     @SerializedName("level_0")
-    private boolean level_0;
+    private boolean level0;
     @SerializedName("read")
     private boolean read;
 
-    public Allcaps() {
+    public boolean getSubscriber2() {
+        return subscriber2;
     }
 
-    public boolean getSubscriber() {
-        return subscriber;
+    public void setSubscriber2(boolean subscriber2) {
+        this.subscriber2 = subscriber2;
     }
 
-    public void setSubscriber(boolean subscriber) {
-        this.subscriber = subscriber;
+    public boolean getLevel0() {
+        return level0;
     }
 
-    public boolean getLevel_0() {
-        return level_0;
-    }
-
-    public void setLevel_0(boolean level_0) {
-        this.level_0 = level_0;
+    public void setLevel0(boolean level0) {
+        this.level0 = level0;
     }
 
     public boolean getRead() {
