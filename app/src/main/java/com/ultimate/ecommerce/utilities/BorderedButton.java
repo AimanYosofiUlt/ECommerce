@@ -50,6 +50,9 @@ public class BorderedButton extends View {
         radius = typedArray.getDimension(R.styleable.BorderedButton_radius, 100f);
         strockWidth = typedArray.getDimension(R.styleable.BorderedButton_strokeWidth, 8f);
         typedArray.recycle();
+
+        setClickable(true);
+        setFocusable(true);
     }
 
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/registerFragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.ultimate.ecommerce.ui.fragment.splash.SplashFragment"
@@ -17,30 +17,77 @@
         android:id="@+id/mainFragment"
         android:name="com.ultimate.ecommerce.ui.fragment.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/actionMainToAboutUs"
+            app:destination="@id/aboutUsFragment" />
+        <action
+            android:id="@+id/actionMainToContactUs"
+            app:destination="@id/contactUsFragment" />
+        <action
+            android:id="@+id/actionMainToHelp"
+            app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/actionMainToLangCurrency"
+            app:destination="@id/langCurrencyFragment" />
+        <action
+            android:id="@+id/actionMainToFavorite"
+            app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/actionMainToAddress"
+            app:destination="@id/addressFragment" />
+        <action
+            android:id="@+id/actionMainToLogin"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/actionMainToProfile"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/settingFragment"
-        tools:layout="@layout/fragment_setting"
-        android:name="com.ultimate.ecommerce.ui.fragment.setting.SettingFragment"
-        android:label="SettingFragment" />
-    <fragment
+        android:label="ContactUsFragment"
         android:id="@+id/contactUsFragment"
         android:name="com.ultimate.ecommerce.ui.fragment.contact_us.ContactUsFragment"
-        android:label="ContactUsFragment"
         tools:layout="@layout/fragment_connect_us" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.help.HelpFragment"
+        android:label="HelpFragment"
+        tools:layout="@layout/fragment_help" />
     <fragment
         android:id="@+id/aboutUsFragment"
         android:name="com.ultimate.ecommerce.ui.fragment.about_us.AboutUsFragment"
         android:label="AboutUsFragment"
         tools:layout="@layout/fragment_about_us" />
     <fragment
-        tools:layout="@layout/fragment_help"
-        android:id="@+id/helpFragment"
-        android:name="com.ultimate.ecommerce.ui.fragment.help.HelpFragment"
-        android:label="HelpFragment" />
+        android:id="@+id/addressFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.address.AddressFragment"
+        android:label="AddressFragment"
+        tools:layout="@layout/fragment_address" />
     <fragment
-        tools:layout="@layout/fragment_register"
+        android:id="@+id/langCurrencyFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.lang_currency.LangCurrencyFragment"
+        android:label="LangCurrencyFragment"
+        tools:layout="@layout/fragment_lang_currency" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.favorite.FavoriteFragment"
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/actionLoginToRegister"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/registerFragment"
         android:name="com.ultimate.ecommerce.ui.fragment.register.RegisterFragment"
         android:label="RegisterFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.profile.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
@@ -38,10 +37,17 @@ public class RegisterFragment extends BaseFragment<RegisterFragmentViewModel> {
             @Override
             public void onClick(View view) {
                 String userName = bd.userNameED.getText().toString();
-                String userPhone = bd.phoneED.getText().toString();
+                String userPhone = bd.phoneCCP.getFullNumberWithPlus();
                 String userEmail = bd.emailED.getText().toString();
                 String userPassword = bd.passwordED.getText().toString();
                 viewModel.registerUser(userName, userPhone, userEmail, userPassword);
+            }
+        });
+
+        bd.googleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.registerGoogleUser();
             }
         });
     }
@@ -52,7 +58,6 @@ public class RegisterFragment extends BaseFragment<RegisterFragmentViewModel> {
             @Override
             public void onChanged(ResponseState responseState) {
                 Log.d("RegisterFragment", "onChanged: 21312w: " + responseState.getMessage());
-                Toast.makeText(requireContext(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -61,6 +66,7 @@ public class RegisterFragment extends BaseFragment<RegisterFragmentViewModel> {
     public void initLoading() {
         bd.registerBtn.btnTextTV.setText(getString(R.string.register));
         bd.title.titleTV.setText(getString(R.string.register_with_us));
+        bd.phoneCCP.registerPhoneNumberTextView(bd.phoneED);
     }
 
     @Override

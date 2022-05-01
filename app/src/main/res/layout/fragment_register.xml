@@ -99,6 +99,7 @@
 
                 <com.ultimate.ecommerce.utilities.BorderedButton
                     android:layout_width="match_parent"
+                    android:id="@+id/googleBtn"
                     android:layout_height="match_parent"
                     app:radius="15dp"
                     app:strokeWidth="1dp" />
@@ -222,7 +223,7 @@
                     style="@style/shadow_edittext"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_username"
+                    android:drawableStart="@drawable/ic_username"
                     android:hint="@string/user_name"
                     android:inputType="textPersonName"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -250,13 +251,13 @@
                     style="@style/shadow_edittext"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:drawableEnd="@drawable/ic_phone"
+                    android:layout_marginEnd="12dp"
+                    android:drawableStart="@drawable/ic_phone"
                     android:hint="@string/user_phone"
                     android:inputType="phone"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/phoneCCP"
+                    app:layout_constraintEnd_toStartOf="@+id/phoneCCP"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -264,15 +265,16 @@
                     android:id="@+id/phoneCCP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:padding="10dp"
                     app:ccp_defaultCode="81"
                     app:ccp_defaultNameCode="EG"
                     app:ccp_hideNameCode="true"
                     app:ccp_textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/phoneED"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/phoneED" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/phoneED"
+                    app:layout_constraintVertical_bias="0.47" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -294,26 +296,26 @@
                     style="@style/shadow_edittext"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:drawableEnd="@drawable/ic_username"
+                    android:layout_marginEnd="12dp"
+                    android:drawableStart="@drawable/ic_email"
                     android:hint="@string/user_email"
                     android:inputType="textEmailAddress"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView13"
+                    app:layout_constraintEnd_toStartOf="@+id/textView13"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:text="@string/optional"
                     android:textColor="#4D000000"
                     android:textSize="14sp"
+                    android:layout_marginEnd="8dp"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.51" />
 
@@ -337,7 +339,7 @@
                     style="@style/shadow_edittext"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_username"
+                    android:drawableStart="@drawable/ic_username"
                     android:hint="@string/user_password"
                     android:inputType="textPassword"
                     app:layout_constraintBottom_toBottomOf="parent"

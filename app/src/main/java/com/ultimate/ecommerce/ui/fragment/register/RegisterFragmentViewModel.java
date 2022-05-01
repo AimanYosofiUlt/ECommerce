@@ -5,7 +5,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.ultimate.ecommerce.app.GeneralVariable;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.ultimate.ecommerce.app.GlobalVariable;
 import com.ultimate.ecommerce.repository.local.user.User;
 import com.ultimate.ecommerce.repository.repos.setting.AppSettingRepo;
 import com.ultimate.ecommerce.repository.repos.user.UserRepo;
@@ -24,6 +25,9 @@ public class RegisterFragmentViewModel extends BaseViewModel {
     @Inject
     AppSettingRepo settingRepo;
 
+    @Inject
+    GoogleSignInClient googleClient;
+
     MutableLiveData<ResponseState> responseMDL;
 
     @Inject
@@ -36,7 +40,7 @@ public class RegisterFragmentViewModel extends BaseViewModel {
         userRepo.registerUser(userName, userPhone, userEmail, userPassword, new ResponsesCallBack<AddUserResponse>() {
             @Override
             public void onSuccess(AddUserResponse response) {
-                GeneralVariable.tokenKey = response.getData().getTokenkey();
+                GlobalVariable.tokenKey = response.getData().getTokenkey();
                 settingRepo.updateTokenKey();
                 UserResponse user = response.getData().getUser();
                 updateUser(user.getId(), user.getCaps().getSubscriber());
@@ -52,6 +56,19 @@ public class RegisterFragmentViewModel extends BaseViewModel {
             public void onFailure(String state, String msg) {
                 responseMDL.setValue(ResponseState.failureState(state + "  " + msg));
             }
+        });
+    }
+
+    public void registerGoogleUser() {
+        googleClient.silentSignIn().addOnSuccessListener(account -> {
+            String id = account.getId();
+            String name = account.getDisplayName();
+            String email = account.getEmail();
+            registerUser(name, email, email, id);
+        }).addOnFailureListener(e -> {
+
+        }).addOnCanceledListener(() -> {
+
         });
     }
 }

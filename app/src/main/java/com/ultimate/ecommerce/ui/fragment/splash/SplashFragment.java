@@ -13,7 +13,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.DynamicTheme;
-import com.ultimate.ecommerce.app.GeneralVariable;
+import com.ultimate.ecommerce.app.GlobalVariable;
 import com.ultimate.ecommerce.databinding.FragmentSplashBinding;
 import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
 import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
@@ -65,7 +65,7 @@ public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
         viewModel.settingLiveData.observe(getViewLifecycleOwner(), new Observer<AppSetting>() {
             @Override
             public void onChanged(AppSetting appSetting) {
-                GeneralVariable.tokenKey = appSetting.getTokenKey();
+                GlobalVariable.tokenKey = appSetting.getTokenKey();
             }
         });
 

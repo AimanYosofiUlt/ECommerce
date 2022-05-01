@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ultimate.ecommerce.app.DynamicTheme" />
+
+        <variable
+            name="color"
+            type="DynamicTheme" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- ToolBar widget -->
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="?attr/actionBarSize"
+                        android:theme="?attr/actionBarTheme"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:titleTextColor="#ffff" />
+
+                    <com.ultimate.ecommerce.utilities.ColoredImage
+                        android:id="@+id/imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/ic_next"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/black" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <include
+                android:id="@+id/title"
+                layout="@layout/tools_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/login_msg"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+            <RelativeLayout
+                android:id="@+id/googleRL"
+                android:layout_width="50dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_height="50dp"
+                app:layout_constraintBottom_toBottomOf="@+id/facebookRL"
+                app:layout_constraintEnd_toEndOf="@+id/textView10"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/facebookRL"
+                app:layout_constraintTop_toTopOf="@+id/facebookRL"
+                app:layout_constraintVertical_bias="0.0">
+
+                <com.ultimate.ecommerce.utilities.BorderedButton
+                    android:layout_width="match_parent"
+                    android:id="@+id/googleBtn"
+                    android:layout_height="match_parent"
+                    app:radius="15dp"
+                    app:strokeWidth="1dp" />
+
+                <com.ultimate.ecommerce.utilities.ColoredImage
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_google"
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="577dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/facebookRL"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintBottom_toBottomOf="@+id/twitterRL"
+                app:layout_constraintEnd_toStartOf="@+id/googleRL"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/twitterRL"
+                app:layout_constraintTop_toTopOf="@+id/twitterRL">
+
+                <com.ultimate.ecommerce.utilities.BorderedButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:radius="15dp"
+                    app:strokeWidth="1dp" />
+
+                <com.ultimate.ecommerce.utilities.ColoredImage
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_facebook"
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="577dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/twitterRL"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintBottom_toBottomOf="@+id/appleRL"
+                app:layout_constraintEnd_toStartOf="@+id/facebookRL"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@+id/appleRL"
+                app:layout_constraintTop_toTopOf="@+id/appleRL">
+
+                <com.ultimate.ecommerce.utilities.BorderedButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:radius="15dp"
+                    app:strokeWidth="1dp" />
+
+                <com.ultimate.ecommerce.utilities.ColoredImage
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_twitter"
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="577dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/appleRL"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/twitterRL"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+                <com.ultimate.ecommerce.utilities.BorderedButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:radius="15dp"
+                    app:strokeWidth="1dp" />
+
+                <com.ultimate.ecommerce.utilities.ColoredImage
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_apple"
+                    tools:layout_editor_absoluteX="168dp"
+                    tools:layout_editor_absoluteY="577dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="@string/or_enter_user"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@+id/textView10"
+                app:layout_constraintStart_toStartOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/twitterRL" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/phoneCL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/back_edittext"
+                android:padding="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+                <EditText
+                    android:id="@+id/phoneED"
+                    style="@style/shadow_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:hint="@string/user_phone"
+                    android:inputType="phone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/phoneCCP"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                    android:id="@+id/phoneCCP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:padding="10dp"
+                    app:ccp_defaultCode="81"
+                    app:ccp_defaultNameCode="EG"
+                    app:ccp_hideNameCode="true"
+                    app:ccp_textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/phoneED"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/phoneED"
+                    app:layout_constraintVertical_bias="0.47" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/passwordCL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/back_edittext"
+                android:padding="12dp"
+                app:layout_constraintEnd_toEndOf="@+id/phoneCL"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/phoneCL"
+                app:layout_constraintTop_toBottomOf="@+id/phoneCL">
+
+                <EditText
+                    android:id="@+id/passwordED"
+                    style="@style/shadow_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_username"
+                    android:hint="@string/user_password"
+                    android:inputType="textPassword"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/registerBtn"
+                layout="@layout/view_custom_button_borderd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="36dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView12"
+                app:layout_constraintEnd_toEndOf="@+id/guideline7"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/guideline8"
+                app:layout_constraintTop_toBottomOf="@+id/loginBtn"
+                app:layout_constraintVertical_bias="0.625" />
+
+            <include
+                android:id="@+id/loginBtn"
+                layout="@layout/view_custom_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/registerBtn"
+                app:layout_constraintEnd_toEndOf="@+id/guideline7"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/guideline8"
+                app:layout_constraintTop_toBottomOf="@+id/textView14"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.2" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:text="@string/continue_as_vistor"
+                android:textColor="@{color.gradientStartColor}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline7"
+                app:layout_constraintStart_toStartOf="@+id/guideline8" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/forget_password"
+                android:textColor="@{color.gradientStartColor}"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@+id/passwordCL"
+                app:layout_constraintStart_toStartOf="@+id/passwordCL"
+                app:layout_constraintTop_toBottomOf="@+id/passwordCL" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

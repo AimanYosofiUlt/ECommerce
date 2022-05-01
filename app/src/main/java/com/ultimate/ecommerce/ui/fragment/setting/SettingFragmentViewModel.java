@@ -4,22 +4,25 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
-import com.ultimate.ecommerce.repository.repos.configuration.ConfigRepo;
 import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
+import com.ultimate.ecommerce.repository.repos.configuration.ConfigRepo;
+import com.ultimate.ecommerce.repository.repos.user.UserRepo;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
 
 import javax.inject.Inject;
 
 public class SettingFragmentViewModel extends BaseViewModel {
     @Inject
-    ConfigRepo configRepo;
+    UserRepo userRepo;
 
-    LiveData<Configuration> configLiveData;
+    LiveData<Boolean> userIsLoginMDL;
 
     @Inject
-    public SettingFragmentViewModel(@NonNull Application application,ConfigRepo configRepo) {
+    public SettingFragmentViewModel(@NonNull Application application,UserRepo userRepo) {
         super(application);
-        configLiveData = configRepo.getConfiguration();
+        this.userRepo = userRepo;
+        userIsLoginMDL = userRepo.checkUser();
     }
 }

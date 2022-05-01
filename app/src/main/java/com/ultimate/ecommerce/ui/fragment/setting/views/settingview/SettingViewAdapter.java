@@ -1,5 +1,14 @@
 package com.ultimate.ecommerce.ui.fragment.setting.views.settingview;
 
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.ABOUT;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.ADDRESS;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.CONTACT_US;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.FAVORITE;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.HELP;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.LANG_CUR;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.LOGOUT;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.ORDERS;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -11,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ultimate.ecommerce.R;
+import com.ultimate.ecommerce.ui.fragment.setting.SettingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +28,6 @@ import java.util.List;
 public class SettingViewAdapter extends RecyclerView.Adapter<SettingViewHolder> {
     List<SettingModel> list;
     SettingViewListener listener;
-    public static final int ORDERS = 0;
-    public static final int ADDRESS = 1;
-    public static final int FAVORITE = 2;
-    public static final int LANG_CUR = 3;
-    public static final int HELP = 4;
-    public static final int ABOUT = 5;
-    public static final int CONTACT_US = 6;
-    public static final int LOGOUT = 7;
 
     public SettingViewAdapter(Context context, SettingViewListener listener) {
         this.listener = listener;
@@ -35,7 +37,7 @@ public class SettingViewAdapter extends RecyclerView.Adapter<SettingViewHolder> 
 
     public void addSettingItems(Context context) {
         list.add(getSettingModel(context, ORDERS, R.string.orders, R.drawable.ic_orders));
-        list.add(getSettingModel(context, ADDRESS, R.string.address, R.drawable.ic_address_street));
+        list.add(getSettingModel(context, ADDRESS, R.string.addresses, R.drawable.ic_address_street));
         list.add(getSettingModel(context, FAVORITE, R.string.favorate, R.drawable.ic_favourite));
         list.add(getSettingModel(context, LANG_CUR, R.string.lang_cur, R.drawable.ic_language_currency));
         list.add(getSettingModel(context, HELP, R.string.help, R.drawable.ic_help));

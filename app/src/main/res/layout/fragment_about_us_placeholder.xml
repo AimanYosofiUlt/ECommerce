@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ultimate.ecommerce.app.DynamicTheme" />
+
+        <variable
+            name="color"
+            type="DynamicTheme" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/placeholderCL"
+        android:layout_height="match_parent">
+
+
+        <View
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/back_about"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- ToolBar widget -->
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="?attr/actionBarTheme"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:titleTextColor="#ffff" />
+
+                <TextView
+                    android:id="@+id/pageTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.448" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_next"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/black" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <RelativeLayout
+            android:id="@+id/twitterRL"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/instagramRL"
+            app:layout_constraintEnd_toStartOf="@+id/facebookRL"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/instagramRL"
+            app:layout_constraintTop_toTopOf="@+id/instagramRL"
+            app:layout_constraintVertical_bias="0.0">
+
+            <com.ultimate.ecommerce.utilities.BorderedButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:radius="15dp"
+                app:strokeWidth="1dp" />
+
+            <com.ultimate.ecommerce.utilities.ColoredImage
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_twitter"
+                tools:layout_editor_absoluteX="168dp"
+                tools:layout_editor_absoluteY="577dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/facebookRL"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/twitterRL"
+            app:layout_constraintEnd_toEndOf="@+id/back"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/twitterRL"
+            app:layout_constraintTop_toTopOf="@+id/twitterRL">
+
+            <com.ultimate.ecommerce.utilities.BorderedButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:radius="15dp"
+                app:strokeWidth="1dp" />
+
+            <com.ultimate.ecommerce.utilities.ColoredImage
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_facebook"
+                tools:layout_editor_absoluteX="168dp"
+                tools:layout_editor_absoluteY="577dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/instagramRL"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/snapchatRL"
+            app:layout_constraintEnd_toStartOf="@+id/twitterRL"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/snapchatRL"
+            app:layout_constraintTop_toTopOf="@+id/snapchatRL">
+
+            <com.ultimate.ecommerce.utilities.BorderedButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:radius="15dp"
+                app:strokeWidth="1dp" />
+
+            <com.ultimate.ecommerce.utilities.ColoredImage
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_instagram"
+                tools:layout_editor_absoluteX="168dp"
+                tools:layout_editor_absoluteY="577dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/snapchatRL"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/whatsappRL"
+            app:layout_constraintEnd_toStartOf="@+id/instagramRL"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/whatsappRL"
+            app:layout_constraintTop_toTopOf="@+id/whatsappRL">
+
+            <com.ultimate.ecommerce.utilities.BorderedButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:radius="15dp"
+                app:strokeWidth="1dp" />
+
+            <com.ultimate.ecommerce.utilities.ColoredImage
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_snapchat"
+                tools:layout_editor_absoluteX="168dp"
+                tools:layout_editor_absoluteY="577dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/whatsappRL"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="36dp"
+            app:layout_constraintBottom_toTopOf="@+id/divider3"
+            app:layout_constraintEnd_toStartOf="@+id/snapchatRL"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@+id/back">
+
+            <com.ultimate.ecommerce.utilities.BorderedButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:radius="15dp"
+                app:strokeWidth="1dp" />
+
+            <com.ultimate.ecommerce.utilities.ColoredImage
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_whatsapp"
+                tools:layout_editor_absoluteX="168dp"
+                tools:layout_editor_absoluteY="577dp" />
+        </RelativeLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/instagramRL"
+            app:layout_constraintEnd_toEndOf="@+id/back"
+            app:layout_constraintStart_toStartOf="@+id/back"
+            app:layout_constraintTop_toBottomOf="@+id/logoImg">
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/instagramRL"
+                app:layout_constraintEnd_toEndOf="@+id/back"
+                app:layout_constraintStart_toStartOf="@+id/back" />
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ImageView
+            android:id="@+id/logoImg"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="36dp"
+            android:src="@drawable/ic_logo"
+            app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
+            app:layout_constraintEnd_toEndOf="@+id/back"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="@+id/back"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="72dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="36dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="@+id/back"
+            app:layout_constraintEnd_toEndOf="@+id/back"
+            app:layout_constraintStart_toStartOf="@+id/back" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

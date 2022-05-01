@@ -11,6 +11,7 @@ import com.ultimate.ecommerce.databinding.FragmentHelpBinding;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.help.views.helpview.HelpAdapter;
 import com.ultimate.ecommerce.ui.fragment.help.views.helpview.HelpViewListener;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import javax.annotation.Nullable;
 
@@ -37,8 +38,9 @@ public class HelpFragment extends BaseFragment<HelpFragmentViewModel> {
     @Override
     public void initObservers() {
         viewModel.helpMDL.observe(getViewLifecycleOwner(), helpData -> {
-            bd.pageTitleTV.setText(helpData.getTitle());
+            bd.placeholder.pageTitleTV.setText(helpData.getTitle());
             adapter.setList(helpData.getQues());
+            LayoutUtil.hideShimmer(bd.placeholder.placeholderCL, bd.shimmer.shimmerL);
         });
     }
 
@@ -46,7 +48,9 @@ public class HelpFragment extends BaseFragment<HelpFragmentViewModel> {
     public void initLoading() {
         adapter = new HelpAdapter(new HelpViewListener() {
         });
-        bd.helpRV.setAdapter(adapter);
+        bd.placeholder.helpRV.setAdapter(adapter);
+        LayoutUtil.showShimmer(bd.placeholder.placeholderCL, bd.shimmer.shimmerL);
+
         viewModel.getHelpPage();
     }
 

@@ -3,11 +3,13 @@ package com.ultimate.ecommerce.app.di;
 import android.app.Application;
 import android.content.Context;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.ultimate.ecommerce.repository.local.creation.AppDatabase;
 import com.ultimate.ecommerce.repository.local.tables.category.CategoryDao;
 import com.ultimate.ecommerce.repository.local.tables.configuration.ConfigurationDao;
 import com.ultimate.ecommerce.repository.local.tables.page.PageDao;
-import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
 import com.ultimate.ecommerce.repository.local.tables.setting.AppSettingDao;
 import com.ultimate.ecommerce.repository.local.user.UserDao;
 import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
@@ -113,5 +115,19 @@ public abstract class AppModule {
     @Provides
     public static UserDao provideUserDao(AppDatabase appDatabase) {
         return appDatabase.userDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static GoogleSignInOptions provideGoogleSignInOptions() {
+        return new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static GoogleSignInClient provideGoogleSignInClient(Context context,GoogleSignInOptions signInOptions){
+        return GoogleSignIn.getClient(context, signInOptions);
     }
 }

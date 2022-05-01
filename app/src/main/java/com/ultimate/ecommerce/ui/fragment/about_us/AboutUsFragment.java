@@ -15,6 +15,7 @@ import com.ultimate.ecommerce.databinding.FragmentAboutUsBinding;
 import com.ultimate.ecommerce.repository.server.response.about_us.AboutUsData;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import javax.annotation.Nullable;
 
@@ -44,13 +45,14 @@ public class AboutUsFragment extends BaseFragment<AboutUsFragmentViewModel> {
         viewModel.aboutUsPageMDL.observe(getViewLifecycleOwner(), new Observer<AboutUsData>() {
             @Override
             public void onChanged(AboutUsData aboutUsData) {
-                bd.pageTitleTV.setText(aboutUsData.getTitle());
-                bd.content.setText(aboutUsData.getContent());
+                bd.placeholder.pageTitleTV.setText(aboutUsData.getTitle());
+                bd.placeholder.content.setText(aboutUsData.getContent());
                 Glide.with(requireContext())
                         .load(aboutUsData.getLogo())
                         .error(R.drawable.ic_baseline_error_24)
-                        .into(bd.logoImg);
+                        .into(bd.placeholder.logoImg);
 
+                LayoutUtil.hideShimmer(bd.placeholder.placeholderCL, bd.shimmer.shimmerL);
                 // todo handle social media buttons here
             }
         });
@@ -68,6 +70,7 @@ public class AboutUsFragment extends BaseFragment<AboutUsFragmentViewModel> {
 
     @Override
     public void initLoading() {
+        LayoutUtil.showShimmer(bd.placeholder.placeholderCL, bd.shimmer.shimmerL);
         viewModel.getAboutUsPage();
     }
 
@@ -75,6 +78,8 @@ public class AboutUsFragment extends BaseFragment<AboutUsFragmentViewModel> {
     public void initErrorObserver() {
 
     }
+
+
 }
 
 

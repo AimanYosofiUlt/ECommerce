@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
-import com.ultimate.ecommerce.app.GeneralVariable;
+import com.ultimate.ecommerce.app.GlobalVariable;
 import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
 import com.ultimate.ecommerce.repository.local.tables.setting.AppSettingDao;
 import com.ultimate.ecommerce.repository.repos.base.BaseRepo;
@@ -38,7 +38,7 @@ public class AppSettingRepo extends BaseRepo {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                settingDao.updateTokenKey(GeneralVariable.tokenKey);
+                settingDao.updateTokenKey(GlobalVariable.tokenKey);
             }
         });
     }

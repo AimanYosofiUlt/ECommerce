@@ -7,7 +7,6 @@ import com.ultimate.ecommerce.repository.server.response.configuration.Configura
 import com.ultimate.ecommerce.repository.server.response.contact_us.ContactUsResponse;
 import com.ultimate.ecommerce.repository.server.response.countries.CountriesResponse;
 import com.ultimate.ecommerce.repository.server.response.coupon.GetCouponResponse;
-import com.ultimate.ecommerce.repository.server.response.create_order.CreateOrderResponse;
 import com.ultimate.ecommerce.repository.server.response.filter_products.FilterProductResponse;
 import com.ultimate.ecommerce.repository.server.response.forget_password.ForgetPasswordResponse;
 import com.ultimate.ecommerce.repository.server.response.get_address_fields.GetAddressFieldsResponse;
@@ -17,6 +16,7 @@ import com.ultimate.ecommerce.repository.server.response.get_categories.GetCateg
 import com.ultimate.ecommerce.repository.server.response.get_order.GetOrderResponse;
 import com.ultimate.ecommerce.repository.server.response.get_product.GetProductResponse;
 import com.ultimate.ecommerce.repository.server.response.get_products.GetProductsResponse;
+import com.ultimate.ecommerce.repository.server.response.get_user_profile.GetUserProfileResponse;
 import com.ultimate.ecommerce.repository.server.response.get_user_orders.GetUserOrdersResponse;
 import com.ultimate.ecommerce.repository.server.response.help.HelpResponse;
 import com.ultimate.ecommerce.repository.server.response.homepage.HomePageResponse;
@@ -204,7 +204,7 @@ public interface UltimateApi {
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("getUserProfile")
-    Call<CreateOrderResponse> getUserProfile(@Body RequestBody requestBody);
+    Call<GetUserProfileResponse> getUserProfile(@Body RequestBody requestBody);
 
     @Headers({"lang: " + LANGUAGE,
             "tokenKey: " + tokenKey,

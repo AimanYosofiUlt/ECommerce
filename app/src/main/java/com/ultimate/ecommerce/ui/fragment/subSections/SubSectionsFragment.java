@@ -15,13 +15,11 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class SubSectionsFragment extends BaseFragment<SubsectionsViewModel> {
-
     private FragmentSubsectionsBinding bd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
         bd = FragmentSubsectionsBinding.inflate(getLayoutInflater());
         return bd.getRoot();
     }

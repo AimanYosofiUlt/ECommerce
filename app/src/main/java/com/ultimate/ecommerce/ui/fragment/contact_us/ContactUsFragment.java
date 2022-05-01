@@ -15,6 +15,7 @@ import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.contact_us.ContactUsData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.contact_us.views.contact_view.ContactViewAdapter;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -49,9 +50,11 @@ public class ContactUsFragment extends BaseFragment<ContactUsFragmentViewModel> 
         viewModel.contactUsDataMDL.observe(getViewLifecycleOwner(), new Observer<ContactUsData>() {
             @Override
             public void onChanged(ContactUsData contactUsData) {
-                bd.pageTitleTV.setText(contactUsData.getPageTitle());
-                bd.pageDiscriptionTV.setText(contactUsData.getPageDescription());
+                bd.placeholder.pageTitleTV.setText(contactUsData.getPageTitle());
+                bd.placeholder.pageDiscriptionTV.setText(contactUsData.getPageDescription());
                 adapter.setList(contactUsData.getPageContent());
+
+                LayoutUtil.hideShimmer(bd.placeholder.placeholderCL, bd.shimmer.shimmerL);
             }
         });
     }
@@ -59,7 +62,8 @@ public class ContactUsFragment extends BaseFragment<ContactUsFragmentViewModel> 
     @Override
     public void initLoading() {
         adapter = new ContactViewAdapter();
-        bd.contentRV.setAdapter(adapter);
+        bd.placeholder.contentRV.setAdapter(adapter);
+        LayoutUtil.showShimmer(bd.placeholder.placeholderCL, bd.shimmer.shimmerL);
 
         viewModel.getContactUs();
     }
