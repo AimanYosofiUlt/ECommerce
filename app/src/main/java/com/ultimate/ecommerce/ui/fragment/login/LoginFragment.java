@@ -10,13 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentLoginBinding;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
@@ -51,17 +44,12 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
             public void onClick(View view) {
                 String userPhone = bd.phoneCCP.getFullNumberWithPlus();
                 String userPassword = bd.passwordED.getText().toString();
-                viewModel.login(userPhone, userPassword);
+                viewModel.validateLoginEd(bd, userPhone, userPassword);
             }
         });
 
-        bd.registerBtn.btnBody.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(requireParentFragment())
-                        .navigate(R.id.actionLoginToRegister);
-            }
-        });
+        bd.registerBtn.btnBody.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
+                .navigate(R.id.actionLoginToRegister));
 
         bd.googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +70,13 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
                 } else {
                     LayoutUtil.showMassageDialog(requireContext(), getString(R.string.login_filed), responseState.getMessage());
                 }
+            }
+        });
+
+        viewModel.validateMessageMDL.observe(getViewLifecycleOwner(), new Observer<ValidateMessage>() {
+            @Override
+            public void onChanged(ValidateMessage validateMessage) {
+                validateMessage.getView().setError(validateMessage.getMessage());
             }
         });
     }

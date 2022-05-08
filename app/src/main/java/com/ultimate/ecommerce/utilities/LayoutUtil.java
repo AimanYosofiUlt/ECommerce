@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.ultimate.ecommerce.R;
+import com.ultimate.ecommerce.databinding.DialogMessageBinding;
 
 public class LayoutUtil {
     public static void showShimmer(ConstraintLayout constraintLayout, ShimmerFrameLayout shimmerFrameLayout) {
@@ -32,15 +33,15 @@ public class LayoutUtil {
 
     public static void showMassageDialog(Context context, String title, String message) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_message, null, false);
+        DialogMessageBinding bd  = DialogMessageBinding.bind(view);
+        bd.title.titleTV.setText(title);
+        bd.messageTV.setText(message);
+
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setView(view)
                 .create();
         dialog.show();
 
-        ((TextView) view.findViewById(R.id.title).findViewById(R.id.titleTV)).setText(title);
-        ((TextView) view.findViewById(R.id.messageTV)).setText(title);
-
-        view.findViewById(R.id.doneBtn).findViewById(R.id.btnBody)
-                .setOnClickListener(view1 -> dialog.dismiss());
+        bd.doneBtn.btnBody.setOnClickListener(view1 -> dialog.dismiss());
     }
 }

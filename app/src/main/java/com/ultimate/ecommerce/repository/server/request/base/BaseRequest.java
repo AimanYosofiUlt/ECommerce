@@ -57,12 +57,13 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getGetProductsRequest(String id, String type, String page) {
+    public static RequestBody getGetProductsRequest(String slug) {
+        // todo there is parameter not explained (id, page) and without any use after test with postman
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("id", id)
-                .addFormDataPart("type", type)
-                .addFormDataPart("page", page)
+//                .addFormDataPart("id", id)
+                .addFormDataPart("type", "shop")
+                .addFormDataPart("page", "1")
                 .build();
     }
 

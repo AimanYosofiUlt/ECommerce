@@ -104,11 +104,7 @@ public class TrainActivity extends BaseActivity<TrainActivityViewModel> {
 
     @Override
     public void initLoading() {
-        bd.LT.section.sectionBack.setGradientDef();
-        bd.LT.banner.gradiantView.setGradientDef();
         bd.LT.banner.gradiantView.isHasTopTriangle(true);
-        bd.LT.banner2.gradiantView.setGradientDef();
         bd.LT.banner2.gradiantView.isHasTopTriangle(true);
-        bd.LT.cusbtn.borderdBack.setGradientDef();
     }
 }

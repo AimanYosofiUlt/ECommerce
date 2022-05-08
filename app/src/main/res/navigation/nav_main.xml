@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.ultimate.ecommerce.ui.fragment.splash.SplashFragment"
@@ -42,6 +42,9 @@
         <action
             android:id="@+id/actionMainToProfile"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/actionMainToProductList"
+            app:destination="@id/productListFragment" />
     </fragment>
     <fragment
         android:label="ContactUsFragment"
@@ -90,4 +93,15 @@
         android:id="@+id/profileFragment"
         android:name="com.ultimate.ecommerce.ui.fragment.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.product_list.ProductListFragment"
+        android:label="ProductListFragment"
+        tools:layout="@layout/fragment_product_list" >
+        <argument
+            android:name="category"
+            app:argType="com.ultimate.ecommerce.repository.local.tables.category.Category"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

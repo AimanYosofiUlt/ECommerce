@@ -90,5 +90,8 @@
     <string name="payment">الدفع</string>
     <string name="dots">▬ ▬ ▬ ▬ ▬ ▬</string>
     <string name="dots2">▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ </string>
+    <string name="empty_filed">الحقل فارغ</string>
+    <string name="small_password">يجب ان يكون طول كلمة السر اكثر من اريعة رموز</string>
+    <string name="discountBy">خصم</string>
 
 </resources>

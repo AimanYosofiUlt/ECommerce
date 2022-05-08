@@ -25,15 +25,16 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void initEvent() {
-        bd.getRoot().setOnClickListener(new View.OnClickListener() {
+        bd.logoRL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                listener.onOpenReq(category);
             }
         });
     }
 
     public void bind(Category category) {
+        this.category = category;
         bd.title.setText(category.getTitle());
 
         Glide.with(itemView)

@@ -2,7 +2,7 @@ package com.ultimate.ecommerce.repository.server.response.get_products;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SubCategorieData {
+public class SubCategoryData {
     @SerializedName("count")
     private int count;
     @SerializedName("parent")
@@ -16,7 +16,7 @@ public class SubCategorieData {
     @SerializedName("type")
     private String type;
 
-    public SubCategorieData() {
+    public SubCategoryData() {
     }
 
 

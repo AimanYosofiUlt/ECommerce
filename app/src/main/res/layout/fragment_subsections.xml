@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.subSections.SubSectionsFragment">
 
-
-
     <include
         android:id="@+id/toolbar_layout"
         layout="@layout/subsections_toolbar_layout"

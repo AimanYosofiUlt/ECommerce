@@ -31,15 +31,10 @@ public class CategoryRepo extends BaseRepo {
     }
 
     public void addCategory(Category category) {
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                dao.insert(category);
-            }
-        });
+        AsyncTask.execute(() -> dao.insert(category));
     }
 
-    public LiveData<List<Category>> getCategories() {
+    public List<Category> getCategories() {
         return dao.getCategories();
     }
 }
