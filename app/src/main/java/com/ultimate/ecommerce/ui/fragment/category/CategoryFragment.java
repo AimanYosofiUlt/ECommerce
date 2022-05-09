@@ -71,7 +71,7 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
     @Override
     public void initLoading() {
         categoryViewAdapter = new CategoryViewAdapter(listener);
-        bd.categoryRV.setLayoutManager(new GridLayoutManager(requireContext(), 2));
+        bd.categoryRV.setLayoutManager(new GridLayoutManager(requireContext(), 3));
         bd.categoryRV.setAdapter(categoryViewAdapter);
         bd.title.titleTV.setText(getString(R.string.category));
         viewModel.validateGetCategory(requireContext());

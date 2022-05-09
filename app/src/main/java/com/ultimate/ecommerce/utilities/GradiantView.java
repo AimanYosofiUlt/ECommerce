@@ -159,8 +159,8 @@ public class GradiantView extends View {
     }
 
     void startAnime() {
-        Animation animation = AnimationUtils.loadAnimation(this.getContext(), R.anim.bounce);
-        this.startAnimation(animation);
+//        Animation animation = AnimationUtils.loadAnimation(this.getContext(), R.anim.bounce);
+//        this.startAnimation(animation);
     }
 
 

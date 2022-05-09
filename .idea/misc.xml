@@ -24,9 +24,13 @@
         <entry key="app/src/main/res/drawable-xxxhdpi/back_bottomsheet.xml" value="0.342" />
         <entry key="app/src/main/res/drawable-xxxhdpi/back_order_bottom.xml" value="0.354" />
         <entry key="app/src/main/res/drawable/back_about.xml" value="0.3805" />
+        <entry key="app/src/main/res/drawable/back_card.xml" value="0.2425" />
+        <entry key="app/src/main/res/drawable/back_cart_amount.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/back_dialog.xml" value="0.162" />
         <entry key="app/src/main/res/drawable/back_edittext.xml" value="0.3245" />
         <entry key="app/src/main/res/drawable/back_edittext2.xml" value="0.342" />
+        <entry key="app/src/main/res/drawable/back_order_bottom.xml" value="0.2425" />
+        <entry key="app/src/main/res/drawable/back_round_10.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/back_round_white.xml" value="0.3025" />
         <entry key="app/src/main/res/drawable/back_stepper1.xml" value="0.342" />
         <entry key="app/src/main/res/drawable/click_view_setting.xml" value="0.2665" />
@@ -34,7 +38,10 @@
         <entry key="app/src/main/res/drawable/ic_ab_offers.xml" value="0.132" />
         <entry key="app/src/main/res/drawable/ic_ab_settings.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/ic_camera.xml" value="0.2675" />
+        <entry key="app/src/main/res/drawable/ic_close.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/ic_contact.xml" value="0.3805" />
+        <entry key="app/src/main/res/drawable/ic_favourite.xml" value="0.2425" />
+        <entry key="app/src/main/res/drawable/ic_favourite_fill.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/ic_snapchat.xml" value="0.3805" />
         <entry key="app/src/main/res/drawable/ic_username.xml" value="0.3025" />
         <entry key="app/src/main/res/drawable/rig.xml" value="0.3805" />
@@ -87,6 +94,7 @@
         <entry key="app/src/main/res/layout/tools_bottomnav.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/tools_btn.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/tools_button.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/tools_coupon.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/tools_search.xml" value="0.30055579307396324" />
         <entry key="app/src/main/res/layout/tools_stepper.xml" value="0.3099615220179564" />
         <entry key="app/src/main/res/layout/tools_subsection_toolbar.xml" value="0.31209918768704575" />
@@ -102,7 +110,8 @@
         <entry key="app/src/main/res/layout/view_custom_button_borderd.xml" value="0.30055579307396324" />
         <entry key="app/src/main/res/layout/view_filter_bottom_sheete.xml" value="0.3099615220179564" />
         <entry key="app/src/main/res/layout/view_help.xml" value="0.31209918768704575" />
-        <entry key="app/src/main/res/layout/view_product.xml" value="0.640387275242047" />
+        <entry key="app/src/main/res/layout/view_product.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/view_product_cart.xml" value="0.33" />
         <entry key="app/src/main/res/layout/view_product_info.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/view_section.xml" value="0.3103890551517743" />
         <entry key="app/src/main/res/layout/view_setting.xml" value="0.5" />

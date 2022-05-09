@@ -56,6 +56,7 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
         viewModel.subCategoriesMDL.observe(getViewLifecycleOwner(), new Observer<List<SubCategoryData>>() {
             @Override
             public void onChanged(List<SubCategoryData> subCategoriesDataList) {
+                Log.d("ProductListFragment", "onChanged: 43524 listSize:"+subCategoriesDataList.size());
                 subCategoryAdapter.setList(subCategoriesDataList);
             }
         });
@@ -63,6 +64,7 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
         viewModel.productsMDL.observe(getViewLifecycleOwner(), new Observer<List<ProductData>>() {
             @Override
             public void onChanged(List<ProductData> productDataList) {
+                Log.d("ProductListFragment", "onChanged: 64343 listSize:"+productDataList.size());
                 productAdapter.setList(productDataList);
             }
         });
@@ -92,13 +94,13 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
         bd.subCategoryRV.setAdapter(subCategoryAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        bd.productRV.setLayoutManager(linearLayoutManager);
+        bd.subCategoryRV.setLayoutManager(linearLayoutManager);
 
 
         productAdapter = new ProductAdapter(new ProductViewListener() {
         });
         bd.productRV.setAdapter(productAdapter);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 3);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 2);
         bd.productRV.setLayoutManager(gridLayoutManager);
     }
 

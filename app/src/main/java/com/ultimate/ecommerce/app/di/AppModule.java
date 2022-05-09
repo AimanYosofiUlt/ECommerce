@@ -9,6 +9,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.ultimate.ecommerce.repository.local.creation.AppDatabase;
 import com.ultimate.ecommerce.repository.local.tables.category.CategoryDao;
 import com.ultimate.ecommerce.repository.local.tables.configuration.ConfigurationDao;
+import com.ultimate.ecommerce.repository.local.tables.favorite.FavoriteDao;
 import com.ultimate.ecommerce.repository.local.tables.page.PageDao;
 import com.ultimate.ecommerce.repository.local.tables.setting.AppSettingDao;
 import com.ultimate.ecommerce.repository.local.user.UserDao;
@@ -115,6 +116,12 @@ public abstract class AppModule {
     @Provides
     public static UserDao provideUserDao(AppDatabase appDatabase) {
         return appDatabase.userDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static FavoriteDao provideFavoriteDao(AppDatabase appDatabase){
+        return appDatabase.favoriteDao();
     }
 
     @ActivityScoped
