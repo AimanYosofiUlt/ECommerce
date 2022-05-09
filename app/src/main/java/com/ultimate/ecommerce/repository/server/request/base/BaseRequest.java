@@ -14,7 +14,7 @@ public class BaseRequest {
     public static RequestBody getBaseRequest() {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("tokenKey", UltimateApi.TOKEN_KEY)
+                .addFormDataPart("tokenKey", UltimateApi.tokenKey)
                 .addFormDataPart("secretKey", UltimateApi.SECRET_KEY)
                 .build();
     }
@@ -57,12 +57,13 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getGetProductsRequest(String id, String type, String page) {
+    public static RequestBody getGetProductsRequest(String slug) {
+        // todo there is parameter not explained (id, page) and without any use after test with postman
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("id", id)
-                .addFormDataPart("type", type)
-                .addFormDataPart("page", page)
+//                .addFormDataPart("id", id)
+                .addFormDataPart("type", "shop")
+                .addFormDataPart("page", "1")
                 .build();
     }
 
@@ -159,7 +160,7 @@ public class BaseRequest {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userID", userId)
-                .addFormDataPart("tokenKey", UltimateApi.TOKEN_KEY)
+                .addFormDataPart("tokenKey", UltimateApi.tokenKey)
                 .addFormDataPart("secretKey", UltimateApi.SECRET_KEY)
                 .build();
     }
@@ -177,11 +178,12 @@ public class BaseRequest {
                 .build();
     }
 
-    // how the user name is the key, in header use phone but disable and didn't work
-    public static RequestBody getLoginUserRequest(String userName, String password) {
+    // todo how the user name is the key, in header use phone but disable and didn't work
+    public static RequestBody getLoginUserRequest(String userPhone, String password) {
+        // todo here the api take userPhone but the key name username
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("username", userName)
+                .addFormDataPart("username", userPhone)
                 .addFormDataPart("password", password)
                 .build();
     }
@@ -211,9 +213,10 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getAddUserRequest(String phone, String email, String password) {
+    public static RequestBody getAddUserRequest(String name, String phone, String email, String password) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
+                .addFormDataPart("first_name", name)
                 .addFormDataPart("phone", phone)
                 .addFormDataPart("email", email)
                 .addFormDataPart("password", password)

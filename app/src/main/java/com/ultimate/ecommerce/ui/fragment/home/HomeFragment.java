@@ -76,23 +76,26 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
             }
         });
 
-        viewModel.categoriesLiveData.observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
-            @Override
-            public void onChanged(List<Category> categories) {
-                Log.d(TAG, "onChanged: "+categories.size());
-                categoryViewAdapter.setList(categories);
-            }
-        });
+//        viewModel.categoriesLiveData.observe(getViewLifecycleOwner(), new Observer<List<Category>>() {
+//            @Override
+//            public void onChanged(List<Category> categories) {
+//                Log.d(TAG, "onChanged: "+categories.size());
+//                categoryViewAdapter.setList(categories);
+//            }
+//        });
     }
 
     @Override
     public void initLoading() {
-        bd.topBack.setGradientDef();
         bd.searchImg.setColorFilter(DynamicTheme.gradientStartColor);
 //        viewModel.getHomePageData();
         viewModel.getCategory();
 
         categoryViewAdapter = new CategoryViewAdapter(new CategoryViewListener() {
+            @Override
+            public void onOpenReq(Category category) {
+
+            }
         });
 
         bd.categoryRV.setLayoutManager(new GridLayoutManager(requireContext(), 3));

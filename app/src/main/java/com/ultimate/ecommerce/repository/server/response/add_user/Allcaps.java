@@ -6,12 +6,9 @@ public class Allcaps {
     @SerializedName("subscriber")
     private boolean subscriber;
     @SerializedName("level_0")
-    private boolean level_0;
+    private boolean level0;
     @SerializedName("read")
     private boolean read;
-
-    public Allcaps() {
-    }
 
     public boolean getSubscriber() {
         return subscriber;
@@ -21,12 +18,12 @@ public class Allcaps {
         this.subscriber = subscriber;
     }
 
-    public boolean getLevel_0() {
-        return level_0;
+    public boolean getLevel0() {
+        return level0;
     }
 
-    public void setLevel_0(boolean level_0) {
-        this.level_0 = level_0;
+    public void setLevel0(boolean level0) {
+        this.level0 = level0;
     }
 
     public boolean getRead() {

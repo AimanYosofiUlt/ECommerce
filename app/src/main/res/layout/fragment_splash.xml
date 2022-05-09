@@ -50,18 +50,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ultimate_store"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="35sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView"
-                    app:layout_constraintStart_toStartOf="@+id/imageView" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.facebook.shimmer.ShimmerFrameLayout>

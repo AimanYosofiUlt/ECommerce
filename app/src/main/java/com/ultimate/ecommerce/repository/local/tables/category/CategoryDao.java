@@ -25,6 +25,6 @@ public interface CategoryDao extends BaseDao<Category> {
     void updateConfig(Configuration configuration);
 
     @Query("SELECT * FROM Category")
-    LiveData<List<Category>> getCategories();
+    List<Category> getCategories();
 }
 

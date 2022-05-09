@@ -13,11 +13,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp">
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/startTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Text"
@@ -37,9 +37,9 @@
             android:text="/"
             android:textColor="@{color.mainColor}"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="@+id/textView3" />
+            app:layout_constraintBottom_toBottomOf="@+id/startTitle"
+            app:layout_constraintStart_toEndOf="@+id/startTitle"
+            app:layout_constraintTop_toTopOf="@+id/startTitle" />
 
         <View
             android:id="@+id/divider2"

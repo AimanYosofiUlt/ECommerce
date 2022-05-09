@@ -6,14 +6,29 @@
     <data>
         <import type="com.ultimate.ecommerce.app.DynamicTheme" />
 
+        <import type="com.ultimate.ecommerce.app.GlobalVariable" />
+
         <variable
             name="color"
             type="DynamicTheme" />
+
+        <variable
+            name="bottomBar"
+            type="GlobalVariable" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/motionLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_setting_scene">
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/userInfoGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:constraint_referenced_ids="textView7,textView6,userProfileBtn" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
@@ -39,32 +54,28 @@
             android:id="@+id/userImg"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginBottom="24dp"
             android:src="@drawable/ic_username"
             android:tint="@color/black"
             app:civ_border_width="2dp"
             app:civ_circle_background_color="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
-            style="@style/round_button"
+        <include
+            layout="@layout/view_custom_button_borderd"
+            android:id="@+id/loginBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/temp_round_button"
-            android:text="@string/login_register"
-            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toBottomOf="@+id/userImg" />
+            app:layout_constraintTop_toBottomOf="@+id/userImg"
+            app:layout_constraintVertical_bias="0.166" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
@@ -84,13 +95,13 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="168dp"
             android:text="TextView"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userImg" />
 
         <TextView
@@ -101,21 +112,20 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="@+id/textView6"
-            app:layout_constraintHorizontal_bias="0.52"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintBottom_toTopOf="@+id/settingRV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/userProfileBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView7"
-            app:layout_constraintEnd_toEndOf="@+id/guideline5"
-            app:layout_constraintHorizontal_bias="0.705"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toTopOf="@+id/textView6"
-            app:layout_constraintVertical_bias="0.541"
+            app:layout_constraintVertical_bias="0.5"
             app:srcCompat="@drawable/ic_edit" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -123,6 +133,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="16dp"
+            android:clipToPadding="false"
+            android:paddingBottom="@{bottomBar.bottomNavHeight}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -130,5 +142,11 @@
             app:layout_constraintTop_toTopOf="@+id/guideline3"
             tools:listitem="@layout/view_setting" />
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="textView7,textView6" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

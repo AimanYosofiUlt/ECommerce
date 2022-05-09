@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <data>
-        <import type="com.ultimate.ecommerce.app.DynamicTheme" />
+    <include
+        android:id="@+id/placeholder"
+        layout="@layout/fragment_connect_us_placeholder" />
 
-        <variable
-            name="color"
-            type="DynamicTheme" />
-    </data>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    <include
+        android:id="@+id/shimmer"
+        layout="@layout/fragment_connect_us_shimmer" />
+</FrameLayout>

@@ -23,8 +23,8 @@ import com.ultimate.ecommerce.app.DynamicTheme;
 public class GradiantView extends View {
     boolean hasTopTriangle = false;
     boolean hasThreeColor = false;
-    int gradientStart = Color.BLACK;
-    int gradientEnd = Color.LTGRAY;
+    int gradientStart = DynamicTheme.gradientStartColor;
+    int gradientEnd = DynamicTheme.gradientEndColor;
     int imageBackground = Color.WHITE;
 
     float topLeft = 0f;
@@ -61,6 +61,7 @@ public class GradiantView extends View {
         topRight = typedArray.getDimension(R.styleable.GradiantView_topRight, 0f);
         bottomLeft = typedArray.getDimension(R.styleable.GradiantView_bottomLeft, 0f);
         bottomRight = typedArray.getDimension(R.styleable.GradiantView_bottomRight, 0f);
+        typedArray.recycle();
     }
 
 
@@ -140,9 +141,9 @@ public class GradiantView extends View {
         return roundTriangle;
     }
 
-        public void setGradientDef() {
-            setGradient(DynamicTheme.gradientStartColor, DynamicTheme.gradientEndColor);
-        }
+    public void setGradientDef() {
+        setGradient(DynamicTheme.gradientStartColor, DynamicTheme.gradientEndColor);
+    }
 
     public void setGradient(int gradientStart, int gradientEnd) {
         this.gradientStart = gradientStart;
@@ -158,8 +159,8 @@ public class GradiantView extends View {
     }
 
     void startAnime() {
-        Animation animation = AnimationUtils.loadAnimation(this.getContext(), R.anim.bounce);
-        this.startAnimation(animation);
+//        Animation animation = AnimationUtils.loadAnimation(this.getContext(), R.anim.bounce);
+//        this.startAnimation(animation);
     }
 
 

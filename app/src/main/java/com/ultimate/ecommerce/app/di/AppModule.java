@@ -3,9 +3,16 @@ package com.ultimate.ecommerce.app.di;
 import android.app.Application;
 import android.content.Context;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.ultimate.ecommerce.repository.local.creation.AppDatabase;
 import com.ultimate.ecommerce.repository.local.tables.category.CategoryDao;
 import com.ultimate.ecommerce.repository.local.tables.configuration.ConfigurationDao;
+import com.ultimate.ecommerce.repository.local.tables.favorite.FavoriteDao;
+import com.ultimate.ecommerce.repository.local.tables.page.PageDao;
+import com.ultimate.ecommerce.repository.local.tables.setting.AppSettingDao;
+import com.ultimate.ecommerce.repository.local.user.UserDao;
 import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 
 import java.lang.annotation.Retention;
@@ -91,5 +98,43 @@ public abstract class AppModule {
     @Provides
     public static CategoryDao provideCategoryDao(AppDatabase appDatabase) {
         return appDatabase.categoryDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static AppSettingDao provideAppSetting(AppDatabase appDatabase) {
+        return appDatabase.appSettingDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static PageDao providePageDao(AppDatabase appDatabase) {
+        return appDatabase.pageDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static UserDao provideUserDao(AppDatabase appDatabase) {
+        return appDatabase.userDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static FavoriteDao provideFavoriteDao(AppDatabase appDatabase){
+        return appDatabase.favoriteDao();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static GoogleSignInOptions provideGoogleSignInOptions() {
+        return new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+    }
+
+    @ActivityScoped
+    @Provides
+    public static GoogleSignInClient provideGoogleSignInClient(Context context,GoogleSignInOptions signInOptions){
+        return GoogleSignIn.getClient(context, signInOptions);
     }
 }

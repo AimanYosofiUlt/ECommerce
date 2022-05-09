@@ -6,7 +6,6 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
@@ -14,8 +13,10 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.DynamicTheme;
+import com.ultimate.ecommerce.app.GlobalVariable;
 import com.ultimate.ecommerce.databinding.FragmentSplashBinding;
 import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
+import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 
@@ -58,6 +59,13 @@ public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
                 DynamicTheme.reviewColor = Color.parseColor(configuration.getReviewColor());
 
                 bd.back.setGradientDef();
+            }
+        });
+
+        viewModel.settingLiveData.observe(getViewLifecycleOwner(), new Observer<AppSetting>() {
+            @Override
+            public void onChanged(AppSetting appSetting) {
+                GlobalVariable.tokenKey = appSetting.getTokenKey();
             }
         });
 

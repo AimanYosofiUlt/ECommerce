@@ -4,8 +4,10 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Category {
+public class Category implements Serializable {
     @PrimaryKey
     Integer id;
     String slug;

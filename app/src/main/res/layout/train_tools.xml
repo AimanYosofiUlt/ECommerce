@@ -37,7 +37,7 @@
 
         <include
             android:id="@+id/section"
-            layout="@layout/view_section" />
+            layout="@layout/view_category" />
 
         <Space
             android:layout_width="match_parent"

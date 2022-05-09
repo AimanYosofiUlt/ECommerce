@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ECommerce</string>
     <string name="english">English</string>
-    <string name="arabic">Arabic</string>
+    <string name="arabic" translatable="false">Arabic</string>
     <string name="allow_permission_for_storage_access">Allow permission for storage access!</string>
     <string name="tv_change_lang_header">Change Language</string>
     <string name="no_internet_connection">" No internet connection "</string>
@@ -30,9 +30,11 @@
     <string name="offers">Offers</string>
     <string name="login_register">دخول / اشتراك</string>
     <string name="orders">الطلبات</string>
-    <string name="address">العناوين</string>
+    <string name="addresses">العناوين</string>
     <string name="favorate">المفضلات</string>
     <string name="lang_cur">اللغة والعملة</string>
+    <string name="lang">اللغة</string>
+    <string name="cur">العملة</string>
     <string name="help">المساعدة</string>
     <string name="about">عن المتجر</string>
     <string name="contact_us">تواصل معنا</string>
@@ -41,4 +43,55 @@
     <string name="agree">موافق</string>
     <string name="home_title">!عروض لا تفوتك</string>
     <string name="category">الأقسام</string>
+    <string name="register_now_msg">اشترك بحساب جديد معنا</string>
+    <string name="login">دخول</string>
+    <string name="login_title">سجل الدخول</string>
+    <string name="login_filed">فشل التسجيل</string>
+    <string name="login_success">تم تسجيل الدخول بنجاح</string>
+    <string name="login_msg">طلبك في الإنتظار! فقط قم بتسجيل الدخول لحسابك أو قم بالإشتراك معنا إن لم تكن تملك حساب</string>
+    <string name="or_enter_user">أو أدخل بياناتك يدوياً</string>
+    <string name="user_name">الاسم</string>
+    <string name="user_phone">رقم الجوال</string>
+    <string name="user_email">البريد الإلكتروني</string>
+    <string name="optional" >إختياري</string>
+    <string name="register" >اشتراك</string>
+    <string name="register_new" >اشتراك جديد</string>
+    <string name="user_password">كلمة المرور</string>
+    <string name="register_with_us">اشترك معنا</string>
+    <string name="continue_as_vistor">استكمال الطلب كزائر</string>
+    <string name="forget_password">إستعادة كلمة المرور</string>
+    <string name="address_city">المدينة</string>
+    <string name="address_area">المدينة</string>
+    <string name="address_street">الشارع ورقم المنزل</string>
+    <string name="address_landmark">علامات مميزة</string>
+    <string name="current_password">كلمة المرور الحالية</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="user_social_media">حسابات التواصل الإجتماعي</string>
+    <string name="user_profile">الملف الشخصي</string>
+    <string name="user_profile_msg">بياناتك الشخصية مع المتجر</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="bind">ربط</string>
+    <string name="favorite">المفضلات</string>
+    <string name="min">Min</string>
+    <string name="max">Max</string>
+    <string name="arabic_language">اللغة العربية</string>
+    <string name="english_language">English</string>
+    <string name="saudi_cur">ريال سعودي</string>
+    <string name="uae_cur">درهم إماراتي</string>
+    <string name="kuwait_cur">دينار كويتي</string>
+    <string name="bahrain_cur">دينار بحريني</string>
+    <string name="egypt_cur">جنيه مصري</string>
+    <string name="edit_address">تعديل العنوان</string>
+    <string name="confirm_order">تأكيد الطلب</string>
+    <string name="address">العنوان</string>
+    <string name="shipping">الشحن</string>
+    <string name="checkout">مراجعة</string>
+    <string name="payment">الدفع</string>
+    <string name="dots">▬ ▬ ▬ ▬ ▬ ▬</string>
+    <string name="dots2">▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ ▬ </string>
+    <string name="empty_filed">الحقل فارغ</string>
+    <string name="small_password">يجب ان يكون طول كلمة السر اكثر من اريعة رموز</string>
+    <string name="discountBy">خصم</string>
+
 </resources>

@@ -41,7 +41,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
     @Inject
     public HomeFragmentViewModel(@NonNull Application application, CategoryRepo categoryRepo) {
         super(application);
-        categoriesLiveData = categoryRepo.getCategories();
+//        categoriesLiveData = categoryRepo.getCategories();
         homePageDataMDL = new MutableLiveData<>();
         homepageResponseMDL = new MutableLiveData<>();
         categoriesMDL = new MutableLiveData<>();
@@ -74,7 +74,7 @@ public class HomeFragmentViewModel extends BaseViewModel {
                     categoryRepo.addCategory(category);
                 }
                 getCategoriesResponseMDL.setValue(ResponseState.successState());
-                categoriesLiveData = categoryRepo.getCategories();
+//                categoriesLiveData = categoryRepo.getCategories();
             }
 
             private Category convertResponseToCategory(GetCategoryData responseData) {

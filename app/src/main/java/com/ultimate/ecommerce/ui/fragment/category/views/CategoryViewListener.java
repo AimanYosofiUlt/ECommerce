@@ -1,5 +1,7 @@
 package com.ultimate.ecommerce.ui.fragment.category.views;
 
-public interface CategoryViewListener {
+import com.ultimate.ecommerce.repository.local.tables.category.Category;
 
+public interface CategoryViewListener {
+    void onOpenReq(Category category);
 }

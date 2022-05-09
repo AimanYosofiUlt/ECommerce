@@ -13,6 +13,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:id="@+id/btnBody"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_height="wrap_content">
 
             <com.ultimate.ecommerce.utilities.GradiantView
@@ -30,10 +33,10 @@
                 app:topRight="100dp" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/btnTextTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
+                android:layout_margin="10dp"
                 android:text="@string/agree"
                 android:textColor="@color/black"
                 android:textSize="16sp"

@@ -8,7 +8,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
+import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
 import com.ultimate.ecommerce.repository.repos.configuration.ConfigRepo;
+import com.ultimate.ecommerce.repository.repos.setting.AppSettingRepo;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.configuration.ConfigData;
@@ -23,13 +25,16 @@ public class SplashFragmentViewModel extends BaseViewModel {
     ConfigRepo configRepo;
 
     LiveData<Configuration> configurationLiveData;
+    LiveData<AppSetting> settingLiveData;
     MutableLiveData<ResponseState> responseMDL;
 
     @Inject
-    public SplashFragmentViewModel(@NonNull Application application, ConfigRepo configRepo) {
+    public SplashFragmentViewModel(@NonNull Application application, ConfigRepo configRepo, AppSettingRepo settingRepo) {
         super(application);
+        settingRepo.initAppSetting();
         configRepo.initConfig();
         configurationLiveData = configRepo.getConfiguration();
+        settingLiveData = settingRepo.getAppSetting();
         responseMDL = new MutableLiveData<>();
     }
 

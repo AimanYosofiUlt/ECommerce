@@ -1,7 +1,9 @@
 package com.ultimate.ecommerce.ui.activity.main;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -9,13 +11,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.google.gson.Gson;
 import com.ultimate.ecommerce.R;
+import com.ultimate.ecommerce.app.DynamicTheme;
 import com.ultimate.ecommerce.databinding.ActivityMainBinding;
-import com.ultimate.ecommerce.repository.server.request.base.ProductRequest;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -29,13 +27,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         bd = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(bd.getRoot());
-        List<ProductRequest> products = new ArrayList<>();
-        products.add(new ProductRequest(5, 5, 5));
-        products.add(new ProductRequest(5, 5, 5));
-        products.add(new ProductRequest(5, 5, 5));
-        products.add(new ProductRequest(5, 5, 5));
-        Gson gson = new Gson();
-        Log.d("DELETE", "onCreate: "+gson.toJson(products).toString());
+        Window window = this.getWindow();
+//        GradientDrawable background = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
+//                new int[]{
+//                        DynamicTheme.gradientStartColor,
+//                        DynamicTheme.gradientEndColor
+//                });
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(DynamicTheme.gradientStartColor);
+//        window.setNavigationBarColor(this.getResources().getColor(android.R.color.transparent));
     }
 
     @Override
