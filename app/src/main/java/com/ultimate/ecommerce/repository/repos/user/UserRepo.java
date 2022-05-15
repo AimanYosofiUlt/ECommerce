@@ -42,12 +42,7 @@ public class UserRepo extends BaseRepo {
     }
 
     public void addUser(User user) {
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                userDao.insert(user);
-            }
-        });
+        AsyncTask.execute(() -> userDao.insert(user));
     }
 
     public LiveData<Boolean> checkUser() {
@@ -80,5 +75,20 @@ public class UserRepo extends BaseRepo {
 
     public String getUserPhone() {
         return userDao.getUserPhone();
+    }
+
+    public void login2(String name, ResponsesCallBack<LoginUserResponse> callBack) {
+        RequestBody baseRequest = BaseRequest.getBaseRequest();
+        api.loginUser(baseRequest).enqueue(new ResponsesCallBack<LoginUserResponse>() {
+            @Override
+            public void onSuccess(LoginUserResponse response) {
+                callBack.onSuccess(response);
+            }
+
+            @Override
+            public void onFailure(String state, String msg) {
+                callBack.onFailure(state, msg);
+            }
+        });
     }
 }

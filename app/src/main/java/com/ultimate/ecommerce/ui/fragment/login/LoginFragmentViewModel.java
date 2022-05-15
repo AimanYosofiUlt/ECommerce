@@ -101,4 +101,18 @@ public class LoginFragmentViewModel extends BaseViewModel {
             }
         });
     }
+
+    public void login2(String name) {
+        userRepo.login2(name, new ResponsesCallBack<LoginUserResponse>() {
+            @Override
+            public void onSuccess(LoginUserResponse response) {
+
+            }
+
+            @Override
+            public void onFailure(String state, String msg) {
+
+            }
+        });
+    }
 }
