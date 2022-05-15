@@ -2,8 +2,8 @@ package com.ultimate.ecommerce.repository.local.tables.category;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Update;
 
 import com.ultimate.ecommerce.repository.local.creation.BaseDao;

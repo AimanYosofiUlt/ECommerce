@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
-    List<ProductData> list;
+    List<ProductAdapterData> list;
     ProductViewListener listener;
 
     public ProductAdapter(ProductViewListener listener) {
@@ -22,8 +22,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         this.listener = listener;
     }
 
-    public void setList(List<ProductData> list) {
-        this.list = list;
+    public void setList(List<ProductData> productDataList) {
+        for (ProductData productData : productDataList) {
+            list.add(new ProductAdapterData(productData));
+        }
         notifyDataSetChanged();
     }
 

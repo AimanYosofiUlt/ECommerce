@@ -7,11 +7,11 @@ public class ProductRequest {
     @SerializedName("id")
     private int id;
     @SerializedName("price")
-    private int price;
+    private String price;
     @SerializedName("qty")
     private int qty;
 
-    public ProductRequest(int id, int price, int qty) {
+    public ProductRequest(int id, String price, int qty) {
         this.id = id;
         this.price = price;
         this.qty = qty;
@@ -25,11 +25,11 @@ public class ProductRequest {
         this.qty = qty;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

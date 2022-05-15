@@ -1,6 +1,7 @@
 package com.ultimate.ecommerce.utilities.state;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import com.ultimate.ecommerce.utilities.NetworkUtil;
 
@@ -19,9 +20,14 @@ public class StateUtil {
         public void checkNetwork(Context context, CheckNetworkListener listener) {
             if (isValidate) {
                 boolean hasConnection = NetworkUtil.isConnectionAvailable(context);
-                if (hasConnection)
-                    listener.onConnect();
-                else
+                if (hasConnection) {
+                    AsyncTask.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            listener.onConnect();
+                        }
+                    });
+                } else
                     listener.onDisconnect();
             }
         }

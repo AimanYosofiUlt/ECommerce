@@ -7,6 +7,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.ultimate.ecommerce.repository.local.creation.AppDatabase;
+import com.ultimate.ecommerce.repository.local.tables.cart.ProductCartDao;
 import com.ultimate.ecommerce.repository.local.tables.category.CategoryDao;
 import com.ultimate.ecommerce.repository.local.tables.configuration.ConfigurationDao;
 import com.ultimate.ecommerce.repository.local.tables.favorite.FavoriteDao;
@@ -120,9 +121,16 @@ public abstract class AppModule {
 
     @ActivityScoped
     @Provides
-    public static FavoriteDao provideFavoriteDao(AppDatabase appDatabase){
+    public static FavoriteDao provideFavoriteDao(AppDatabase appDatabase) {
         return appDatabase.favoriteDao();
     }
+
+    @ActivityScoped
+    @Provides
+    public static ProductCartDao provideCartDao(AppDatabase appDatabase) {
+        return appDatabase.productCartDao();
+    }
+
 
     @ActivityScoped
     @Provides

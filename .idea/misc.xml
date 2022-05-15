@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/drawable-xxxhdpi/back_bottomsheet.xml" value="0.342" />
         <entry key="app/src/main/res/drawable-xxxhdpi/back_order_bottom.xml" value="0.354" />
         <entry key="app/src/main/res/drawable/back_about.xml" value="0.3805" />
+        <entry key="app/src/main/res/drawable/back_bottomsheet.xml" value="0.2925" />
         <entry key="app/src/main/res/drawable/back_card.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/back_cart_amount.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/back_dialog.xml" value="0.162" />
@@ -54,6 +55,7 @@
         <entry key="app/src/main/res/drawable/train.xml" value="0.3805" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/back_stepper1.xml" value="0.3099615220179564" />
+        <entry key="app/src/main/res/layout/bottom_sheete_filter.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/dialog_add_address.xml" value="0.33" />
         <entry key="app/src/main/res/layout/dialog_edit_data.xml" value="0.2984181274048739" />
         <entry key="app/src/main/res/layout/dialog_edit_password.xml" value="0.3099615220179564" />

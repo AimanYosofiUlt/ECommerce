@@ -20,14 +20,15 @@ import com.bumptech.glide.Glide;
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.DynamicTheme;
 import com.ultimate.ecommerce.databinding.ViewProductBinding;
+import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder {
-    ProductData data;
+    ProductAdapterData data;
     ProductViewListener listener;
     ViewProductBinding bd;
     boolean isInFavorite = false;
-    int productCount = 0;
+    int productQuantity = 0;
 
     public ProductViewHolder(@NonNull View itemView, ProductViewListener listener) {
         super(itemView);
@@ -36,27 +37,26 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         initEvent();
     }
 
-    public void bind(ProductData data) {
+    public void bind(ProductAdapterData data) {
         this.data = data;
-
-        bd.productNameTV.setText(data.getTitle());
+        bd.productNameTV.setText(data.getData().getTitle());
 
         Glide.with(itemView.getContext())
-                .load(data.getImageUrl())
+                .load(data.getData().getImageUrl())
                 .error(R.drawable.ic_baseline_error_24)
                 .into(bd.productImage);
 
-        bd.priceTV.setText(data.getPrice());
-        bd.oldPriceTV.setText(data.getPrice());
-        bd.discountPercentageTV.setText(data.getDiscountPercentage());
-        bd.rateTV.setText(String.valueOf(data.getRatingCount()));
+        bd.priceTV.setText(data.getData().getPrice());
+        bd.oldPriceTV.setText(data.getData().getPrice());
+        bd.discountPercentageTV.setText(data.getData().getDiscountPercentage());
+        bd.rateTV.setText(String.valueOf(data.getData().getRatingCount()));
 
 //        //todo here should calculate the discount and show the oldPrice or the price but the response don't give a percentage
-//        String discountMsg = itemView.getContext().getString(R.string.discountBy) + " " + data.getDiscountPercentage() + "%";
+//        String discountMsg = itemView.getContext().getString(R.string.discountBy) + " " + data.getData().getDiscountPercentage() + "%";
 //        bd.discountPercentageTV.setText(discountMsg);
-//        int discountPrice = Integer.parseInt(data.getPrice()) * Integer.parseInt(data.getDiscountPercentage()) / 100;
+//        int discountPrice = Integer.parseInt(data.getData().getPrice()) * Integer.parseInt(data.getData().getDiscountPercentage()) / 100;
 //        bd.priceTV.setText(String.valueOf(discountPrice));
-//        bd.oldPriceTV.setText(data.getPrice());
+//        bd.oldPriceTV.setText(data.getData().getPrice());
 //
     }
 
@@ -76,8 +76,13 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
 
         bd.addToCartBtn.setOnClickListener(view -> {
             bd.countTV.setVisibility(View.VISIBLE);
-            String countStr = String.valueOf(++productCount);
+            String countStr = String.valueOf(++productQuantity);
             bd.countTV.setText(countStr);
+            ProductData productData = this.data.getData();
+            ProductCart productCart = new ProductCart(productData.getId(), productData.getTitle()
+                    , productData.getRatingCount(), productData.getDiscountPercentage()
+                    , productData.getPrice(), productQuantity);
+            listener.onAddToCart(productCart);
         });
     }
 

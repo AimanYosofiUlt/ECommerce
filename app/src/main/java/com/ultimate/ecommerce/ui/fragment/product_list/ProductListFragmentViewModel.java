@@ -7,7 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ultimate.ecommerce.R;
+import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
+import com.ultimate.ecommerce.repository.repos.cart.CartRepo;
 import com.ultimate.ecommerce.repository.repos.product.ProductRepo;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
@@ -16,6 +18,7 @@ import com.ultimate.ecommerce.repository.server.response.get_products.GetProduct
 import com.ultimate.ecommerce.repository.server.response.get_products.GetProductsResponse;
 import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
 import com.ultimate.ecommerce.repository.server.response.get_products.SubCategoryData;
+import com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartResponse;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
 import com.ultimate.ecommerce.utilities.state.CheckNetworkListener;
 import com.ultimate.ecommerce.utilities.state.OnValidateListener;
@@ -29,7 +32,11 @@ public class ProductListFragmentViewModel extends BaseViewModel {
     @Inject
     ProductRepo productRepo;
 
-    MutableLiveData<ResponseState> responseStateMDL;
+    @Inject
+    CartRepo cartRepo;
+
+    MutableLiveData<ResponseState> getProductResStateMDL;
+    MutableLiveData<ResponseState> updateCartResStateMDL;
     MutableLiveData<List<SubCategoryData>> subCategoriesMDL;
     MutableLiveData<List<ProductData>> productsMDL;
     MutableLiveData<List<FiltersData>> filtersMDL;
@@ -37,7 +44,8 @@ public class ProductListFragmentViewModel extends BaseViewModel {
     @Inject
     public ProductListFragmentViewModel(@NonNull Application application) {
         super(application);
-        responseStateMDL = new MutableLiveData<>();
+        getProductResStateMDL = new MutableLiveData<>();
+        updateCartResStateMDL = new MutableLiveData<>();
         subCategoriesMDL = new MutableLiveData<>();
         productsMDL = new MutableLiveData<>();
         filtersMDL = new MutableLiveData<>();
@@ -54,17 +62,17 @@ public class ProductListFragmentViewModel extends BaseViewModel {
                 .checkNetwork(context, new CheckNetworkListener() {
                     @Override
                     public void onConnect() {
-                        getProductList(category);
+                        getProducts(category);
                     }
 
                     @Override
                     public void onDisconnect() {
-                        responseStateMDL.setValue(ResponseState.failureState(context.getString(R.string.no_internet_connection)));
+                        getProductResStateMDL.setValue(ResponseState.failureState(context.getString(R.string.no_internet_connection)));
                     }
                 });
     }
 
-    private void getProductList(Category category) {
+    private void getProducts(Category category) {
         productRepo.getProductList(category, new ResponsesCallBack<GetProductsResponse>() {
             @Override
             public void onSuccess(GetProductsResponse response) {
@@ -76,8 +84,46 @@ public class ProductListFragmentViewModel extends BaseViewModel {
 
             @Override
             public void onFailure(String state, String msg) {
-                responseStateMDL.setValue(ResponseState.failureState(msg));
+                getProductResStateMDL.setValue(ResponseState.failureState(msg));
             }
         });
     }
+
+    public void validateAddToCart(Context context, ProductCart productCart, String couponCode, String shipping) {
+        StateUtil
+                .validate(new OnValidateListener() {
+                    @Override
+                    public boolean onValidate() {
+                        return OnValidateListener.super.onValidate();
+                    }
+                })
+                .checkNetwork(context, new CheckNetworkListener() {
+                    @Override
+                    public void onConnect() {
+                        addToCart(productCart, couponCode, shipping);
+                    }
+
+                    @Override
+                    public void onDisconnect() {
+                        updateCartResStateMDL.setValue(ResponseState.failureState(context.getString(R.string.no_internet_connection)));
+                    }
+                });
+    }
+
+    public void addToCart(ProductCart productCart, String couponCode, String shipping) {
+        cartRepo.addToOfflineCart(productCart);
+        cartRepo.updateCartApi(couponCode, shipping, new ResponsesCallBack<UpdateCartResponse>() {
+            @Override
+            public void onSuccess(UpdateCartResponse response) {
+                updateCartResStateMDL.setValue(ResponseState.successState());
+            }
+
+            @Override
+            public void onFailure(String state, String msg) {
+                updateCartResStateMDL.setValue(ResponseState.failureState(msg));
+            }
+        });
+    }
+
+
 }

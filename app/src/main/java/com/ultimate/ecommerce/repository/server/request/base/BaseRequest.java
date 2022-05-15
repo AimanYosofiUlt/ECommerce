@@ -3,6 +3,7 @@ package com.ultimate.ecommerce.repository.server.request.base;
 import com.google.gson.Gson;
 import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 import com.ultimate.ecommerce.repository.server.request.create_order.CreateProductRequest;
+import com.ultimate.ecommerce.repository.server.request.update_cart.UpdateCartProductRequest;
 
 import java.util.List;
 
@@ -220,6 +221,17 @@ public class BaseRequest {
                 .addFormDataPart("phone", phone)
                 .addFormDataPart("email", email)
                 .addFormDataPart("password", password)
+                .build();
+    }
+
+    public static RequestBody getGetCouponRequest(String couponCode, String shipping, UpdateCartProductRequest productsRequest) {
+        String products = new Gson().toJson(productsRequest);
+
+        return new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("products", products)
+                .addFormDataPart("couponCode", couponCode)
+                .addFormDataPart("shipping", shipping)
                 .build();
     }
 

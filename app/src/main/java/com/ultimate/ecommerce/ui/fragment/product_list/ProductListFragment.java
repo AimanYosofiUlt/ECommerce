@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.ultimate.ecommerce.databinding.FragmentProductListBinding;
+import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.get_products.FiltersData;
@@ -76,10 +77,17 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
             }
         });
 
-        viewModel.responseStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
+        viewModel.getProductResStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {
-                Log.d("ProductListFragment", "onChanged: 39287 :"+responseState.getMessage());
+                Log.d("ProductListFragment", "onChanged: 39287 :" + responseState.getMessage());
+            }
+        });
+
+        viewModel.updateCartResStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
+            @Override
+            public void onChanged(ResponseState responseState) {
+                Log.d("ProductListFragment", "onChanged: 245353 :" + responseState.getMessage());
             }
         });
     }
@@ -98,6 +106,11 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
 
 
         productAdapter = new ProductAdapter(new ProductViewListener() {
+            @Override
+            public void onAddToCart(ProductCart productCart) {
+                //todo handle couponCode and shipping
+                viewModel.validateAddToCart(requireContext(), productCart, "", "10");
+            }
         });
         bd.productRV.setAdapter(productAdapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 2);
