@@ -4,20 +4,16 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
 import com.ultimate.ecommerce.repository.local.tables.page.Page;
 import com.ultimate.ecommerce.repository.repos.contact_us.ContactUsRepo;
-import com.ultimate.ecommerce.repository.server.response.about_us.AboutUsData;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.contact_us.ContactUsData;
 import com.ultimate.ecommerce.repository.server.response.contact_us.ContactUsResponse;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
