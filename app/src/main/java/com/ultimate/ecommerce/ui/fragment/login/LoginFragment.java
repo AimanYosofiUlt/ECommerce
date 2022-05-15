@@ -92,7 +92,7 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
 
     @Override
     public void initErrorObserver() {
-
+        viewModel.login2("name");
     }
 }
 

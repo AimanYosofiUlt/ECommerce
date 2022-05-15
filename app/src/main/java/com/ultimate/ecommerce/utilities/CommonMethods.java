@@ -1,10 +1,6 @@
 package com.ultimate.ecommerce.utilities;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.view.Display;
-import android.view.WindowManager;
 
 import com.ultimate.ecommerce.R;
 

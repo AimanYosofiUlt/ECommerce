@@ -17,7 +17,6 @@ public class AppSettingRepo extends BaseRepo {
 
     @Inject
     public AppSettingRepo() {
-
     }
 
     public void initAppSetting() {

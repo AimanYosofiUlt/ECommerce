@@ -26,7 +26,6 @@ import javax.inject.Inject;
 public class CategoryFragmentViewModel extends BaseViewModel {
     @Inject
     CategoryRepo categoryRepo;
-
     MutableLiveData<ResponseState> responseStateMDL;
     MutableLiveData<List<Category>> categoryMDL;
 
