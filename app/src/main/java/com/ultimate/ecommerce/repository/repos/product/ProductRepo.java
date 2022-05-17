@@ -17,7 +17,7 @@ public class ProductRepo extends BaseRepo {
     }
 
     public void getProductList(Category category, ResponsesCallBack<GetProductsResponse> callBack) {
-        RequestBody request = BaseRequest.getGetProductsRequest(category.getSlug());
+        RequestBody request = BaseRequest.getGetProductsRequest(category.getTitle());
         api.getProducts(request).enqueue(callBack);
     }
 }

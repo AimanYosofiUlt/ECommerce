@@ -35,6 +35,8 @@ public class ProductListFragmentViewModel extends BaseViewModel {
     @Inject
     CartRepo cartRepo;
 
+
+    MutableLiveData<ResponseState> validateGetProductsMDL;
     MutableLiveData<ResponseState> getProductResStateMDL;
     MutableLiveData<ResponseState> updateCartResStateMDL;
     MutableLiveData<List<SubCategoryData>> subCategoriesMDL;
@@ -44,6 +46,7 @@ public class ProductListFragmentViewModel extends BaseViewModel {
     @Inject
     public ProductListFragmentViewModel(@NonNull Application application) {
         super(application);
+        validateGetProductsMDL = new MutableLiveData<>();
         getProductResStateMDL = new MutableLiveData<>();
         updateCartResStateMDL = new MutableLiveData<>();
         subCategoriesMDL = new MutableLiveData<>();
@@ -67,7 +70,7 @@ public class ProductListFragmentViewModel extends BaseViewModel {
 
                     @Override
                     public void onDisconnect() {
-                        getProductResStateMDL.setValue(ResponseState.failureState(context.getString(R.string.no_internet_connection)));
+                        validateGetProductsMDL.setValue(ResponseState.failureState(context.getString(R.string.no_internet_connection)));
                     }
                 });
     }

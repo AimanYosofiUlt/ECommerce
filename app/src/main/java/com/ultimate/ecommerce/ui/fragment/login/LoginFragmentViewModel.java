@@ -1,5 +1,10 @@
 package com.ultimate.ecommerce.ui.fragment.login;
 
+import static com.ultimate.ecommerce.utilities.ValidateSt.NO_INTERNET_CONNECTION;
+import static com.ultimate.ecommerce.utilities.ValidateSt.PASSWORD_EMPTY_FILED_ERROR;
+import static com.ultimate.ecommerce.utilities.ValidateSt.PHONE_EMPTY_FILED_ERROR;
+import static com.ultimate.ecommerce.utilities.ValidateSt.SMALL_PASSWORD_ERROR;
+
 import android.app.Application;
 import android.content.Context;
 import android.widget.EditText;
@@ -9,7 +14,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.GlobalVariable;
-import com.ultimate.ecommerce.databinding.FragmentLoginBinding;
 import com.ultimate.ecommerce.repository.local.user.User;
 import com.ultimate.ecommerce.repository.repos.user.UserRepo;
 import com.ultimate.ecommerce.repository.server.response.add_user.UserData;
@@ -27,41 +31,35 @@ public class LoginFragmentViewModel extends BaseViewModel {
     @Inject
     UserRepo userRepo;
     MutableLiveData<ResponseState> responseStateMDL;
-    MutableLiveData<ValidateMessage> validateMessageMDL;
+    MutableLiveData<ResponseState> validateResponseStateMDL;
 
     @Inject
     public LoginFragmentViewModel(@NonNull Application application) {
         super(application);
         responseStateMDL = new MutableLiveData<>();
-        validateMessageMDL = new MutableLiveData<>();
+        validateResponseStateMDL = new MutableLiveData<>();
     }
 
-    public void validateLoginEd(FragmentLoginBinding bd, String phone, String password) {
-        Context context = bd.getRoot().getContext();
+    public void validateLoginEd(Context context, String phone, String password) {
 
         StateUtil
                 .validate(new OnValidateListener() {
                     @Override
                     public boolean onValidate() {
-                        if (phone.isEmpty()) {
-                            observeValidateMessage(bd.phoneED, R.string.empty_filed);
+                        if (phone.trim().isEmpty()) {
+                            validateResponseStateMDL.setValue(ResponseState.failureState(PHONE_EMPTY_FILED_ERROR));
                             return false;
                         }
 
-                        if (password.isEmpty()) {
-                            observeValidateMessage(bd.passwordED, R.string.empty_filed);
+                        if (password.trim().isEmpty()) {
+                            validateResponseStateMDL.setValue(ResponseState.failureState(PASSWORD_EMPTY_FILED_ERROR));
                             return false;
-                        } else if (password.length() < 4) {
-                            observeValidateMessage(bd.passwordED, R.string.small_password);
+                        } else if (password.trim().length() < 8) {
+                            validateResponseStateMDL.setValue(ResponseState.failureState(SMALL_PASSWORD_ERROR));
                             return false;
                         }
+
                         return true;
-                    }
-
-                    private void observeValidateMessage(EditText editText, int R_id) {
-                        String message = context.getString(R_id);
-                        ValidateMessage validateMessage = new ValidateMessage(editText, message);
-                        validateMessageMDL.setValue(validateMessage);
                     }
                 })
                 .checkNetwork(context, new CheckNetworkListener() {
@@ -102,17 +100,4 @@ public class LoginFragmentViewModel extends BaseViewModel {
         });
     }
 
-    public void login2(String name) {
-        userRepo.login2(name, new ResponsesCallBack<LoginUserResponse>() {
-            @Override
-            public void onSuccess(LoginUserResponse response) {
-
-            }
-
-            @Override
-            public void onFailure(String state, String msg) {
-
-            }
-        });
-    }
 }

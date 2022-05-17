@@ -46,7 +46,7 @@
                         app:titleTextColor="#ffff" />
 
                     <com.ultimate.ecommerce.utilities.ColoredImage
-                        android:id="@+id/imageView4"
+                        android:id="@+id/backBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -100,8 +100,8 @@
                 app:layout_constraintVertical_bias="0.0">
 
                 <com.ultimate.ecommerce.utilities.BorderedButton
-                    android:layout_width="match_parent"
                     android:id="@+id/googleBtn"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:radius="15dp"
                     app:strokeWidth="1dp" />
@@ -126,6 +126,7 @@
                 app:layout_constraintTop_toTopOf="@+id/twitterRL">
 
                 <com.ultimate.ecommerce.utilities.BorderedButton
+                    android:id="@+id/facebookBtn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:radius="15dp"
@@ -153,6 +154,7 @@
                 app:layout_constraintTop_toTopOf="@+id/appleRL">
 
                 <com.ultimate.ecommerce.utilities.BorderedButton
+                    android:id="@+id/twitterBtn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:radius="15dp"
@@ -179,6 +181,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10">
 
                 <com.ultimate.ecommerce.utilities.BorderedButton
+                    android:id="@+id/appleBtn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:radius="15dp"
@@ -286,7 +289,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="36dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView12"
+                app:layout_constraintBottom_toTopOf="@+id/asVistorLink"
                 app:layout_constraintEnd_toEndOf="@+id/guideline7"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/guideline8"
@@ -304,7 +307,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/guideline7"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/guideline8"
-                app:layout_constraintTop_toBottomOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/forgetPasswordLink"
                 app:layout_constraintVertical_chainStyle="packed" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -322,7 +325,7 @@
                 app:layout_constraintGuide_percent="0.2" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/asVistorLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
@@ -335,7 +338,7 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline8" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/forgetPasswordLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

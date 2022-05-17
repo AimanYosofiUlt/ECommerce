@@ -12,6 +12,7 @@ import com.ultimate.ecommerce.repository.server.response.add_user.AddUserRespons
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.get_user_profile.GetUserProfileResponse;
 import com.ultimate.ecommerce.repository.server.response.login_user.LoginUserResponse;
+import com.ultimate.ecommerce.repository.server.response.update_password.UpdatePasswordResponse;
 
 import javax.inject.Inject;
 
@@ -77,18 +78,7 @@ public class UserRepo extends BaseRepo {
         return userDao.getUserPhone();
     }
 
-    public void login2(String name, ResponsesCallBack<LoginUserResponse> callBack) {
-        RequestBody baseRequest = BaseRequest.getBaseRequest();
-        api.loginUser(baseRequest).enqueue(new ResponsesCallBack<LoginUserResponse>() {
-            @Override
-            public void onSuccess(LoginUserResponse response) {
-                callBack.onSuccess(response);
-            }
+    public void changePassword(String currentPassword, String newPassword, String confirmPassword, ResponsesCallBack<UpdatePasswordResponse> updatePasswordResponseResponsesCallBack) {
 
-            @Override
-            public void onFailure(String state, String msg) {
-                callBack.onFailure(state, msg);
-            }
-        });
     }
 }

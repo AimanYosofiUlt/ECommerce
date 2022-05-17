@@ -5,6 +5,16 @@
     <string name="allow_permission_for_storage_access">Allow permission for storage access!</string>
     <string name="tv_change_lang_header">Change Language</string>
     <string name="no_internet_connection">" No internet connection "</string>
+
+    <string name="empty_email_error">You should inter in Email</string>
+    <string name="empty_name_error">You should inter User Name</string>
+    <string name="empty_phone_error">You should inter User Phone</string>
+    <string name="not_agree_terms_error">You should agree The terms and conditions</string>
+    <string name="not_email_error">This is not an email address</string>
+    <string name="empty_password_error" >You Should Inter Your Password</string>
+    <string name="small_password_error" >Small Password not allowed</string>
+
+    <string name="check_internet_connection">Check Internet Connection</string>
     <string name="couldnt_reach_server">Couldn\'t reach the server!</string>
     <string name="no_data_found">No Data Found</string>
     <string name="database_error">There is a problem in database.</string>
@@ -45,6 +55,7 @@
     <string name="category">الأقسام</string>
     <string name="register_now_msg">اشترك بحساب جديد معنا</string>
     <string name="login">دخول</string>
+    <string name="loading">Loading</string>
     <string name="login_title">سجل الدخول</string>
     <string name="login_filed">فشل التسجيل</string>
     <string name="login_success">تم تسجيل الدخول بنجاح</string>
@@ -93,5 +104,6 @@
     <string name="empty_filed">الحقل فارغ</string>
     <string name="small_password">يجب ان يكون طول كلمة السر اكثر من اريعة رموز</string>
     <string name="discountBy">خصم</string>
+    <string name="try_again">Try Again</string>
 
 </resources>

@@ -46,7 +46,7 @@
                         app:titleTextColor="#ffff" />
 
                     <com.ultimate.ecommerce.utilities.ColoredImage
-                        android:id="@+id/imageView4"
+                        android:id="@+id/backBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -98,8 +98,8 @@
                 app:layout_constraintVertical_bias="0.0">
 
                 <com.ultimate.ecommerce.utilities.BorderedButton
-                    android:layout_width="match_parent"
                     android:id="@+id/googleBtn"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:radius="15dp"
                     app:strokeWidth="1dp" />
@@ -127,6 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:radius="15dp"
+                    android:id="@+id/facebookBtn"
                     app:strokeWidth="1dp" />
 
                 <com.ultimate.ecommerce.utilities.ColoredImage
@@ -154,6 +155,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:radius="15dp"
+                    android:id="@+id/twitterBtn"
                     app:strokeWidth="1dp" />
 
                 <com.ultimate.ecommerce.utilities.ColoredImage
@@ -178,6 +180,7 @@
 
                 <com.ultimate.ecommerce.utilities.BorderedButton
                     android:layout_width="match_parent"
+                    android:id="@+id/appleBtn"
                     android:layout_height="match_parent"
                     app:radius="15dp"
                     app:strokeWidth="1dp" />

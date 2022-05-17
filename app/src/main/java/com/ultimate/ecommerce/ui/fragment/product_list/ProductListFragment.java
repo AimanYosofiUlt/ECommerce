@@ -1,5 +1,7 @@
 package com.ultimate.ecommerce.ui.fragment.product_list;
 
+import static com.ultimate.ecommerce.utilities.ValidateSt.NO_INTERNET_CONNECTION;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,16 +59,18 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
         viewModel.subCategoriesMDL.observe(getViewLifecycleOwner(), new Observer<List<SubCategoryData>>() {
             @Override
             public void onChanged(List<SubCategoryData> subCategoriesDataList) {
-                Log.d("ProductListFragment", "onChanged: 43524 listSize:"+subCategoriesDataList.size());
+                Log.d("ProductListFragment", "onChanged: 43524 listSize:" + subCategoriesDataList.size());
                 subCategoryAdapter.setList(subCategoriesDataList);
+                hideNoInternetProgress();
             }
         });
 
         viewModel.productsMDL.observe(getViewLifecycleOwner(), new Observer<List<ProductData>>() {
             @Override
             public void onChanged(List<ProductData> productDataList) {
-                Log.d("ProductListFragment", "onChanged: 64343 listSize:"+productDataList.size());
+                Log.d("ProductListFragment", "onChanged: 64343 listSize:" + productDataList.size());
                 productAdapter.setList(productDataList);
+                hideNoInternetProgress();
             }
         });
 
@@ -92,10 +96,14 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
         });
     }
 
+    public void hideNoInternetProgress() {
+        bd.internetCheck.progressBar.setVisibility(View.VISIBLE);
+        bd.internetCheck.internetConnectionGroup.setVisibility(View.GONE);
+    }
+
     @Override
     public void initLoading() {
         bd.pageTitleTV.setText(category.getTitle());
-        viewModel.validateGetProducts(requireContext(), category);
 
         subCategoryAdapter = new SubCategoryAdapter(new SubCategoryViewListener() {
         });
@@ -115,11 +123,28 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
         bd.productRV.setAdapter(productAdapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 2);
         bd.productRV.setLayoutManager(gridLayoutManager);
+
+
+        viewModel.validateGetProducts(requireContext(), category);
     }
 
     @Override
     public void initErrorObserver() {
+        viewModel.validateGetProductsMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
+            @Override
+            public void onChanged(ResponseState responseState) {
+                handelValidateError(responseState.getMessage());
+            }
+        });
+    }
 
+    private void handelValidateError(String message) {
+        switch (message) {
+            case NO_INTERNET_CONNECTION:
+                bd.internetCheck.progressBar.setVisibility(View.GONE);
+                bd.internetCheck.internetConnectionGroup.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 }
 

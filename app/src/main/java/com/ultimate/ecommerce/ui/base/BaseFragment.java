@@ -36,7 +36,7 @@ public abstract class BaseFragment<ViewModel extends BaseViewModel> extends Frag
 
     public static ProgressDialog progressDialog;
 
-    public static void ShowProgress(String Title, String Message, Context context) {
+    public static void showProgress(Context context, String Title, String Message) {
         if (progressDialog != null) {
             if (!progressDialog.isShowing()) {
                 progressDialog = ProgressDialog.show(context, Title,
@@ -48,7 +48,7 @@ public abstract class BaseFragment<ViewModel extends BaseViewModel> extends Frag
         }
     }
 
-    public static void HideProgress() {
+    public static void hideProgress() {
         if (progressDialog != null) {
             if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
