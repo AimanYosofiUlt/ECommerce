@@ -1,5 +1,4 @@
 package com.ultimate.ecommerce.ui.fragment.category;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,7 +42,6 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
         return bd.getRoot();
     }
 
-
     @Override
     public void initEvent() {
 
@@ -63,6 +61,7 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
             public void onChanged(ResponseState responseState) {
                 //todo delete this toast
                 Toast.makeText(requireContext(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
+                bd.internetCheck.progressBar.setVisibility(View.GONE);
                 Log.d("CategoryFragment", "onChanged: 29387428: " + responseState.getMessage());
             }
         });
@@ -74,6 +73,8 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
         bd.categoryRV.setLayoutManager(new GridLayoutManager(requireContext(), 3));
         bd.categoryRV.setAdapter(categoryViewAdapter);
         bd.title.titleTV.setText(getString(R.string.category));
+
+        bd.internetCheck.progressBar.setVisibility(View.VISIBLE);
         viewModel.validateGetCategory(requireContext());
     }
 
