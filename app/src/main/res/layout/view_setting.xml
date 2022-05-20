@@ -13,30 +13,30 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/click_view_setting"
         android:clickable="true"
         android:focusable="true"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:layout_height="wrap_content">
+        android:paddingEnd="12dp">
 
         <ImageView
             android:id="@+id/img"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:src="@drawable/ic_orders"
             app:layout_constraintBottom_toBottomOf="@+id/titleTV"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleTV"
-            android:src="@drawable/ic_orders" />
+            app:layout_constraintTop_toTopOf="@+id/titleTV" />
 
         <com.ultimate.ecommerce.utilities.ColoredImage
             android:id="@+id/nextImg"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:src="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="@+id/titleTV"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleTV"
-            android:src="@drawable/ic_back" />
+            app:layout_constraintTop_toTopOf="@+id/titleTV" />
 
         <TextView
             android:id="@+id/titleTV"
@@ -44,8 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/orders"
             android:textSize="14sp"
             android:textStyle="bold"

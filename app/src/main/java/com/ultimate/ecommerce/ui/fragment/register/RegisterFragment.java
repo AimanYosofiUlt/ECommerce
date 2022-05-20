@@ -56,6 +56,7 @@ public class RegisterFragment extends BaseFragment<RegisterFragmentViewModel> {
             String userPhone = bd.phoneCCP.getFullNumberWithPlus();
             String userEmail = bd.emailED.getText().toString();
             String userPassword = bd.passwordED.getText().toString();
+            showProgress(requireContext(),getString(R.string.register),getString(R.string.loading));
             viewModel.validateRegisterUser(requireContext(), userName, userPhone, userEmail, userPassword);
         });
 

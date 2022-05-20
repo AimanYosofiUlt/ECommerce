@@ -13,8 +13,6 @@ import java.util.Locale;
  * Created by Youssif Hamdy on 1/26/2021.
  */
 public class CommonMethods {
-
-
     public static String DecodePass(String Pass) {
         int Cur_Chr;
         StringBuilder p_pass = new StringBuilder();
