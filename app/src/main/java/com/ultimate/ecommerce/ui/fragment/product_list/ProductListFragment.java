@@ -7,12 +7,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentProductListBinding;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
@@ -21,6 +24,7 @@ import com.ultimate.ecommerce.repository.server.response.get_products.FiltersDat
 import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
 import com.ultimate.ecommerce.repository.server.response.get_products.SubCategoryData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
+import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.FilterBottomSheet;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdapter;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductViewListener;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.sub_category.SubCategoryAdapter;
@@ -51,7 +55,21 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
 
     @Override
     public void initEvent() {
+        bd.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack();
+            }
+        });
 
+        bd.filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FilterBottomSheet bottomSheet = new FilterBottomSheet();
+                bottomSheet.show(requireActivity().getSupportFragmentManager(), "Filter");
+            }
+        });
     }
 
     @Override
@@ -81,9 +99,10 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
             }
         });
 
-        viewModel.getProductResStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
+        viewModel.getProductResponseStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {
+                bd.internetCheck.progressBar.setVisibility(View.GONE);
                 Log.d("ProductListFragment", "onChanged: 39287 :" + responseState.getMessage());
             }
         });
@@ -124,8 +143,8 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 2);
         bd.productRV.setLayoutManager(gridLayoutManager);
 
-
-        viewModel.validateGetProducts(requireContext(), category);
+        //todo finish paging
+        viewModel.validateGetProducts(requireContext(), category, 1);
     }
 
     @Override
@@ -141,6 +160,7 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
     private void handelValidateError(String message) {
         switch (message) {
             case NO_INTERNET_CONNECTION:
+                Toast.makeText(requireContext(), getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
                 bd.internetCheck.progressBar.setVisibility(View.GONE);
                 bd.internetCheck.internetConnectionGroup.setVisibility(View.VISIBLE);
                 break;

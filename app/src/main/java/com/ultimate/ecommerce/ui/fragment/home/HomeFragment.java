@@ -18,10 +18,8 @@ import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.homepage.HomePageData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
-import com.ultimate.ecommerce.ui.fragment.category.views.CategoryViewAdapter;
+import com.ultimate.ecommerce.ui.fragment.category.views.CategoryAdapter;
 import com.ultimate.ecommerce.ui.fragment.category.views.CategoryViewListener;
-
-import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -33,7 +31,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
 
     // todo where is the check version to update data and what the data should updated and what don't
 
-    CategoryViewAdapter categoryViewAdapter;
+    CategoryAdapter categoryViewAdapter;
 
     @Nullable
     @Override
@@ -91,7 +89,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
 //        viewModel.getHomePageData();
         viewModel.getCategory();
 
-        categoryViewAdapter = new CategoryViewAdapter(new CategoryViewListener() {
+        categoryViewAdapter = new CategoryAdapter(new CategoryViewListener() {
             @Override
             public void onOpenReq(Category category) {
 
