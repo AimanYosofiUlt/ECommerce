@@ -37,7 +37,7 @@ public class ProductListFragmentViewModel extends BaseViewModel {
 
 
     MutableLiveData<ResponseState> validateGetProductsMDL;
-    MutableLiveData<ResponseState> getProductResStateMDL;
+    MutableLiveData<ResponseState> getProductResponseStateMDL;
     MutableLiveData<ResponseState> updateCartResStateMDL;
     MutableLiveData<List<SubCategoryData>> subCategoriesMDL;
     MutableLiveData<List<ProductData>> productsMDL;
@@ -47,14 +47,14 @@ public class ProductListFragmentViewModel extends BaseViewModel {
     public ProductListFragmentViewModel(@NonNull Application application) {
         super(application);
         validateGetProductsMDL = new MutableLiveData<>();
-        getProductResStateMDL = new MutableLiveData<>();
+        getProductResponseStateMDL = new MutableLiveData<>();
         updateCartResStateMDL = new MutableLiveData<>();
         subCategoriesMDL = new MutableLiveData<>();
         productsMDL = new MutableLiveData<>();
         filtersMDL = new MutableLiveData<>();
     }
 
-    public void validateGetProducts(Context context, Category category) {
+    public void validateGetProducts(Context context, Category category, int pageNo) {
         StateUtil
                 .validate(new OnValidateListener() {
                     @Override
@@ -65,7 +65,7 @@ public class ProductListFragmentViewModel extends BaseViewModel {
                 .checkNetwork(context, new CheckNetworkListener() {
                     @Override
                     public void onConnect() {
-                        getProducts(category);
+                        getProducts(category, pageNo);
                     }
 
                     @Override
@@ -75,19 +75,21 @@ public class ProductListFragmentViewModel extends BaseViewModel {
                 });
     }
 
-    private void getProducts(Category category) {
-        productRepo.getProductList(category, new ResponsesCallBack<GetProductsResponse>() {
+    private void getProducts(Category category, int pageNo) {
+        productRepo.getProductList(category, pageNo, new ResponsesCallBack<GetProductsResponse>() {
             @Override
             public void onSuccess(GetProductsResponse response) {
                 GetProductsData responseData = response.getData();
                 subCategoriesMDL.setValue(responseData.getSubCategories());
                 productsMDL.setValue(responseData.getProducts());
                 filtersMDL.setValue(responseData.getFilters());
+
+                getProductResponseStateMDL.setValue(ResponseState.successState());
             }
 
             @Override
             public void onFailure(String state, String msg) {
-                getProductResStateMDL.setValue(ResponseState.failureState(msg));
+                getProductResponseStateMDL.setValue(ResponseState.failureState(msg));
             }
         });
     }

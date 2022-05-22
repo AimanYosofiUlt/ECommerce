@@ -13,7 +13,6 @@ public class SubCategoryViewHolder extends RecyclerView.ViewHolder {
     SubCategoryViewListener listener;
     ViewSubcategoryBinding bd;
 
-
     public SubCategoryViewHolder(@NonNull View itemView, SubCategoryViewListener listener) {
         super(itemView);
         bd = ViewSubcategoryBinding.bind(itemView);

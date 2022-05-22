@@ -18,6 +18,7 @@ import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Qualifier;
 
@@ -64,7 +65,11 @@ public abstract class AppModule {
     @Provides
     public static OkHttpClient provideOkHttpClient(HttpLoggingInterceptor interceptor) {
         return new OkHttpClient.Builder()
-                .addInterceptor(interceptor).build();
+                .addInterceptor(interceptor)
+                .connectTimeout(5, TimeUnit.MINUTES) // connect timeout
+                .writeTimeout(5, TimeUnit.MINUTES) // write timeout
+                .readTimeout(5, TimeUnit.MINUTES) // read timeout
+                .build();
     }
 
     @ActivityScoped

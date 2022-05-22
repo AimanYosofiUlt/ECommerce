@@ -104,6 +104,9 @@
     <string name="empty_filed">الحقل فارغ</string>
     <string name="small_password">يجب ان يكون طول كلمة السر اكثر من اريعة رموز</string>
     <string name="discountBy">خصم</string>
+    <string name="order">الترتيب</string>
+    <string name="color">اللون</string>
+    <string name="price">السعر</string>
     <string name="try_again">Try Again</string>
 
 </resources>

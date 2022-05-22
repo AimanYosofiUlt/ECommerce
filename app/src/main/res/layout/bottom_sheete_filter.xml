@@ -18,7 +18,7 @@
 
 
         <include
-            android:id="@+id/button3"
+            android:id="@+id/orderTitle"
             layout="@layout/tools_title_start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/button5"
+            android:id="@+id/colorTitle"
             layout="@layout/tools_title_start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -38,10 +38,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/orderByRV" />
 
         <include
-            android:id="@+id/button6"
+            android:id="@+id/priceTitle"
             layout="@layout/tools_title_start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -50,31 +50,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+            app:layout_constraintTop_toBottomOf="@+id/byColorRV" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/orderByRV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
-
+            app:layout_constraintTop_toBottomOf="@+id/orderTitle" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
+            android:id="@+id/byColorRV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button5" />
+            app:layout_constraintTop_toBottomOf="@+id/colorTitle" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/minED"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -90,7 +89,7 @@
             android:textSize="12sp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button6" />
+            app:layout_constraintTop_toBottomOf="@+id/priceTitle" />
 
         <com.mohammedalaa.seekbar.DoubleValueSeekBarView
             android:id="@+id/rangeSeekbar"
@@ -98,11 +97,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"
+            app:layout_constraintBottom_toBottomOf="@+id/minED"
+            app:layout_constraintEnd_toStartOf="@+id/maxED"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
-            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintStart_toEndOf="@+id/minED"
+            app:layout_constraintTop_toTopOf="@+id/minED"
             app:r2CurrentMaxValue="500"
             app:r2CurrentMinValue="100"
             app:r2barHeight="5dp"
@@ -116,7 +115,7 @@
             app:r2minValueStep="5" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/maxED"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -130,9 +129,9 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/minED"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintTop_toTopOf="@+id/minED"
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
@@ -140,16 +139,16 @@
             android:layout_width="40dp"
             android:layout_height="0dp"
             android:src="@drawable/ic_delete"
-            app:layout_constraintBottom_toBottomOf="@+id/button8"
+            app:layout_constraintBottom_toBottomOf="@+id/doneBtn"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/guideline12"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button8"
-            app:layout_constraintTop_toTopOf="@+id/button8"
+            app:layout_constraintStart_toEndOf="@+id/doneBtn"
+            app:layout_constraintTop_toTopOf="@+id/doneBtn"
             app:layout_constraintVertical_bias="1.0" />
 
         <include
-            android:id="@+id/button8"
+            android:id="@+id/doneBtn"
             layout="@layout/view_custom_button_borderd"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -161,7 +160,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/guideline11"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+            app:layout_constraintTop_toBottomOf="@+id/maxED"
             app:layout_constraintVertical_bias="0.0" />
 
         <androidx.constraintlayout.widget.Guideline

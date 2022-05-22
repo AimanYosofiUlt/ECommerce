@@ -47,31 +47,7 @@ public class CategoryFragmentViewModel extends BaseViewModel {
                 .checkNetwork(context, new CheckNetworkListener() {
                     @Override
                     public void onConnect() {
-                        categoryRepo.getCategoriesFromApi(new ResponsesCallBack<GetCategoryResponse>() {
-                            @Override
-                            public void onSuccess(GetCategoryResponse response) {
-                                for (GetCategoryData categoryData : response.getData()) {
-                                    Category category = convertDataToCategory(categoryData);
-                                    categoryRepo.addCategory(category);
-                                }
-
-                                getCategoryFromDatabase();
-                            }
-
-                            private Category convertDataToCategory(GetCategoryData categoryData) {
-                                return new Category(categoryData.getId(), categoryData.getSlug()
-                                        , categoryData.getTitle(), categoryData.getDescription()
-                                        , categoryData.getImage(), categoryData.getParent()
-                                        , categoryData.getCount(), categoryData.getGradientStartColor()
-                                        , categoryData.getGradientEndColor());
-                            }
-
-                            @Override
-                            public void onFailure(String state, String msg) {
-                                responseStateMDL.setValue(ResponseState.failureState(msg));
-                                getCategoryFromDatabase();
-                            }
-                        });
+                        getCategories();
                     }
 
                     @Override
@@ -80,13 +56,43 @@ public class CategoryFragmentViewModel extends BaseViewModel {
                         getCategoryFromDatabase();
                     }
 
-                    private void getCategoryFromDatabase() {
-                        AsyncTask.execute(() -> {
-                            List<Category> categories = categoryRepo.getCategories();
-                            categoryMDL.postValue(categories);
-                        });
-                    }
+
                 });
+    }
+
+    private void getCategories() {
+        categoryRepo.getCategoriesFromApi(new ResponsesCallBack<GetCategoryResponse>() {
+            @Override
+            public void onSuccess(GetCategoryResponse response) {
+                for (GetCategoryData categoryData : response.getData()) {
+                    Category category = convertDataToCategory(categoryData);
+                    categoryRepo.addCategory(category);
+                }
+                getCategoryFromDatabase();
+                responseStateMDL.setValue(ResponseState.successState());
+            }
+
+            private Category convertDataToCategory(GetCategoryData categoryData) {
+                return new Category(categoryData.getId(), categoryData.getSlug()
+                        , categoryData.getTitle(), categoryData.getDescription()
+                        , categoryData.getImage(), categoryData.getParent()
+                        , categoryData.getCount(), categoryData.getGradientStartColor()
+                        , categoryData.getGradientEndColor());
+            }
+
+            @Override
+            public void onFailure(String state, String msg) {
+                responseStateMDL.setValue(ResponseState.failureState(msg));
+                getCategoryFromDatabase();
+            }
+        });
+    }
+
+    private void getCategoryFromDatabase() {
+        AsyncTask.execute(() -> {
+            List<Category> categories = categoryRepo.getCategories();
+            categoryMDL.postValue(categories);
+        });
     }
 }
 

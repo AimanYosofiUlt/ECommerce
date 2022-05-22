@@ -1,5 +1,4 @@
 package com.ultimate.ecommerce.ui.fragment.category;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +16,7 @@ import com.ultimate.ecommerce.databinding.FragmentCategoryBinding;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
-import com.ultimate.ecommerce.ui.fragment.category.views.CategoryViewAdapter;
+import com.ultimate.ecommerce.ui.fragment.category.views.CategoryAdapter;
 import com.ultimate.ecommerce.ui.fragment.category.views.CategoryViewListener;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
     FragmentCategoryBinding bd;
 
     private static final String TAG = "CategoryFragment";
-    CategoryViewAdapter categoryViewAdapter;
+    CategoryAdapter categoryViewAdapter;
     CategoryViewListener listener;
 
     public CategoryFragment(CategoryViewListener listener) {
@@ -42,7 +41,6 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
         bd = FragmentCategoryBinding.inflate(getLayoutInflater());
         return bd.getRoot();
     }
-
 
     @Override
     public void initEvent() {
@@ -63,6 +61,7 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
             public void onChanged(ResponseState responseState) {
                 //todo delete this toast
                 Toast.makeText(requireContext(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
+                bd.internetCheck.progressBar.setVisibility(View.GONE);
                 Log.d("CategoryFragment", "onChanged: 29387428: " + responseState.getMessage());
             }
         });
@@ -70,10 +69,12 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
 
     @Override
     public void initLoading() {
-        categoryViewAdapter = new CategoryViewAdapter(listener);
+        categoryViewAdapter = new CategoryAdapter(listener);
         bd.categoryRV.setLayoutManager(new GridLayoutManager(requireContext(), 3));
         bd.categoryRV.setAdapter(categoryViewAdapter);
         bd.title.titleTV.setText(getString(R.string.category));
+
+        bd.internetCheck.progressBar.setVisibility(View.VISIBLE);
         viewModel.validateGetCategory(requireContext());
     }
 

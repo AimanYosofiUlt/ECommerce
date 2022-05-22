@@ -1,5 +1,7 @@
 package com.ultimate.ecommerce.repository.server.request.base;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 import com.ultimate.ecommerce.repository.server.request.create_order.CreateProductRequest;
@@ -58,13 +60,14 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getGetProductsRequest(String category) {
+    public static RequestBody getGetProductsRequest(String category,int page) {
+        Log.d("BaseRequest", "getGetProductsRequest: 3o4872: " + category);
         // todo there is parameter not explained (id, page) and without any use after test with postman
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
 //                .addFormDataPart("id", id)
                 .addFormDataPart("type", category)
-                .addFormDataPart("page", "1")
+                .addFormDataPart("page", String.valueOf(page))
                 .build();
     }
 

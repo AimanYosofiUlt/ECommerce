@@ -13,11 +13,11 @@ import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryViewAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     List<Category> list;
     CategoryViewListener listener;
 
-    public CategoryViewAdapter(CategoryViewListener listener) {
+    public CategoryAdapter(CategoryViewListener listener) {
         this.listener = listener;
         list = new ArrayList<>();
     }
