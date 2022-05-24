@@ -12,7 +12,7 @@ public class GetProductsData {
     @SerializedName("products")
     private List<ProductData> products;
     @SerializedName("subCategories")
-    private List<SubCategoryData> subCategories;
+    private List<Categories> subCategories;
 
     public GetProductsData() {
     }
@@ -41,11 +41,11 @@ public class GetProductsData {
         this.products = products;
     }
 
-    public List<SubCategoryData> getSubCategories() {
+    public List<Categories> getSubCategories() {
         return subCategories;
     }
 
-    public void setSubCategories(List<SubCategoryData> subCategories) {
+    public void setSubCategories(List<Categories> subCategories) {
         this.subCategories = subCategories;
     }
 }

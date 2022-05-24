@@ -97,11 +97,26 @@
         android:id="@+id/productListFragment"
         android:name="com.ultimate.ecommerce.ui.fragment.product_list.ProductListFragment"
         android:label="ProductListFragment"
-        tools:layout="@layout/fragment_product_list" >
+        tools:layout="@layout/fragment_product_list">
         <argument
             android:name="category"
             app:argType="com.ultimate.ecommerce.repository.local.tables.category.Category"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/actionProductListToProductDetail"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.product_detail.ProductDetailFragment"
+        android:label="ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="product"
+            app:argType="com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdapterData" />
+        <action
+            android:id="@+id/actionToSelf"
+            app:destination="@id/productDetailFragment" />
     </fragment>
 </navigation>

@@ -1,16 +1,15 @@
-package com.ultimate.ecommerce.repository.server.response.filter_products;
+package com.ultimate.ecommerce.repository.server.response.get_product;
 
 import com.google.gson.annotations.SerializedName;
 import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
 
 import java.util.List;
 
-public class FilterProductData {
+public class Crosssell {
     @SerializedName("products")
     private List<ProductData> products;
-
-    public FilterProductData() {
-    }
+    @SerializedName("hidden")
+    private boolean hidden;
 
     public List<ProductData> getProducts() {
         return products;
@@ -18,5 +17,13 @@ public class FilterProductData {
 
     public void setProducts(List<ProductData> products) {
         this.products = products;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 }

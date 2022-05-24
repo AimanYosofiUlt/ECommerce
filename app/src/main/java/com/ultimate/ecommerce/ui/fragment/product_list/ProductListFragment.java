@@ -20,12 +20,13 @@ import com.ultimate.ecommerce.databinding.FragmentProductListBinding;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
+import com.ultimate.ecommerce.repository.server.response.get_products.Categories;
 import com.ultimate.ecommerce.repository.server.response.get_products.FiltersData;
 import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
-import com.ultimate.ecommerce.repository.server.response.get_products.SubCategoryData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.FilterBottomSheet;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdapter;
+import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdapterData;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductViewListener;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.sub_category.SubCategoryAdapter;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.sub_category.SubCategoryViewListener;
@@ -74,9 +75,9 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
 
     @Override
     public void initObservers() {
-        viewModel.subCategoriesMDL.observe(getViewLifecycleOwner(), new Observer<List<SubCategoryData>>() {
+        viewModel.subCategoriesMDL.observe(getViewLifecycleOwner(), new Observer<List<Categories>>() {
             @Override
-            public void onChanged(List<SubCategoryData> subCategoriesDataList) {
+            public void onChanged(List<Categories> subCategoriesDataList) {
                 Log.d("ProductListFragment", "onChanged: 43524 listSize:" + subCategoriesDataList.size());
                 subCategoryAdapter.setList(subCategoriesDataList);
                 hideNoInternetProgress();
@@ -137,6 +138,14 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
             public void onAddToCart(ProductCart productCart) {
                 //todo handle couponCode and shipping
                 viewModel.validateAddToCart(requireContext(), productCart, "", "10");
+            }
+
+            @Override
+            public void onClick(ProductAdapterData data) {
+                NavHostFragment.findNavController(requireParentFragment())
+                        .navigate(
+                                ProductListFragmentDirections.actionProductListToProductDetail(data)
+                        );
             }
         });
         bd.productRV.setAdapter(productAdapter);
