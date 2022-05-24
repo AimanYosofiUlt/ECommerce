@@ -64,6 +64,8 @@
         <entry key="app/src/main/res/layout/dialog_edit_profile.xml" value="0.33" />
         <entry key="app/src/main/res/layout/dialog_message.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_order_cancel.xml" value="0.19010416666666666" />
+        <entry key="app/src/main/res/layout/dialog_rete.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/dialog_rete_stars.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/fragement_register.xml" value="0.3899657924743444" />
         <entry key="app/src/main/res/layout/fragemnt_product_detail.xml" value="0.1735784523300556" />
         <entry key="app/src/main/res/layout/fragemnt_product_detail_body.xml" value="0.31209918768704575" />
@@ -92,6 +94,7 @@
         <entry key="app/src/main/res/layout/fragment_product_detail_rating.xml" value="0.3076923076923077" />
         <entry key="app/src/main/res/layout/fragment_product_list.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2984181274048739" />
+        <entry key="app/src/main/res/layout/fragment_rate.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2984181274048739" />
         <entry key="app/src/main/res/layout/fragment_sections.xml" value="0.1911073108165883" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.29674968341072183" />
