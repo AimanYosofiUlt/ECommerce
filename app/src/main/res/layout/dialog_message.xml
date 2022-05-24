@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -11,13 +12,14 @@
             type="DynamicTheme" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
+        android:background="@drawable/back_dialog"
         app:cardUseCompatPadding="true"
         app:cardCornerRadius="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -29,8 +31,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/messageTV"
@@ -42,21 +43,34 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
-                app:layout_constraintBottom_toTopOf="@+id/doneBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <include
+                android:id="@+id/cancelBtn"
+                layout="@layout/view_custom_button_borderd"
+                android:layout_width="0dp"
+                android:layout_marginBottom="16dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline10"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <include
                 android:id="@+id/doneBtn"
                 layout="@layout/view_custom_button_borderd"
                 android:layout_width="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/cancelBtn"
                 app:layout_constraintEnd_toStartOf="@+id/guideline10"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="@+id/guideline9" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/messageTV" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline9"
@@ -74,5 +88,5 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
 </layout>

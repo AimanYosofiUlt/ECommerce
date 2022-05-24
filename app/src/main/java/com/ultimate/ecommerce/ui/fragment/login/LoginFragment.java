@@ -126,7 +126,9 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
                     NavHostFragment.findNavController(requireParentFragment()).popBackStack();
                     Toast.makeText(requireContext(), getText(R.string.login_success), Toast.LENGTH_SHORT).show();
                 } else {
-                    LayoutUtil.showMassageDialog(requireContext(), getString(R.string.login_filed), responseState.getMessage());
+                    LayoutUtil.showMassageDialog(requireContext()
+                            , getString(R.string.login_filed)
+                            , responseState.getMessage());
                 }
             }
         });

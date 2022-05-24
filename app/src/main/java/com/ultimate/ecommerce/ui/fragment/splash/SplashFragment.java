@@ -19,6 +19,8 @@ import com.ultimate.ecommerce.repository.local.tables.configuration.Configuratio
 import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
+import com.ultimate.ecommerce.utilities.CustomDialogListener;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -73,9 +75,32 @@ public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
             @Override
             public void onChanged(ResponseState responseState) {
                 // todo what i should to do here after failure
-                tryGoMain();
+                if (responseState.isSuccessful())
+                    tryGoMain();
+                else
+                    showErrorDialog();
             }
         });
+    }
+
+    private void showErrorDialog() {
+        LayoutUtil.showOptionDialog(requireContext()
+                , getString(R.string.start_error)
+                , getString(R.string.start_error_msg)
+                , new CustomDialogListener() {
+                    @Override
+                    public void onClick() {
+                        isStartAllow = false;
+                        viewModel.getConfiguration();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        NavHostFragment.findNavController(requireParentFragment())
+                                .popBackStack();
+                        requireActivity().finishAffinity();
+                    }
+                });
     }
 
     @Override

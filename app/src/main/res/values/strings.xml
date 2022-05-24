@@ -108,6 +108,11 @@
     <string name="color">اللون</string>
     <string name="price">السعر</string>
     <string name="try_again">Try Again</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="start_error">Unable to start</string>
+    <string name="start_error_msg">There is data can\'t not updated from server, please try again later</string>
+
     <string name="sample_small">Sample</string>
     <string name="sample_number">100</string>
     <string name="sample_mideum">The iPhone 12 and iPhone 12 mini are smartphones by Apple Inc. They were presented in a livestream keynote on October 13, 2020. It can be pre-ordered from October 18, 2020. In the run-up most of the features were predicted by many leakers. For the first time, the devices will be delivered without EarPods or charger.</string>
