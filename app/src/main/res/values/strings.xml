@@ -109,4 +109,8 @@
     <string name="price">السعر</string>
     <string name="try_again">Try Again</string>
 
+    <string name="cancel">Cancel</string>
+    <string name="start_error">Unable to start</string>
+    <string name="start_error_msg">There is data can\'t not updated from server, please try again later</string>
+
 </resources>

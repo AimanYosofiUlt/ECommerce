@@ -2,9 +2,10 @@ package com.ultimate.ecommerce.utilities;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -31,17 +32,50 @@ public class LayoutUtil {
         });
     }
 
-    public static void showMassageDialog(Context context, String title, String message) {
+
+    private static void showMassageDialogImpl(Context context, String title, String message, boolean isCancelAble, CustomDialogListener listener) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_message, null, false);
-        DialogMessageBinding bd  = DialogMessageBinding.bind(view);
+        DialogMessageBinding bd = DialogMessageBinding.bind(view);
         bd.title.titleTV.setText(title);
         bd.messageTV.setText(message);
+        bd.cancelBtn.btnTextTV.setText(context.getString(R.string.cancel));
 
+
+        if (isCancelAble) {
+            bd.cancelBtn.CL.setVisibility(View.VISIBLE);
+        } else {
+            bd.cancelBtn.CL.setVisibility(View.GONE);
+        }
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setView(view)
                 .create();
+
+        dialog.getWindow()
+                .setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        bd.doneBtn.btnBody.setOnClickListener(view1 -> dialog.dismiss());
+
+        if (listener == null) {
+            bd.doneBtn.btnBody.setOnClickListener(view1 -> dialog.dismiss());
+            bd.cancelBtn.btnBody.setOnClickListener(view1 -> dialog.dismiss());
+        } else {
+            bd.doneBtn.btnBody.setOnClickListener(view1 -> {
+                dialog.dismiss();
+                listener.onClick();
+            });
+            bd.cancelBtn.btnBody.setOnClickListener(view12 -> {
+                dialog.dismiss();
+                listener.onCancel();
+            });
+        }
     }
+
+    public static void showMassageDialog(Context context, String title, String message) {
+        showMassageDialogImpl(context, title, message, false, null);
+    }
+
+    public static void showOptionDialog(Context context, String title, String message, CustomDialogListener listener) {
+        showMassageDialogImpl(context, title, message, true, listener);
+    }
+
 }
