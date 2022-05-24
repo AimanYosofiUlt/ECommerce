@@ -60,7 +60,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <EditText
+                        <EditText android:textAlignment="viewStart"
                             android:id="@+id/userNameED"
                             style="@style/shadow_edittext"
                             android:layout_width="0dp"
@@ -86,7 +86,7 @@
                         app:layout_constraintStart_toStartOf="@+id/userNameCL"
                         app:layout_constraintTop_toBottomOf="@+id/userNameCL">
 
-                        <EditText
+                        <EditText android:textAlignment="viewStart"
                             android:id="@+id/phoneED"
                             style="@style/shadow_edittext"
                             android:layout_width="0dp"
@@ -130,7 +130,7 @@
                         app:layout_constraintStart_toStartOf="@+id/emailCL"
                         app:layout_constraintTop_toBottomOf="@+id/streetCL">
 
-                        <EditText
+                        <EditText android:textAlignment="viewStart"
                             android:id="@+id/landmarkED"
                             style="@style/shadow_edittext"
                             android:layout_width="0dp"
@@ -157,7 +157,7 @@
                         app:layout_constraintStart_toStartOf="@+id/emailCL"
                         app:layout_constraintTop_toBottomOf="@+id/areaCL">
 
-                        <EditText
+                        <EditText android:textAlignment="viewStart"
                             android:id="@+id/streetED"
                             style="@style/shadow_edittext"
                             android:layout_width="0dp"
@@ -184,7 +184,7 @@
                         app:layout_constraintStart_toStartOf="@+id/emailCL"
                         app:layout_constraintTop_toBottomOf="@+id/cityCL">
 
-                        <EditText
+                        <EditText android:textAlignment="viewStart"
                             android:id="@+id/areaED"
                             style="@style/shadow_edittext"
                             android:layout_width="0dp"
@@ -211,7 +211,7 @@
                         app:layout_constraintStart_toStartOf="@+id/emailCL"
                         app:layout_constraintTop_toBottomOf="@+id/emailCL">
 
-                        <EditText
+                        <EditText android:textAlignment="viewStart"
                             android:id="@+id/cityED"
                             style="@style/shadow_edittext"
                             android:layout_width="0dp"
@@ -238,7 +238,7 @@
                         app:layout_constraintStart_toStartOf="@+id/phoneCL"
                         app:layout_constraintTop_toBottomOf="@+id/phoneCL">
 
-                        <EditText
+                        <EditText android:textAlignment="viewStart"
                             android:id="@+id/emailED"
                             style="@style/shadow_edittext"
                             android:layout_width="0dp"

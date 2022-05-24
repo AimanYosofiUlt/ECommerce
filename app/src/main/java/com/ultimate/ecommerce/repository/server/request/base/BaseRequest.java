@@ -71,10 +71,17 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getGetAllReviewsRequest(String id) {
+    public static RequestBody getGetProductRequest(int id) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("id", id)
+                .addFormDataPart("id", String.valueOf(id))
+                .build();
+    }
+
+    public static RequestBody getGetAllReviewsRequest(int id) {
+        return new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("id", String.valueOf(id))
                 .build();
     }
 

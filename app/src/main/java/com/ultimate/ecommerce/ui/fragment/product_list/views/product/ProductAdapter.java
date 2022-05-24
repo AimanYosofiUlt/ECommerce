@@ -16,6 +16,13 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     List<ProductAdapterData> list;
     ProductViewListener listener;
+    boolean isInDetail = false;
+
+    public ProductAdapter(boolean isInDetail, ProductViewListener listener) {
+        list = new ArrayList<>();
+        this.listener = listener;
+        this.isInDetail = isInDetail;
+    }
 
     public ProductAdapter(ProductViewListener listener) {
         list = new ArrayList<>();

@@ -13,11 +13,11 @@ import com.ultimate.ecommerce.repository.repos.cart.CartRepo;
 import com.ultimate.ecommerce.repository.repos.product.ProductRepo;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
+import com.ultimate.ecommerce.repository.server.response.get_products.Categories;
 import com.ultimate.ecommerce.repository.server.response.get_products.FiltersData;
 import com.ultimate.ecommerce.repository.server.response.get_products.GetProductsData;
 import com.ultimate.ecommerce.repository.server.response.get_products.GetProductsResponse;
 import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
-import com.ultimate.ecommerce.repository.server.response.get_products.SubCategoryData;
 import com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartResponse;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
 import com.ultimate.ecommerce.utilities.state.CheckNetworkListener;
@@ -39,7 +39,7 @@ public class ProductListFragmentViewModel extends BaseViewModel {
     MutableLiveData<ResponseState> validateGetProductsMDL;
     MutableLiveData<ResponseState> getProductResponseStateMDL;
     MutableLiveData<ResponseState> updateCartResStateMDL;
-    MutableLiveData<List<SubCategoryData>> subCategoriesMDL;
+    MutableLiveData<List<Categories>> subCategoriesMDL;
     MutableLiveData<List<ProductData>> productsMDL;
     MutableLiveData<List<FiltersData>> filtersMDL;
 
@@ -76,7 +76,7 @@ public class ProductListFragmentViewModel extends BaseViewModel {
     }
 
     private void getProducts(Category category, int pageNo) {
-        productRepo.getProductList(category, pageNo, new ResponsesCallBack<GetProductsResponse>() {
+        productRepo.getProducts(category, pageNo, new ResponsesCallBack<GetProductsResponse>() {
             @Override
             public void onSuccess(GetProductsResponse response) {
                 GetProductsData responseData = response.getData();

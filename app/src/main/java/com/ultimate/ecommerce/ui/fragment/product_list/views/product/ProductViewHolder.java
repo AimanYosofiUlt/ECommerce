@@ -26,30 +26,30 @@ import com.ultimate.ecommerce.repository.server.response.get_products.ProductDat
 public class ProductViewHolder extends RecyclerView.ViewHolder {
     ProductAdapterData data;
     ProductViewListener listener;
-    ViewProductBinding bd;
+    ViewProductBinding binding;
     boolean isInFavorite = false;
     int productQuantity = 0;
 
     public ProductViewHolder(@NonNull View itemView, ProductViewListener listener) {
         super(itemView);
-        bd = ViewProductBinding.bind(itemView);
+        binding = ViewProductBinding.bind(itemView);
         this.listener = listener;
         initEvent();
     }
 
     public void bind(ProductAdapterData data) {
         this.data = data;
-        bd.productNameTV.setText(data.getData().getTitle());
+        binding.productNameTV.setText(data.getData().getTitle());
 
         Glide.with(itemView.getContext())
                 .load(data.getData().getImageUrl())
                 .error(R.drawable.ic_baseline_error_24)
-                .into(bd.productImage);
+                .into(binding.productImage);
 
-        bd.priceTV.setText(data.getData().getPrice());
-        bd.oldPriceTV.setText(data.getData().getPrice());
-        bd.discountPercentageTV.setText(data.getData().getDiscountPercentage());
-        bd.rateTV.setText(String.valueOf(data.getData().getRatingCount()));
+        binding.priceTV.setText(data.getData().getPrice());
+        binding.oldPriceTV.setText(data.getData().getPrice());
+        binding.discountPercentageTV.setText(data.getData().getDiscountPercentage());
+        binding.rateTV.setText(String.valueOf(data.getData().getRatingCount()));
 
 //        //todo here should calculate the discount and show the oldPrice or the price but the response don't give a percentage
 //        String discountMsg = itemView.getContext().getString(R.string.discountBy) + " " + data.getData().getDiscountPercentage() + "%";
@@ -57,11 +57,11 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
 //        int discountPrice = Integer.parseInt(data.getData().getPrice()) * Integer.parseInt(data.getData().getDiscountPercentage()) / 100;
 //        bd.priceTV.setText(String.valueOf(discountPrice));
 //        bd.oldPriceTV.setText(data.getData().getPrice());
-//
+
     }
 
     private void initEvent() {
-        bd.favBtn.setOnClickListener(new View.OnClickListener() {
+        binding.favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!isInFavorite) {
@@ -69,27 +69,34 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
                     isInFavorite = true;
                 } else {
                     isInFavorite = false;
-                    bd.favBtn.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_favourite));
+                    binding.favBtn.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_favourite));
                 }
             }
         });
 
-        bd.addToCartBtn.setOnClickListener(view -> {
-            bd.countTV.setVisibility(View.VISIBLE);
+        binding.addToCartBtn.setOnClickListener(view -> {
+            binding.countTV.setVisibility(View.VISIBLE);
             String countStr = String.valueOf(++productQuantity);
-            bd.countTV.setText(countStr);
+            binding.countTV.setText(countStr);
             ProductData productData = this.data.getData();
             ProductCart productCart = new ProductCart(productData.getId(), productData.getTitle()
                     , productData.getRatingCount(), productData.getDiscountPercentage()
                     , productData.getPrice(), productQuantity);
             listener.onAddToCart(productCart);
         });
+
+        binding.cardBody.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClick(data);
+            }
+        });
     }
 
     public void setInFavorite() {
         Bitmap oldBitmap = getBitmapFromVectorDrawable(itemView.getContext(), R.drawable.ic_favourite_fill);
         Bitmap newBitmap = setGradientBackground(oldBitmap);
-        bd.favBtn.setImageDrawable(new BitmapDrawable(itemView.getResources(), newBitmap));
+        binding.favBtn.setImageDrawable(new BitmapDrawable(itemView.getResources(), newBitmap));
     }
 
     public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {

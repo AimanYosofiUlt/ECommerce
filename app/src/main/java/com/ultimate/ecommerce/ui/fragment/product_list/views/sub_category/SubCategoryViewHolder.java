@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ultimate.ecommerce.databinding.ViewSubcategoryBinding;
-import com.ultimate.ecommerce.repository.server.response.get_products.SubCategoryData;
+import com.ultimate.ecommerce.repository.server.response.get_products.Categories;
 
 public class SubCategoryViewHolder extends RecyclerView.ViewHolder {
-    SubCategoryData data;
+    Categories data;
     SubCategoryViewListener listener;
     ViewSubcategoryBinding bd;
 
@@ -20,7 +20,7 @@ public class SubCategoryViewHolder extends RecyclerView.ViewHolder {
         initEvent();
     }
 
-    public void bind(SubCategoryData data) {
+    public void bind(Categories data) {
         this.data = data;
         bd.subCategoryTV.setText(data.getTitle());
     }

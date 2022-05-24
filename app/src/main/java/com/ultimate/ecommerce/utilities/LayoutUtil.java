@@ -21,14 +21,11 @@ public class LayoutUtil {
     }
 
     public static void hideShimmer(ConstraintLayout constraintLayout, ShimmerFrameLayout shimmerFrameLayout) {
-        shimmerFrameLayout.animate().setDuration(200).alpha(0).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                shimmerFrameLayout.stopShimmer();
-                shimmerFrameLayout.setVisibility(View.GONE);
-                constraintLayout.setVisibility(View.VISIBLE);
-                constraintLayout.animate().setDuration(1000).alpha(1);
-            }
+        shimmerFrameLayout.animate().setDuration(200).alpha(0).withEndAction(() -> {
+            shimmerFrameLayout.stopShimmer();
+            shimmerFrameLayout.setVisibility(View.GONE);
+            constraintLayout.setVisibility(View.VISIBLE);
+            constraintLayout.animate().setDuration(1000).alpha(1);
         });
     }
 

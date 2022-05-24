@@ -2,7 +2,9 @@ package com.ultimate.ecommerce.ui.fragment.product_list.views.product;
 
 import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
 
-public class ProductAdapterData {
+import java.io.Serializable;
+
+public class ProductAdapterData implements Serializable {
     ProductData data;
 
     public ProductAdapterData(ProductData data) {

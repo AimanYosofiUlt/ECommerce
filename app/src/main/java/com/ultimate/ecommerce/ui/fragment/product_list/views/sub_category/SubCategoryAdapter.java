@@ -8,13 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ultimate.ecommerce.R;
-import com.ultimate.ecommerce.repository.server.response.get_products.SubCategoryData;
+import com.ultimate.ecommerce.repository.server.response.get_products.Categories;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryViewHolder> {
-    List<SubCategoryData> list;
+    List<Categories> list;
     SubCategoryViewListener listener;
 
     public SubCategoryAdapter(SubCategoryViewListener listener) {
@@ -22,7 +22,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryViewHold
         this.listener = listener;
     }
 
-    public void setList(List<SubCategoryData> list) {
+    public void setList(List<Categories> list) {
         this.list = list;
         notifyDataSetChanged();
     }
