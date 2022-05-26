@@ -131,4 +131,8 @@
         <item>وصلت</item>
     </string-array>
     <string name="other_product">منتجات أخرى</string>
+    <string name="no_new_order_msg">لا توجد طلبات جديدة في الوقت الحالي</string>
+    <string name="no_shipped_order_msg">لا توجد طلبات مؤكدة في الوقت الحالي</string>
+    <string name="no_charged_order_msg">لا توجد طلبات مشحونة في الوقت الحالي</string>
+    <string name="no_complated_order_msg">لا توجد طلبات مكتملة في الوقت الحالي</string>
 </resources>
