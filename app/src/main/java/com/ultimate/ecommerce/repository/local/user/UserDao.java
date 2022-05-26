@@ -12,8 +12,14 @@ public interface UserDao extends BaseDao<User> {
     LiveData<Boolean> isUserLogin();
 
     @Query("SELECT id From User")
-    Integer getUserId();
+    String getUserId();
 
     @Query("SELECT userPhone From User")
     String getUserPhone();
+
+    @Query("DELETE FROM User")
+    void deleteCurrentUser();
+
+    @Query("SELECT tokenKey FROM User")
+    String getTokenKey();
 }

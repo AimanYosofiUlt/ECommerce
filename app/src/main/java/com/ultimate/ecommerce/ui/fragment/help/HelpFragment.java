@@ -19,14 +19,14 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class HelpFragment extends BaseFragment<HelpFragmentViewModel> {
-    FragmentHelpBinding bd;
+    FragmentHelpBinding binding;
     HelpAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        bd = FragmentHelpBinding.inflate(getLayoutInflater());
-        return bd.getRoot();
+        binding = FragmentHelpBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
 
@@ -38,9 +38,9 @@ public class HelpFragment extends BaseFragment<HelpFragmentViewModel> {
     @Override
     public void initObservers() {
         viewModel.helpMDL.observe(getViewLifecycleOwner(), helpData -> {
-            bd.placeholder.pageTitleTV.setText(helpData.getTitle());
+            binding.placeholder.pageTitleTV.setText(helpData.getTitle());
             adapter.setList(helpData.getQues());
-            LayoutUtil.hideShimmer(bd.placeholder.placeholderCL, bd.shimmer.shimmerL);
+            LayoutUtil.hideShimmer(binding.placeholder.placeholderCL, binding.shimmer.shimmerL);
         });
     }
 
@@ -48,8 +48,8 @@ public class HelpFragment extends BaseFragment<HelpFragmentViewModel> {
     public void initLoading() {
         adapter = new HelpAdapter(new HelpViewListener() {
         });
-        bd.placeholder.helpRV.setAdapter(adapter);
-        LayoutUtil.showShimmer(bd.placeholder.placeholderCL, bd.shimmer.shimmerL);
+        binding.placeholder.helpRV.setAdapter(adapter);
+        LayoutUtil.showShimmer(binding.placeholder.placeholderCL, binding.shimmer.shimmerL);
 
         viewModel.getHelpPage();
     }

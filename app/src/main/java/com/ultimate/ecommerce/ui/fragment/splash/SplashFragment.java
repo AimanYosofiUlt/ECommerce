@@ -64,13 +64,6 @@ public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
             }
         });
 
-        viewModel.settingLiveData.observe(getViewLifecycleOwner(), new Observer<AppSetting>() {
-            @Override
-            public void onChanged(AppSetting appSetting) {
-                GlobalVariable.tokenKey = appSetting.getTokenKey();
-            }
-        });
-
         viewModel.responseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {

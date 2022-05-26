@@ -114,7 +114,7 @@
     <string name="start_error_msg">There is data can\'t not updated from server, please try again later</string>
 
     <string name="sample_small">Sample</string>
-    <string name="sample_number">100</string>
+    <string name="sample_number">0</string>
     <string name="sample_mideum">The iPhone 12 and iPhone 12 mini are smartphones by Apple Inc. They were presented in a livestream keynote on October 13, 2020. It can be pre-ordered from October 18, 2020. In the run-up most of the features were predicted by many leakers. For the first time, the devices will be delivered without EarPods or charger.</string>
     <string name="pay_product">اشترى المنتج</string>
     <string name="detail">المواصفات</string>
@@ -122,4 +122,13 @@
     <string name="see_all">عرض الكل</string>
     <string name="similar_product">منتجات مماثلة</string>
     <string name="your_comment" >تعليقك</string>
+    <string name="rate_dialog_msg">أنت لم تقم بشراء المنتج عبر متجرنا، سيظهر تقييمك للمستخدمين لكن لن يتم احتسابه في تقييم المنتج</string>
+    <string name="rate_product">تقييم المنتج</string>
+    <string-array name="order_title">
+        <item>جديدة</item>
+        <item>مؤكدة</item>
+        <item>شحنت</item>
+        <item>وصلت</item>
+    </string-array>
+    <string name="other_product">منتجات أخرى</string>
 </resources>

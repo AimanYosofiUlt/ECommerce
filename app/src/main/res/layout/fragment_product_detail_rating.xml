@@ -67,7 +67,7 @@
 
         <include
             android:id="@+id/allRating"
-            layout="@layout/tools_rating_stars"
+            layout="@layout/tools_all_stars"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"

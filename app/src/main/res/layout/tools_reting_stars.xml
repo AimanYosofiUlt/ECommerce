@@ -21,27 +21,33 @@
         <ImageView
             android:id="@+id/tow"
             android:layout_width="40dp"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/one"
             app:layout_constraintEnd_toStartOf="@+id/three"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/one"
             app:layout_constraintTop_toTopOf="@+id/one"
-            app:srcCompat="@drawable/ic_rateing_star" />
+            android:src="@drawable/ic_star_outline" />
 
         <ImageView
             android:id="@+id/five"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintBottom_toBottomOf="@+id/four"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/four"
             app:layout_constraintTop_toTopOf="@+id/four"
-            app:srcCompat="@drawable/ic_rateing_star" />
+            android:src="@drawable/ic_star_outline" />
 
         <ImageView
             android:id="@+id/one"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -49,11 +55,13 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_rateing_star" />
+            android:src="@drawable/ic_star_outline" />
 
         <ImageView
             android:id="@+id/three"
             android:layout_width="40dp"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/tow"
             app:layout_constraintEnd_toStartOf="@+id/four"
@@ -61,10 +69,12 @@
             app:layout_constraintStart_toEndOf="@+id/tow"
             app:layout_constraintTop_toTopOf="@+id/tow"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_rateing_star" />
+            android:src="@drawable/ic_star_outline" />
 
         <ImageView
             android:id="@+id/four"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/three"
@@ -72,6 +82,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/three"
             app:layout_constraintTop_toTopOf="@+id/three"
-            app:srcCompat="@drawable/ic_rateing_star" />
+            android:src="@drawable/ic_star_outline" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

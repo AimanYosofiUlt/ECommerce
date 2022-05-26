@@ -10,18 +10,18 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainViewPagerAdapter extends FragmentStateAdapter {
+public class MainPagerAdapter extends FragmentStateAdapter {
     List<Fragment> fragments = new ArrayList<>();
 
-    public MainViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public MainPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 
-    public MainViewPagerAdapter(@NonNull Fragment fragment) {
+    public MainPagerAdapter(@NonNull Fragment fragment) {
         super(fragment);
     }
 
-    public MainViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+    public MainPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
 

@@ -15,11 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
-
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentProductDetailBinding;
 import com.ultimate.ecommerce.databinding.FragmentProductDetailBodyBinding;
-import com.ultimate.ecommerce.databinding.ToolsRatingStarsBinding;
+import com.ultimate.ecommerce.databinding.ToolsAllStarsBinding;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.get_product.GetProductData;
@@ -229,7 +228,7 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailFragmentVie
         binding.rating.totalRatingTV.setText(String.valueOf(allStars));
         binding.rating.ratingCountTV.setText("(" + averageRating + ")");
 
-        ToolsRatingStarsBinding allRatingBinding = binding.rating.allRating;
+        ToolsAllStarsBinding allRatingBinding = binding.rating.allRating;
         allRatingBinding.oneCountTV.setText(String.valueOf(oneStar));
         allRatingBinding.towCountTV.setText(String.valueOf(twoStar));
         allRatingBinding.threeCountTV.setText(String.valueOf(threeStar));

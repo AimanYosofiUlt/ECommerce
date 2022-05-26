@@ -1,36 +1,42 @@
 package com.ultimate.ecommerce.repository.local.user;
 
-import androidx.room.ColumnInfo;
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class User {
+    @NonNull
     @PrimaryKey
-    Integer id;
+    String id = "0";
     String userName;
     String userPhone;
     String userEmail;
+    String tokenKey;
     boolean isSubscriber;
 
     public User() {
+
     }
 
     @Ignore
-    public User(Integer id, String userName, String userPhone, String userEmail, boolean isSubscriber) {
+    public User(@NonNull String id, String userName, String userPhone, String userEmail, String tokenKey, boolean isSubscriber) {
         this.id = id;
         this.userName = userName;
         this.userPhone = userPhone;
         this.userEmail = userEmail;
+        this.tokenKey = tokenKey;
         this.isSubscriber = isSubscriber;
     }
 
-    public Integer getId() {
+
+    @NonNull
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
@@ -64,5 +70,13 @@ public class User {
 
     public void setSubscriber(boolean subscriber) {
         isSubscriber = subscriber;
+    }
+
+    public String getTokenKey() {
+        return tokenKey;
+    }
+
+    public void setTokenKey(String tokenKey) {
+        this.tokenKey = tokenKey;
     }
 }

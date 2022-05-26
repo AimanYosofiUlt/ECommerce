@@ -9,6 +9,7 @@ import androidx.room.PrimaryKey;
 public class AppSetting {
     @PrimaryKey(autoGenerate = true)
     Integer id;
+    //todo change setting
     String tokenKey;
 
     public AppSetting() {

@@ -8,7 +8,10 @@ import com.ultimate.ecommerce.repository.local.user.User;
 import com.ultimate.ecommerce.repository.local.user.UserDao;
 import com.ultimate.ecommerce.repository.repos.base.BaseRepo;
 import com.ultimate.ecommerce.repository.server.request.base.BaseRequest;
+import com.ultimate.ecommerce.repository.server.response.add_user.AddUserData;
 import com.ultimate.ecommerce.repository.server.response.add_user.AddUserResponse;
+import com.ultimate.ecommerce.repository.server.response.add_user.UserData;
+import com.ultimate.ecommerce.repository.server.response.add_user.UserResponse;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.get_user_profile.GetUserProfileResponse;
 import com.ultimate.ecommerce.repository.server.response.login_user.LoginUserResponse;
@@ -32,6 +35,9 @@ public class UserRepo extends BaseRepo {
         api.addUser(request).enqueue(new ResponsesCallBack<AddUserResponse>() {
             @Override
             public void onSuccess(AddUserResponse response) {
+                AddUserData data = response.getData();
+                User user = convertResponseToUser(data.getUser(), data.getTokenkey());
+                setAppUser(user);
                 callBack.onSuccess(response);
             }
 
@@ -42,8 +48,11 @@ public class UserRepo extends BaseRepo {
         });
     }
 
-    public void addUser(User user) {
-        AsyncTask.execute(() -> userDao.insert(user));
+    public void setAppUser(User user) {
+        AsyncTask.execute(() -> {
+            userDao.deleteCurrentUser();
+            userDao.insert(user);
+        });
     }
 
     public LiveData<Boolean> checkUser() {
@@ -52,7 +61,30 @@ public class UserRepo extends BaseRepo {
 
     public void login(String userPhone, String userPassword, ResponsesCallBack<LoginUserResponse> callBack) {
         RequestBody request = BaseRequest.getLoginUserRequest(userPhone, userPassword);
-        api.loginUser(request).enqueue(callBack);
+        api.loginUser(request).enqueue(new ResponsesCallBack<LoginUserResponse>() {
+            @Override
+            public void onSuccess(LoginUserResponse response) {
+                AddUserData data = response.getData();
+                User user = convertResponseToUser(data.getUser(), data.getTokenkey());
+                setAppUser(user);
+                callBack.onSuccess(response);
+            }
+
+            @Override
+            public void onFailure(String state, String msg) {
+                callBack.onFailure(state, msg);
+            }
+        });
+    }
+
+    private User convertResponseToUser(UserResponse response, String tokenkey) {
+        UserData userData = response.getData();
+        String id = userData.getId();
+        String name = userData.getDisplayName();
+        String email = userData.getUserEmail();
+        String phone = userData.getUserLogin();
+        boolean isSubs = response.getCaps().getSubscriber();
+        return new User(id, name, phone, email, tokenkey, isSubs);
     }
 
     public void getUserProfile(ResponsesCallBack<GetUserProfileResponse> callBack) {
@@ -71,7 +103,11 @@ public class UserRepo extends BaseRepo {
     }
 
     private String getUserId() {
-        return String.valueOf(userDao.getUserId());
+        return userDao.getUserId();
+    }
+
+    public String getTokenKey() {
+        return userDao.getTokenKey();
     }
 
     public String getUserPhone() {

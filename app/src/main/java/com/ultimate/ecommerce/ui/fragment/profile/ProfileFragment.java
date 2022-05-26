@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 
 import com.ultimate.ecommerce.databinding.FragmentProfileBinding;
-import com.ultimate.ecommerce.repository.local.user.User;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 
@@ -36,16 +35,16 @@ public class ProfileFragment extends BaseFragment<ProfileFragmentViewModel> {
 
     @Override
     public void initObservers() {
-        viewModel.userMDL.observe(getViewLifecycleOwner(), user -> {
-            bd.userNameED.setText(user.getUserName());
-            bd.phoneED.setText(user.getUserPhone());
-            bd.emailED.setText(user.getUserEmail());
+        viewModel.userMDL.observe(getViewLifecycleOwner(), userData -> {
+            bd.userNameED.setText( userData.getDisplayName());
+            bd.phoneED.setText(userData.getUserEmail());
+            bd.emailED.setText(userData.getUserLogin());
         });
 
         viewModel.responseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {
-                Log.d("ProfileFragment", "onChanged: 35445: "+responseState.getMessage());
+                Log.d("ProfileFragment", "onChanged: 35445: " + responseState.getMessage());
             }
         });
     }

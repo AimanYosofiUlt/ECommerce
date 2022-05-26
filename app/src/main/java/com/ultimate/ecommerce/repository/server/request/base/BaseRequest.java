@@ -60,6 +60,13 @@ public class BaseRequest {
                 .build();
     }
 
+    public static RequestBody getOrdersRequest(String userId) {
+        return new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("userID", userId)
+                .build();
+    }
+
     public static RequestBody getGetProductsRequest(String category,int page) {
         Log.d("BaseRequest", "getGetProductsRequest: 3o4872: " + category);
         // todo there is parameter not explained (id, page) and without any use after test with postman
@@ -194,6 +201,7 @@ public class BaseRequest {
         // todo here the api take userPhone but the key name username
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
+                // this 'username' naming is wrong from the server but is get the user phone
                 .addFormDataPart("username", userPhone)
                 .addFormDataPart("password", password)
                 .build();

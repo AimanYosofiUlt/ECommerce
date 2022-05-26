@@ -63,7 +63,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/searchBtn"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/back_edittext2" />
+                app:srcCompat="@drawable/back_border_round10" />
 
             <com.ultimate.ecommerce.utilities.ColoredImage
                 android:id="@+id/searchBtn"
@@ -74,7 +74,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/toolbar"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/back_edittext2" />
+                app:srcCompat="@drawable/back_border_round10" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

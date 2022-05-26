@@ -64,6 +64,7 @@ public class ReviewFragmentViewModel extends BaseViewModel {
             public void onSuccess(GatAllReviewsResponse response) {
                 GetAllReviewsData data = response.getData();
                 reviewsMDL.setValue(data);
+                getReviewsResponseMDL.setValue(ResponseState.successState());
             }
 
             @Override
@@ -74,7 +75,7 @@ public class ReviewFragmentViewModel extends BaseViewModel {
     }
 
 
-    public void validateAddReview(Context context, String review) {
+    public void validateAddReview(Context context, String review, int rate) {
         StateUtil
                 .validate(new OnValidateListener() {
                     @Override
@@ -85,7 +86,7 @@ public class ReviewFragmentViewModel extends BaseViewModel {
                 .checkNetwork(context, new CheckNetworkListener() {
                     @Override
                     public void onConnect() {
-                        addReview(review);
+                        addReview(review,rate);
                     }
 
                     @Override
@@ -95,8 +96,8 @@ public class ReviewFragmentViewModel extends BaseViewModel {
                 });
     }
 
-    private void addReview(String review) {
-        reviewRepo.addReview(review, new ResponsesCallBack<AddReviewResponse>() {
+    private void addReview(String review, int rate) {
+        reviewRepo.addReview(review,rate, new ResponsesCallBack<AddReviewResponse>() {
             @Override
             public void onSuccess(AddReviewResponse response) {
                 addReviewResponseMDl.setValue(ResponseState.successState());

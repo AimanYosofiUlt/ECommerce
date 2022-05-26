@@ -20,7 +20,7 @@ public class ReviewRepo extends BaseRepo {
         api.getAllReviews(request).enqueue(callBack);
     }
 
-    public void addReview(String review, ResponsesCallBack<AddReviewResponse> callBack) {
+    public void addReview(String review, int rate, ResponsesCallBack<AddReviewResponse> callBack) {
 //        RequestBody request = BaseRequest.getAddReviewRequest(review);
 //        api.addReview(request).enqueue(callBack);
     }

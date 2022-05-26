@@ -19,7 +19,7 @@ public class ProfileFragmentViewModel extends BaseViewModel {
     @Inject
     UserRepo userRepo;
 
-    MutableLiveData<User> userMDL;
+    MutableLiveData<UserData> userMDL;
     MutableLiveData<ResponseState> responseMDL;
 
     @Inject
@@ -33,18 +33,8 @@ public class ProfileFragmentViewModel extends BaseViewModel {
         userRepo.getUserProfile(new ResponsesCallBack<GetUserProfileResponse>() {
             @Override
             public void onSuccess(GetUserProfileResponse response) {
-                boolean subscriber = response.getData().getCaps().getSubscriber();
                 UserData userData = response.getData().getData();
-                User user = convertResponseToUser(userData, subscriber);
-                userMDL.setValue(user);
-            }
-
-            private User convertResponseToUser(UserData userData, boolean subscriber) {
-                Integer id = Integer.valueOf(userData.getId());
-                String name = userData.getDisplayName();
-                String email = userData.getUserEmail();
-                String phone = userRepo.getUserPhone();
-                return new User(id, name, phone, email, subscriber);
+                userMDL.setValue(userData);
             }
 
             @Override

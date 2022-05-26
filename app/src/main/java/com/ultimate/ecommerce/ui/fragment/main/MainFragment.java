@@ -8,6 +8,7 @@ import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.HELP;
 import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.LANG_CUR;
 import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.LOGIN_REGISTER;
 import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.LOGOUT;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.ORDERS;
 import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.USER_PROFILE;
 
 import android.os.Bundle;
@@ -33,7 +34,7 @@ import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.category.CategoryFragment;
 import com.ultimate.ecommerce.ui.fragment.category.views.CategoryViewListener;
 import com.ultimate.ecommerce.ui.fragment.home.HomeFragment;
-import com.ultimate.ecommerce.ui.fragment.main.views.mainviewpager.MainViewPagerAdapter;
+import com.ultimate.ecommerce.ui.fragment.main.views.mainviewpager.MainPagerAdapter;
 import com.ultimate.ecommerce.ui.fragment.setting.SettingFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -41,7 +42,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class MainFragment extends BaseFragment {
     FragmentMainBinding bd;
-    MainViewPagerAdapter adapter;
+    MainPagerAdapter adapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -79,7 +80,7 @@ public class MainFragment extends BaseFragment {
     }
 
     private void initFragmentAdapter() {
-        adapter = new MainViewPagerAdapter(requireParentFragment());
+        adapter = new MainPagerAdapter(requireParentFragment());
         adapter.addFragment(new HomeFragment());
         adapter.addFragment(new CategoryFragment(new CategoryViewListener() {
             @Override
@@ -100,9 +101,9 @@ public class MainFragment extends BaseFragment {
             NavController navController = NavHostFragment.findNavController(requireParentFragment());
 
             switch (id) {
-//                    case ORDERS:
-//                        navController.navigate(R.id.actionMainTo);
-//                        break;
+                case ORDERS:
+                    navController.navigate(R.id.actionMainToOrder);
+                    break;
 
                 case ADDRESS:
                     navController.navigate(R.id.actionMainToAddress);

@@ -25,7 +25,6 @@ public class SplashFragmentViewModel extends BaseViewModel {
     ConfigRepo configRepo;
 
     LiveData<Configuration> configurationLiveData;
-    LiveData<AppSetting> settingLiveData;
     MutableLiveData<ResponseState> responseMDL;
 
     @Inject
@@ -34,7 +33,6 @@ public class SplashFragmentViewModel extends BaseViewModel {
         settingRepo.initAppSetting();
         configRepo.initConfig();
         configurationLiveData = configRepo.getConfiguration();
-        settingLiveData = settingRepo.getAppSetting();
         responseMDL = new MutableLiveData<>();
     }
 

@@ -28,8 +28,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
-
-
     FragmentLoginBinding bd;
 
     public LoginFragment() {

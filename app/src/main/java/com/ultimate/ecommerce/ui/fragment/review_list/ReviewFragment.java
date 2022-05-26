@@ -12,11 +12,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentReviewBinding;
-import com.ultimate.ecommerce.databinding.ToolsRatingStarsBinding;
+import com.ultimate.ecommerce.databinding.ToolsAllStarsBinding;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.get_all_reviews.GetAllReviewsData;
 import com.ultimate.ecommerce.repository.server.response.get_all_reviews.ReviewCounts;
@@ -27,6 +28,7 @@ import com.ultimate.ecommerce.ui.fragment.product_detail.views.review.ReviewView
 import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdapterData;
 import com.ultimate.ecommerce.ui.fragment.review_list.dialogs.rate.RateDialog;
 import com.ultimate.ecommerce.ui.fragment.review_list.dialogs.rate.RateDialogListener;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import java.util.List;
 
@@ -54,17 +56,17 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
 
     @Override
     public void initEvent() {
-        binding.addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rateDialog = new RateDialog(requireContext(), new RateDialogListener() {
-                    @Override
-                    public void onAddReviewReq(String review) {
-                        viewModel.validateAddReview(getContext(), review);
-                    }
-                }).create();
-                rateDialog.show();
-            }
+        binding.placeholder.backBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
+                .popBackStack());
+
+        binding.placeholder.addBtn.setOnClickListener(view -> {
+            rateDialog = new RateDialog(requireContext(), new RateDialogListener() {
+                @Override
+                public void onAddReviewReq(String review, int rate) {
+                    viewModel.validateAddReview(getContext(), review, rate);
+                }
+            }).create();
+            rateDialog.show();
         });
     }
 
@@ -73,6 +75,7 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
         viewModel.getReviewsResponseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {
+                LayoutUtil.hideShimmer(binding.placeholder.placeholderCL, binding.shimmer.shimmerL);
                 //todo handel error from saever
                 Log.d("ReviewFragment", "onChanged: dq32323:" + responseState.getMessage());
             }
@@ -95,11 +98,10 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
                 int threeStar = reviewCounts.getThereStar();
                 int fourStar = reviewCounts.getFourStar();
                 int fiveStar = reviewCounts.getFiveStar();
+                binding.placeholder.totalRatingTV.setText(String.valueOf(allStars));
+                binding.placeholder.ratingCountTV.setText("(" + averageRating + ")");
 
-                binding.totalRatingTV.setText(String.valueOf(allStars));
-                binding.ratingCountTV.setText("(" + averageRating + ")");
-
-                ToolsRatingStarsBinding allRatingBinding = binding.allRating;
+                ToolsAllStarsBinding allRatingBinding = binding.placeholder.allRating;
                 allRatingBinding.oneCountTV.setText(String.valueOf(oneStar));
                 allRatingBinding.towCountTV.setText(String.valueOf(twoStar));
                 allRatingBinding.threeCountTV.setText(String.valueOf(threeStar));
@@ -120,8 +122,8 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
                 reviewAdapter.setList(reviews);
 
                 LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-                binding.reviewRV.setLayoutManager(layoutManager);
-                binding.reviewRV.setAdapter(reviewAdapter);
+                binding.placeholder.reviewRV.setLayoutManager(layoutManager);
+                binding.placeholder.reviewRV.setAdapter(reviewAdapter);
             }
         });
 
@@ -147,16 +149,25 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
                 }
             }
         });
-
     }
 
     @Override
     public void initLoading() {
         reviewAdapter = new ReviewAdapter(new ReviewViewListener() {
         });
-        binding.reviewRV.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.reviewRV.setAdapter(reviewAdapter);
+        binding.placeholder.reviewRV.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.placeholder.reviewRV.setAdapter(reviewAdapter);
 
+        //todo set real product name
+        String productName = "Name";
+        binding.placeholder.pageTitleTV.setText(productName);
+        binding.shimmer.pageTitleTV.setText(productName);
+
+        loadingReviews();
+    }
+
+    void loadingReviews() {
+        LayoutUtil.showShimmer(binding.placeholder.placeholderCL, binding.shimmer.shimmerL);
 
         //todo use user product not static id
         //        viewModel.validateGetReviews(product.getData().getId(),requireContext());

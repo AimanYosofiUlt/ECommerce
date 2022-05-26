@@ -1,22 +1,17 @@
 package com.ultimate.ecommerce.ui.fragment.login;
 
-import static com.ultimate.ecommerce.utilities.ValidateSt.NO_INTERNET_CONNECTION;
 import static com.ultimate.ecommerce.utilities.ValidateSt.PASSWORD_EMPTY_FILED_ERROR;
 import static com.ultimate.ecommerce.utilities.ValidateSt.PHONE_EMPTY_FILED_ERROR;
 import static com.ultimate.ecommerce.utilities.ValidateSt.SMALL_PASSWORD_ERROR;
 
 import android.app.Application;
 import android.content.Context;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ultimate.ecommerce.R;
-import com.ultimate.ecommerce.app.GlobalVariable;
-import com.ultimate.ecommerce.repository.local.user.User;
 import com.ultimate.ecommerce.repository.repos.user.UserRepo;
-import com.ultimate.ecommerce.repository.server.response.add_user.UserData;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.login_user.LoginUserResponse;
@@ -79,18 +74,7 @@ public class LoginFragmentViewModel extends BaseViewModel {
         userRepo.login(userKey, userPassword, new ResponsesCallBack<LoginUserResponse>() {
             @Override
             public void onSuccess(LoginUserResponse response) {
-                GlobalVariable.tokenKey = response.getData().getTokenkey();
-                UserData userData = response.getData().getUser().getData();
-                addUser(userData, response.getData().getUser().getCaps().getSubscriber());
                 responseStateMDL.setValue(ResponseState.successState());
-            }
-
-            private void addUser(UserData userData, boolean subscriber) {
-                int id = Integer.parseInt(userData.getId());
-                String name = userData.getDisplayName();
-                String email = userData.getUserEmail();
-                User user = new User(id, name, userKey, email, subscriber);
-                userRepo.addUser(user);
             }
 
             @Override

@@ -31,14 +31,4 @@ public class AppSettingRepo extends BaseRepo {
     public LiveData<AppSetting> getAppSetting() {
         return settingDao.getAppSetting();
     }
-
-
-    public void updateTokenKey() {
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                settingDao.updateTokenKey(GlobalVariable.tokenKey);
-            }
-        });
-    }
 }
