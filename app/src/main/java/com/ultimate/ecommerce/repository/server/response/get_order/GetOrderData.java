@@ -14,7 +14,7 @@ public class GetOrderData {
     @SerializedName("billing")
     private Billing billing;
     @SerializedName("products")
-    private List<Products> products;
+    private List<Product> products;
     @SerializedName("productsNo")
     private int productsno;
     @SerializedName("currency")
@@ -56,11 +56,11 @@ public class GetOrderData {
         this.billing = billing;
     }
 
-    public List<Products> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Products> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
@@ -31,7 +30,7 @@ public class SettingFragment extends BaseFragment<SettingFragmentViewModel> {
     public static final int LOGIN_REGISTER = 8;
     public static final int USER_PROFILE = 9;
 
-    FragmentSettingBinding bd;
+    FragmentSettingBinding binding;
     SettingViewAdapter adapter;
     boolean isNotScrolled = false;
 
@@ -44,33 +43,41 @@ public class SettingFragment extends BaseFragment<SettingFragmentViewModel> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        bd = FragmentSettingBinding.inflate(getLayoutInflater());
-        return bd.getRoot();
+        binding = FragmentSettingBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
     public void initObservers() {
-//        viewModel.userIsLoginMDL.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-//            @Override
-//            public void onChanged(Boolean isUserLogin) {
-//                if (isUserLogin) {
-//                    bd.userInfoGroup.setVisibility(View.VISIBLE);
-//                    bd.loginBtn.btnBody.setVisibility(View.GONE);
-//                } else {
-//                    bd.userInfoGroup.setVisibility(View.INVISIBLE);
-//                    bd.loginBtn.btnBody.setVisibility(View.VISIBLE);
-//                }
-//            }
-//        });
+        viewModel.userIsLoginLiveData.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isUserLogin) {
+                if (isUserLogin) {
+                    binding.userInfoGroup.setVisibility(View.VISIBLE);
+                    binding.loginBtn.CL.setVisibility(View.GONE);
+                    viewModel.getCurrentUser();
+                } else {
+                    binding.userInfoGroup.setVisibility(View.INVISIBLE);
+                    binding.loginBtn.CL.setVisibility(View.VISIBLE);
+                }
+                adapter.addSettingItems(requireContext(), isUserLogin);
+            }
+        });
+
+        viewModel.userMDL.observe(getViewLifecycleOwner(), user -> {
+            binding.userNameTV.setText(user.getUserName());
+            String userPhone = "+" + user.getUserPhone();
+            binding.userPhoneTV.setText(userPhone);
+        });
     }
 
 
     @Override
     public void initLoading() {
         adapter = new SettingViewAdapter(requireContext(), listener);
-        bd.settingRV.setAdapter(adapter);
-        bd.topBack.setGradient(DynamicTheme.gradientStartColor, DynamicTheme.gradientEndColor);
-        bd.loginBtn.btnTextTV.setText(getString(R.string.login_register));
+        binding.settingRV.setAdapter(adapter);
+        binding.topBack.setGradient(DynamicTheme.gradientStartColor, DynamicTheme.gradientEndColor);
+        binding.loginBtn.btnTextTV.setText(getString(R.string.login_register));
     }
 
     @Override
@@ -79,14 +86,14 @@ public class SettingFragment extends BaseFragment<SettingFragmentViewModel> {
     }
     @Override
     public void initEvent() {
-        bd.loginBtn.btnBody.setOnClickListener(new View.OnClickListener() {
+        binding.loginBtn.btnBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onOpenReq(LOGIN_REGISTER);
             }
         });
 
-        bd.userProfileBtn.setOnClickListener(new View.OnClickListener() {
+        binding.userProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onOpenReq(USER_PROFILE);

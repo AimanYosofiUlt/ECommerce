@@ -64,20 +64,8 @@ public class CategoryFragmentViewModel extends BaseViewModel {
         categoryRepo.getCategoriesFromApi(new ResponsesCallBack<GetCategoryResponse>() {
             @Override
             public void onSuccess(GetCategoryResponse response) {
-                for (GetCategoryData categoryData : response.getData()) {
-                    Category category = convertDataToCategory(categoryData);
-                    categoryRepo.addCategory(category);
-                }
-                getCategoryFromDatabase();
                 responseStateMDL.setValue(ResponseState.successState());
-            }
-
-            private Category convertDataToCategory(GetCategoryData categoryData) {
-                return new Category(categoryData.getId(), categoryData.getSlug()
-                        , categoryData.getTitle(), categoryData.getDescription()
-                        , categoryData.getImage(), categoryData.getParent()
-                        , categoryData.getCount(), categoryData.getGradientStartColor()
-                        , categoryData.getGradientEndColor());
+                getCategoryFromDatabase();
             }
 
             @Override

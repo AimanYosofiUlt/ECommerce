@@ -43,23 +43,16 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
 
     @Override
     public void initEvent() {
-        bd.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        bd.backBtn.setOnClickListener(view ->
                 NavHostFragment.findNavController(requireParentFragment())
-                        .popBackStack();
-            }
-        });
+                        .popBackStack());
 
 
-        bd.loginBtn.btnBody.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String userPhone = bd.phoneCCP.getFullNumberWithPlus();
-                String userPassword = bd.passwordED.getText().toString();
-                showProgress(requireContext(), getString(R.string.login), getString(R.string.loading));
-                viewModel.validateLoginEd(requireContext(), userPhone, userPassword);
-            }
+        bd.loginBtn.btnBody.setOnClickListener(view -> {
+            String userPhone = bd.phoneCCP.getFullNumber();
+            String userPassword = bd.passwordED.getText().toString();
+            showProgress(requireContext(), getString(R.string.login), getString(R.string.loading));
+            viewModel.validateLogin(requireContext(), userPhone, userPassword);
         });
 
         bd.registerBtn.btnBody.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())

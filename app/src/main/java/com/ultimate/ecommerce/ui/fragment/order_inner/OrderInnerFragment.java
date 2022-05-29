@@ -24,6 +24,13 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class OrderInnerFragment extends BaseFragment<OrderInnerFragmentViewModel> {
     FragmentOrdersInnerBinding binding;
     OrderAdapter adapter;
+    boolean isViewCreated = false;
+    String emptyMessage;
+
+    public OrderInnerFragment(String emptyMessage,OrderViewListener listener) {
+        adapter = new OrderAdapter(listener);
+        this.emptyMessage = emptyMessage;
+    }
 
     @Nullable
     @Override
@@ -32,6 +39,11 @@ public class OrderInnerFragment extends BaseFragment<OrderInnerFragmentViewModel
         return binding.getRoot();
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @androidx.annotation.Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        isViewCreated = true;
+    }
 
     @Override
     public void initEvent() {
@@ -43,22 +55,37 @@ public class OrderInnerFragment extends BaseFragment<OrderInnerFragmentViewModel
 
     }
 
+    public void setEmptyMsgVisibility() {
+        if (adapter.getItemCount() == 0)
+            binding.noDataGroup.setVisibility(View.VISIBLE);
+        else
+            binding.noDataGroup.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setEmptyMsgVisibility();
+    }
+
     @Override
     public void initLoading() {
-        adapter = new OrderAdapter(new OrderViewListener() {
-        });
         LinearLayoutManager layout = new LinearLayoutManager(requireContext());
         binding.orderRV.setLayoutManager(layout);
         binding.orderRV.setAdapter(adapter);
+        setEmptyMsgVisibility();
+
+        binding.emptyMsgTV.setText(emptyMessage);
     }
 
     @Override
     public void initErrorObserver() {
-
     }
 
     public void setOrderList(List<Order> orderList) {
         adapter.setList(orderList);
+        if (isViewCreated)
+            setEmptyMsgVisibility();
     }
 }
 

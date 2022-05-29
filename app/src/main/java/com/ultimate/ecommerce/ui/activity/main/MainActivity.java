@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bd = ActivityMainBinding.inflate(getLayoutInflater());
+            bd = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(bd.getRoot());
         Window window = this.getWindow();
 //        GradientDrawable background = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,

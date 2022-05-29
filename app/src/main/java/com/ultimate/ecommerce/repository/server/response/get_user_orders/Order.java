@@ -2,9 +2,10 @@ package com.ultimate.ecommerce.repository.server.response.get_user_orders;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Order {
+public class Order implements Serializable {
     @SerializedName("products")
     private List<Products> products;
     @SerializedName("productsNo")

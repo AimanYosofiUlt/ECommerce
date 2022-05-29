@@ -1,13 +1,13 @@
 package com.ultimate.ecommerce.ui.fragment.setting;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
-import com.ultimate.ecommerce.repository.repos.configuration.ConfigRepo;
+import com.ultimate.ecommerce.repository.local.user.User;
 import com.ultimate.ecommerce.repository.repos.user.UserRepo;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
 
@@ -17,12 +17,18 @@ public class SettingFragmentViewModel extends BaseViewModel {
     @Inject
     UserRepo userRepo;
 
-    LiveData<Boolean> userIsLoginMDL;
+    LiveData<Boolean> userIsLoginLiveData;
+    MutableLiveData<User> userMDL;
 
     @Inject
-    public SettingFragmentViewModel(@NonNull Application application,UserRepo userRepo) {
+    public SettingFragmentViewModel(@NonNull Application application, UserRepo userRepo) {
         super(application);
         this.userRepo = userRepo;
-        userIsLoginMDL = userRepo.checkUser();
+        userIsLoginLiveData = userRepo.checkUser();
+        userMDL = new MutableLiveData<>();
+    }
+
+    public void getCurrentUser() {
+        AsyncTask.execute(() -> userMDL.postValue(userRepo.getUser()));
     }
 }

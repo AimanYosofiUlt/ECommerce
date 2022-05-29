@@ -16,8 +16,8 @@ import com.ultimate.ecommerce.repository.server.response.get_categories.GetCateg
 import com.ultimate.ecommerce.repository.server.response.get_order.GetOrderResponse;
 import com.ultimate.ecommerce.repository.server.response.get_product.GetProductResponse;
 import com.ultimate.ecommerce.repository.server.response.get_products.GetProductsResponse;
-import com.ultimate.ecommerce.repository.server.response.get_user_profile.GetUserProfileResponse;
 import com.ultimate.ecommerce.repository.server.response.get_user_orders.GetUserOrdersResponse;
+import com.ultimate.ecommerce.repository.server.response.get_user_profile.GetUserProfileResponse;
 import com.ultimate.ecommerce.repository.server.response.help.HelpResponse;
 import com.ultimate.ecommerce.repository.server.response.homepage.HomePageResponse;
 import com.ultimate.ecommerce.repository.server.response.login_user.LoginUserResponse;
@@ -35,6 +35,7 @@ import com.ultimate.ecommerce.repository.server.response.update_shipping_address
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -63,8 +64,6 @@ public interface UltimateApi {
             "osType: android"})
     @POST("getCategories")
     Call<GetCategoryResponse> getCategories(@Body RequestBody requestBody);
-
-    ///////////////////////////////////////////////////////
 
     @Headers({"lang: " + LANGUAGE,
             "tokenKey: " + tokenKey,
@@ -170,19 +169,17 @@ public interface UltimateApi {
     Call<CountriesResponse> countries(@Body RequestBody requestBody);
 
     @Headers({"lang: " + LANGUAGE,
-            "tokenKey: " + tokenKey,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("getUserOrders")
-    Call<GetUserOrdersResponse> getUserOrders(@Body RequestBody requestBody);
+    Call<GetUserOrdersResponse> getUserOrders(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
 
     @Headers({"lang: " + LANGUAGE,
-            "tokenKey: " + tokenKey,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("getOrder")
-    Call<GetOrderResponse> getOrder(@Body RequestBody requestBody);
+    Call<GetOrderResponse> getOrder(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
 
 //    @Headers({"lang: " + LANGUAGE,

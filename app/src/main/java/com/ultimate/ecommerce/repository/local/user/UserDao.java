@@ -22,4 +22,7 @@ public interface UserDao extends BaseDao<User> {
 
     @Query("SELECT tokenKey FROM User")
     String getTokenKey();
+
+    @Query("SELECT * FROM User")
+    User getUser();
 }

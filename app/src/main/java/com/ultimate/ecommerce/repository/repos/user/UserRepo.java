@@ -117,4 +117,8 @@ public class UserRepo extends BaseRepo {
     public void changePassword(String currentPassword, String newPassword, String confirmPassword, ResponsesCallBack<UpdatePasswordResponse> updatePasswordResponseResponsesCallBack) {
 
     }
+
+    public User getUser() {
+        return userDao.getUser();
+    }
 }

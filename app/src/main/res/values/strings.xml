@@ -132,7 +132,23 @@
     </string-array>
     <string name="other_product">منتجات أخرى</string>
     <string name="no_new_order_msg">لا توجد طلبات جديدة في الوقت الحالي</string>
-    <string name="no_shipped_order_msg">لا توجد طلبات مؤكدة في الوقت الحالي</string>
+    <string name="no_approved_order_msg">لا توجد طلبات مؤكدة في الوقت الحالي</string>
     <string name="no_charged_order_msg">لا توجد طلبات مشحونة في الوقت الحالي</string>
     <string name="no_complated_order_msg">لا توجد طلبات مكتملة في الوقت الحالي</string>
+    <string name="get_data_msg">جاري جلب البيانات</string>
+    <string name="tax_plus">ضريبة القيمة المضافة</string>
+    <string name="ship_price">تكلفة الشحن</string>
+    <string name="discount">المبلغ المخصوم</string>
+    <string name="total">الإجمالي</string>
+    <string name="free_ship">شحن مجاني</string>
+
+    <string name="products_title">المنتجات</string>
+        <string name="address_title">العنوان</string>
+    <string name="ship_title">الدفع</string>
+        <string name="deliver_title">الشحن</string>
+    <string name="cost_title">التكلفة</string>
+    <string name="order_done">تم توصيل الطلب</string>
+    <string name="sample_date">2022/06/30</string>
+    <string name="order_confirm_msg">تم تأكيد توصيل الطلب لكم في يوم</string>
+
 </resources>

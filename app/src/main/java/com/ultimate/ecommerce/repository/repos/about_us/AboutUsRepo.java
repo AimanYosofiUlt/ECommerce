@@ -30,6 +30,7 @@ public class AboutUsRepo extends BaseRepo {
             @Override
             public void onSuccess(AboutUsResponse response) {
                 addAboutUsPage(response.getData());
+
                 callBack.onSuccess(response);
             }
 

@@ -20,7 +20,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ultimate.ecommerce.R;
-import com.ultimate.ecommerce.ui.fragment.setting.SettingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,19 +31,24 @@ public class SettingViewAdapter extends RecyclerView.Adapter<SettingViewHolder> 
     public SettingViewAdapter(Context context, SettingViewListener listener) {
         this.listener = listener;
         list = new ArrayList<>();
-        addSettingItems(context);
     }
 
-    public void addSettingItems(Context context) {
-        list.add(getSettingModel(context, ORDERS, R.string.orders, R.drawable.ic_orders));
-        list.add(getSettingModel(context, ADDRESS, R.string.addresses, R.drawable.ic_address_street));
+    public void addSettingItems(Context context, Boolean isUserLogin) {
+        list.clear();
+        if (isUserLogin) {
+            list.add(getSettingModel(context, ORDERS, R.string.orders, R.drawable.ic_orders));
+            list.add(getSettingModel(context, ADDRESS, R.string.addresses, R.drawable.ic_address_street));
+        }
+
         list.add(getSettingModel(context, FAVORITE, R.string.favorate, R.drawable.ic_favourite));
         list.add(getSettingModel(context, LANG_CUR, R.string.lang_cur, R.drawable.ic_language_currency));
         list.add(getSettingModel(context, HELP, R.string.help, R.drawable.ic_help));
         list.add(getSettingModel(context, ABOUT, R.string.about, R.drawable.ic_about));
         list.add(getSettingModel(context, CONTACT_US, R.string.contact_us, R.drawable.ic_contact));
-        list.add(getSettingModel(context, LOGOUT, R.string.logout, R.drawable.ic_logout));
-        notifyItemMoved(0, list.size() - 1);
+
+        if (isUserLogin)
+            list.add(getSettingModel(context, LOGOUT, R.string.logout, R.drawable.ic_logout));
+        notifyDataSetChanged();
     }
 
     private SettingModel getSettingModel(Context context, int id, int R_string, int R_drawable) {

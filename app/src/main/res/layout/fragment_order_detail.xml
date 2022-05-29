@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ultimate.ecommerce.app.DynamicTheme" />
+
+        <variable
+            name="color"
+            type="DynamicTheme" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- ToolBar widget -->
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="?attr/actionBarTheme"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:titleTextColor="#ffff" />
+
+                <TextView
+                    android:id="@+id/pageTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/orders"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/backBtn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.448" />
+
+                <com.ultimate.ecommerce.utilities.ColoredImage
+                    android:id="@+id/backBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_next"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/reloadOrdersBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_baseline_autorenew_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/toolbar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    layout="@layout/fragment_order_detail_done_card"
+                    android:id="@+id/done_card"
+                    android:layout_margin="16dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <include
+                    android:id="@+id/firstImage"
+                    layout="@layout/view_order_images"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productsTitle"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/view_order_images" />
+
+                <include
+                    android:id="@+id/secoundImage"
+                    layout="@layout/view_order_images"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/firstImage"
+                    app:layout_constraintStart_toEndOf="@+id/firstImage"
+                    app:layout_constraintTop_toTopOf="@+id/firstImage"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <include
+                    android:id="@+id/thirdImage"
+                    layout="@layout/view_order_images"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/secoundImage"
+                    app:layout_constraintStart_toEndOf="@+id/secoundImage"
+                    app:layout_constraintTop_toTopOf="@+id/secoundImage" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/productsCountGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="moreImageTV"
+                    tools:layout_editor_absoluteX="120dp"
+                    tools:layout_editor_absoluteY="132dp" />
+
+                <TextView
+                    android:id="@+id/moreImageTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12sp"
+                    android:text="@string/sample_number"
+                    app:layout_constraintBottom_toBottomOf="@+id/thirdImage"
+                    app:layout_constraintStart_toEndOf="@+id/thirdImage"
+                    app:layout_constraintTop_toTopOf="@+id/thirdImage" />
+
+                <include
+                    android:id="@+id/addressTitle"
+                    layout="@layout/tools_title_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rateBtn" />
+
+                <TextView
+                    android:id="@+id/addressTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/sample_small"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addressTitle" />
+
+                <TextView
+                    android:id="@+id/subAddressTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sample_mideum"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/addressTV"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="@+id/addressTV"
+                    app:layout_constraintTop_toBottomOf="@+id/addressTV" />
+
+                <include
+                    android:id="@+id/shipTitle"
+                    layout="@layout/tools_title_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/subAddressTV" />
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_small"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/addressTV"
+                    app:layout_constraintStart_toStartOf="@+id/addressTV"
+                    app:layout_constraintTop_toBottomOf="@+id/shipTitle" />
+
+                <TextView
+                    android:id="@+id/textView35"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sample_mideum"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/textView34"
+                    app:layout_constraintStart_toStartOf="@+id/textView34"
+                    app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+                <include
+                    android:id="@+id/deliverTitle"
+                    layout="@layout/tools_title_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+                <TextView
+                    android:id="@+id/textView37"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_small"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/addressTV"
+                    app:layout_constraintStart_toStartOf="@+id/addressTV"
+                    app:layout_constraintTop_toBottomOf="@+id/deliverTitle" />
+
+                <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sample_mideum"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/textView37"
+                    app:layout_constraintStart_toStartOf="@+id/textView37"
+                    app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+                <include
+                    android:id="@+id/costTitle"
+                    layout="@layout/tools_title_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+                <TextView
+                    android:id="@+id/vatTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/sample_number"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView47" />
+
+                <TextView
+                    android:id="@+id/shipCostTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sample_number"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/vatTV"
+                    app:layout_constraintTop_toBottomOf="@+id/vatTV" />
+
+                <TextView
+                    android:id="@+id/discountTV"
+                    android:layout_width="7dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sample_number"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/shipCostTV"
+                    app:layout_constraintTop_toBottomOf="@+id/shipCostTV" />
+
+                <TextView
+                    android:id="@+id/totalAfterDiscountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sample_number"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="@+id/discountTV"
+                    app:layout_constraintTop_toBottomOf="@+id/discountTV" />
+
+                <TextView
+                    android:id="@+id/totalBeforeDiscountTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/sample_number"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/totalAfterDiscountTV"
+                    app:layout_constraintEnd_toStartOf="@+id/totalAfterDiscountTV"
+                    app:layout_constraintTop_toBottomOf="@+id/discountTV"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/textView47"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/tax_plus"
+                    android:textColor="@{color.gradientStartColor}"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/costTitle" />
+
+                <TextView
+                    android:id="@+id/textView48"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/ship_price"
+                    android:textColor="@{color.gradientStartColor}"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/textView47"
+                    app:layout_constraintTop_toBottomOf="@+id/textView47" />
+
+                <TextView
+                    android:id="@+id/textView49"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/discount"
+                    android:textColor="@{color.gradientStartColor}"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/textView48"
+                    app:layout_constraintTop_toBottomOf="@+id/textView48" />
+
+                <TextView
+                    android:id="@+id/textView50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/free_ship"
+                    android:textColor="@{color.gradientStartColor}"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView48"
+                    app:layout_constraintStart_toEndOf="@+id/textView48"
+                    app:layout_constraintTop_toBottomOf="@+id/vatTV"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView51"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/total"
+                    android:textColor="@{color.gradientStartColor}"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/textView49"
+                    app:layout_constraintTop_toBottomOf="@+id/textView49" />
+
+                <include
+                    android:id="@+id/cancelBtn"
+                    layout="@layout/view_custom_button_borderd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/guideline18"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/guideline19"
+                    app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.8" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.2" />
+
+                <include
+                    android:id="@+id/productsTitle"
+                    layout="@layout/tools_title_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/done_card" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/firstImage"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/view_order_product" />
+
+                <include
+                    layout="@layout/view_custom_button"
+                    android:id="@+id/rateBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/guideline18"
+                    app:layout_constraintHorizontal_bias="0.503"
+                    app:layout_constraintStart_toEndOf="@+id/guideline19"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

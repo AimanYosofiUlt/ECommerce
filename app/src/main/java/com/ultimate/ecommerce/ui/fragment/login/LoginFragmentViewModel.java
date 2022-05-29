@@ -35,7 +35,7 @@ public class LoginFragmentViewModel extends BaseViewModel {
         validateResponseStateMDL = new MutableLiveData<>();
     }
 
-    public void validateLoginEd(Context context, String phone, String password) {
+    public void validateLogin(Context context, String phone, String password) {
 
         StateUtil
                 .validate(new OnValidateListener() {

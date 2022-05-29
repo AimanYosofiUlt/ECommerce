@@ -2,7 +2,7 @@ package com.ultimate.ecommerce.repository.server.response.get_order;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Products {
+public class Product {
     @SerializedName("totalPrice")
     private int totalprice;
     @SerializedName("quantity")

@@ -17,7 +17,7 @@
 
         <include layout="@layout/tools_title_start" />
 
-        <include layout="@layout/view_product_info" />
+        <include layout="@layout/view_order_product" />
 
         <Space
             android:layout_width="match_parent"

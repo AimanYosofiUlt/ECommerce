@@ -45,11 +45,11 @@ public class BaseRequest {
     }
 
     // todo maybe don't work because in postman didn't work
-    public static RequestBody getSGetOrderRequest(String userId, String orderId) {
+    public static RequestBody getGetOrderRequest(String userId, int orderId) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userID", userId)
-                .addFormDataPart("orderID", orderId)
+                .addFormDataPart("orderID", String.valueOf(orderId))
                 .build();
     }
 

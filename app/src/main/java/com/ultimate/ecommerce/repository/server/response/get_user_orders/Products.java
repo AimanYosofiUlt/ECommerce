@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Products {
     @SerializedName("totalPrice")
-    private int totalprice;
+    private double totalprice;
     @SerializedName("quantity")
     private int quantity;
     @SerializedName("image")
@@ -16,7 +16,7 @@ public class Products {
     @SerializedName("ID")
     private int id;
 
-    public int getTotalprice() {
+    public double getTotalprice() {
         return totalprice;
     }
 

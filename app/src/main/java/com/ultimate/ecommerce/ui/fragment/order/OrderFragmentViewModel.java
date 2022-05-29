@@ -7,24 +7,25 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ultimate.ecommerce.repository.repos.order.OrderRepo;
+import com.ultimate.ecommerce.repository.repos.user.UserRepo;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.get_user_orders.GetUserOrdersData;
 import com.ultimate.ecommerce.repository.server.response.get_user_orders.GetUserOrdersResponse;
-import com.ultimate.ecommerce.repository.server.response.get_user_orders.Order;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
 import com.ultimate.ecommerce.utilities.ValidateSt;
 import com.ultimate.ecommerce.utilities.state.CheckNetworkListener;
 import com.ultimate.ecommerce.utilities.state.OnValidateListener;
 import com.ultimate.ecommerce.utilities.state.StateUtil;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 public class OrderFragmentViewModel extends BaseViewModel {
     @Inject
     OrderRepo orderRepo;
+    @Inject
+    UserRepo userRepo;
+
     MutableLiveData<ResponseState> getOrdersResponseMDL;
     MutableLiveData<GetUserOrdersData> ordersMDL;
 
@@ -46,7 +47,8 @@ public class OrderFragmentViewModel extends BaseViewModel {
                 .checkNetwork(requireContext, new CheckNetworkListener() {
                     @Override
                     public void onConnect() {
-                        getOrders();
+                        String userId = userRepo.getUser().getId();
+                        getOrders(userId);
                     }
 
                     @Override
@@ -56,10 +58,11 @@ public class OrderFragmentViewModel extends BaseViewModel {
                 });
     }
 
-    private void getOrders() {
-        orderRepo.getOrders(new ResponsesCallBack<GetUserOrdersResponse>() {
+    private void getOrders(String userId) {
+        orderRepo.getOrders(userId,new ResponsesCallBack<GetUserOrdersResponse>() {
             @Override
             public void onSuccess(GetUserOrdersResponse response) {
+                getOrdersResponseMDL.setValue(ResponseState.successState());
                 ordersMDL.setValue(response.getData());
             }
 

@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class Shippingmethod {
     @SerializedName("total")
-    private int total;
+    private double total;
     @SerializedName("details")
     private String details;
     @SerializedName("name")
     private String name;
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
