@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Product {
     @SerializedName("totalPrice")
-    private int totalprice;
+    private double totalprice;
     @SerializedName("quantity")
-    private int quantity;
+    private double quantity;
     @SerializedName("image")
     private String image;
     @SerializedName("title")
@@ -16,19 +16,19 @@ public class Product {
     @SerializedName("ID")
     private int id;
 
-    public int getTotalprice() {
+    public double getTotalprice() {
         return totalprice;
     }
 
-    public void setTotalprice(int totalprice) {
+    public void setTotalprice(double totalprice) {
         this.totalprice = totalprice;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 

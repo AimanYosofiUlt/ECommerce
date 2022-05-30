@@ -23,6 +23,7 @@ import com.ultimate.ecommerce.repository.server.response.homepage.HomePageRespon
 import com.ultimate.ecommerce.repository.server.response.login_user.LoginUserResponse;
 import com.ultimate.ecommerce.repository.server.response.logout.LogoutResponse;
 import com.ultimate.ecommerce.repository.server.response.payment_methods.PaymentMethodsResponse;
+import com.ultimate.ecommerce.repository.server.response.refund_order.RefundOrderResponse;
 import com.ultimate.ecommerce.repository.server.response.search_product.SearchProductResponse;
 import com.ultimate.ecommerce.repository.server.response.send_sms.SendSmsResponse;
 import com.ultimate.ecommerce.repository.server.response.shipping_methods.ShippingMethodsResponse;
@@ -126,11 +127,10 @@ public interface UltimateApi {
     Call<FilterProductResponse> filterProducts(@Body RequestBody requestBody);
 
     @Headers({"lang: " + LANGUAGE,
-            "tokenKey: " + tokenKey,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("addReview")
-    Call<AddReviewResponse> addReview(@Body RequestBody requestBody);
+    Call<AddReviewResponse> addReview(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
 
     @Headers({"lang: " + LANGUAGE,
@@ -182,12 +182,11 @@ public interface UltimateApi {
     Call<GetOrderResponse> getOrder(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
 
-//    @Headers({"lang: " + LANGUAGE,
-//            "tokenKey: " + TOKEN_KEY,
-//            "secretKey: " + SECRET_KEY,
-//            "osType: android"})
-//    @POST("refundOrder")
-//    Call<GetCategoryResponse> refundOrder(@Body RequestBody requestBody);
+    @Headers({"lang: " + LANGUAGE,
+            "secretKey: " + SECRET_KEY,
+            "osType: android"})
+    @POST("refundOrder")
+    Call<RefundOrderResponse> refundOrder(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
     @Headers({"lang: " + LANGUAGE,
             "tokenKey: " + tokenKey,

@@ -153,5 +153,17 @@
         <argument
             android:name="order"
             app:argType="com.ultimate.ecommerce.repository.server.response.get_user_orders.Order" />
+        <action
+            android:id="@+id/actionOrderDetailToRateOrder"
+            app:destination="@id/rateOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rateOrderFragment"
+        tools:layout="@layout/fragment_rate_order"
+        android:name="com.ultimate.ecommerce.ui.fragment.rate_order.RateOrderFragment"
+        android:label="RateOrderFragment" >
+        <argument
+            android:name="orderDate"
+            app:argType="com.ultimate.ecommerce.repository.server.response.get_order.GetOrderData" />
     </fragment>
 </navigation>

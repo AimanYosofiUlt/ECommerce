@@ -53,10 +53,10 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getRefundOrderRequest(String orderId) {
+    public static RequestBody getRefundOrderRequest(int orderId) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("orderID", orderId)
+                .addFormDataPart("orderID", String.valueOf(orderId))
                 .build();
     }
 
@@ -102,17 +102,14 @@ public class BaseRequest {
     }
 
     public static RequestBody getAddReviewRequest(
-            String userId, String productId,
-            String name, String email,
-            String content, String rating) {
+            String userId, int productId,
+            int rating, String content) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userID", userId)
-                .addFormDataPart("productID", productId)
-                .addFormDataPart("name", name)
-                .addFormDataPart("email", email)
+                .addFormDataPart("productID", String.valueOf(productId))
                 .addFormDataPart("content", content)
-                .addFormDataPart("rating", rating)
+                .addFormDataPart("rating", String.valueOf(rating))
                 .build();
     }
 

@@ -8,9 +8,9 @@ public class Cost {
     @SerializedName("total")
     private double total;
     @SerializedName("discountTotal")
-    private int discounttotal;
+    private double discounttotal;
     @SerializedName("vat")
-    private int vat;
+    private double vat;
 
     public double getTotalafterdiscount() {
         return totalafterdiscount;
@@ -28,19 +28,19 @@ public class Cost {
         this.total = total;
     }
 
-    public int getDiscounttotal() {
+    public double getDiscountTotal() {
         return discounttotal;
     }
 
-    public void setDiscounttotal(int discounttotal) {
+    public void setDiscounttotal(double discounttotal) {
         this.discounttotal = discounttotal;
     }
 
-    public int getVat() {
+    public double getVat() {
         return vat;
     }
 
-    public void setVat(int vat) {
+    public void setVat(double vat) {
         this.vat = vat;
     }
 }

@@ -1,6 +1,7 @@
 package com.ultimate.ecommerce.ui.fragment.order_inner.views.order;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -9,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.ViewOrderBinding;
-import com.ultimate.ecommerce.databinding.ViewOrderImagesBinding;
 import com.ultimate.ecommerce.repository.server.response.get_user_orders.Order;
 import com.ultimate.ecommerce.repository.server.response.get_user_orders.Products;
 
@@ -52,16 +52,16 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    private void setProductByIndex(int index, ViewOrderImagesBinding imagesBinding, TextView textView, List<Products> products) {
+    private void setProductByIndex(int index, ImageView image, TextView textView, List<Products> products) {
         if (products.size() > index) {
-            imagesBinding.CL.setVisibility(View.VISIBLE);
+            image.setVisibility(View.VISIBLE);
             Glide.with(binding.getRoot().getContext())
                     .load(products.get(0).getImage())
-                    .into(imagesBinding.image);
+                    .into(image);
             textView.setText(products.get(index).getTitle());
         } else {
             textView.setVisibility(View.GONE);
-            imagesBinding.CL.setVisibility(View.GONE);
+            image.setVisibility(View.GONE);
         }
     }
 

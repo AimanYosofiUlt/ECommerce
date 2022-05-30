@@ -108,6 +108,8 @@
         <entry key="app/src/main/res/layout/fragment_product_list.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2984181274048739" />
         <entry key="app/src/main/res/layout/fragment_rate.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/fragment_rate_order.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/fragment_rate_order_inner.xml" value="0.30055579307396324" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2984181274048739" />
         <entry key="app/src/main/res/layout/fragment_review.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/fragment_review_placeholder.xml" value="0.31209918768704575" />

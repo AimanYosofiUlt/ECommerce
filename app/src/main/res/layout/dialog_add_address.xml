@@ -211,18 +211,18 @@
                         app:layout_constraintStart_toStartOf="@+id/emailCL"
                         app:layout_constraintTop_toBottomOf="@+id/emailCL">
 
-                        <EditText android:textAlignment="viewStart"
-                            android:id="@+id/cityED"
-                            style="@style/shadow_edittext"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/ic_address_city"
-                            android:hint="@string/address_city"
-                            android:inputType="text"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            <EditText android:textAlignment="viewStart"
+                                android:id="@+id/cityED"
+                                style="@style/shadow_edittext"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_address_city"
+                                android:hint="@string/address_city"
+                                android:inputType="text"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

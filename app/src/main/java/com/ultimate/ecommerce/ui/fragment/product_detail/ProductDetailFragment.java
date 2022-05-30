@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
+
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentProductDetailBinding;
 import com.ultimate.ecommerce.databinding.FragmentProductDetailBodyBinding;
@@ -126,7 +127,6 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailFragmentVie
         imageAdapter.setList(images);
         binding.imageVP.setAdapter(imageAdapter);
         binding.imageVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_ALWAYS);
-
         setViewPagerMotion();
     }
 
@@ -290,6 +290,7 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailFragmentVie
         binding.rating.seeAllBtn.btnTextTV.setText(getString(R.string.see_all));
         binding.similarTitle.startTitle.setText(getString(R.string.similar_product));
         binding.body.categoriesTitle.startTitle.setText(getString(R.string.category));
+        binding.dotsIndicaotr.attachTo(binding.imageVP);
 
         viewModel.validateGetProductDetail(requireContext(), product.getData().getId());
     }

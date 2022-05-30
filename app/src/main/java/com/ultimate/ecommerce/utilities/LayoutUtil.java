@@ -62,13 +62,16 @@ public class LayoutUtil {
             });
             bd.cancelBtn.btnBody.setOnClickListener(view12 -> {
                 dialog.dismiss();
-                listener.onCancel();
             });
         }
     }
 
     public static void showMassageDialog(Context context, String title, String message) {
         showMassageDialogImpl(context, title, message, false, null);
+    }
+
+    public static void showMassageDialog(Context context, String title, String message, CustomDialogListener listener) {
+        showMassageDialogImpl(context, title, message, false, listener);
     }
 
     public static void showOptionDialog(Context context, String title, String message, CustomDialogListener listener) {

@@ -150,5 +150,11 @@
     <string name="order_done">تم توصيل الطلب</string>
     <string name="sample_date">2022/06/30</string>
     <string name="order_confirm_msg">تم تأكيد توصيل الطلب لكم في يوم</string>
+    <string name="order_cancel_title">إلغاء الطلب</string>
+    <string name="rate_products">تقييم المنتجات</string>
+    <string name="paymentTitle">عند الإستلام</string>
+    <string name="payment_msg">ادفع نقداً عند استلامك الطلب</string>
+    <string name="next_rate">التالي</string>
+    <string name="save_rate">حفظ التقييمات</string>
 
 </resources>

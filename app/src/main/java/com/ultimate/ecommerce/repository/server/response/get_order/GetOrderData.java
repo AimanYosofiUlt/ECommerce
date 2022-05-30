@@ -2,9 +2,10 @@ package com.ultimate.ecommerce.repository.server.response.get_order;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class GetOrderData {
+public class GetOrderData implements Serializable {
     @SerializedName("cost")
     private Cost cost;
     @SerializedName("shippingMethod")
@@ -16,7 +17,7 @@ public class GetOrderData {
     @SerializedName("products")
     private List<Product> products;
     @SerializedName("productsNo")
-    private int productsno;
+    private double productsno;
     @SerializedName("currency")
     private String currency;
     @SerializedName("orderStatus")
@@ -32,7 +33,7 @@ public class GetOrderData {
         this.cost = cost;
     }
 
-    public Shippingmethod getShippingmethod() {
+    public Shippingmethod getShippingMethod() {
         return shippingmethod;
     }
 
@@ -40,7 +41,7 @@ public class GetOrderData {
         this.shippingmethod = shippingmethod;
     }
 
-    public String getPaymentmethod() {
+    public String getPaymentMethod() {
         return paymentmethod;
     }
 
@@ -64,11 +65,11 @@ public class GetOrderData {
         this.products = products;
     }
 
-    public int getProductsno() {
+    public double getProductsno() {
         return productsno;
     }
 
-    public void setProductsno(int productsno) {
+    public void setProductsno(double productsno) {
         this.productsno = productsno;
     }
 
