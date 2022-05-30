@@ -71,6 +71,7 @@ public class RateOrderInnerFragment extends BaseFragment<RateOrderInnerFragmentV
 
     @Override
     public void initLoading() {
+        data = new RateOrder();
         Glide.with(requireContext())
                 .load(product.getImage())
                 .error(R.drawable.ic_baseline_error_24)

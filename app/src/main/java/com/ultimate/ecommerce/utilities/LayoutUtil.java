@@ -39,9 +39,9 @@ public class LayoutUtil {
 
 
         if (isCancelAble) {
-            bd.cancelBtn.CL.setVisibility(View.VISIBLE);
+            bd.cancelBtn.btnBody.setVisibility(View.VISIBLE);
         } else {
-            bd.cancelBtn.CL.setVisibility(View.GONE);
+            bd.cancelBtn.btnBody.setVisibility(View.GONE);
         }
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setView(view)

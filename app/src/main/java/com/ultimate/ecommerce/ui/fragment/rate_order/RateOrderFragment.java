@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentRateOrderBinding;
+import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.get_order.GetOrderData;
 import com.ultimate.ecommerce.repository.server.response.get_order.Product;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
@@ -42,43 +44,60 @@ public class RateOrderFragment extends BaseFragment<RateOrderFragmentViewModel> 
         binding.backBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
                 .popBackStack());
 
-        binding.nextBtn.btnBody.setOnClickListener(view -> binding.productVP.setCurrentItem(currentItem));
-        binding.saveBtn.btnBody.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewModel.validateSaveRates(requireContext(), data.getOrderid(), adapter.getRateOrders());
-            }
+        binding.nextBtn.btnBody.setOnClickListener(view -> {
+            binding.productVP.setCurrentItem(++currentItem);
+            binding.nextBtn.CL.setVisibility(View.INVISIBLE);
+        });
+
+        binding.saveBtn.btnBody.setOnClickListener(view -> {
+            showProgress(requireContext(), getString(R.string.rate_products), getString(R.string.loading));
+            viewModel.validateSaveRates(requireContext(), data.getOrderid(), adapter.getRateOrders());
         });
     }
 
     @Override
     public void initObservers() {
-
+        viewModel.saveRatesResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
+            hideProgress();
+            if (responseState.isSuccessful()) {
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack();
+            } else {
+                //todo handel server errors
+                Toast.makeText(requireContext(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public void initLoading() {
         binding.nextBtn.btnTextTV.setText(getString(R.string.next_rate));
         binding.saveBtn.btnTextTV.setText(getString(R.string.save_rate));
-        binding.nextBtn.btnBody.setVisibility(View.INVISIBLE);
-        binding.saveBtn.btnBody.setVisibility(View.GONE);
-
+        binding.nextBtn.CL.setVisibility(View.INVISIBLE);
+        binding.saveBtn.CL.setVisibility(View.GONE);
         adapter = new RateOrderPagerAdapter(requireParentFragment());
         initViewPager();
     }
 
     private void initViewPager() {
-        Toast.makeText(requireContext(), "size:" + data.getProducts().size(), Toast.LENGTH_SHORT).show();
         for (Product product : data.getProducts()) {
             RateOrderInnerFragment innerFragment = new RateOrderInnerFragment(product, new RateOrderListener() {
                 @Override
                 public void onRateChang() {
-                    binding.nextBtn.btnBody.setVisibility(View.VISIBLE);
+                    boolean itsInLastProduct = currentItem == adapter.getItemCount() - 1;
+                    if (itsInLastProduct)
+                        binding.saveBtn.CL.setVisibility(View.VISIBLE);
+                    else
+                        binding.nextBtn.CL.setVisibility(View.VISIBLE);
                 }
             });
 
             adapter.addFragment(innerFragment);
         }
+
+        binding.productVP.setAdapter(adapter);
+        binding.productVP.setUserInputEnabled(false);
+        binding.dotsIndicator.attachTo(binding.productVP);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.ultimate.ecommerce.ui.fragment.review_list.views.rate_star;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -11,15 +12,10 @@ import com.ultimate.ecommerce.databinding.ToolsRetingStarsBinding;
 public class RateStars {
     ToolsRetingStarsBinding binding;
     RateStarsListener listener;
-    int rate = 0;
 
-    public int getRate() {
-        return rate;
-    }
-
-    public RateStars(ToolsRetingStarsBinding binding, RateStarsListener listener) {
+    public RateStars(ToolsRetingStarsBinding binding, RateStarsListener starsListener) {
         this.binding = binding;
-        this.listener = listener;
+        this.listener = starsListener;
         initLoading();
         initEvent();
     }
@@ -98,6 +94,7 @@ public class RateStars {
         } else {
             binding.five.setImageDrawable(border);
         }
-        listener.onRateChange(rate);
+
+        this.listener.onRateChange(rate);
     }
 }

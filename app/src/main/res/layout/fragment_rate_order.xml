@@ -57,27 +57,17 @@
 
     </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/orderTabs"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintStart_toStartOf="@+id/guideline17"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarLayout"
-        app:tabTextAppearance="@style/tabLayoutText" />
-
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/productVP"
         android:layout_width="0dp"
-        android:layout_marginBottom="24dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/dots_indicator"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/dotsIndicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/orderTabs"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
 
     <include
         android:id="@+id/nextBtn"
@@ -116,13 +106,13 @@
         app:layout_constraintGuide_percent="0.15" />
 
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-        android:id="@+id/dots_indicator"
+        android:id="@+id/dotsIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:dotsColor="@color/light_gray"
         app:dotsCornerRadius="8dp"
-        app:dotsSize="12dp"
+        app:dotsSize="8dp"
         app:dotsSpacing="4dp"
         app:dotsWidthFactor="2.5"
         app:layout_constraintBottom_toTopOf="@+id/nextBtn"

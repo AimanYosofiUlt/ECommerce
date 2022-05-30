@@ -23,7 +23,7 @@ public class OrderRepo extends BaseRepo {
     public OrderRepo() {
     }
 
-    public void getOrders(String userId,ResponsesCallBack<GetUserOrdersResponse> callBack) {
+    public void getOrders(ResponsesCallBack<GetUserOrdersResponse> callBack) {
 //        RequestBody request = BaseRequest.getOrdersRequest(userId);
         //todo remove test code
         RequestBody request = BaseRequest.getOrdersRequest("15259");
@@ -33,24 +33,23 @@ public class OrderRepo extends BaseRepo {
 //                String tokenKey = userDao.getTokenKey();
                 //todo remove test code
                 String tokenKey = "ed3e8e2829fe213e8f370f7a173f5ef0bbc2358d128500d7c3c0ddfbceb6e98c";
-                api.getUserOrders(request,tokenKey).enqueue(callBack);
+                api.getUserOrders(request, tokenKey).enqueue(callBack);
             }
         });
 
     }
 
-    public void getOrderDetail(String userId, int orderId, ResponsesCallBack<GetOrderResponse> callBack) {
-//        RequestBody request = BaseRequest.getGetOrderRequest(userId, orderId);
-        //todo remove test code
-        RequestBody request = BaseRequest.getGetOrderRequest("15259", orderId);
-
+    public void getOrderDetail(int orderId, ResponsesCallBack<GetOrderResponse> callBack) {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
+                //        RequestBody request = BaseRequest.getGetOrderRequest(userDao.getUserId(), orderId);
+                //todo remove test code
+                RequestBody request = BaseRequest.getGetOrderRequest("15259", orderId);
 //                String tokenKey = userDao.getTokenKey();
                 //todo remove test code
                 String tokenKey = "ed3e8e2829fe213e8f370f7a173f5ef0bbc2358d128500d7c3c0ddfbceb6e98c";
-                api.getOrder(request,tokenKey).enqueue(callBack);
+                api.getOrder(request, tokenKey).enqueue(callBack);
             }
         });
     }

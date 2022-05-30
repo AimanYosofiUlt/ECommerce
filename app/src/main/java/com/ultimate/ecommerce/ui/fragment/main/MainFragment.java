@@ -31,6 +31,7 @@ import com.ultimate.ecommerce.app.GlobalVariable;
 import com.ultimate.ecommerce.databinding.FragmentMainBinding;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
+import com.ultimate.ecommerce.ui.fragment.cart.CartFragment;
 import com.ultimate.ecommerce.ui.fragment.category.CategoryFragment;
 import com.ultimate.ecommerce.ui.fragment.category.views.CategoryViewListener;
 import com.ultimate.ecommerce.ui.fragment.home.HomeFragment;
@@ -91,6 +92,8 @@ public class MainFragment extends BaseFragment {
                 Log.d("MainFragment", "onOpenReq: 0349: ");
             }
         }));
+
+        adapter.addFragment(new CartFragment());
 
         SettingFragment settingFragment = getSettingFragment();
         adapter.addFragment(settingFragment);

@@ -51,7 +51,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         binding.discountPercentageTV.setText(data.getData().getDiscountPercentage());
         binding.rateTV.setText(String.valueOf(data.getData().getRatingCount()));
 
-//        //todo here should calculate the discount and show the oldPrice or the price but the response don't give a percentage
+//      todo here should calculate the discount and show the oldPrice or the price but the response don't give a percentage
 //        String discountMsg = itemView.getContext().getString(R.string.discountBy) + " " + data.getData().getDiscountPercentage() + "%";
 //        bd.discountPercentageTV.setText(discountMsg);
 //        int discountPrice = Integer.parseInt(data.getData().getPrice()) * Integer.parseInt(data.getData().getDiscountPercentage()) / 100;
@@ -61,16 +61,13 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void initEvent() {
-        binding.favBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!isInFavorite) {
-                    setInFavorite();
-                    isInFavorite = true;
-                } else {
-                    isInFavorite = false;
-                    binding.favBtn.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_favourite));
-                }
+        binding.favBtn.setOnClickListener(view -> {
+            if (!isInFavorite) {
+                setInFavorite();
+                isInFavorite = true;
+            } else {
+                binding.favBtn.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_favourite));
+                isInFavorite = false;
             }
         });
 
@@ -85,12 +82,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
             listener.onAddToCart(productCart);
         });
 
-        binding.cardBody.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onClick(data);
-            }
-        });
+        binding.cardBody.setOnClickListener(view -> listener.onClick(data));
     }
 
     public void setInFavorite() {

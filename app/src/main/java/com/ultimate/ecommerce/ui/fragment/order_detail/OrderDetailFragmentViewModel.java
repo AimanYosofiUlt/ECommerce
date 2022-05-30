@@ -4,7 +4,6 @@ import static com.ultimate.ecommerce.utilities.ValidateSt.NO_INTERNET_CONNECTION
 
 import android.app.Application;
 import android.content.Context;
-import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -53,13 +52,7 @@ public class OrderDetailFragmentViewModel extends BaseViewModel {
                 .checkNetwork(context, new CheckNetworkListener() {
                     @Override
                     public void onConnect() {
-                        AsyncTask.execute(new Runnable() {
-                            @Override
-                            public void run() {
-                                String userId = userRepo.getUser().getId();
-                                getOrderDetail(userId, order.getOrderId());
-                            }
-                        });
+                        getOrderDetail(order.getOrderId());
                     }
 
                     @Override
@@ -69,12 +62,13 @@ public class OrderDetailFragmentViewModel extends BaseViewModel {
                 });
     }
 
-    private void getOrderDetail(String userId, int orderId) {
-        orderRepo.getOrderDetail(userId, orderId, new ResponsesCallBack<GetOrderResponse>() {
+    private void getOrderDetail(int orderId) {
+        orderRepo.getOrderDetail(orderId, new ResponsesCallBack<GetOrderResponse>() {
             @Override
             public void onSuccess(GetOrderResponse response) {
                 GetOrderData data = response.getData();
-                detailMDL.postValue(data);
+                getDetailResponseMDL.postValue(ResponseState.successState());
+                detailMDL.setValue(data);
             }
 
             @Override

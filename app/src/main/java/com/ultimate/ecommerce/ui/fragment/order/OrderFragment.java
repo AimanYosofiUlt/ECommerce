@@ -89,7 +89,7 @@ public class OrderFragment extends BaseFragment<OrderFragmentViewModel> {
     @Override
     public void initLoading() {
         initFragmentsAdapter();
-        initViewPager();
+            initViewPager();
 
         animateReloadBtn();
         viewModel.validateGetOrders(requireContext());

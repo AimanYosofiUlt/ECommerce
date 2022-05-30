@@ -1,4 +1,4 @@
-package com.ultimate.ecommerce.ui.fragment.edit_address;
+package com.ultimate.ecommerce.ui.fragment.order_confirm_done;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.ultimate.ecommerce.databinding.FragmentEditAddressBinding;
+import com.ultimate.ecommerce.databinding.FragmentOrderConfirmDoneBinding;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 
 import javax.annotation.Nullable;
@@ -15,13 +15,13 @@ import javax.annotation.Nullable;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class EditAddressFragment extends BaseFragment<EditAddressFragmentViewModel> {
-    FragmentEditAddressBinding bd;
+public class OrderConfirmDoneFragment extends BaseFragment<OrderConfirmDoneFragmentViewModel> {
+    FragmentOrderConfirmDoneBinding bd;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        bd = FragmentEditAddressBinding.inflate(getLayoutInflater());
+        bd = FragmentOrderConfirmDoneBinding.inflate(getLayoutInflater());
         return bd.getRoot();
     }
 

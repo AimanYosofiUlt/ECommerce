@@ -186,7 +186,7 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailFragmentVie
             }
         });
 
-        productAdapter.setList(relatedProducts.getProducts());
+//        productAdapter.setList(relatedProducts.getProducts());
         binding.similarRV.setAdapter(productAdapter);
     }
 

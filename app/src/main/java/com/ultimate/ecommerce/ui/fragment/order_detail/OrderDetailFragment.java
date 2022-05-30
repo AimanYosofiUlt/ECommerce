@@ -119,7 +119,7 @@ public class OrderDetailFragment extends BaseFragment<OrderDetailFragmentViewMod
     private void initOrderState(String orderStatus) {
         switch (orderStatus) {
             case "pending":
-                binding.cancelBtn.btnBody.setVisibility(View.VISIBLE);
+                binding.cancelBtn.CL.setVisibility(View.VISIBLE);
                 break;
 
             case "processing":
@@ -130,7 +130,7 @@ public class OrderDetailFragment extends BaseFragment<OrderDetailFragmentViewMod
 
             case "completed":
                 binding.doneCard.cardBody.setVisibility(View.VISIBLE);
-                binding.rateBtn.btnBody.setVisibility(View.VISIBLE);
+                binding.rateBtn.CL.setVisibility(View.VISIBLE);
                 break;
 
             case "cancelled":
@@ -196,7 +196,7 @@ public class OrderDetailFragment extends BaseFragment<OrderDetailFragmentViewMod
         binding.costTitle.startTitle.setText(getString(R.string.cost_title));
 
         binding.doneCard.cardBody.setVisibility(View.GONE);
-//        binding.rateBtn.btnBody.setVisibility(View.GONE);
+        binding.rateBtn.btnBody.setVisibility(View.GONE);
         binding.cancelBtn.btnBody.setVisibility(View.GONE);
 
         viewModel.validateGetOrderDetail(requireContext(), order);

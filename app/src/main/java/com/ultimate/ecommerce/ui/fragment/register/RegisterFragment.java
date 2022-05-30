@@ -51,7 +51,7 @@ public class RegisterFragment extends BaseFragment<RegisterFragmentViewModel> {
             }
         });
 
-        bd.registerBtn.borderdBack.setOnClickListener(view -> {
+        bd.registerBtn.btnBody.setOnClickListener(view -> {
             String userName = bd.userNameED.getText().toString();
             String userPhone = bd.phoneCCP.getFullNumberWithPlus();
             String userEmail = bd.emailED.getText().toString();

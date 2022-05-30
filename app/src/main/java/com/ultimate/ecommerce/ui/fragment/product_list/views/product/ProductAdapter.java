@@ -29,10 +29,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         this.listener = listener;
     }
 
-    public void setList(List<ProductData> productDataList) {
-        for (ProductData productData : productDataList) {
-            list.add(new ProductAdapterData(productData));
-        }
+    public void setList(List<ProductAdapterData> productDataList) {
+        this.list = productDataList;
         notifyDataSetChanged();
     }
 

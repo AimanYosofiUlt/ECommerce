@@ -13,13 +13,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:id="@+id/btnBody"
             android:clickable="true"
+            android:id="@+id/CL"
             android:focusable="true"
             android:layout_height="wrap_content">
 
             <com.ultimate.ecommerce.utilities.GradiantView
-                android:id="@+id/borderdBack"
+                android:id="@+id/btnBody"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:bottomLeft="100dp"

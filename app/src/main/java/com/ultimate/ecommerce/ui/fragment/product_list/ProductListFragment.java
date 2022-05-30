@@ -84,11 +84,10 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
             }
         });
 
-        viewModel.productsMDL.observe(getViewLifecycleOwner(), new Observer<List<ProductData>>() {
+        viewModel.productsMDL.observe(getViewLifecycleOwner(), new Observer<List<ProductAdapterData>>() {
             @Override
-            public void onChanged(List<ProductData> productDataList) {
-                Log.d("ProductListFragment", "onChanged: 64343 listSize:" + productDataList.size());
-                productAdapter.setList(productDataList);
+            public void onChanged(List<ProductAdapterData> data) {
+                productAdapter.setList(data);
                 hideNoInternetProgress();
             }
         });
@@ -136,8 +135,7 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
         productAdapter = new ProductAdapter(new ProductViewListener() {
             @Override
             public void onAddToCart(ProductCart productCart) {
-                //todo handle couponCode and shipping
-                viewModel.validateAddToCart(requireContext(), productCart, "", "10");
+                viewModel.addToCart(productCart);
             }
 
             @Override

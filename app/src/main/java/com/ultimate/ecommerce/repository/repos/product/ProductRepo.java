@@ -4,8 +4,10 @@ import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 
+import com.ultimate.ecommerce.repository.local.tables.cart.ProductCartDao;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import com.ultimate.ecommerce.repository.repos.base.BaseRepo;
+import com.ultimate.ecommerce.repository.repos.cart.CartRepo;
 import com.ultimate.ecommerce.repository.server.request.base.BaseRequest;
 import com.ultimate.ecommerce.repository.server.response.add_review.AddReviewResponse;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
@@ -18,6 +20,9 @@ import javax.inject.Inject;
 import okhttp3.RequestBody;
 
 public class ProductRepo extends BaseRepo {
+    @Inject
+    ProductCartDao cartDao;
+
     @Inject
     public ProductRepo() {
 
@@ -46,5 +51,9 @@ public class ProductRepo extends BaseRepo {
                 api.addReview(request, tokenKey).enqueue(callBack);
             }
         });
+    }
+
+    public int getProductCartQuantity(int id) {
+        return cartDao.getProductCartQuantity(id);
     }
 }

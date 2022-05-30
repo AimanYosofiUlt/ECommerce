@@ -5,10 +5,12 @@ import com.ultimate.ecommerce.repository.server.response.get_products.ProductDat
 import java.io.Serializable;
 
 public class ProductAdapterData implements Serializable {
+    int cartQuantity = 0;
     ProductData data;
 
-    public ProductAdapterData(ProductData data) {
+    public ProductAdapterData(ProductData data,int cartQuantity) {
         this.data = data;
+        this.cartQuantity = cartQuantity;
     }
 
     public ProductData getData() {

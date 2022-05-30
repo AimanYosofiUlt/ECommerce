@@ -47,8 +47,7 @@ public class OrderFragmentViewModel extends BaseViewModel {
                 .checkNetwork(requireContext, new CheckNetworkListener() {
                     @Override
                     public void onConnect() {
-                        String userId = userRepo.getUser().getId();
-                        getOrders(userId);
+                        getOrders();
                     }
 
                     @Override
@@ -58,8 +57,8 @@ public class OrderFragmentViewModel extends BaseViewModel {
                 });
     }
 
-    private void getOrders(String userId) {
-        orderRepo.getOrders(userId,new ResponsesCallBack<GetUserOrdersResponse>() {
+    private void getOrders() {
+        orderRepo.getOrders(new ResponsesCallBack<GetUserOrdersResponse>() {
             @Override
             public void onSuccess(GetUserOrdersResponse response) {
                 getOrdersResponseMDL.setValue(ResponseState.successState());

@@ -123,6 +123,7 @@
                         android:id="@+id/arabicRB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:buttonTint="@{color.gradientStartColor}"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
@@ -155,128 +156,128 @@
 
                 </RadioGroup>
 
-                <RadioGroup
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/currTitle">
+                        <RadioGroup
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="24dp"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/currTitle">
 
-                    <RadioButton
-                        android:id="@+id/saudiRB"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@{color.gradientStartColor}"
-                        android:drawableEnd="@drawable/flag_saudi_arabia"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:text="@string/saudi_cur"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                            <RadioButton
+                                android:id="@+id/saudiRB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@{color.gradientStartColor}"
+                                android:drawableEnd="@drawable/flag_saudi_arabia"
+                                android:paddingStart="12dp"
+                                android:paddingEnd="12dp"
+                                android:text="@string/saudi_cur"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="8dp"
-                        android:background="@{color.gradientStartColor}" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="40dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@{color.gradientStartColor}" />
 
-                    <RadioButton
-                        android:id="@+id/uaeRB"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@{color.gradientStartColor}"
-                        android:drawableEnd="@drawable/flag_uae"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:text="@string/uae_cur"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                            <RadioButton
+                                android:id="@+id/uaeRB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@{color.gradientStartColor}"
+                                android:drawableEnd="@drawable/flag_uae"
+                                android:paddingStart="12dp"
+                                android:paddingEnd="12dp"
+                                android:text="@string/uae_cur"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="8dp"
-                        android:background="@{color.gradientStartColor}" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="40dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@{color.gradientStartColor}" />
 
-                    <RadioButton
-                        android:id="@+id/kuwaitRB"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@{color.gradientStartColor}"
-                        android:drawableEnd="@drawable/flag_kuwait"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:text="@string/kuwait_cur"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                            <RadioButton
+                                android:id="@+id/kuwaitRB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@{color.gradientStartColor}"
+                                android:drawableEnd="@drawable/flag_kuwait"
+                                android:paddingStart="12dp"
+                                android:paddingEnd="12dp"
+                                android:text="@string/kuwait_cur"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="8dp"
-                        android:background="@{color.gradientStartColor}" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="40dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@{color.gradientStartColor}" />
 
-                    <RadioButton
-                        android:id="@+id/bahrainRB"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@{color.gradientStartColor}"
-                        android:drawableEnd="@drawable/flag_bahrain"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:text="@string/bahrain_cur"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                            <RadioButton
+                                android:id="@+id/bahrainRB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@{color.gradientStartColor}"
+                                android:drawableEnd="@drawable/flag_bahrain"
+                                android:paddingStart="12dp"
+                                android:paddingEnd="12dp"
+                                android:text="@string/bahrain_cur"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="8dp"
-                        android:background="@{color.gradientStartColor}" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="40dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@{color.gradientStartColor}" />
 
-                    <RadioButton
-                        android:layout_marginBottom="36dp"
-                        android:id="@+id/egyptRB"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@{color.gradientStartColor}"
-                        android:drawableEnd="@drawable/flag_egypt"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:text="@string/egypt_cur"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                            <RadioButton
+                                android:layout_marginBottom="36dp"
+                                android:id="@+id/egyptRB"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@{color.gradientStartColor}"
+                                android:drawableEnd="@drawable/flag_egypt"
+                                android:paddingStart="12dp"
+                                android:paddingEnd="12dp"
+                                android:text="@string/egypt_cur"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
-                    <!--todo is there any other countries-->
+                            <!--todo is there any other countries-->
 
-                </RadioGroup>
+                        </RadioGroup>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

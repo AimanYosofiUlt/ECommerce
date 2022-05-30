@@ -1,4 +1,4 @@
-package com.ultimate.ecommerce.ui.fragment.edit_address;
+package com.ultimate.ecommerce.ui.fragment.address_edit;
 
 import android.app.Application;
 
@@ -8,9 +8,9 @@ import com.ultimate.ecommerce.ui.base.BaseViewModel;
 
 import javax.inject.Inject;
 
-public class EditAddressFragmentViewModel extends BaseViewModel {
+public class AddressEditFragmentViewModel extends BaseViewModel {
     @Inject
-    public EditAddressFragmentViewModel(@NonNull Application application) {
+    public AddressEditFragmentViewModel(@NonNull Application application) {
         super(application);
     }
 }

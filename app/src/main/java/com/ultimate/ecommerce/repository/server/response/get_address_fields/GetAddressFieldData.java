@@ -48,7 +48,7 @@ public class GetAddressFieldData {
         this.name = name;
     }
 
-    public boolean getHidden() {
+    public boolean isHidden() {
         return hidden;
     }
 

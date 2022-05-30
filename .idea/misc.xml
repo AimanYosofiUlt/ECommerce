@@ -48,6 +48,8 @@
         <entry key="app/src/main/res/drawable/ic_favourite_fill.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/ic_lock.xml" value="0.3805" />
         <entry key="app/src/main/res/drawable/ic_next.xml" value="0.28" />
+        <entry key="app/src/main/res/drawable/ic_paypal.xml" value="0.285" />
+        <entry key="app/src/main/res/drawable/ic_paypal_3_svgrepo_com.xml" value="0.285" />
         <entry key="app/src/main/res/drawable/ic_rateing_bordered_star.xml" value="0.334" />
         <entry key="app/src/main/res/drawable/ic_rateing_star.xml" value="0.334" />
         <entry key="app/src/main/res/drawable/ic_snapchat.xml" value="0.3805" />
@@ -97,6 +99,13 @@
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_new_order.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/fragment_order.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/fragment_order_confirm.xml" value="0.30055579307396324" />
+        <entry key="app/src/main/res/layout/fragment_order_confirm_address.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/fragment_order_confirm_check.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/fragment_order_confirm_done.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/fragment_order_confirm_payment_method.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/fragment_order_confirm_shipment_method.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_order_confirm_shipmethod.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/fragment_order_detail.xml" value="0.30055579307396324" />
         <entry key="app/src/main/res/layout/fragment_order_dtail.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/fragment_order_steps.xml" value="0.31209918768704575" />
@@ -127,6 +136,7 @@
         <entry key="app/src/main/res/layout/tools_coupon.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/tools_internet_check.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/tools_rating_stars.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/tools_reting_stars.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/tools_search.xml" value="0.30055579307396324" />
         <entry key="app/src/main/res/layout/tools_stepper.xml" value="0.3099615220179564" />
         <entry key="app/src/main/res/layout/tools_subsection_toolbar.xml" value="0.31209918768704575" />
@@ -141,6 +151,7 @@
         <entry key="app/src/main/res/layout/view_contactus.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/view_custom_button.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/view_custom_button_borderd.xml" value="0.30055579307396324" />
+        <entry key="app/src/main/res/layout/view_electric_payment.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/view_filter.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/view_filter_bottom_sheete.xml" value="0.3099615220179564" />
         <entry key="app/src/main/res/layout/view_help.xml" value="0.31209918768704575" />

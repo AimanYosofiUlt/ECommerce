@@ -210,11 +210,10 @@ public interface UltimateApi {
     Call<UpdateProfileResponse> updateProfile(@Body RequestBody requestBody);
 
     @Headers({"lang: " + LANGUAGE,
-            "tokenKey: " + tokenKey,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("getAddressFields")
-    Call<GetAddressFieldsResponse> getAddressFields(@Body RequestBody requestBody);
+    Call<GetAddressFieldsResponse> getAddressFields(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
 
     // todo in postman they use parameter like getAuth?page=register

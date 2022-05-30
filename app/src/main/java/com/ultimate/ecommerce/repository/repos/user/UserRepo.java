@@ -13,6 +13,7 @@ import com.ultimate.ecommerce.repository.server.response.add_user.AddUserRespons
 import com.ultimate.ecommerce.repository.server.response.add_user.UserData;
 import com.ultimate.ecommerce.repository.server.response.add_user.UserResponse;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
+import com.ultimate.ecommerce.repository.server.response.get_address_fields.GetAddressFieldsResponse;
 import com.ultimate.ecommerce.repository.server.response.get_user_profile.GetUserProfileResponse;
 import com.ultimate.ecommerce.repository.server.response.login_user.LoginUserResponse;
 import com.ultimate.ecommerce.repository.server.response.update_password.UpdatePasswordResponse;
@@ -120,5 +121,17 @@ public class UserRepo extends BaseRepo {
 
     public User getUser() {
         return userDao.getUser();
+    }
+
+    public void getUserAddress(ResponsesCallBack<GetAddressFieldsResponse> callBack) {
+        AsyncTask.execute(() -> {
+            //        RequestBody request = BaseRequest.getOrdersRequest(userId);
+            //todo remove test code
+            RequestBody request = BaseRequest.getRequestByUserID("15259");
+//                String tokenKey = userDao.getTokenKey();
+            //todo remove test code
+            String tokenKey = "ed3e8e2829fe213e8f370f7a173f5ef0bbc2358d128500d7c3c0ddfbceb6e98c";
+            api.getAddressFields(request, tokenKey).enqueue(callBack);
+        });
     }
 }

@@ -1,12 +1,17 @@
 package com.ultimate.ecommerce.ui.fragment.cart;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
+
 import com.ultimate.ecommerce.databinding.FragmentCartBinding;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
+
 import javax.annotation.Nullable;
+
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint

@@ -115,6 +115,7 @@
 
     <string name="sample_small">Sample</string>
     <string name="sample_number">0</string>
+    <string name="sample_money">100 EGP</string>
     <string name="sample_mideum">The iPhone 12 and iPhone 12 mini are smartphones by Apple Inc. They were presented in a livestream keynote on October 13, 2020. It can be pre-ordered from October 18, 2020. In the run-up most of the features were predicted by many leakers. For the first time, the devices will be delivered without EarPods or charger.</string>
     <string name="pay_product">اشترى المنتج</string>
     <string name="detail">المواصفات</string>
@@ -156,5 +157,21 @@
     <string name="payment_msg">ادفع نقداً عند استلامك الطلب</string>
     <string name="next_rate">التالي</string>
     <string name="save_rate">حفظ التقييمات</string>
+    <string name="aramex">Aramex</string>
+    <string name="dhl">DHL</string>
+    <string name="free_ship_msg">يتم الشحن عبر طرق الشحن التقليدية</string>
+    <string name="aramex_msg">الشحن عبر خدمة أرامكس</string>
+    <string name="dhl_msg">الشحن عبر خدمة دي اتش ال</string>
+    <string name="in_dalivered">عند الإستلام</string>
+    <string name="cash_msg">ادفع نقداً عند استلامك الطلب</string>
+    <string name="e_payment">دفع الكتروني</string>
+    <string name="e_payment_msg">ادفع عبر احدى بوابات الدفع الإلكتروني التالية</string>
+    <string name="cridet_cart">بطاقة إئتمانية</string>
+    <string name="cridet_cart_msg">لم تقم بإضافة بطاقة إئتمانية</string>
+    <string name="add">إضافة</string>
+    <string name="main">الرئيسية</string>
+    <string name="order_done_msg">تم وضع الطلب</string>
+    <string name="order_add_done_msg">تم وضع الطلب بنجاح! جاري المراجعة وسيتم اخطارك فور شحن الطلب</string>
+    <string name="edit">تعديل</string>
 
 </resources>

@@ -27,7 +27,7 @@ public class CartRepo extends BaseRepo {
 
     }
 
-    public void addToOfflineCart(ProductCart productCart) {
+    public void addToCart(ProductCart productCart) {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {

@@ -288,4 +288,8 @@ public class BaseRequest {
                 .addFormDataPart("billing_receipt", billingReceipt)
                 .build();
     }
+
+    public static RequestBody getAddressFieldsRequest(int userId) {
+        return null;
+    }
 }

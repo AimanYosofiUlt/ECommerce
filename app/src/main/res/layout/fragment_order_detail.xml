@@ -214,7 +214,7 @@
                     android:id="@+id/textView34"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/paymentTitle"
+                    android:text="@string/sample_small"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal"
@@ -223,7 +223,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/shipTitle" />
 
                 <TextView
-                    android:id="@+id/payment_msg"
+                    android:id="@+id/paymentMsg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -244,7 +244,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/payment_msg" />
+                    app:layout_constraintTop_toBottomOf="@+id/paymentMsg" />
 
                 <TextView
                     android:id="@+id/textView37"
