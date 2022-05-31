@@ -4,6 +4,11 @@ public class OrderProducts {
     private Args args;
     private int quantity;
 
+    public OrderProducts(Args args, int quantity) {
+        this.args = args;
+        this.quantity = quantity;
+    }
+
     public Args getArgs() {
         return args;
     }

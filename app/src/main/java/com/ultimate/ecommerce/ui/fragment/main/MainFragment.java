@@ -30,8 +30,10 @@ import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.GlobalVariable;
 import com.ultimate.ecommerce.databinding.FragmentMainBinding;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
+import com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.cart.CartFragment;
+import com.ultimate.ecommerce.ui.fragment.cart.CartFragmentListener;
 import com.ultimate.ecommerce.ui.fragment.category.CategoryFragment;
 import com.ultimate.ecommerce.ui.fragment.category.views.CategoryViewListener;
 import com.ultimate.ecommerce.ui.fragment.home.HomeFragment;
@@ -62,8 +64,8 @@ public class MainFragment extends BaseFragment {
         bottomBarBackground.setShapeAppearanceModel(
                 bottomBarBackground.getShapeAppearanceModel()
                         .toBuilder()
-                        .setTopRightCorner(CornerFamily.ROUNDED,radius)
-                        .setTopLeftCorner(CornerFamily.ROUNDED,radius)
+                        .setTopRightCorner(CornerFamily.ROUNDED, radius)
+                        .setTopLeftCorner(CornerFamily.ROUNDED, radius)
                         .build());
     }
 
@@ -81,21 +83,20 @@ public class MainFragment extends BaseFragment {
     }
 
     private void initFragmentAdapter() {
-        adapter = new MainPagerAdapter(requireParentFragment());
-        adapter.addFragment(new HomeFragment());
-        adapter.addFragment(new CategoryFragment(new CategoryViewListener() {
-            @Override
-            public void onOpenReq(Category category) {
-                MainFragmentDirections.ActionMainToProductList action =
-                        MainFragmentDirections.actionMainToProductList().setCategory(category);
-                NavHostFragment.findNavController(requireParentFragment()).navigate(action);
-                Log.d("MainFragment", "onOpenReq: 0349: ");
-            }
-        }));
+        CategoryFragment categoryFragment = new CategoryFragment(category ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .navigate(MainFragmentDirections.actionMainToProductList().setCategory(category)));
 
-        adapter.addFragment(new CartFragment());
+        CartFragment cartFragment = new CartFragment(data ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .navigate(MainFragmentDirections.actionMainToOrderConfirm(data)));
 
         SettingFragment settingFragment = getSettingFragment();
+
+        adapter = new MainPagerAdapter(requireParentFragment());
+        adapter.addFragment(new HomeFragment());
+        adapter.addFragment(categoryFragment);
+        adapter.addFragment(cartFragment);
         adapter.addFragment(settingFragment);
     }
 
@@ -150,13 +151,8 @@ public class MainFragment extends BaseFragment {
     public void onStart() {
         super.onStart();
         GlobalVariable.bottomNavHeight = 0;
-        bd.bottomNavigationView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                GlobalVariable.bottomNavHeight = bd.bottomNavigationView.getHeight() + bd.fab.getHeight() / 2;
-                Log.d("MainFragment", "initLoading: 9438753:" + bd.bottomNavigationView.getHeight() + "  " + bd.fab.getHeight() / 2);
-            }
-        });
+        bd.bottomNavigationView.getViewTreeObserver().addOnGlobalLayoutListener(() ->
+                GlobalVariable.bottomNavHeight = bd.bottomNavigationView.getHeight() + bd.fab.getHeight() / 2);
     }
 
     @Override
@@ -166,20 +162,17 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initEvent() {
-        bd.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.home) {
-                    bd.mainVP.setCurrentItem(0);
-                } else if (item.getItemId() == R.id.category) {
-                    bd.mainVP.setCurrentItem(1);
-                } else if (item.getItemId() == R.id.cart) {
-                    bd.mainVP.setCurrentItem(2);
-                } else if (item.getItemId() == R.id.setting) {
-                    bd.mainVP.setCurrentItem(3);
-                }
-                return false;
+        bd.bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.home) {
+                bd.mainVP.setCurrentItem(0);
+            } else if (item.getItemId() == R.id.category) {
+                bd.mainVP.setCurrentItem(1);
+            } else if (item.getItemId() == R.id.cart) {
+                bd.mainVP.setCurrentItem(2);
+            } else if (item.getItemId() == R.id.setting) {
+                bd.mainVP.setCurrentItem(3);
             }
+            return false;
         });
     }
 }

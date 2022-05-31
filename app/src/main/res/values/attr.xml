@@ -10,6 +10,7 @@
     <declare-styleable name="BorderedButton">
         <attr format="dimension" name="radius"/>
         <attr format="dimension" name="strokeWidth"/>
+        <attr format="boolean" name="isFilled"/>
     </declare-styleable>
 
     <declare-styleable name="ColoredImage">

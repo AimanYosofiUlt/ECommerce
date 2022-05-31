@@ -21,6 +21,7 @@ public class BorderedButton extends View {
     int mainColor = DynamicTheme.gradientStartColor;
     float radius = 100f;
     float strockWidth = 8f;
+    boolean isFilled = false;
 
     public BorderedButton(Context context) {
         super(context);
@@ -49,6 +50,7 @@ public class BorderedButton extends View {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.BorderedButton);
         radius = typedArray.getDimension(R.styleable.BorderedButton_radius, 100f);
         strockWidth = typedArray.getDimension(R.styleable.BorderedButton_strokeWidth, 8f);
+        isFilled = typedArray.getBoolean(R.styleable.BorderedButton_isFilled, false);
         typedArray.recycle();
 
         setClickable(true);
@@ -69,9 +71,11 @@ public class BorderedButton extends View {
         paint.setAntiAlias(true);
         canvas.drawPath(bottomPath, paint);
 
-        Path topPath = getRoundRectPathTop();
-        paint.setColor(Color.WHITE);
-        canvas.drawPath(topPath, paint);
+        if (!isFilled) {
+            Path topPath = getRoundRectPathTop();
+            paint.setColor(Color.WHITE);
+            canvas.drawPath(topPath, paint);
+        }
     }
 
     private Path getRoundRectPathBottom() {
@@ -113,6 +117,16 @@ public class BorderedButton extends View {
 
     public void setGradientDef() {
         setGradient(DynamicTheme.mainColor);
+    }
+
+    public void fill() {
+        isFilled = true;
+        invalidate();
+    }
+
+    public void unFill() {
+        isFilled = false;
+        invalidate();
     }
 
     private void setGradient(int mainColor) {

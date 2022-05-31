@@ -7,6 +7,7 @@ import com.ultimate.ecommerce.repository.server.response.configuration.Configura
 import com.ultimate.ecommerce.repository.server.response.contact_us.ContactUsResponse;
 import com.ultimate.ecommerce.repository.server.response.countries.CountriesResponse;
 import com.ultimate.ecommerce.repository.server.response.coupon.GetCouponResponse;
+import com.ultimate.ecommerce.repository.server.response.create_order.CreateOrderResponse;
 import com.ultimate.ecommerce.repository.server.response.filter_products.FilterProductResponse;
 import com.ultimate.ecommerce.repository.server.response.forget_password.ForgetPasswordResponse;
 import com.ultimate.ecommerce.repository.server.response.get_address_fields.GetAddressFieldsResponse;
@@ -148,18 +149,16 @@ public interface UltimateApi {
     Call<GetCouponResponse> getCoupon(@Body RequestBody requestBody);
 
     @Headers({"lang: " + LANGUAGE,
-            "tokenKey: " + tokenKey,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("shippingMethods")
-    Call<ShippingMethodsResponse> shippingMethods(@Body RequestBody requestBody);
+    Call<ShippingMethodsResponse> shippingMethods(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
     @Headers({"lang: " + LANGUAGE,
-            "tokenKey: " + tokenKey,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("paymentMethods")
-    Call<PaymentMethodsResponse> paymentMethods(@Body RequestBody requestBody);
+    Call<PaymentMethodsResponse> paymentMethods(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
     @Headers({"lang: " + LANGUAGE,
             "tokenKey: " + tokenKey,
@@ -193,7 +192,7 @@ public interface UltimateApi {
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("createOrder")
-    Call<GetCategoryResponse> createOrder(@Body RequestBody requestBody);
+    Call<CreateOrderResponse> createOrder(@Body RequestBody requestBody);
 
     @Headers({"lang: " + LANGUAGE,
             "tokenKey: " + tokenKey,

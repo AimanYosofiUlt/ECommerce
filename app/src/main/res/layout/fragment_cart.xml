@@ -1,72 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
+        android:id="@+id/title"
+        layout="@layout/tools_title" />
+
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include
-            android:id="@+id/title"
-            layout="@layout/tools_title" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-        <include
-            android:id="@+id/constraintLayout"
-            layout="@layout/tools_coupon"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-            app:layout_constraintEnd_toEndOf="@+id/categoryRV"
-            app:layout_constraintStart_toStartOf="@+id/categoryRV" />
+            <include
+                android:id="@+id/coupon"
+                layout="@layout/tools_coupon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/payBtn"
+                app:layout_constraintEnd_toEndOf="@+id/cartProductRV"
+                app:layout_constraintStart_toStartOf="@+id/cartProductRV" />
 
-        <include
-            android:id="@+id/constraintLayout2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            layout="@layout/view_custom_button"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/space"
-            app:layout_constraintEnd_toStartOf="@+id/guideline6"
-            app:layout_constraintStart_toStartOf="@+id/guideline2" />
+            <include
+                android:id="@+id/payBtn"
+                layout="@layout/view_custom_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/space"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.2" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.2" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.8" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoryRV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cartProductRV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/coupon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:itemCount="4"
+                tools:listitem="@layout/view_product_cart" />
 
-        <Space
-            android:id="@+id/space"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            <ImageView
+                android:id="@+id/clearBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="12dp"
+                android:src="@drawable/ic_delete_round"
+                app:civ_border_width="1dp"
+                app:layout_constraintBottom_toBottomOf="@+id/updateBtn"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toTopOf="@+id/updateBtn"
+                app:layout_constraintVertical_bias="0.5" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                android:id="@+id/updateBtn"
+                layout="@layout/view_custom_button_borderd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/space"
+                app:layout_constraintEnd_toStartOf="@+id/clearBtn"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
-</ScrollView>
+            <Space
+                android:id="@+id/space"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</LinearLayout>

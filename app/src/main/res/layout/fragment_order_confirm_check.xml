@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.ultimate.ecommerce.app.DynamicTheme" />
 
         <variable
@@ -65,30 +66,29 @@
             app:layout_constraintTop_toBottomOf="@+id/vatTV" />
 
         <TextView
-            android:id="@+id/totalAfterDiscountTV4"
+            android:id="@+id/totalAfterDiscountTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/sample_number"
-            android:textColor="@color/gray"
+            android:textColor="@{color.gradientStartColor}"
             android:textSize="12sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="@+id/discountTV"
             app:layout_constraintTop_toBottomOf="@+id/discountTV" />
 
         <TextView
-            android:id="@+id/totalBeforeDiscountTV4"
+            android:id="@+id/totalBeforeDiscountTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="5dp"
             android:text="@string/sample_number"
             android:textColor="@color/gray"
             android:textSize="12sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="@+id/totalAfterDiscountTV"
             app:layout_constraintEnd_toStartOf="@+id/totalAfterDiscountTV"
-            app:layout_constraintTop_toBottomOf="@+id/discountTV"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/totalAfterDiscountTV" />
 
         <TextView
             android:id="@+id/discountTV"
@@ -101,18 +101,6 @@
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="@+id/shipCostTV"
             app:layout_constraintTop_toBottomOf="@+id/shipCostTV" />
-
-        <TextView
-            android:id="@+id/totalAfterDiscountTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/sample_number"
-            android:textColor="@{color.gradientStartColor}"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="@+id/discountTV"
-            app:layout_constraintTop_toBottomOf="@+id/discountTV" />
 
 
         <TextView
@@ -216,7 +204,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView3"
+            android:id="@+id/productsRV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -233,7 +221,7 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="@+id/vatTV4"
             app:layout_constraintStart_toStartOf="@+id/textView47"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+            app:layout_constraintTop_toBottomOf="@+id/productsRV" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline22"

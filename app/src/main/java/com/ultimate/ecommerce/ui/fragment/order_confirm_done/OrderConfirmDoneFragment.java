@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.ultimate.ecommerce.databinding.FragmentOrderConfirmDoneBinding;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
+import com.ultimate.ecommerce.ui.fragment.order_confirm.OrderConfirmListener;
 
 import javax.annotation.Nullable;
 
@@ -17,6 +18,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class OrderConfirmDoneFragment extends BaseFragment<OrderConfirmDoneFragmentViewModel> {
     FragmentOrderConfirmDoneBinding bd;
+
+    public OrderConfirmDoneFragment(OrderConfirmListener listener) {
+
+    }
 
     @Nullable
     @Override

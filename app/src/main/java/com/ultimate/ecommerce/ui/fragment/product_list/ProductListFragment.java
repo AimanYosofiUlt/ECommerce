@@ -116,7 +116,7 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
     }
 
     public void hideNoInternetProgress() {
-        bd.internetCheck.progressBar.setVisibility(View.VISIBLE);
+        bd.internetCheck.progressBar.setVisibility(View.GONE);
         bd.internetCheck.internetConnectionGroup.setVisibility(View.GONE);
     }
 

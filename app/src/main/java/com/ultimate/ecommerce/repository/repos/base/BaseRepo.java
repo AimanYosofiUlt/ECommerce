@@ -11,4 +11,4 @@ import javax.inject.Inject;
 public abstract class BaseRepo {
     @Inject
     protected UltimateApi api;
-}
+    }

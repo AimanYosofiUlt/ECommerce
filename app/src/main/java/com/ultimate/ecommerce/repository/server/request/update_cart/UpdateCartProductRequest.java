@@ -3,12 +3,18 @@ package com.ultimate.ecommerce.repository.server.request.update_cart;
 import com.google.gson.annotations.SerializedName;
 
 public class UpdateCartProductRequest {
-    @SerializedName("qty")
-    private int quantity;
-    @SerializedName("price")
-    private int price;
     @SerializedName("id")
     private int id;
+    @SerializedName("price")
+    private String price;
+    @SerializedName("qty")
+    private int quantity;
+
+    public UpdateCartProductRequest(int id, String price, int quantity) {
+        this.id = id;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -18,11 +24,11 @@ public class UpdateCartProductRequest {
         this.quantity = quantity;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

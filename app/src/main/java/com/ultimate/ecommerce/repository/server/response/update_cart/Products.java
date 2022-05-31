@@ -54,7 +54,7 @@ public class Products {
         this.manageStock = manageStock;
     }
 
-    public boolean getAvailability() {
+    public boolean isAvailability() {
         return availability;
     }
 

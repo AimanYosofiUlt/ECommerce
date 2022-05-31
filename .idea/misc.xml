@@ -22,6 +22,31 @@
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/ECommerce/app/src/main/res/layout/view_product.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/ECommerce/app/src/main/res/layout/view_section.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/ECommerce/app/src/main/res/menu/menu_home_bottom_nav.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/drawable/ic_close.xml" value="0.238" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/dialog_rete.xml" value="0.2359375" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_lang_currency.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_order_confirm.xml" value="0.2359375" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_order_confirm_address.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_order_confirm_check.xml" value="0.4" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_order_confirm_done.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_order_confirm_payment_method.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_order_confirm_shipment_method.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/tools_coupon.xml" value="0.25" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/tools_internet_check.xml" value="0.24909420289855072" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/tools_stepper.xml" value="0.2359375" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/tools_title.xml" value="0.24909420289855072" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/view_custom_button.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/view_custom_button_borderd.xml" value="0.2359375" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/view_electric_payment.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/view_help.xml" value="0.10677083333333333" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/view_order_product.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/view_payment_method.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/view_product.xml" value="0.24909420289855072" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/view_product_cart.xml" value="0.4" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/view_shipment_check.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/view_shipoing_method.xml" value="0.24583333333333332" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/ztrain.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/drawable-xxxhdpi/back_bottomsheet.xml" value="0.342" />
         <entry key="app/src/main/res/drawable-xxxhdpi/back_order_bottom.xml" value="0.354" />
         <entry key="app/src/main/res/drawable/back_about.xml" value="0.3805" />

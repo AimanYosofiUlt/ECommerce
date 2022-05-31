@@ -30,24 +30,13 @@
         app:layout_constraintStart_toStartOf="@+id/guideline23" />
 
 
-    <include
-        android:id="@+id/addBtn"
-        layout="@layout/view_custom_button_borderd"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/nextBtn"
-        app:layout_constraintEnd_toStartOf="@+id/guideline22"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline23" />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/addressRV"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clipToPadding="false"
         android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/addBtn"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toTopOf="@+id/nextBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

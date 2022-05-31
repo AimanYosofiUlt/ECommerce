@@ -28,7 +28,6 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     ProductViewListener listener;
     ViewProductBinding binding;
     boolean isInFavorite = false;
-    int productQuantity = 0;
 
     public ProductViewHolder(@NonNull View itemView, ProductViewListener listener) {
         super(itemView);
@@ -50,6 +49,9 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         binding.oldPriceTV.setText(data.getData().getPrice());
         binding.discountPercentageTV.setText(data.getData().getDiscountPercentage());
         binding.rateTV.setText(String.valueOf(data.getData().getRatingCount()));
+
+        String cartQuantityStr = String.valueOf(data.getCartQuantity());
+        binding.countTV.setText(cartQuantityStr);
 
 //      todo here should calculate the discount and show the oldPrice or the price but the response don't give a percentage
 //        String discountMsg = itemView.getContext().getString(R.string.discountBy) + " " + data.getData().getDiscountPercentage() + "%";
@@ -73,12 +75,12 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
 
         binding.addToCartBtn.setOnClickListener(view -> {
             binding.countTV.setVisibility(View.VISIBLE);
-            String countStr = String.valueOf(++productQuantity);
+            String countStr = String.valueOf(data.increaseQuantity());
             binding.countTV.setText(countStr);
             ProductData productData = this.data.getData();
             ProductCart productCart = new ProductCart(productData.getId(), productData.getTitle()
                     , productData.getRatingCount(), productData.getDiscountPercentage()
-                    , productData.getPrice(), productQuantity);
+                    , productData.getPrice(), data.getCartQuantity(), productData.getShortDescription());
             listener.onAddToCart(productCart);
         });
 

@@ -3,7 +3,6 @@ package com.ultimate.ecommerce.repository.server.request.create_order;
 import java.util.List;
 
 public class CreateProductRequest {
-
     private OrderShippingMethod orderShippingMethod;
     private OrderVat orderVat;
     private String orderPaymentMethod;

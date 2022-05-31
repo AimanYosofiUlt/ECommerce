@@ -15,19 +15,22 @@ public class ProductCart {
     String productPrice;
     @ColumnInfo(defaultValue = "0")
     Integer productQuantity;
+    String shortDescription;
+
 
     public ProductCart() {
     }
 
     @Ignore
     public ProductCart(Integer productId, String productTitle, Integer productRate,
-                       String discountPercentage, String productPrice, Integer productQuantity) {
+                       String discountPercentage, String productPrice, Integer productQuantity, String shortDescription) {
         this.productId = productId;
         this.productTitle = productTitle;
         this.productRate = productRate;
         this.discountPercentage = discountPercentage;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
+        this.shortDescription = shortDescription;
     }
 
     public Integer getProductId() {
@@ -76,5 +79,13 @@ public class ProductCart {
 
     public void setDiscountPercentage(String discountPercentage) {
         this.discountPercentage = discountPercentage;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 }

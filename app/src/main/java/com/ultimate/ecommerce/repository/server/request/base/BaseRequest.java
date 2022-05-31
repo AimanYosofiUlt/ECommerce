@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 import com.ultimate.ecommerce.repository.server.request.create_order.CreateProductRequest;
+import com.ultimate.ecommerce.repository.server.request.create_order.OrderProducts;
 import com.ultimate.ecommerce.repository.server.request.update_cart.UpdateCartProductRequest;
 
 import java.util.List;
@@ -67,7 +68,7 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getGetProductsRequest(String category,int page) {
+    public static RequestBody getGetProductsRequest(String category, int page) {
         Log.d("BaseRequest", "getGetProductsRequest: 3o4872: " + category);
         // todo there is parameter not explained (id, page) and without any use after test with postman
         return new MultipartBody.Builder()
@@ -114,7 +115,7 @@ public class BaseRequest {
     }
 
 
-    public static RequestBody getUpdateCartRequest(String couponCode, String shipping, List<ProductRequest> productReqList) {
+    public static RequestBody getUpdateCartRequest(String couponCode, String shipping, List<UpdateCartProductRequest> productReqList) {
         Gson gson = new Gson();
         String products = gson.toJson(productReqList).toString();
 
@@ -145,6 +146,17 @@ public class BaseRequest {
                 .build();
     }
 
+    public static RequestBody getCreateOrderRequest(String userId, List<OrderProducts> request) {
+        Gson gson = new Gson();
+        String orderProducts = gson.toJson(request).toString();
+
+        return new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("order_products", orderProducts)
+                .addFormDataPart("order_userID", userId)
+                .build();
+    }
+
     public static RequestBody getCreateOrderRequest(CreateProductRequest request) {
         Gson gson = new Gson();
         String orderProducts = gson.toJson(request.getOrderProducts()).toString();
@@ -160,7 +172,7 @@ public class BaseRequest {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("order_products", orderProducts)
-                .addFormDataPart("order_user_id", orderUserId)
+                .addFormDataPart("order_userID", orderUserId)
                 .addFormDataPart("order_billing_address", orderBillingAddress)
                 .addFormDataPart("order_shipping_address", orderShippingAddress)
                 .addFormDataPart("order_coupon_items", orderCouponItems)
@@ -287,9 +299,5 @@ public class BaseRequest {
                 .addFormDataPart("billing_phone", billingPhone)
                 .addFormDataPart("billing_receipt", billingReceipt)
                 .build();
-    }
-
-    public static RequestBody getAddressFieldsRequest(int userId) {
-        return null;
     }
 }

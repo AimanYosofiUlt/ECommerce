@@ -52,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/order_add_done_msg"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/nextBtn"

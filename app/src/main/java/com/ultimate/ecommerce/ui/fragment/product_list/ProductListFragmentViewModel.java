@@ -3,6 +3,7 @@ package com.ultimate.ecommerce.ui.fragment.product_list;
 import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -31,6 +32,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class ProductListFragmentViewModel extends BaseViewModel {
+    private static final String TAG = "ProductListFragmentView";
     @Inject
     ProductRepo productRepo;
 
@@ -98,6 +100,7 @@ public class ProductListFragmentViewModel extends BaseViewModel {
 
     private void synchronizeWithCart(List<ProductData> products) {
         AsyncTask.execute(() -> {
+            Log.d(TAG, "synchronizeWithCart: 2ew39:"+products.size());
             ArrayList<ProductAdapterData> dataList = new ArrayList<>();
             for (ProductData product : products) {
                 int cartQuantity = productRepo.getProductCartQuantity(product.getId());

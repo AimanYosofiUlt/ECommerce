@@ -122,8 +122,6 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailFragmentVie
     }
 
     private void initViewPager(List<Image> images) {
-        imageAdapter = new ImageAdapter(new ImageViewListener() {
-        });
         imageAdapter.setList(images);
         binding.imageVP.setAdapter(imageAdapter);
         binding.imageVP.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_ALWAYS);
@@ -290,8 +288,12 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailFragmentVie
         binding.rating.seeAllBtn.btnTextTV.setText(getString(R.string.see_all));
         binding.similarTitle.startTitle.setText(getString(R.string.similar_product));
         binding.body.categoriesTitle.startTitle.setText(getString(R.string.category));
-        binding.dotsIndicaotr.attachTo(binding.imageVP);
 
+        imageAdapter = new ImageAdapter(new ImageViewListener() {
+        });
+        binding.imageVP.setAdapter(imageAdapter);
+        binding.dotsIndicaotr.attachTo(binding.imageVP);
+        
         viewModel.validateGetProductDetail(requireContext(), product.getData().getId());
     }
 

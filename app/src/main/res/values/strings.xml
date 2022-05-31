@@ -11,8 +11,8 @@
     <string name="empty_phone_error">You should inter User Phone</string>
     <string name="not_agree_terms_error">You should agree The terms and conditions</string>
     <string name="not_email_error">This is not an email address</string>
-    <string name="empty_password_error" >You Should Inter Your Password</string>
-    <string name="small_password_error" >Small Password not allowed</string>
+    <string name="empty_password_error">You Should Inter Your Password</string>
+    <string name="small_password_error">Small Password not allowed</string>
 
     <string name="check_internet_connection">Check Internet Connection</string>
     <string name="couldnt_reach_server">Couldn\'t reach the server!</string>
@@ -64,9 +64,9 @@
     <string name="user_name">الاسم</string>
     <string name="user_phone">رقم الجوال</string>
     <string name="user_email">البريد الإلكتروني</string>
-    <string name="optional" >إختياري</string>
-    <string name="register" >اشتراك</string>
-    <string name="register_new" >اشتراك جديد</string>
+    <string name="optional">إختياري</string>
+    <string name="register">اشتراك</string>
+    <string name="register_new">اشتراك جديد</string>
     <string name="user_password">كلمة المرور</string>
     <string name="register_with_us">اشترك معنا</string>
     <string name="continue_as_vistor">استكمال الطلب كزائر</string>
@@ -122,7 +122,7 @@
     <string name="ratings">التقييمات</string>
     <string name="see_all">عرض الكل</string>
     <string name="similar_product">منتجات مماثلة</string>
-    <string name="your_comment" >تعليقك</string>
+    <string name="your_comment">تعليقك</string>
     <string name="rate_dialog_msg">أنت لم تقم بشراء المنتج عبر متجرنا، سيظهر تقييمك للمستخدمين لكن لن يتم احتسابه في تقييم المنتج</string>
     <string name="rate_product">تقييم المنتج</string>
     <string-array name="order_title">
@@ -144,9 +144,9 @@
     <string name="free_ship">شحن مجاني</string>
 
     <string name="products_title">المنتجات</string>
-        <string name="address_title">العنوان</string>
-    <string name="ship_title">الدفع</string>
-        <string name="deliver_title">الشحن</string>
+    <string name="address_title">العنوان</string>
+    <string name="ship_title">الشحن</string>
+    <string name="deliver_title">الدفع</string>
     <string name="cost_title">التكلفة</string>
     <string name="order_done">تم توصيل الطلب</string>
     <string name="sample_date">2022/06/30</string>
@@ -173,5 +173,13 @@
     <string name="order_done_msg">تم وضع الطلب</string>
     <string name="order_add_done_msg">تم وضع الطلب بنجاح! جاري المراجعة وسيتم اخطارك فور شحن الطلب</string>
     <string name="edit">تعديل</string>
+    <string name="cart">سلة المشتريات</string>
+    <string name="pay">شراء</string>
+    <string name="product_note">ملاحظات عن المنتج</string>
+    <string name="update_cart">تحديث سلة المشتريات</string>
+    <string name="update">تحديث</string>
+    <string name="clear_cart">تصفية سلة المشتريات</string>
+    <string name="clear_cart_msg">هل انت متأكد من حذف جميع المنتجات من سلة المشتريات؟</string>
+    <string name="coupon_code">Coupon code</string>
 
 </resources>

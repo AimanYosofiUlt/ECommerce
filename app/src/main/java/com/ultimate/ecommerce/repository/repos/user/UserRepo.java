@@ -16,6 +16,8 @@ import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.get_address_fields.GetAddressFieldsResponse;
 import com.ultimate.ecommerce.repository.server.response.get_user_profile.GetUserProfileResponse;
 import com.ultimate.ecommerce.repository.server.response.login_user.LoginUserResponse;
+import com.ultimate.ecommerce.repository.server.response.payment_methods.PaymentMethodsResponse;
+import com.ultimate.ecommerce.repository.server.response.shipping_methods.ShippingMethodsResponse;
 import com.ultimate.ecommerce.repository.server.response.update_password.UpdatePasswordResponse;
 
 import javax.inject.Inject;
@@ -125,13 +127,33 @@ public class UserRepo extends BaseRepo {
 
     public void getUserAddress(ResponsesCallBack<GetAddressFieldsResponse> callBack) {
         AsyncTask.execute(() -> {
-            //        RequestBody request = BaseRequest.getOrdersRequest(userId);
-            //todo remove test code
-            RequestBody request = BaseRequest.getRequestByUserID("15259");
-//                String tokenKey = userDao.getTokenKey();
-            //todo remove test code
-            String tokenKey = "ed3e8e2829fe213e8f370f7a173f5ef0bbc2358d128500d7c3c0ddfbceb6e98c";
+            RequestBody request = BaseRequest.getOrdersRequest(userDao.getUserId());
+            String tokenKey = userDao.getTokenKey();
             api.getAddressFields(request, tokenKey).enqueue(callBack);
+        });
+    }
+
+    public void getAddressFields(ResponsesCallBack<GetAddressFieldsResponse> callBack) {
+        AsyncTask.execute(() -> {
+            RequestBody request = BaseRequest.getRequestByUserID(userDao.getUserId());
+            String tokenKey = userDao.getTokenKey();
+            api.getAddressFields(request, tokenKey).enqueue(callBack);
+        });
+    }
+
+    public void getShipmentMethods(ResponsesCallBack<ShippingMethodsResponse> callBack) {
+        AsyncTask.execute(() -> {
+            RequestBody request = BaseRequest.getRequestByUserID(userDao.getUserId());
+            String tokenKey = userDao.getTokenKey();
+            api.shippingMethods(request, tokenKey).enqueue(callBack);
+        });
+    }
+
+    public void getPaymentMethods(ResponsesCallBack<PaymentMethodsResponse> callBack) {
+        AsyncTask.execute(() -> {
+            RequestBody request = BaseRequest.getRequestByUserID(userDao.getUserId());
+            String tokenKey = userDao.getTokenKey();
+            api.paymentMethods(request, tokenKey).enqueue(callBack);
         });
     }
 }

@@ -2,21 +2,22 @@ package com.ultimate.ecommerce.repository.server.response.update_cart;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class UpdateCartData {
+public class UpdateCartData implements Serializable {
     @SerializedName("total")
-    private int total;
+    private double total;
     @SerializedName("beforeTotal")
-    private int beforeTotal;
+    private double beforeTotal;
     @SerializedName("discount")
-    private int discount;
+    private double discount;
     @SerializedName("vat")
-    private int vat;
+    private double vat;
     @SerializedName("shipping")
-    private int shipping;
+    private double shipping;
     @SerializedName("subTotal")
-    private int subTotal;
+    private double subTotal;
     @SerializedName("products")
     private List<Products> products;
     @SerializedName("mustLogin")
@@ -25,51 +26,51 @@ public class UpdateCartData {
     public UpdateCartData() {
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
-    public int getBeforeTotal() {
+    public double getBeforeTotal() {
         return beforeTotal;
     }
 
-    public void setBeforeTotal(int beforeTotal) {
+    public void setBeforeTotal(double beforeTotal) {
         this.beforeTotal = beforeTotal;
     }
 
-    public int getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 
-    public int getVat() {
+    public double getVat() {
         return vat;
     }
 
-    public void setVat(int vat) {
+    public void setVat(double vat) {
         this.vat = vat;
     }
 
-    public int getShipping() {
+    public double getShipping() {
         return shipping;
     }
 
-    public void setShipping(int shipping) {
+    public void setShipping(double shipping) {
         this.shipping = shipping;
     }
 
-    public int getSubTotal() {
+    public double getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(int subTotal) {
+    public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
     }
 

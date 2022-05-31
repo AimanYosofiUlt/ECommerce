@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.ultimate.ecommerce.app.DynamicTheme" />
+
+        <variable
+            name="color"
+            type="DynamicTheme" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="12dp"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@{color.gradientStartColor}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/costTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sample_money"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/nameTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nameTV" />
+
+        <View
+            android:id="@+id/divider1e2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/costTV"
+            app:layout_constraintStart_toEndOf="@+id/radioButton"
+            app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+
+        <TextView
+            android:id="@+id/nameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/free_ship"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/radioButton"
+            app:layout_constraintStart_toEndOf="@+id/radioButton"
+            app:layout_constraintTop_toTopOf="@+id/radioButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

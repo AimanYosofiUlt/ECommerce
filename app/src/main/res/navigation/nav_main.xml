@@ -48,6 +48,9 @@
         <action
             android:id="@+id/actionMainToOrder"
             app:destination="@id/orderFragment" />
+        <action
+            android:id="@+id/actionMainToOrderConfirm"
+            app:destination="@id/orderConfirmFragment" />
     </fragment>
     <fragment
         android:label="ContactUsFragment"
@@ -165,5 +168,14 @@
         <argument
             android:name="orderDate"
             app:argType="com.ultimate.ecommerce.repository.server.response.get_order.GetOrderData" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_order_confirm"
+        android:id="@+id/orderConfirmFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.order_confirm.OrderConfirmFragment"
+        android:label="OrderConfirmFragment" >
+        <argument
+            android:name="cartData"
+            app:argType="com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartData" />
     </fragment>
 </navigation>

@@ -14,4 +14,7 @@ public class ValidateSt {
     public static final String CONFIRM_PASSWORD_EMPTY_FILED_ERROR = "CONFIRM_PASSWORD_EMPTY_FILED_ERROR";
     public static final String CONFIRM_NEW_PASSWORD_SAME_ERROR = "CONFIRM_NEW_PASSWORD_SAME_ERROR";
 
+    public static final String COUPON_EMPTY_FILED_ERROR = "COUPON_EMPTY_FILED_ERROR";
+    public static final String CART_PRODUCTS_EMPTY_ERROR = "CART_PRODUCTS_EMPTY_ERROR";
+
 }
