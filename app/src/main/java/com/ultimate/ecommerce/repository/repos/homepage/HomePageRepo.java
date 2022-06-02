@@ -16,8 +16,8 @@ public class HomePageRepo extends BaseRepo {
     }
 
 
-    public void getHomePageData(ResponsesCallBack<HomePageResponse> responsesCallBack) {
-        RequestBody request = BaseRequest.getHomePageRequest("1");
+    public void getHomePageData(int pageCount, ResponsesCallBack<HomePageResponse> responsesCallBack) {
+        RequestBody request = BaseRequest.getHomePageRequest(pageCount);
         api.getHomePage(request).enqueue(responsesCallBack);
     }
 }

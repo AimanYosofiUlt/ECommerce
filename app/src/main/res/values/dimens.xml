@@ -1,4 +1,6 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="default_corner_radius" >24dp</dimen>
+
+    <dimen name="dp_16" >16dp</dimen>
 </resources>

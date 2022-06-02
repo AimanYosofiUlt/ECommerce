@@ -6,12 +6,16 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.ultimate.ecommerce.repository.local.tables.favorite.Favorite;
+import com.ultimate.ecommerce.repository.repos.favorite.FavoriteRepo;
 import com.ultimate.ecommerce.repository.repos.product.ProductRepo;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.get_product.GetProductData;
 import com.ultimate.ecommerce.repository.server.response.get_product.GetProductResponse;
+import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
+import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdapterData;
 import com.ultimate.ecommerce.utilities.ValidateSt;
 import com.ultimate.ecommerce.utilities.state.CheckNetworkListener;
 import com.ultimate.ecommerce.utilities.state.OnValidateListener;
@@ -22,6 +26,9 @@ import javax.inject.Inject;
 public class ProductDetailFragmentViewModel extends BaseViewModel {
     @Inject
     ProductRepo productRepo;
+
+    @Inject
+    FavoriteRepo favoriteRepo;
 
     MutableLiveData<ResponseState> getDetailResponseMDL;
     MutableLiveData<GetProductData> productResponseMDL;
@@ -67,5 +74,21 @@ public class ProductDetailFragmentViewModel extends BaseViewModel {
 
             }
         });
+    }
+
+    public void addToFavorite(ProductAdapterData data) {
+        Favorite favorite = convertProductToFavorite(data);
+        favoriteRepo.addFavorite(favorite);
+    }
+
+    private Favorite convertProductToFavorite(ProductAdapterData data) {
+        ProductData productData = data.getData();
+        return new Favorite(productData.getId(), productData.getTitle(), productData.getImageUrl()
+                , productData.getPrice(), productData.getDiscountPercentage(), productData.getRatingCount());
+    }
+
+    public void removeFromFavorite(ProductAdapterData data) {
+        Favorite favorite = convertProductToFavorite(data);
+        favoriteRepo.removeFavorite(favorite);
     }
 }

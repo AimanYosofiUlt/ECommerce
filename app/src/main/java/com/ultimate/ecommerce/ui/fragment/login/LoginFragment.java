@@ -28,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
-    FragmentLoginBinding bd;
+    FragmentLoginBinding binding;
 
     public LoginFragment() {
     }
@@ -36,62 +36,62 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        bd = FragmentLoginBinding.inflate(getLayoutInflater());
-        return bd.getRoot();
+        binding = FragmentLoginBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
 
     @Override
     public void initEvent() {
-        bd.backBtn.setOnClickListener(view ->
+        binding.backBtn.setOnClickListener(view ->
                 NavHostFragment.findNavController(requireParentFragment())
                         .popBackStack());
 
 
-        bd.loginBtn.btnBody.setOnClickListener(view -> {
-            String userPhone = bd.phoneCCP.getFullNumber();
-            String userPassword = bd.passwordED.getText().toString();
+        binding.loginBtn.btnBody.setOnClickListener(view -> {
+            String userPhone = binding.phoneCCP.getFullNumber();
+            String userPassword = binding.passwordED.getText().toString();
             showProgress(requireContext(), getString(R.string.login), getString(R.string.loading));
             viewModel.validateLogin(requireContext(), userPhone, userPassword);
         });
 
-        bd.registerBtn.btnBody.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
+        binding.registerBtn.btnBody.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
                 .navigate(R.id.actionLoginToRegister));
 
-        bd.googleBtn.setOnClickListener(new View.OnClickListener() {
+        binding.googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
 
-        bd.facebookBtn.setOnClickListener(new View.OnClickListener() {
+        binding.facebookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
 
-        bd.twitterBtn.setOnClickListener(new View.OnClickListener() {
+        binding.twitterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
 
-        bd.appleBtn.setOnClickListener(new View.OnClickListener() {
+        binding.appleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
 
-        bd.registerBtn.btnBody.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
+        binding.registerBtn.btnBody.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
                 .navigate(
                         LoginFragmentDirections.actionLoginToRegister()
                 ));
 
-        bd.asVistorLink.setOnClickListener(new View.OnClickListener() {
+        binding.asVistorLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(requireParentFragment())
@@ -99,7 +99,7 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
             }
         });
 
-        bd.forgetPasswordLink.setOnClickListener(new View.OnClickListener() {
+        binding.forgetPasswordLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -127,11 +127,11 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
 
     @Override
     public void initLoading() {
-        bd.title.titleTV.setText(getString(R.string.login_title));
-        bd.loginBtn.btnTextTV.setText(getString(R.string.login));
-        bd.loginBtn.btnTextTV.setText(getString(R.string.login));
-        bd.registerBtn.btnTextTV.setText(getString(R.string.register_new));
-        bd.phoneCCP.registerPhoneNumberTextView(bd.phoneED);
+        binding.title.titleTV.setText(getString(R.string.login_title));
+        binding.loginBtn.btnTextTV.setText(getString(R.string.login));
+        binding.loginBtn.btnTextTV.setText(getString(R.string.login));
+        binding.registerBtn.btnTextTV.setText(getString(R.string.register_new));
+        binding.phoneCCP.registerPhoneNumberTextView(binding.phoneED);
     }
 
     @Override
@@ -145,28 +145,28 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
         });
     }
 
-    private void handleValidateError(String message) {
-        switch (message) {
-            case NO_INTERNET_CONNECTION:
-                Toast.makeText(requireContext(), getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
-                break;
+        private void handleValidateError(String message) {
+            switch (message) {
+                case NO_INTERNET_CONNECTION:
+                    Toast.makeText(requireContext(), getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+                    break;
 
-            case PHONE_EMPTY_FILED_ERROR:
-                bd.phoneED.setError(getString(R.string.empty_phone_error));
-                break;
+                case PHONE_EMPTY_FILED_ERROR:
+                    binding.phoneED.setError(getString(R.string.empty_phone_error));
+                    break;
 
-            case PASSWORD_EMPTY_FILED_ERROR:
-                bd.passwordED.setError(getString(R.string.empty_password_error));
-                break;
+                case PASSWORD_EMPTY_FILED_ERROR:
+                    binding.passwordED.setError(getString(R.string.empty_password_error));
+                    break;
 
-            case SMALL_PASSWORD_ERROR:
-                bd.passwordED.setError(getString(R.string.small_password_error));
-                break;
+                case SMALL_PASSWORD_ERROR:
+                    binding.passwordED.setError(getString(R.string.small_password_error));
+                    break;
 
-            default:
-                Log.d("RegisterFragment", "HandleValidateError: You forget to handle this error :" + message);
+                default:
+                    Log.d("RegisterFragment", "HandleValidateError: You forget to handle this error :" + message);
+            }
         }
-    }
 }
 
 

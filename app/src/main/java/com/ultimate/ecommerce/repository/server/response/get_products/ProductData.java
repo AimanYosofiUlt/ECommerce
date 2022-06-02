@@ -41,9 +41,9 @@ public class ProductData {
     private String type;
     @SerializedName("id")
     private int id;
-public ProductData() {
-}
 
+    public ProductData() {
+    }
 
     public int getStockQuantity() {
         return stockQuantity;

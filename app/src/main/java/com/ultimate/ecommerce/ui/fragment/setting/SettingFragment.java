@@ -1,5 +1,8 @@
 package com.ultimate.ecommerce.ui.fragment.setting;
 
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.LOGIN_REGISTER;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.USER_PROFILE;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,20 +22,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class SettingFragment extends BaseFragment<SettingFragmentViewModel> {
-    public static final int ORDERS = 0;
-    public static final int ADDRESS = 1;
-    public static final int FAVORITE = 2;
-    public static final int LANG_CUR = 3;
-    public static final int HELP = 4;
-    public static final int ABOUT = 5;
-    public static final int CONTACT_US = 6;
-    public static final int LOGOUT = 7;
-    public static final int LOGIN_REGISTER = 8;
-    public static final int USER_PROFILE = 9;
-
     FragmentSettingBinding binding;
     SettingViewAdapter adapter;
-    boolean isNotScrolled = false;
 
     SettingViewListener listener;
 
@@ -53,14 +44,23 @@ public class SettingFragment extends BaseFragment<SettingFragmentViewModel> {
             @Override
             public void onChanged(Boolean isUserLogin) {
                 if (isUserLogin) {
-                    binding.userInfoGroup.setVisibility(View.VISIBLE);
-                    binding.loginBtn.CL.setVisibility(View.GONE);
                     viewModel.getCurrentUser();
+                    showUserInfo();
+                    adapter.addUserSettingItems(requireContext());
                 } else {
-                    binding.userInfoGroup.setVisibility(View.INVISIBLE);
-                    binding.loginBtn.CL.setVisibility(View.VISIBLE);
+                    showLoginButton();
+                    adapter.addVisitorSettingItems(requireContext());
                 }
-                adapter.addSettingItems(requireContext(), isUserLogin);
+            }
+
+            private void showLoginButton() {
+                binding.userInfoGroup.setVisibility(View.INVISIBLE);
+                binding.loginBtn.CL.setVisibility(View.VISIBLE);
+            }
+
+            private void showUserInfo() {
+                binding.userInfoGroup.setVisibility(View.VISIBLE);
+                binding.loginBtn.CL.setVisibility(View.GONE);
             }
         });
 
@@ -86,18 +86,12 @@ public class SettingFragment extends BaseFragment<SettingFragmentViewModel> {
     }
     @Override
     public void initEvent() {
-        binding.loginBtn.btnBody.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onOpenReq(LOGIN_REGISTER);
-            }
-        });
+        binding.loginBtn.btnBody.setOnClickListener(view -> listener.onOpenReq(LOGIN_REGISTER));
 
-        binding.userProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onOpenReq(USER_PROFILE);
-            }
-        });
+        binding.userProfileBtn.setOnClickListener(view -> listener.onOpenReq(USER_PROFILE));
+
+        binding.userNameTV.setOnClickListener(v -> listener.onOpenReq(USER_PROFILE));
+
+        binding.userPhoneTV.setOnClickListener(v -> listener.onOpenReq(USER_PROFILE));
     }
 }

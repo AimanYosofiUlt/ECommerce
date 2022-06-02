@@ -67,7 +67,6 @@ public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
         viewModel.responseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {
-                // todo what i should to do here after failure
                 if (responseState.isSuccessful())
                     tryGoMain();
                 else

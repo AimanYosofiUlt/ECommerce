@@ -168,7 +168,9 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <include android:id="@+id/LT" layout="@layout/train_tools" />
+                <include
+                    android:id="@+id/LT"
+                    layout="@layout/train_tools" />
             </LinearLayout>
         </ScrollView>
 

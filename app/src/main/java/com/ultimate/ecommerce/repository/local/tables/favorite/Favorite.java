@@ -1,10 +1,79 @@
 package com.ultimate.ecommerce.repository.local.tables.favorite;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Favorite {
     @PrimaryKey
-    Integer productId;
+    Integer id;
+    String title;
+    String imageUrl;
+    String price;
+    String discountPercentage;
+    int ratingCount;
+
+    public Favorite() {
+    }
+
+    @Ignore
+    public Favorite(Integer id ,String title, String imageUrl
+            , String price, String discountPercentage
+            , int ratingCount) {
+        this.id = id;
+        this.title = title;
+        this.imageUrl = imageUrl;
+        this.price = price;
+        this.discountPercentage = discountPercentage;
+        this.ratingCount = ratingCount;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getDiscountPercentage() {
+        return discountPercentage;
+    }
+
+    public void setDiscountPercentage(String discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+
+    public int getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
+    }
 }

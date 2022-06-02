@@ -1,66 +1,67 @@
 package com.ultimate.ecommerce.ui.fragment.main;
 
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.ABOUT;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.ADDRESS;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.CONTACT_US;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.FAVORITE;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.HELP;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.LANG_CUR;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.LOGIN_REGISTER;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.LOGOUT;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.ORDERS;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.USER_PROFILE;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.ABOUT;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.ADDRESS;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.CONTACT_US;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.FAVORITE;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.HELP;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.LANG_CUR;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.LOGIN_REGISTER;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.LOGOUT;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.ORDERS;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.USER_PROFILE;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.ultimate.ecommerce.R;
+import com.ultimate.ecommerce.app.DynamicTheme;
 import com.ultimate.ecommerce.app.GlobalVariable;
 import com.ultimate.ecommerce.databinding.FragmentMainBinding;
-import com.ultimate.ecommerce.repository.local.tables.category.Category;
-import com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.cart.CartFragment;
-import com.ultimate.ecommerce.ui.fragment.cart.CartFragmentListener;
 import com.ultimate.ecommerce.ui.fragment.category.CategoryFragment;
-import com.ultimate.ecommerce.ui.fragment.category.views.CategoryViewListener;
 import com.ultimate.ecommerce.ui.fragment.home.HomeFragment;
 import com.ultimate.ecommerce.ui.fragment.main.views.mainviewpager.MainPagerAdapter;
 import com.ultimate.ecommerce.ui.fragment.setting.SettingFragment;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
+import com.ultimate.ecommerce.utilities.ValidateSt;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainFragment extends BaseFragment {
-    FragmentMainBinding bd;
+public class MainFragment extends BaseFragment<MainFragmentViewModel> {
+    private static final String TAG = "MainFragment";
+
+    FragmentMainBinding binding;
     MainPagerAdapter adapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        bd = FragmentMainBinding.inflate(getLayoutInflater());
+        binding = FragmentMainBinding.inflate(getLayoutInflater());
 
         initBottomNavBar();
 
-        return bd.getRoot();
+        return binding.getRoot();
     }
 
     private void initBottomNavBar() {
         float radius = getResources().getDimension(R.dimen.default_corner_radius);
 
-        MaterialShapeDrawable bottomBarBackground = (MaterialShapeDrawable) bd.bottomAppBar.getBackground();
+        MaterialShapeDrawable bottomBarBackground = (MaterialShapeDrawable) binding.bottomAppBar.getBackground();
         bottomBarBackground.setShapeAppearanceModel(
                 bottomBarBackground.getShapeAppearanceModel()
                         .toBuilder()
@@ -71,15 +72,45 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initObservers() {
+        viewModel.logoutResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
+            hideProgress();
+            if (!responseState.isSuccessful())
+                handleResponseError(responseState.getMessage());
+        });
+    }
 
+    private void handleResponseError(String message) {
+        switch (message) {
+            case ValidateSt.NO_INTERNET_CONNECTION:
+                Toast.makeText(requireContext(), getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+                break;
+
+            default:
+                Log.d(TAG, "handelResposeError: this error not handeled :" + message);
+        }
     }
 
     @Override
     public void initLoading() {
         initFragmentAdapter();
+        initBottomNavBarIconColors();
+        binding.mainVP.setAdapter(adapter);
+        binding.mainVP.setUserInputEnabled(false);
+    }
 
-        bd.mainVP.setAdapter(adapter);
-        bd.mainVP.setUserInputEnabled(false);
+    private void initBottomNavBarIconColors() {
+        int[][] states = new int[][]{
+                new int[]{android.R.attr.state_checked},
+                new int[]{}
+        };
+
+        int[] colors = new int[]{
+                DynamicTheme.gradientStartColor,
+                Color.GRAY
+        };
+
+        ColorStateList myColorList = new ColorStateList(states, colors);
+        binding.bottomNavigationView.setItemIconTintList(myColorList);
     }
 
     private void initFragmentAdapter() {
@@ -134,6 +165,7 @@ public class MainFragment extends BaseFragment {
                     break;
 
                 case LOGOUT:
+                    logoutUser();
                     break;
 
                 case LOGIN_REGISTER:
@@ -147,12 +179,22 @@ public class MainFragment extends BaseFragment {
         });
     }
 
+    private void logoutUser() {
+        LayoutUtil.showOptionDialog(requireContext()
+                , getString(R.string.logout)
+                , getString(R.string.logout_msg)
+                , () -> {
+                    showProgress(requireContext(), getString(R.string.logout), getString(R.string.loading));
+                    viewModel.validateLogout(requireContext());
+                });
+    }
+
     @Override
     public void onStart() {
         super.onStart();
         GlobalVariable.bottomNavHeight = 0;
-        bd.bottomNavigationView.getViewTreeObserver().addOnGlobalLayoutListener(() ->
-                GlobalVariable.bottomNavHeight = bd.bottomNavigationView.getHeight() + bd.fab.getHeight() / 2);
+        binding.bottomNavigationView.getViewTreeObserver().addOnGlobalLayoutListener(() ->
+                GlobalVariable.bottomNavHeight = binding.bottomNavigationView.getHeight() + binding.fab.getHeight() / 2);
     }
 
     @Override
@@ -162,16 +204,18 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initEvent() {
-        bd.bottomNavigationView.setOnItemSelectedListener(item -> {
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home) {
-                bd.mainVP.setCurrentItem(0);
+                binding.mainVP.setCurrentItem(0);
             } else if (item.getItemId() == R.id.category) {
-                bd.mainVP.setCurrentItem(1);
+                binding.mainVP.setCurrentItem(1);
             } else if (item.getItemId() == R.id.cart) {
-                bd.mainVP.setCurrentItem(2);
+                binding.mainVP.setCurrentItem(2);
             } else if (item.getItemId() == R.id.setting) {
-                bd.mainVP.setCurrentItem(3);
+                binding.mainVP.setCurrentItem(3);
             }
+
+            item.setChecked(true);
             return false;
         });
     }

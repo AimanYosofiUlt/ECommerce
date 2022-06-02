@@ -182,6 +182,16 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailFragmentVie
                                 ProductDetailFragmentDirections.actionToSelf(data)
                         );
             }
+
+            @Override
+            public void addToFavorite(ProductAdapterData data) {
+                viewModel.addToFavorite(data);
+            }
+
+            @Override
+            public void removeFromFavorite(ProductAdapterData data) {
+                viewModel.removeFromFavorite(data);
+            }
         });
 
 //        productAdapter.setList(relatedProducts.getProducts());

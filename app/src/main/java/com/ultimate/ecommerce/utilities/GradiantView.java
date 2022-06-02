@@ -12,8 +12,6 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import androidx.annotation.Nullable;
 
@@ -61,6 +59,7 @@ public class GradiantView extends View {
         topRight = typedArray.getDimension(R.styleable.GradiantView_topRight, 0f);
         bottomLeft = typedArray.getDimension(R.styleable.GradiantView_bottomLeft, 0f);
         bottomRight = typedArray.getDimension(R.styleable.GradiantView_bottomRight, 0f);
+        hasTopTriangle = typedArray.getBoolean(R.styleable.GradiantView_hasTopTriangle, false);
         typedArray.recycle();
     }
 

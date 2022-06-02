@@ -145,6 +145,16 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
                                 ProductListFragmentDirections.actionProductListToProductDetail(data)
                         );
             }
+
+            @Override
+            public void addToFavorite(ProductAdapterData data) {
+                viewModel.addToFavorite(data);
+            }
+
+            @Override
+            public void removeFromFavorite(ProductAdapterData data) {
+                viewModel.removeFromFavorite(data);
+            }
         });
         bd.productRV.setAdapter(productAdapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 2);

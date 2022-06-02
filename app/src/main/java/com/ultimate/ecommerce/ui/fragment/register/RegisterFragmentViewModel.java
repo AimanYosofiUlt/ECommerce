@@ -85,7 +85,7 @@ public class RegisterFragmentViewModel extends BaseViewModel {
                 .checkNetwork(context, new CheckNetworkListener() {
                     @Override
                     public void onConnect() {
-                        registerUser(name, email, password, phone);
+                        registerUser(name.trim(), email.trim(), password.trim(), phone.trim());
                     }
 
                     @Override

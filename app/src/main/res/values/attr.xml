@@ -5,6 +5,7 @@
         <attr format="dimension" name="topRight"/>
         <attr format="dimension" name="bottomLeft"/>
         <attr format="dimension" name="bottomRight"/>
+        <attr format="boolean" name="hasTopTriangle"/>
     </declare-styleable>
 
     <declare-styleable name="BorderedButton">

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.ultimate.ecommerce.app.DynamicTheme" />
 
         <variable
@@ -60,8 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@{color.gradientStartColor}"
-                android:rippleColor="@{color.gradientEndColor}"
                 android:contentDescription="@string/offers"
+                android:rippleColor="@{color.gradientEndColor}"
                 android:src="@drawable/ic_ab_offers"
                 app:layout_anchor="@id/bottomAppBar"
                 app:maxImageSize="35dp" />

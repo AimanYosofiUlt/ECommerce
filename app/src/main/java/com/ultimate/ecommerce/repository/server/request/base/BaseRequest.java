@@ -7,6 +7,7 @@ import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 import com.ultimate.ecommerce.repository.server.request.create_order.CreateProductRequest;
 import com.ultimate.ecommerce.repository.server.request.create_order.OrderProducts;
 import com.ultimate.ecommerce.repository.server.request.update_cart.UpdateCartProductRequest;
+import com.ultimate.ecommerce.ui.fragment.profile.dialogs.profile_edit.Profile;
 
 import java.util.List;
 
@@ -31,10 +32,10 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getHomePageRequest(String page) {
+    public static RequestBody getHomePageRequest(int page) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("page", page)
+                .addFormDataPart("page", String.valueOf(page))
                 .build();
     }
 
@@ -45,7 +46,6 @@ public class BaseRequest {
                 .build();
     }
 
-    // todo maybe don't work because in postman didn't work
     public static RequestBody getGetOrderRequest(String userId, int orderId) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
@@ -193,15 +193,14 @@ public class BaseRequest {
     }
 
     public static RequestBody getUpdateUserProfileRequest(
-            String userId, String email, String firstName,
-            String lastName, String displayName) {
+            String userId, Profile profile) {
+        // todo check request requirement again
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userID", userId)
-                .addFormDataPart("email", email)
-                .addFormDataPart("first_name", firstName)
-                .addFormDataPart("last_name", lastName)
-                .addFormDataPart("display_name", displayName)
+                .addFormDataPart("email", profile.getEmail())
+                .addFormDataPart("first_name", profile.getName())
+                .addFormDataPart("display_name", profile.getEmail())
                 .build();
     }
 
@@ -231,13 +230,14 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getUpdatePasswordRequest(String userId, String newPassword, String confirmPassword, String userStatus) {
+    public static RequestBody getUpdatePasswordRequest(String userId, String newPassword, String confirmPassword) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userID", userId)
                 .addFormDataPart("newPassword", newPassword)
                 .addFormDataPart("confirmNewPassword", confirmPassword)
-                .addFormDataPart("userStatus", userStatus)
+                // todo handel other user type
+                .addFormDataPart("userStatus", "guest")
                 .build();
     }
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.ultimate.ecommerce.app.DynamicTheme" />
 
         <variable
@@ -225,7 +226,10 @@
                     style="@style/shadow_edittext"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:drawableStart="@drawable/ic_username"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:hint="@string/user_name"
                     android:inputType="textPersonName"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -249,35 +253,23 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userNameCL">
+
                 <EditText
                     android:id="@+id/phoneED"
                     style="@style/shadow_edittext"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
+                    android:clickable="false"
                     android:drawableStart="@drawable/ic_phone"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:hint="@string/user_phone"
                     android:inputType="phone"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/phoneCCP"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
-                <com.rilixtech.widget.countrycodepicker.CountryCodePicker
-                    android:id="@+id/phoneCCP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:padding="10dp"
-                    app:ccp_defaultCode="81"
-                    app:ccp_defaultNameCode="EG"
-                    app:ccp_hideNameCode="true"
-                    app:ccp_textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/phoneED"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/phoneED"
-                    app:layout_constraintVertical_bias="0.47" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -298,9 +290,12 @@
                     style="@style/shadow_edittext"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:drawableStart="@drawable/ic_email"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:hint="@string/user_email"
-                    android:inputType="textPassword"
+                    android:inputType="textEmailAddress"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -309,17 +304,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <include
-                android:id="@+id/registerBtn"
+                android:id="@+id/editBtn"
                 layout="@layout/view_custom_button_borderd"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
-                android:layout_marginBottom="36dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView12"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/changePasswordBtn"
                 app:layout_constraintEnd_toEndOf="@+id/guideline7"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/guideline8"
-                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                app:layout_constraintTop_toBottomOf="@+id/textView19"
+                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline7"
@@ -336,7 +332,7 @@
                 app:layout_constraintGuide_percent="0.2" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/changePasswordBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
@@ -353,7 +349,7 @@
                 android:layout_width="112dp"
                 android:layout_height="112dp"
                 android:layout_marginTop="32dp"
-                android:src="@drawable/image"
+                android:src="@drawable/ic_username"
                 app:civ_border_width="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"

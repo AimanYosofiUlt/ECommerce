@@ -9,6 +9,8 @@
     <string name="empty_email_error">You should inter in Email</string>
     <string name="empty_name_error">You should inter User Name</string>
     <string name="empty_phone_error">You should inter User Phone</string>
+    <string name="empty_new_phone_error">You should inter the new-password</string>
+    <string name="empty_confirm_phone_error">You should inter the confrim-password same to the new password</string>
     <string name="not_agree_terms_error">You should agree The terms and conditions</string>
     <string name="not_email_error">This is not an email address</string>
     <string name="empty_password_error">You Should Inter Your Password</string>
@@ -181,5 +183,11 @@
     <string name="clear_cart">تصفية سلة المشتريات</string>
     <string name="clear_cart_msg">هل انت متأكد من حذف جميع المنتجات من سلة المشتريات؟</string>
     <string name="coupon_code">Coupon code</string>
+    <string name="profile_edit">تعديل البيانات</string>
+    <string name="wron_password_error">كلمة السر خاطئة</string>
+    <string name="new_and_confrim_password_no_same">يجب أن تدخل رمز التحقق مشابه لرمز الدخول الجديد</string>
+    <string name="save_data">حفظ البيانات</string>
+    <string name="empty_cart">سلة المشتريات فارغة، قم بإضافة أصناف داخلها اولا..</string>
+    <string name="logout_msg">هل انت متأكد من تسجيل الخروج من هذا الحساب؟</string>
 
 </resources>

@@ -42,9 +42,9 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface UltimateApi {
-    public static final String LANGUAGE = "en";
-    public static final String tokenKey = "-1";
-    public static final String SECRET_KEY = "123456";
+    String LANGUAGE = "en";
+    String tokenKey = "-1";
+    String SECRET_KEY = "123456";
 
     @Headers({"lang: " + LANGUAGE,
             "tokenKey: " + tokenKey,
@@ -184,7 +184,7 @@ public interface UltimateApi {
     @Headers({"lang: " + LANGUAGE,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
-    @POST("refundOrder")
+        @POST("refundOrder")
     Call<RefundOrderResponse> refundOrder(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
     @Headers({"lang: " + LANGUAGE,
@@ -202,11 +202,10 @@ public interface UltimateApi {
     Call<GetUserProfileResponse> getUserProfile(@Body RequestBody requestBody);
 
     @Headers({"lang: " + LANGUAGE,
-            "tokenKey: " + tokenKey,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("updateProfile")
-    Call<UpdateProfileResponse> updateProfile(@Body RequestBody requestBody);
+    Call<UpdateProfileResponse> updateProfile(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
     @Headers({"lang: " + LANGUAGE,
             "secretKey: " + SECRET_KEY,
@@ -266,11 +265,10 @@ public interface UltimateApi {
     Call<ForgetPasswordResponse> forgetPassword(@Body RequestBody requestBody);
 
     @Headers({"lang: " + LANGUAGE,
-            "tokenKey: " + tokenKey,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("updatePassword")
-    Call<UpdatePasswordResponse> updatePassword(@Body RequestBody requestBody);
+    Call<UpdatePasswordResponse> updatePassword(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
     @Headers({"lang: " + LANGUAGE,
             "tokenKey: " + tokenKey,

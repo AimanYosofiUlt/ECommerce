@@ -44,12 +44,7 @@ public class CartRepo extends BaseRepo {
     }
 
     public void updateCardProduct(Integer productId, int qty) {
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                cartDao.updateCartProduct(productId, qty);
-            }
-        });
+        AsyncTask.execute(() -> cartDao.updateCartProduct(productId, qty));
     }
 
     public void removeCartProduct(Integer productId) {

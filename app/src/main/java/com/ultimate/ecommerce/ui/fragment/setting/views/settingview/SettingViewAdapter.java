@@ -1,13 +1,13 @@
 package com.ultimate.ecommerce.ui.fragment.setting.views.settingview;
 
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.ABOUT;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.ADDRESS;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.CONTACT_US;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.FAVORITE;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.HELP;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.LANG_CUR;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.LOGOUT;
-import static com.ultimate.ecommerce.ui.fragment.setting.SettingFragment.ORDERS;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.ABOUT;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.ADDRESS;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.CONTACT_US;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.FAVORITE;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.HELP;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.LANG_CUR;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.LOGOUT;
+import static com.ultimate.ecommerce.ui.fragment.setting.SettingSt.ORDERS;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -33,21 +33,26 @@ public class SettingViewAdapter extends RecyclerView.Adapter<SettingViewHolder> 
         list = new ArrayList<>();
     }
 
-    public void addSettingItems(Context context, Boolean isUserLogin) {
+    public void addVisitorSettingItems(Context context) {
         list.clear();
-        if (isUserLogin) {
-            list.add(getSettingModel(context, ORDERS, R.string.orders, R.drawable.ic_orders));
-            list.add(getSettingModel(context, ADDRESS, R.string.addresses, R.drawable.ic_address_street));
-        }
-
         list.add(getSettingModel(context, FAVORITE, R.string.favorate, R.drawable.ic_favourite));
         list.add(getSettingModel(context, LANG_CUR, R.string.lang_cur, R.drawable.ic_language_currency));
         list.add(getSettingModel(context, HELP, R.string.help, R.drawable.ic_help));
         list.add(getSettingModel(context, ABOUT, R.string.about, R.drawable.ic_about));
         list.add(getSettingModel(context, CONTACT_US, R.string.contact_us, R.drawable.ic_contact));
+        notifyDataSetChanged();
+    }
 
-        if (isUserLogin)
-            list.add(getSettingModel(context, LOGOUT, R.string.logout, R.drawable.ic_logout));
+    public void addUserSettingItems(Context context) {
+        list.clear();
+        list.add(getSettingModel(context, ORDERS, R.string.orders, R.drawable.ic_orders));
+        list.add(getSettingModel(context, ADDRESS, R.string.addresses, R.drawable.ic_address_street));
+        list.add(getSettingModel(context, FAVORITE, R.string.favorate, R.drawable.ic_favourite));
+        list.add(getSettingModel(context, LANG_CUR, R.string.lang_cur, R.drawable.ic_language_currency));
+        list.add(getSettingModel(context, HELP, R.string.help, R.drawable.ic_help));
+        list.add(getSettingModel(context, ABOUT, R.string.about, R.drawable.ic_about));
+        list.add(getSettingModel(context, CONTACT_US, R.string.contact_us, R.drawable.ic_contact));
+        list.add(getSettingModel(context, LOGOUT, R.string.logout, R.drawable.ic_logout));
         notifyDataSetChanged();
     }
 

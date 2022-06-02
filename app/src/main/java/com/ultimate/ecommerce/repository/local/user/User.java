@@ -13,6 +13,7 @@ public class User {
     String userName;
     String userPhone;
     String userEmail;
+    String password;
     String tokenKey;
     boolean isSubscriber;
 
@@ -21,11 +22,12 @@ public class User {
     }
 
     @Ignore
-    public User(@NonNull String id, String userName, String userPhone, String userEmail, String tokenKey, boolean isSubscriber) {
+    public User(@NonNull String id, String userName, String userPhone, String userEmail,String password, String tokenKey, boolean isSubscriber) {
         this.id = id;
         this.userName = userName;
         this.userPhone = userPhone;
         this.userEmail = userEmail;
+        this.password = password;
         this.tokenKey = tokenKey;
         this.isSubscriber = isSubscriber;
     }
@@ -78,5 +80,13 @@ public class User {
 
     public void setTokenKey(String tokenKey) {
         this.tokenKey = tokenKey;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

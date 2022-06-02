@@ -25,4 +25,10 @@ public interface UserDao extends BaseDao<User> {
 
     @Query("SELECT * FROM User")
     User getUser();
+
+    @Query("SELECT * FROM User")
+    LiveData<User> getUserProfile();
+
+    @Query("UPDATE User SET userName = :name and userEmail = :email")
+    void updateProfile(String name, String email);
 }

@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
@@ -22,7 +21,6 @@ import com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartD
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.cart.views.cart_product.CartProductAdapter;
 import com.ultimate.ecommerce.ui.fragment.cart.views.cart_product.CartProductViewListener;
-import com.ultimate.ecommerce.utilities.CustomDialogListener;
 import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import java.util.List;
@@ -86,7 +84,11 @@ public class CartFragment extends BaseFragment<CartFragmentViewModel> {
     @Override
     public void initObservers() {
         viewModel.productCartLiveData.observe(getViewLifecycleOwner(),
-                data -> adapter.setList(data));
+                data -> {
+                    boolean thereIsNoItem = data.size() == 0;
+                    setNoItemStateVisibility(thereIsNoItem);
+                    adapter.setList(data);
+                });
 
         viewModel.cartTotalLiveData.observe(getViewLifecycleOwner(),
                 total -> binding.coupon.totalAfterDiscountTV.setText(String.valueOf(total)));
@@ -103,6 +105,7 @@ public class CartFragment extends BaseFragment<CartFragmentViewModel> {
         viewModel.cartDataMDL.observe(getViewLifecycleOwner(), new Observer<UpdateCartData>() {
             @Override
             public void onChanged(UpdateCartData data) {
+
                 cartData = data;
                 boolean isPayAvailable = checkProductAvailability(data.getProducts());
 //                if (isPayAvailable) {
@@ -141,6 +144,9 @@ public class CartFragment extends BaseFragment<CartFragmentViewModel> {
         binding.title.titleTV.setText(getString(R.string.cart));
         binding.payBtn.btnTextTV.setText(getString(R.string.pay));
         binding.updateBtn.btnTextTV.setText(getString(R.string.update));
+        binding.noItemStateMessage.messageTV.setText(getString(R.string.empty_cart));
+        setNoItemStateVisibility(true);
+
 
         adapter = new CartProductAdapter(new CartProductViewListener() {
             @Override
@@ -176,6 +182,16 @@ public class CartFragment extends BaseFragment<CartFragmentViewModel> {
         binding.coupon.discountTitle.setVisibility(View.VISIBLE);
         if (discount != 0) {
             binding.coupon.totalBeforeDiscountTV.setVisibility(View.VISIBLE);
+        }
+    }
+
+    void setNoItemStateVisibility(boolean isVisible) {
+        if (isVisible) {
+            binding.mainCL.setVisibility(View.GONE);
+            binding.noItemStateMessage.CL.setVisibility(View.VISIBLE);
+        } else {
+            binding.mainCL.setVisibility(View.VISIBLE);
+            binding.noItemStateMessage.CL.setVisibility(View.GONE);
         }
     }
 

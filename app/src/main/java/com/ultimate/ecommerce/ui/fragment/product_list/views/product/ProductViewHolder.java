@@ -11,6 +11,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -36,8 +37,15 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         initEvent();
     }
 
-    public void bind(ProductAdapterData data) {
+    public void bind(boolean isInDetail, ProductAdapterData data) {
         this.data = data;
+        if (isInDetail) {
+            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT
+            );
+            binding.cardBody.setLayoutParams(lp);
+        }
         binding.productNameTV.setText(data.getData().getTitle());
 
         Glide.with(itemView.getContext())
@@ -59,7 +67,6 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
 //        int discountPrice = Integer.parseInt(data.getData().getPrice()) * Integer.parseInt(data.getData().getDiscountPercentage()) / 100;
 //        bd.priceTV.setText(String.valueOf(discountPrice));
 //        bd.oldPriceTV.setText(data.getData().getPrice());
-
     }
 
     private void initEvent() {
@@ -67,9 +74,11 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
             if (!isInFavorite) {
                 setInFavorite();
                 isInFavorite = true;
+                listener.addToFavorite(data);
             } else {
                 binding.favBtn.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_favourite));
                 isInFavorite = false;
+                listener.removeFromFavorite(data);
             }
         });
 

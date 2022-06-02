@@ -6,8 +6,8 @@ import java.util.List;
 
 public class HomeSections {
     // be Sure About the names
-    @SerializedName(value = "bannerTwoImages", alternate = {"bannerThreeImages","bannerFourImages"})
-    private List<HomePageBanner> bannerTwoImages;
+    @SerializedName(value = "searchSliderOneImages", alternate = {"categoriesImages", "bannerOneImages"})
+    private List<Object> bannerTwoImages;
     @SerializedName("space")
     private int space;
     @SerializedName("title")
@@ -16,14 +16,6 @@ public class HomeSections {
     private String layout;
 
     public HomeSections() {
-    }
-
-    public List<HomePageBanner> getBanner() {
-        return bannerTwoImages;
-    }
-
-    public void setBanner(List<HomePageBanner> bannerTwoImages) {
-        this.bannerTwoImages = bannerTwoImages;
     }
 
     public int getSpace() {

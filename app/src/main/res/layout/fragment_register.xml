@@ -124,10 +124,10 @@
                 app:layout_constraintTop_toTopOf="@+id/twitterRL">
 
                 <com.ultimate.ecommerce.utilities.BorderedButton
+                    android:id="@+id/facebookBtn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:radius="15dp"
-                    android:id="@+id/facebookBtn"
                     app:strokeWidth="1dp" />
 
                 <com.ultimate.ecommerce.utilities.ColoredImage
@@ -152,10 +152,10 @@
                 app:layout_constraintTop_toTopOf="@+id/appleRL">
 
                 <com.ultimate.ecommerce.utilities.BorderedButton
+                    android:id="@+id/twitterBtn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:radius="15dp"
-                    android:id="@+id/twitterBtn"
                     app:strokeWidth="1dp" />
 
                 <com.ultimate.ecommerce.utilities.ColoredImage
@@ -179,8 +179,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10">
 
                 <com.ultimate.ecommerce.utilities.BorderedButton
-                    android:layout_width="match_parent"
                     android:id="@+id/appleBtn"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:radius="15dp"
                     app:strokeWidth="1dp" />
@@ -312,10 +312,10 @@
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:text="@string/optional"
                     android:textColor="#4D000000"
                     android:textSize="14sp"
-                    android:layout_marginEnd="8dp"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -337,18 +337,28 @@
                 app:layout_constraintStart_toStartOf="@+id/emailCL"
                 app:layout_constraintTop_toBottomOf="@+id/emailCL">
 
-                <EditText
-                    android:id="@+id/passwordED"
-                    style="@style/shadow_edittext"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_username"
-                    android:hint="@string/user_password"
-                    android:inputType="textPassword"
+                    app:boxBackgroundMode="none"
+                    app:hintEnabled="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordED"
+                        style="@style/shadow_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_lock"
+                        android:hint="@string/new_password"
+                        android:inputType="textPassword"
+                        android:textAlignment="viewStart" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

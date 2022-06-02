@@ -60,7 +60,7 @@ public class LoginFragmentViewModel extends BaseViewModel {
                 .checkNetwork(context, new CheckNetworkListener() {
                     @Override
                     public void onConnect() {
-                        login(phone, password);
+                        login(phone.trim(), password.trim());
                     }
 
                     @Override

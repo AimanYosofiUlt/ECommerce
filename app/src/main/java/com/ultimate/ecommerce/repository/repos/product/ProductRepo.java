@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCartDao;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
+import com.ultimate.ecommerce.repository.local.user.UserDao;
 import com.ultimate.ecommerce.repository.repos.base.BaseRepo;
 import com.ultimate.ecommerce.repository.repos.cart.CartRepo;
 import com.ultimate.ecommerce.repository.server.request.base.BaseRequest;
@@ -28,6 +29,9 @@ public class ProductRepo extends BaseRepo {
     ProductCartDao cartDao;
 
     @Inject
+    UserDao userDao;
+
+    @Inject
     public ProductRepo() {
 
     }
@@ -43,17 +47,10 @@ public class ProductRepo extends BaseRepo {
     }
 
     public void addReview(int orderId, @NonNull RateOrder rateOrder, ResponsesCallBack<AddReviewResponse> callBack) {
-        //        RequestBody request = BaseRequest.getOrdersRequest(userId);
-        //todo remove test code
-        RequestBody request = BaseRequest.getAddReviewRequest("15259", orderId, rateOrder.getRate(), rateOrder.getComment());
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-//                String tokenKey = userDao.g   etTokenKey();
-                //todo remove test code
-                String tokenKey = "ed3e8e2829fe213e8f370f7a173f5ef0bbc2358d128500d7c3c0ddfbceb6e98c";
-                api.addReview(request, tokenKey).enqueue(callBack);
-            }
+        AsyncTask.execute(() -> {
+            RequestBody request = BaseRequest.getAddReviewRequest(userDao.getUserId(), orderId, rateOrder.getRate(), rateOrder.getComment());
+            String tokenKey = userDao.getTokenKey();
+            api.addReview(request, tokenKey).enqueue(callBack);
         });
     }
 

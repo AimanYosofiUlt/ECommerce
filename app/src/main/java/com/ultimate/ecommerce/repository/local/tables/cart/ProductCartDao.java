@@ -29,6 +29,10 @@ public interface ProductCartDao extends BaseDao<ProductCart> {
     @Query("DELETE FROM ProductCart")
     void clearCart();
 
-    @Query("SELECT SUM(productPrice * productQuantity)  FROM ProductCart")
+    @Query("SELECT " +
+            "   CASE SUM(productPrice * productQuantity) IS NULL " +
+            "   WHEN 1 THEN 0 " +
+            "   ELSE SUM(productPrice * productQuantity) END " +
+            "FROM ProductCart")
     LiveData<Double> getTotal();
 }

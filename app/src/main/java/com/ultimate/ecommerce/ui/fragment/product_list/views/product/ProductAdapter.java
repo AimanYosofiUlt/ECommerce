@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ultimate.ecommerce.R;
-import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        holder.bind(list.get(position));
+        holder.bind(isInDetail, list.get(position));
     }
 
     @Override

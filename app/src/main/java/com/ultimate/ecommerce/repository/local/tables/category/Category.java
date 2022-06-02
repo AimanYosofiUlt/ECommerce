@@ -24,7 +24,10 @@ public class Category implements Serializable {
     }
 
     @Ignore
-    public Category(Integer id, String slug, String title, String description, String image, Integer parent, Integer count, String gradientStartColor, String gradientEndColor) {
+    public Category(Integer id, String slug, String title, String description
+            , String image
+            , Integer parent, Integer count
+            , String gradientStartColor, String gradientEndColor) {
         this.id = id;
         this.slug = slug;
         this.title = title;

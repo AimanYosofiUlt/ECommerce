@@ -1,6 +1,7 @@
 package com.ultimate.ecommerce.repository.server.response.homepage;
 
 import com.google.gson.annotations.SerializedName;
+import com.ultimate.ecommerce.repository.server.response.homepage.base.BaseSection;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class HomePageData {
     @SerializedName("pages")
     private int pages;
     @SerializedName("homeSections")
-    private List<HomeSections> homeSections;
+    private List<BaseSection> homeSections;
 
     public HomePageData() {
     }
@@ -21,11 +22,11 @@ public class HomePageData {
         this.pages = pages;
     }
 
-    public List<HomeSections> getHomeSections() {
+    public List<BaseSection> getHomeSections() {
         return homeSections;
     }
 
-    public void setHomeSections(List<HomeSections> homeSections) {
+    public void setHomeSections(List<BaseSection> homeSections) {
         this.homeSections = homeSections;
     }
 }

@@ -1,6 +1,7 @@
 package com.ultimate.ecommerce.repository.repos.user;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -16,9 +17,12 @@ import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.get_address_fields.GetAddressFieldsResponse;
 import com.ultimate.ecommerce.repository.server.response.get_user_profile.GetUserProfileResponse;
 import com.ultimate.ecommerce.repository.server.response.login_user.LoginUserResponse;
+import com.ultimate.ecommerce.repository.server.response.logout.LogoutResponse;
 import com.ultimate.ecommerce.repository.server.response.payment_methods.PaymentMethodsResponse;
 import com.ultimate.ecommerce.repository.server.response.shipping_methods.ShippingMethodsResponse;
 import com.ultimate.ecommerce.repository.server.response.update_password.UpdatePasswordResponse;
+import com.ultimate.ecommerce.repository.server.response.update_profile.UpdateProfileResponse;
+import com.ultimate.ecommerce.ui.fragment.profile.dialogs.profile_edit.Profile;
 
 import javax.inject.Inject;
 
@@ -39,7 +43,7 @@ public class UserRepo extends BaseRepo {
             @Override
             public void onSuccess(AddUserResponse response) {
                 AddUserData data = response.getData();
-                User user = convertResponseToUser(data.getUser(), data.getTokenkey());
+                User user = convertResponseToUser(data.getUser(), userPassword, data.getTokenkey());
                 setAppUser(user);
                 callBack.onSuccess(response);
             }
@@ -68,7 +72,7 @@ public class UserRepo extends BaseRepo {
             @Override
             public void onSuccess(LoginUserResponse response) {
                 AddUserData data = response.getData();
-                User user = convertResponseToUser(data.getUser(), data.getTokenkey());
+                User user = convertResponseToUser(data.getUser(), userPassword, data.getTokenkey());
                 setAppUser(user);
                 callBack.onSuccess(response);
             }
@@ -80,28 +84,30 @@ public class UserRepo extends BaseRepo {
         });
     }
 
-    private User convertResponseToUser(UserResponse response, String tokenkey) {
+    private User convertResponseToUser(UserResponse response, String password, String tokenkey) {
         UserData userData = response.getData();
         String id = userData.getId();
         String name = userData.getDisplayName();
         String email = userData.getUserEmail();
         String phone = userData.getUserLogin();
         boolean isSubs = response.getCaps().getSubscriber();
-        return new User(id, name, phone, email, tokenkey, isSubs);
+        return new User(id, name, phone, email, password, tokenkey, isSubs);
     }
 
     public void getUserProfile(ResponsesCallBack<GetUserProfileResponse> callBack) {
-        RequestBody request = BaseRequest.getGetUserProfileRequest(getUserId());
-        api.getUserProfile(request).enqueue(new ResponsesCallBack<GetUserProfileResponse>() {
-            @Override
-            public void onSuccess(GetUserProfileResponse response) {
-                callBack.onSuccess(response);
-            }
+        AsyncTask.execute(() -> {
+            RequestBody request = BaseRequest.getGetUserProfileRequest(getUserId());
+            api.getUserProfile(request).enqueue(new ResponsesCallBack<GetUserProfileResponse>() {
+                @Override
+                public void onSuccess(GetUserProfileResponse response) {
+                    callBack.onSuccess(response);
+                }
 
-            @Override
-            public void onFailure(String state, String msg) {
-                callBack.onFailure(state, msg);
-            }
+                @Override
+                public void onFailure(String state, String msg) {
+                    callBack.onFailure(state, msg);
+                }
+            });
         });
     }
 
@@ -117,8 +123,12 @@ public class UserRepo extends BaseRepo {
         return userDao.getUserPhone();
     }
 
-    public void changePassword(String currentPassword, String newPassword, String confirmPassword, ResponsesCallBack<UpdatePasswordResponse> updatePasswordResponseResponsesCallBack) {
-
+    public void changePassword(String newPassword, String confirmPassword, ResponsesCallBack<UpdatePasswordResponse> callBack) {
+        AsyncTask.execute(() -> {
+            RequestBody request = BaseRequest.getUpdatePasswordRequest(userDao.getUserId(), newPassword, confirmPassword);
+            String tokenKey = userDao.getTokenKey();
+            api.updatePassword(request, tokenKey).enqueue(callBack);
+        });
     }
 
     public User getUser() {
@@ -154,6 +164,48 @@ public class UserRepo extends BaseRepo {
             RequestBody request = BaseRequest.getRequestByUserID(userDao.getUserId());
             String tokenKey = userDao.getTokenKey();
             api.paymentMethods(request, tokenKey).enqueue(callBack);
+        });
+    }
+
+    public LiveData<User> getUserProfile() {
+        return userDao.getUserProfile();
+    }
+
+    public void updateProfile(Profile profile, ResponsesCallBack<UpdateProfileResponse> callBack) {
+        AsyncTask.execute(() -> {
+            RequestBody request = BaseRequest.getUpdateUserProfileRequest(userDao.getUserId(), profile);
+            String tokenKey = userDao.getTokenKey();
+            api.updateProfile(request, tokenKey).enqueue(new ResponsesCallBack<UpdateProfileResponse>() {
+                @Override
+                public void onSuccess(UpdateProfileResponse response) {
+                    userDao.updateProfile(profile.getName(), profile.getEmail());
+                    callBack.onSuccess(response);
+                }
+
+                @Override
+                public void onFailure(String state, String msg) {
+                    callBack.onFailure(state, msg);
+                }
+            });
+        });
+    }
+
+    public void logout(ResponsesCallBack<LogoutResponse> callBack) {
+        AsyncTask.execute(() -> {
+            RequestBody request = BaseRequest.getRequestByUserID(userDao.getUserId());
+            api.logout(request).enqueue(new ResponsesCallBack<LogoutResponse>() {
+                @Override
+                public void onSuccess(LogoutResponse response) {
+                    Log.d("TAG", "onSuccess: 29382l");
+                    AsyncTask.execute(() -> userDao.deleteCurrentUser());
+                    callBack.onSuccess(response);
+                }
+
+                @Override
+                public void onFailure(String state, String msg) {
+                    callBack.onFailure(state, msg);
+                }
+            });
         });
     }
 }

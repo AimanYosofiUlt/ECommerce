@@ -59,8 +59,6 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
         viewModel.responseStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {
-                //todo delete this toast
-                Toast.makeText(requireContext(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
                 bd.internetCheck.progressBar.setVisibility(View.GONE);
                 Log.d("CategoryFragment", "onChanged: 29387428: " + responseState.getMessage());
             }

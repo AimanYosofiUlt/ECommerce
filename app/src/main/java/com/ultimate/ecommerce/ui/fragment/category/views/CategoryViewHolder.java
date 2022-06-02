@@ -1,6 +1,7 @@
 package com.ultimate.ecommerce.ui.fragment.category.views;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -8,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ultimate.ecommerce.R;
+import com.ultimate.ecommerce.app.DynamicTheme;
 import com.ultimate.ecommerce.databinding.ViewCategoryBinding;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
 
 public class CategoryViewHolder extends RecyclerView.ViewHolder {
+    private static final String TAG = "CategoryViewHolder";
     ViewCategoryBinding bd;
 
     Category category;
@@ -42,8 +45,15 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
                 .error(R.drawable.ic_baseline_error_24)
                 .into(bd.categoryImg);
 
-        int gradientStartColor = Color.parseColor(category.getGradientStartColor());
-        int gradientEndColor = Color.parseColor(category.getGradientEndColor());
+        int gradientStartColor = DynamicTheme.gradientStartColor;
+        int gradientEndColor = DynamicTheme.gradientEndColor;
+        try {
+            gradientStartColor = Color.parseColor(category.getGradientStartColor());
+            gradientEndColor = Color.parseColor(category.getGradientEndColor());
+        } catch (Exception exception) {
+            Log.d(TAG, "bind: "+exception.getMessage());
+        }
+
         bd.back.setGradient(gradientStartColor, gradientEndColor);
     }
 }

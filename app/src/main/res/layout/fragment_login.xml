@@ -89,9 +89,9 @@
             <RelativeLayout
                 android:id="@+id/googleRL"
                 android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="@+id/facebookRL"
                 app:layout_constraintEnd_toEndOf="@+id/textView10"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -269,20 +269,28 @@
                 app:layout_constraintStart_toStartOf="@+id/phoneCL"
                 app:layout_constraintTop_toBottomOf="@+id/phoneCL">
 
-                <EditText
-                    android:id="@+id/passwordED"
-                    style="@style/shadow_edittext"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_username"
-                    android:hint="@string/user_password"
-                    android:text="1234567813"
-                    android:inputType="textPassword"
+                    app:boxBackgroundMode="none"
+                    app:hintEnabled="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:passwordToggleEnabled="true">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordED"
+                        style="@style/shadow_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_lock"
+                        android:hint="@string/new_password"
+                        android:inputType="textPassword"
+                        android:textAlignment="viewStart" />
+
+                </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <include
