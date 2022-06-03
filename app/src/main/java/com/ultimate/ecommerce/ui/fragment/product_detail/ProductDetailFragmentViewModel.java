@@ -6,7 +6,9 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.favorite.Favorite;
+import com.ultimate.ecommerce.repository.repos.cart.CartRepo;
 import com.ultimate.ecommerce.repository.repos.favorite.FavoriteRepo;
 import com.ultimate.ecommerce.repository.repos.product.ProductRepo;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
@@ -29,6 +31,9 @@ public class ProductDetailFragmentViewModel extends BaseViewModel {
 
     @Inject
     FavoriteRepo favoriteRepo;
+
+    @Inject
+    CartRepo cartRepo;
 
     MutableLiveData<ResponseState> getDetailResponseMDL;
     MutableLiveData<GetProductData> productResponseMDL;
@@ -84,11 +89,16 @@ public class ProductDetailFragmentViewModel extends BaseViewModel {
     private Favorite convertProductToFavorite(ProductAdapterData data) {
         ProductData productData = data.getData();
         return new Favorite(productData.getId(), productData.getTitle(), productData.getImageUrl()
-                , productData.getPrice(), productData.getDiscountPercentage(), productData.getRatingCount());
+                , productData.getPrice(),productData.getShortDescription()
+                , productData.getDiscountPercentage(), productData.getRatingCount());
     }
 
     public void removeFromFavorite(ProductAdapterData data) {
         Favorite favorite = convertProductToFavorite(data);
         favoriteRepo.removeFavorite(favorite);
+    }
+
+    public void addToCart(ProductCart productCart) {
+        cartRepo.addToCart(productCart);
     }
 }

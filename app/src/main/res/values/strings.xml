@@ -189,5 +189,7 @@
     <string name="save_data">حفظ البيانات</string>
     <string name="empty_cart">سلة المشتريات فارغة، قم بإضافة أصناف داخلها اولا..</string>
     <string name="logout_msg">هل انت متأكد من تسجيل الخروج من هذا الحساب؟</string>
+    <string name="favorite_delete_from">حذف من المفضلة</string>
+    <string name="favorite_delete_from_msg">هل تريد حذف هذا الصنف من المفضلة؟</string>
 
 </resources>

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
     public class FavoriteProductAdapter extends RecyclerView.Adapter<FavoriteProductViewHolder> {
-    List<Favorite> list;
+    List<FavoriteAdapterData> list;
     FavoriteProductViewListener listener;
 
     public FavoriteProductAdapter(FavoriteProductViewListener listener) {
@@ -19,7 +19,7 @@ import java.util.List;
         this.listener = listener;
     }
 
-    public void setList(List<Favorite> list) {
+    public void setList(List<FavoriteAdapterData> list) {
         this.list = list;
         notifyDataSetChanged();
     }

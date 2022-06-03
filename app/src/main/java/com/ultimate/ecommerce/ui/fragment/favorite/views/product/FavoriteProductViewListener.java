@@ -8,4 +8,5 @@ public interface FavoriteProductViewListener {
     void onAddToCart(ProductCart productCart);
     void onClick(Favorite data);
     void removeFromFavorite(Favorite data);
+
 }

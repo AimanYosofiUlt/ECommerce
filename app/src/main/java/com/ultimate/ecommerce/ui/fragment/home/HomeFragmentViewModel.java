@@ -8,13 +8,19 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ultimate.ecommerce.R;
+import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
+import com.ultimate.ecommerce.repository.local.tables.favorite.Favorite;
+import com.ultimate.ecommerce.repository.repos.cart.CartRepo;
 import com.ultimate.ecommerce.repository.repos.category.CategoryRepo;
+import com.ultimate.ecommerce.repository.repos.favorite.FavoriteRepo;
 import com.ultimate.ecommerce.repository.repos.homepage.HomePageRepo;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
+import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
 import com.ultimate.ecommerce.repository.server.response.homepage.HomePageData;
 import com.ultimate.ecommerce.repository.server.response.homepage.HomePageResponse;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
+import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdapterData;
 import com.ultimate.ecommerce.utilities.state.CheckNetworkListener;
 import com.ultimate.ecommerce.utilities.state.OnValidateListener;
 import com.ultimate.ecommerce.utilities.state.StateUtil;
@@ -24,6 +30,12 @@ import javax.inject.Inject;
 public class HomeFragmentViewModel extends BaseViewModel {
     @Inject
     HomePageRepo homePageRepo;
+
+    @Inject
+    CartRepo cartRepo;
+
+    @Inject
+    FavoriteRepo favoriteRepo;
 
     private static final String TAG = "HomeFragmentViewModel";
 
@@ -82,5 +94,26 @@ public class HomeFragmentViewModel extends BaseViewModel {
                         homepageResponseMDL.setValue(ResponseState.failureState(context.getString(R.string.no_internet_connection)));
                     }
                 });
+    }
+
+    public void addToCart(ProductCart productCart) {
+        cartRepo.addToCart(productCart);
+    }
+
+    public void addToFavorite(ProductAdapterData data) {
+        Favorite favorite = convertProductToFavorite(data);
+        favoriteRepo.addFavorite(favorite);
+    }
+
+    private Favorite convertProductToFavorite(ProductAdapterData data) {
+        ProductData productData = data.getData();
+        return new Favorite(productData.getId(), productData.getTitle(), productData.getImageUrl()
+                , productData.getPrice(),productData.getShortDescription()
+                , productData.getDiscountPercentage(), productData.getRatingCount());
+    }
+
+    public void removeFromFavorite(ProductAdapterData data) {
+        Favorite favorite = convertProductToFavorite(data);
+        favoriteRepo.removeFavorite(favorite);
     }
 }

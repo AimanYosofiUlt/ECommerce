@@ -11,20 +11,23 @@ public class Favorite {
     String title;
     String imageUrl;
     String price;
+    String shortDescription;
     String discountPercentage;
-    int ratingCount;
+    Integer ratingCount;
 
     public Favorite() {
     }
 
     @Ignore
-    public Favorite(Integer id ,String title, String imageUrl
-            , String price, String discountPercentage
-            , int ratingCount) {
+    public Favorite(Integer id, String title
+            , String imageUrl, String price
+            , String shortDescription, String discountPercentage
+            , Integer ratingCount) {
         this.id = id;
         this.title = title;
         this.imageUrl = imageUrl;
         this.price = price;
+        this.shortDescription = shortDescription;
         this.discountPercentage = discountPercentage;
         this.ratingCount = ratingCount;
     }
@@ -61,6 +64,14 @@ public class Favorite {
         this.price = price;
     }
 
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
     public String getDiscountPercentage() {
         return discountPercentage;
     }
@@ -69,11 +80,11 @@ public class Favorite {
         this.discountPercentage = discountPercentage;
     }
 
-    public int getRatingCount() {
+    public Integer getRatingCount() {
         return ratingCount;
     }
 
-    public void setRatingCount(int ratingCount) {
+    public void setRatingCount(Integer ratingCount) {
         this.ratingCount = ratingCount;
     }
 }

@@ -198,25 +198,26 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
         ProductAdapter productAdapter = new ProductAdapter(true, new ProductViewListener() {
             @Override
             public void onAddToCart(ProductCart productCart) {
-                // todo handle add to cart
+                viewModel.addToCart(productCart);
             }
 
             @Override
             public void onClick(ProductAdapterData data) {
+                int productId = data.getData().getId();
                 NavHostFragment.findNavController(requireParentFragment())
                         .navigate(
-                                ProductDetailFragmentDirections.actionToSelf(data)
+                                ProductDetailFragmentDirections.actionToSelf().setProductId(productId)
                         );
             }
 
             @Override
             public void addToFavorite(ProductAdapterData data) {
-
+                viewModel.addToFavorite(data);
             }
 
             @Override
             public void removeFromFavorite(ProductAdapterData data) {
-
+                viewModel.removeFromFavorite(data);
             }
         });
         recyclerView.setAdapter(productAdapter);

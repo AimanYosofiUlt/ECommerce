@@ -20,10 +20,11 @@ import com.bumptech.glide.Glide;
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.DynamicTheme;
 import com.ultimate.ecommerce.databinding.ViewProductBinding;
+import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.favorite.Favorite;
 
 public class FavoriteProductViewHolder extends RecyclerView.ViewHolder {
-    Favorite data;
+    FavoriteAdapterData data;
     FavoriteProductViewListener listener;
     ViewProductBinding binding;
 
@@ -40,41 +41,44 @@ public class FavoriteProductViewHolder extends RecyclerView.ViewHolder {
         setInFavorite();
     }
 
-    public void bind(Favorite data) {
+    public void bind(FavoriteAdapterData data) {
         this.data = data;
-        binding.productNameTV.setText(data.getTitle());
+        Favorite favorite = data.getFavorite();
+        binding.productNameTV.setText(favorite.getTitle());
 
         Glide.with(itemView.getContext())
-                .load(data.getImageUrl())
+                .load(favorite.getImageUrl())
                 .error(R.drawable.ic_baseline_error_24)
                 .into(binding.productImage);
 
-        binding.priceTV.setText(data.getPrice());
-        binding.oldPriceTV.setText(data.getPrice());
-        binding.discountPercentageTV.setText(data.getDiscountPercentage());
-        binding.rateTV.setText(String.valueOf(data.getRatingCount()));
+        binding.priceTV.setText(favorite.getPrice());
+        binding.oldPriceTV.setText(favorite.getPrice());
+        binding.discountPercentageTV.setText(favorite.getDiscountPercentage());
+        binding.rateTV.setText(String.valueOf(favorite.getRatingCount()));
 
-//        String cartQuantityStr = String.valueOf(data.getCartQuantity());
-//        binding.countTV.setText(cartQuantityStr);
+        String cartQuantityStr = String.valueOf(data.getCartQuantity());
+        binding.countTV.setText(cartQuantityStr);
     }
 
     private void initEvent() {
         binding.favBtn.setOnClickListener(view -> {
-
+            Favorite favorite = data.getFavorite();
+            listener.removeFromFavorite(favorite);
         });
 
         binding.addToCartBtn.setOnClickListener(view -> {
+            Favorite favorite = data.getFavorite();
             binding.countTV.setVisibility(View.VISIBLE);
-//            String countStr = String.valueOf(data.increaseQuantity());
-//            binding.countTV.setText(countStr);
+            String countStr = String.valueOf(data.increaseQuantity());
+            binding.countTV.setText(countStr);
 
-//            ProductCart productCart = new ProductCart(data.getId(), data.getTitle()
-//                    , data.getRatingCount(), data.getDiscountPercentage()
-//                    , data.getPrice(), data.getCartQuantity(), data.getShortDescription());
-//            listener.onAddToCart(productCart);
+            ProductCart productCart = new ProductCart(favorite.getId(), favorite.getTitle(), favorite.getImageUrl(),
+                    favorite.getPrice(), favorite.getShortDescription(), favorite.getDiscountPercentage()
+                    , favorite.getRatingCount(), data.getCartQuantity());
+            listener.onAddToCart(productCart);
         });
 
-        binding.cardBody.setOnClickListener(view -> listener.onClick(data));
+        binding.cardBody.setOnClickListener(view -> listener.onClick(data.getFavorite()));
     }
 
     public void setInFavorite() {

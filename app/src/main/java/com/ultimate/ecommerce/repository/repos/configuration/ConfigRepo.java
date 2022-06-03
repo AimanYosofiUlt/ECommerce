@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
 import com.ultimate.ecommerce.repository.local.tables.configuration.ConfigurationDao;
 import com.ultimate.ecommerce.repository.repos.base.BaseRepo;
+import com.ultimate.ecommerce.repository.repos.user.UserRepo;
 import com.ultimate.ecommerce.repository.server.request.base.BaseRequest;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.configuration.ConfigurationResponse;
@@ -18,6 +19,9 @@ import okhttp3.RequestBody;
 public class ConfigRepo extends BaseRepo {
     @Inject
     ConfigurationDao dao;
+
+    @Inject
+    UserRepo userRepo;
 
     @Inject
     public ConfigRepo() {
@@ -38,7 +42,9 @@ public class ConfigRepo extends BaseRepo {
     }
 
     public void getConfigFromApi(ResponsesCallBack<ConfigurationResponse> callBack) {
-        RequestBody requestBody = BaseRequest.getRequestByUserID("-1");
-        api.getConfiguration(requestBody).enqueue(callBack);
+        AsyncTask.execute(() -> {
+            RequestBody requestBody = BaseRequest.getBaseRequest();
+            api.getConfiguration(requestBody).enqueue(callBack);
+        });
     }
 }

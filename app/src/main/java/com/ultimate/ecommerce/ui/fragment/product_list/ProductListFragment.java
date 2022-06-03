@@ -22,7 +22,6 @@ import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.get_products.Categories;
 import com.ultimate.ecommerce.repository.server.response.get_products.FiltersData;
-import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.FilterBottomSheet;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdapter;
@@ -140,9 +139,10 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
 
             @Override
             public void onClick(ProductAdapterData data) {
+                int productId = data.getData().getId();
                 NavHostFragment.findNavController(requireParentFragment())
                         .navigate(
-                                ProductListFragmentDirections.actionProductListToProductDetail(data)
+                                ProductListFragmentDirections.actionProductListToProductDetail().setProductId(productId)
                         );
             }
 

@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
-import com.ultimate.ecommerce.app.GlobalVariable;
 import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
 import com.ultimate.ecommerce.repository.local.tables.setting.AppSettingDao;
 import com.ultimate.ecommerce.repository.repos.base.BaseRepo;
@@ -30,5 +29,9 @@ public class AppSettingRepo extends BaseRepo {
 
     public LiveData<AppSetting> getAppSetting() {
         return settingDao.getAppSetting();
+    }
+
+    public void changeLanguage(String language) {
+        settingDao.changeLanguage(language);
     }
 }

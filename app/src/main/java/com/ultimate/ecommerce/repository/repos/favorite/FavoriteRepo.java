@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.ultimate.ecommerce.repository.local.tables.favorite.Favorite;
 import com.ultimate.ecommerce.repository.local.tables.favorite.FavoriteDao;
+import com.ultimate.ecommerce.ui.fragment.favorite.views.product.FavoriteAdapterData;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class FavoriteRepo {
     public FavoriteRepo() {
     }
 
-    public LiveData<List<Favorite>> getFavoriteProducts() {
+    public LiveData<List<FavoriteAdapterData>> getFavoriteProducts() {
         return favoriteDao.getFavoriteProducts();
     }
 
@@ -28,6 +29,6 @@ public class FavoriteRepo {
     }
 
     public void removeFavorite(Favorite favorite) {
-        AsyncTask.execute(() -> favoriteDao.delete(favorite));
+        AsyncTask.execute(() -> favoriteDao.deleteFavorite(favorite.getId()));
     }
 }

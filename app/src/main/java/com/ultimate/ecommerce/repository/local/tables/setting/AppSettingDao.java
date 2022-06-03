@@ -13,4 +13,7 @@ public interface AppSettingDao extends BaseDao<AppSetting> {
 
     @Query("SELECT * FROM AppSetting")
     LiveData<AppSetting> getAppSetting();
+
+    @Query("UPDATE AppSetting SET language = :language")
+    void changeLanguage(String language);
 }

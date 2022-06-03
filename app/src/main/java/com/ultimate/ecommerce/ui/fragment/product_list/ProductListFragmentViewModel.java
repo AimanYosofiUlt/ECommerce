@@ -129,7 +129,7 @@ public class ProductListFragmentViewModel extends BaseViewModel {
     private Favorite convertProductToFavorite(ProductAdapterData data) {
         ProductData productData = data.getData();
         return new Favorite(productData.getId(), productData.getTitle(), productData.getImageUrl()
-                , productData.getPrice(), productData.getDiscountPercentage(), productData.getRatingCount());
+                , productData.getPrice(),productData.getShortDescription(), productData.getDiscountPercentage(), productData.getRatingCount());
     }
 
     public void removeFromFavorite(ProductAdapterData data) {

@@ -54,13 +54,14 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class ProductDetailFragment extends BaseFragment<ProductDetailFragmentViewModel> {
     FragmentProductDetailBinding binding;
     ProductAdapterData product;
+    int productId;
     ImageAdapter imageAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentProductDetailBinding.inflate(getLayoutInflater());
-        product = ProductDetailFragmentArgs.fromBundle(getArguments()).getProduct();
+        productId = ProductDetailFragmentArgs.fromBundle(getArguments()).getProductId();
         return binding.getRoot();
     }
 
@@ -172,14 +173,14 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailFragmentVie
         ProductAdapter productAdapter = new ProductAdapter(true, new ProductViewListener() {
             @Override
             public void onAddToCart(ProductCart productCart) {
-                // todo handle add to cart
+                viewModel.addToCart(productCart);
             }
 
             @Override
             public void onClick(ProductAdapterData data) {
                 NavHostFragment.findNavController(requireParentFragment())
                         .navigate(
-                                ProductDetailFragmentDirections.actionToSelf(data)
+                                ProductDetailFragmentDirections.actionToSelf().setProductId(data.getData().getId())
                         );
             }
 

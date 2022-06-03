@@ -31,7 +31,6 @@ public class SharedPreferenceHelper {
         editor.apply();
     }
 
-
     public static String getSharedPreferenceString(Context context, String key, String defValue) {
         SharedPreferences settings = context.getSharedPreferences(Keys.PREF_FILE.getValue(), 0);
         return settings.getString(key, defValue);

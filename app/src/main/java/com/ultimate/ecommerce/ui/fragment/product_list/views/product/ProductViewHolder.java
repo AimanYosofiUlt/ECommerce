@@ -88,8 +88,9 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
             binding.countTV.setText(countStr);
             ProductData productData = this.data.getData();
             ProductCart productCart = new ProductCart(productData.getId(), productData.getTitle()
-                    , productData.getRatingCount(), productData.getDiscountPercentage()
-                    , productData.getPrice(), data.getCartQuantity(), productData.getShortDescription());
+                    , productData.getImageUrl(), productData.getPrice()
+                    , productData.getShortDescription(), productData.getDiscountPercentage()
+                    , productData.getRatingCount(),data.getCartQuantity());
             listener.onAddToCart(productCart);
         });
 
