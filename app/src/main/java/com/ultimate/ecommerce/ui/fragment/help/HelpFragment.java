@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.databinding.FragmentHelpBinding;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
@@ -32,7 +33,9 @@ public class HelpFragment extends BaseFragment<HelpFragmentViewModel> {
 
     @Override
     public void initEvent() {
-
+        binding.placeholder.backBtn.setOnClickListener(view ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack());
     }
 
     @Override

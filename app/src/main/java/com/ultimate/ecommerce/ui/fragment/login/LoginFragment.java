@@ -21,13 +21,20 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentLoginBinding;
-import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.get_auth.Field;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.login.views.auth_edittext.AuthEditResponseState;
 import com.ultimate.ecommerce.ui.fragment.login.views.auth_edittext.AuthEdittext;
-import com.ultimate.ecommerce.ui.fragment.login.views.auth_edittext.AuthEdittextListener;
 import com.ultimate.ecommerce.utilities.LayoutUtil;
+import com.ultimate.ecommerce.utilities.views.server_fields.FieldAdapter;
+import com.ultimate.ecommerce.utilities.views.server_fields.FieldSt;
+import com.ultimate.ecommerce.utilities.views.server_fields.base.BaseFieldView;
+import com.ultimate.ecommerce.utilities.views.server_fields.base.FieldData;
+import com.ultimate.ecommerce.utilities.views.server_fields.fiedls.EditFieldView;
+import com.ultimate.ecommerce.utilities.views.server_fields.validate.EmailValidate;
+import com.ultimate.ecommerce.utilities.views.server_fields.validate.EmptyValidation;
+import com.ultimate.ecommerce.utilities.views.server_fields.validate.PasswordValidate;
+import com.ultimate.ecommerce.utilities.views.server_fields.validate.PhoneValidate;
 
 import java.util.ArrayList;
 
@@ -39,6 +46,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
     FragmentLoginBinding binding;
     ArrayList<AuthEdittext> fieldList;
+    FieldAdapter adapter;
 
     public LoginFragment() {
         fieldList = new ArrayList<>();
@@ -67,32 +75,20 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
         binding.registerBtn.btnBody.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
                 .navigate(R.id.actionLoginToRegister));
 
-        binding.googleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.googleBtn.setOnClickListener(view -> {
 
-            }
         });
 
-        binding.facebookBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.facebookBtn.setOnClickListener(view -> {
 
-            }
         });
 
-        binding.twitterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.twitterBtn.setOnClickListener(view -> {
 
-            }
         });
 
-        binding.appleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.appleBtn.setOnClickListener(view -> {
 
-            }
         });
 
         binding.registerBtn.btnBody.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
@@ -100,13 +96,8 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
                         LoginFragmentDirections.actionLoginToRegister()
                 ));
 
-        binding.asVistorLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(requireParentFragment())
-                        .popBackStack();
-            }
-        });
+        binding.asVistorLink.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
+                .popBackStack());
 
         binding.forgetPasswordLink.setOnClickListener(view -> {
 
@@ -115,35 +106,45 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
 
     @Override
     public void initObservers() {
-        viewModel.responseStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
-            @Override
-            public void onChanged(ResponseState responseState) {
-                hideProgress();
-                if (responseState.isSuccessful()) {
-                    NavHostFragment.findNavController(requireParentFragment()).popBackStack();
-                    Toast.makeText(requireContext(), getText(R.string.login_success), Toast.LENGTH_SHORT).show();
-                } else {
-                    LayoutUtil.showMassageDialog(requireContext()
-                            , getString(R.string.login_filed)
-                            , responseState.getMessage());
-                }
+        viewModel.responseStateMDL.observe(getViewLifecycleOwner(), responseState -> {
+            hideProgress();
+            if (responseState.isSuccessful()) {
+                NavHostFragment.findNavController(requireParentFragment()).popBackStack();
+                Toast.makeText(requireContext(), getText(R.string.login_success), Toast.LENGTH_SHORT).show();
+            } else {
+                LayoutUtil.showMassageDialog(requireContext()
+                        , getString(R.string.login_filed)
+                        , responseState.getMessage());
             }
         });
 
         viewModel.authsMDL.observe(getViewLifecycleOwner(), fields -> {
             for (Field field : fields) {
-                View view = getFieldView(field);
-                binding.fieldsLL.addView(view);
+                FieldData fieldData = new FieldData(field.getName(), field.isRequired());
+                BaseFieldView fieldView = getFieldView(fieldData, field.getName());
+                adapter.add(fieldView);
             }
         });
     }
 
-
-    private View getFieldView(Field field) {
-        AuthEdittext authEdittext = new AuthEdittext(requireContext(), field, new AuthEdittextListener() {
-        });
-        fieldList.add(authEdittext);
-        return authEdittext.getView();
+    private BaseFieldView getFieldView(FieldData data, String name) {
+        switch (name) {
+            case FieldSt.EMAIL: {
+                EmailValidate validate = new EmailValidate();
+                return new EditFieldView(requireContext(), data, validate);
+            }
+            case FieldSt.PHONE: {
+                PhoneValidate validate = new PhoneValidate();
+                return new EditFieldView(requireContext(), data, validate);
+            }
+            case FieldSt.PASSWORD: {
+                PasswordValidate validate = new PasswordValidate();
+                return new EditFieldView(requireContext(), data, validate);
+            }
+            default:
+                EmptyValidation validate = new EmptyValidation();
+                return new EditFieldView(requireContext(), data, validate);
+        }
     }
 
 
@@ -153,6 +154,10 @@ public class LoginFragment extends BaseFragment<LoginFragmentViewModel> {
         binding.loginBtn.btnTextTV.setText(getString(R.string.login));
         binding.loginBtn.btnTextTV.setText(getString(R.string.login));
         binding.registerBtn.btnTextTV.setText(getString(R.string.register_new));
+
+        adapter = new FieldAdapter(requireContext());
+        binding.fieldsLV.setAdapter(adapter);
+
         viewModel.initLoginScreenAuth();
     }
 

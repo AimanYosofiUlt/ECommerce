@@ -13,10 +13,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.DynamicTheme;
-import com.ultimate.ecommerce.app.GlobalVariable;
 import com.ultimate.ecommerce.databinding.FragmentSplashBinding;
 import com.ultimate.ecommerce.repository.local.tables.configuration.Configuration;
-import com.ultimate.ecommerce.repository.local.tables.setting.AppSetting;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.utilities.CustomDialogListener;
@@ -26,14 +24,14 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
-    FragmentSplashBinding bd;
+    FragmentSplashBinding binding;
     boolean isStartAllow = false;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        bd = FragmentSplashBinding.inflate(getLayoutInflater());
-        return bd.getRoot();
+        binding = FragmentSplashBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     private void tryGoMain() {
@@ -60,7 +58,7 @@ public class SplashFragment extends BaseFragment<SplashFragmentViewModel> {
                 DynamicTheme.imageBackground = Color.parseColor(configuration.getImageBackground());
                 DynamicTheme.reviewColor = Color.parseColor(configuration.getReviewColor());
 
-                bd.back.setGradientDef();
+                binding.back.setGradientDef();
             }
         });
 

@@ -210,8 +210,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/twitterRL" />
 
 
-            <LinearLayout
-                android:id="@+id/fieldsLL"
+            <ListView
+                android:id="@+id/fieldsLV"
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -285,9 +285,9 @@
                 android:textColor="@{color.gradientStartColor}"
                 android:textSize="12sp"
                 android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="@+id/fieldsLL"
-                app:layout_constraintStart_toStartOf="@+id/fieldsLL"
-                app:layout_constraintTop_toBottomOf="@+id/fieldsLL" />
+                app:layout_constraintEnd_toEndOf="@+id/fieldsLV"
+                app:layout_constraintStart_toStartOf="@+id/fieldsLV"
+                app:layout_constraintTop_toBottomOf="@+id/fieldsLV" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

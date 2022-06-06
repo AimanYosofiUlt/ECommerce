@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
-    FragmentCategoryBinding bd;
+    FragmentCategoryBinding binding;
 
     private static final String TAG = "CategoryFragment";
     CategoryAdapter categoryViewAdapter;
@@ -38,8 +37,8 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        bd = FragmentCategoryBinding.inflate(getLayoutInflater());
-        return bd.getRoot();
+        binding = FragmentCategoryBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
@@ -59,7 +58,7 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
         viewModel.responseStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {
-                bd.internetCheck.progressBar.setVisibility(View.GONE);
+                binding.internetCheck.progressBar.setVisibility(View.GONE);
                 Log.d("CategoryFragment", "onChanged: 29387428: " + responseState.getMessage());
             }
         });
@@ -68,11 +67,11 @@ public class CategoryFragment extends BaseFragment<CategoryFragmentViewModel> {
     @Override
     public void initLoading() {
         categoryViewAdapter = new CategoryAdapter(listener);
-        bd.categoryRV.setLayoutManager(new GridLayoutManager(requireContext(), 3));
-        bd.categoryRV.setAdapter(categoryViewAdapter);
-        bd.title.titleTV.setText(getString(R.string.category));
+        binding.categoryRV.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+        binding.categoryRV.setAdapter(categoryViewAdapter);
+        binding.title.titleTV.setText(getString(R.string.category));
 
-        bd.internetCheck.progressBar.setVisibility(View.VISIBLE);
+        binding.internetCheck.progressBar.setVisibility(View.VISIBLE);
         viewModel.validateGetCategory(requireContext());
     }
 

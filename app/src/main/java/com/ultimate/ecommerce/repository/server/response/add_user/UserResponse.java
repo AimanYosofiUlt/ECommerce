@@ -58,7 +58,7 @@ public class UserResponse {
         this.id = id;
     }
 
-    public UserData getData() {
+    public UserData getUserData() {
         return data;
     }
 

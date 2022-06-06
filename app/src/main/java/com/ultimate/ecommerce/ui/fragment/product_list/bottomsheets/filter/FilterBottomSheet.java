@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.mohammedalaa.seekbar.DoubleValueSeekBarView;
+import com.mohammedalaa.seekbar.OnDoubleValueSeekBarChangeListener;
 import com.ultimate.ecommerce.R;
+import com.ultimate.ecommerce.app.DynamicTheme;
 import com.ultimate.ecommerce.databinding.BottomSheeteFilterBinding;
 import com.ultimate.ecommerce.ui.base.BaseBottomSheet;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.filter.FilterAdapter;
-import com.ultimate.ecommerce.ui.fragment.product_list.views.filter.FilterViewListener;
 
 import javax.annotation.Nullable;
 
@@ -19,6 +21,13 @@ public class FilterBottomSheet extends BaseBottomSheet {
     BottomSheeteFilterBinding binding;
     FilterAdapter ordersAdapter;
     FilterAdapter colorsAdapter;
+    FilterBottomSheetListener listener;
+    Filter filter;
+
+    public FilterBottomSheet(FilterBottomSheetListener listener) {
+        this.listener = listener;
+        filter = new Filter();
+    }
 
     @Nullable
     @Override
@@ -29,7 +38,40 @@ public class FilterBottomSheet extends BaseBottomSheet {
 
     @Override
     protected void initEvent() {
+        binding.doneBtn.btnBody.setOnClickListener(v -> {
+            listener.onFilterReq(filter);
+            dismiss();
+        });
 
+        binding.rangeSeekbar.setOnRangeSeekBarViewChangeListener(new OnDoubleValueSeekBarChangeListener() {
+            @Override
+            public void onValueChanged(@androidx.annotation.Nullable DoubleValueSeekBarView doubleValueSeekBarView
+                    , int min, int max, boolean fromUser) {
+                setMinMax(min, max);
+            }
+
+            @Override
+            public void onStopTrackingTouch(@androidx.annotation.Nullable DoubleValueSeekBarView doubleValueSeekBarView, int min, int max) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(@androidx.annotation.Nullable DoubleValueSeekBarView doubleValueSeekBarView, int min, int max) {
+
+            }
+        });
+
+        binding.restBtn.setOnClickListener(v -> setMinMax(Filter.MIN, Filter.MAX));
+    }
+
+    private void setMinMax(int min, int max) {
+        binding.minED.setText(String.valueOf(min));
+        if (max != Filter.MAX)
+            binding.maxED.setText(String.valueOf(max));
+        else
+            binding.maxED.setText(getString(R.string.max));
+        filter.setMaximum(max);
+        filter.setMinimum(min);
     }
 
     @Override
@@ -38,30 +80,17 @@ public class FilterBottomSheet extends BaseBottomSheet {
         binding.colorTitle.startTitle.setText(getString(R.string.color));
         binding.priceTitle.startTitle.setText(getString(R.string.price));
 
-        ordersAdapter = new FilterAdapter(new FilterViewListener() {
-            @Override
-            public void onItemCheck(String data) {
+        ordersAdapter = new FilterAdapter(data -> {
 
-            }
         });
         binding.orderByRV.setAdapter(ordersAdapter);
 
-        colorsAdapter = new FilterAdapter(new FilterViewListener() {
-            @Override
-            public void onItemCheck(String data) {
+        colorsAdapter = new FilterAdapter(data -> {
 
-            }
         });
         binding.byColorRV.setAdapter(ordersAdapter);
-    }
 
-    @Override
-    protected void initErrorObserver() {
-
-    }
-
-    @Override
-    protected void initObservers() {
-
+        binding.rangeSeekbar.setFillColor(DynamicTheme.gradientStartColor);
+        binding.rangeSeekbar.setCircleFillColor(DynamicTheme.gradientStartColor);
     }
 }

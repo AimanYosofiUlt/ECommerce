@@ -48,8 +48,9 @@ public class OrderDetailFragment extends BaseFragment<OrderDetailFragmentViewMod
 
     @Override
     public void initEvent() {
-        binding.backBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
-                .popBackStack());
+        binding.backBtn.setOnClickListener(view ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack());
 
         binding.rateBtn.btnBody.setOnClickListener(new View.OnClickListener() {
             @Override

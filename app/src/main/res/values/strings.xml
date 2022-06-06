@@ -201,5 +201,6 @@
     <string name="error">خطاء</string>
     <string name="login_first">يجب تسجيل الدخول اولا لإتمام العملية</string>
     <string name="update_password_succss" >تم تغيير كلمة السر بنجاح</string>
+    <string name="filter">فلترة الاصناف</string>
 
 </resources>

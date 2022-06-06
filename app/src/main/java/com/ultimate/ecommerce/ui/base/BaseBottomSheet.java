@@ -13,8 +13,6 @@ public abstract class BaseBottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initObservers();
-        initErrorObserver();
         initLoading();
         initEvent();
     }
@@ -22,8 +20,4 @@ public abstract class BaseBottomSheet extends BottomSheetDialogFragment {
     protected abstract void initEvent();
 
     protected abstract void initLoading();
-
-    protected abstract void initErrorObserver();
-
-    protected abstract void initObservers();
 }

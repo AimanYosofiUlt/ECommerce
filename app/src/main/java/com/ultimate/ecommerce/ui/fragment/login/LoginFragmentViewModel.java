@@ -9,7 +9,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.repository.local.tables.auth.Auth;
 import com.ultimate.ecommerce.repository.repos.auth.AuthRepo;
 import com.ultimate.ecommerce.repository.repos.user.UserRepo;
@@ -20,7 +19,7 @@ import com.ultimate.ecommerce.repository.server.response.login_user.LoginUserRes
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
 import com.ultimate.ecommerce.ui.fragment.login.views.auth_edittext.AuthEditResponseState;
 import com.ultimate.ecommerce.ui.fragment.login.views.auth_edittext.AuthEdittext;
-import com.ultimate.ecommerce.utilities.AuthSt;
+import com.ultimate.ecommerce.utilities.views.server_fields.FieldSt;
 import com.ultimate.ecommerce.utilities.ValidateSt;
 import com.ultimate.ecommerce.utilities.state.CheckNetworkListener;
 import com.ultimate.ecommerce.utilities.state.OnValidateListener;
@@ -89,7 +88,7 @@ public class LoginFragmentViewModel extends BaseViewModel {
                     private LoginData getData(ArrayList<AuthEdittext> fieldList) {
                         LoginData data = new LoginData();
                         for (AuthEdittext authEdittext : fieldList) {
-                            boolean isPassword = authEdittext.getField().getName().equalsIgnoreCase(AuthSt.PASSWORD);
+                            boolean isPassword = authEdittext.getField().getName().equalsIgnoreCase(FieldSt.PASSWORD);
                             if (isPassword)
                                 data.setPassword(authEdittext.getText());
                             else
@@ -101,7 +100,7 @@ public class LoginFragmentViewModel extends BaseViewModel {
 
                     @Override
                     public void onDisconnect() {
-                        responseStateMDL.setValue(ResponseState.failureState(context.getString(R.string.no_internet_connection)));
+                        responseStateMDL.setValue(ResponseState.failureState(ValidateSt.NO_INTERNET_CONNECTION));
                     }
                 });
     }

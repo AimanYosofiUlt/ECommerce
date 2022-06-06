@@ -52,27 +52,29 @@
 
         <TextView
             android:id="@+id/desc"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text=""
+            android:layout_marginTop="4dp"
             android:textColor="@color/gray"
+            android:visibility="visible"
             android:textSize="12sp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/note"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/name"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintTop_toBottomOf="@+id/note" />
 
         <TextView
             android:id="@+id/priceTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:text="@string/sample_money"
             android:textColor="@{color.gradientStartColor}"
             android:textSize="12sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/quantityTV"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
@@ -107,8 +109,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
             android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/back_cart_amount"
             android:minWidth="50dp"
             android:paddingStart="4dp"
@@ -122,23 +124,19 @@
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/minusBtn"
-            app:layout_constraintTop_toBottomOf="@+id/note" />
+            app:layout_constraintTop_toBottomOf="@+id/desc" />
 
         <TextView
             android:id="@+id/note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
             android:text="@string/product_note"
+            android:layout_marginTop="8dp"
             android:textColor="@{color.gradientStartColor}"
             android:textSize="11sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="@+id/desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/desc"
-            app:layout_constraintTop_toBottomOf="@+id/name"
-            app:layout_constraintVertical_bias="0.888" />
+            app:layout_constraintEnd_toEndOf="@+id/priceTV"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <View
             android:id="@+id/divider8"

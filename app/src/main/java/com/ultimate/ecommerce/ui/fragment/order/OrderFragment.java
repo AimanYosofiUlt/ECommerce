@@ -48,13 +48,8 @@ public class OrderFragment extends BaseFragment<OrderFragmentViewModel> {
 
     @Override
     public void initEvent() {
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(requireParentFragment())
-                        .popBackStack();
-            }
-        });
+        binding.backBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
+                .popBackStack());
 
         binding.reloadOrdersBtn.setOnClickListener(new View.OnClickListener() {
             @Override

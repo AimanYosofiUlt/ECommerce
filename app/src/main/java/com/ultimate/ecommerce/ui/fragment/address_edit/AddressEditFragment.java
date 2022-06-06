@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.databinding.FragmentAddressEditBinding;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
@@ -16,19 +17,21 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class AddressEditFragment extends BaseFragment<AddressEditFragmentViewModel> {
-    FragmentAddressEditBinding bd;
+    FragmentAddressEditBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        bd = FragmentAddressEditBinding.inflate(getLayoutInflater());
-        return bd.getRoot();
+        binding = FragmentAddressEditBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
 
     @Override
     public void initEvent() {
-
+        binding.backBtn.setOnClickListener(view ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack());
     }
 
     @Override

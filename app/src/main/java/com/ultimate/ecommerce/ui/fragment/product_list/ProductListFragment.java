@@ -1,13 +1,10 @@
 package com.ultimate.ecommerce.ui.fragment.product_list;
 
-import static com.ultimate.ecommerce.utilities.ValidateSt.NO_INTERNET_CONNECTION;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
@@ -20,17 +17,16 @@ import com.ultimate.ecommerce.databinding.FragmentProductListBinding;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
-import com.ultimate.ecommerce.repository.server.response.get_products.Categories;
-import com.ultimate.ecommerce.repository.server.response.get_products.FiltersData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
+import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.Filter;
 import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.FilterBottomSheet;
+import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.FilterBottomSheetListener;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdapter;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdapterData;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductViewListener;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.sub_category.SubCategoryAdapter;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.sub_category.SubCategoryViewListener;
-
-import java.util.List;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import javax.annotation.Nullable;
 
@@ -55,18 +51,20 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
 
     @Override
     public void initEvent() {
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.backBtn.setOnClickListener(view ->
                 NavHostFragment.findNavController(requireParentFragment())
-                        .popBackStack();
-            }
-        });
+                        .popBackStack());
 
         binding.filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FilterBottomSheet bottomSheet = new FilterBottomSheet();
+                FilterBottomSheet bottomSheet = new FilterBottomSheet(new FilterBottomSheetListener() {
+                    @Override
+                    public void onFilterReq(Filter filter) {
+                        showProgress(requireContext(), getString(R.string.filter), getString(R.string.loading));
+                        viewModel.validateGetProductByFilter(requireContext(), category, filter);
+                    }
+                });
                 bottomSheet.show(requireActivity().getSupportFragmentManager(), "Filter");
             }
         });
@@ -91,11 +89,23 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
 
         });
 
-        viewModel.getProductResponseStateMDL.observe(getViewLifecycleOwner(), responseState -> {
+        viewModel.getProductResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
             binding.internetCheck.progressBar.setVisibility(View.GONE);
         });
 
-        viewModel.updateCartResStateMDL.observe(getViewLifecycleOwner(), responseState -> Log.d("ProductListFragment", "onChanged: 245353 :" + responseState.getMessage()));
+        viewModel.updateCartResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
+            //todo handel server errors
+            Log.d("ProductListFragment", "onChanged: 245353 :" + responseState.getMessage());
+        });
+
+        viewModel.getProductByFilterResponseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
+            @Override
+            public void onChanged(ResponseState responseState) {
+                hideProgress();
+                if (!responseState.isSuccessful())
+                    LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
+            }
+        });
     }
 
     public void hideNoInternetProgress() {
@@ -150,22 +160,7 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
 
     @Override
     public void initErrorObserver() {
-        viewModel.validateGetProductsMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
-            @Override
-            public void onChanged(ResponseState responseState) {
-                handelValidateError(responseState.getMessage());
-            }
-        });
-    }
 
-    private void handelValidateError(String message) {
-        switch (message) {
-            case NO_INTERNET_CONNECTION:
-                Toast.makeText(requireContext(), getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
-                binding.internetCheck.progressBar.setVisibility(View.GONE);
-                binding.internetCheck.internetConnectionGroup.setVisibility(View.VISIBLE);
-                break;
-        }
     }
 }
 

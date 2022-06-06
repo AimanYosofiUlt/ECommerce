@@ -43,13 +43,9 @@ public class RegisterFragment extends BaseFragment<RegisterFragmentViewModel> {
 
     @Override
     public void initEvent() {
-        bd.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        bd.backBtn.setOnClickListener(view ->
                 NavHostFragment.findNavController(requireParentFragment())
-                        .popBackStack();
-            }
-        });
+                        .popBackStack());
 
         bd.registerBtn.btnBody.setOnClickListener(view -> {
             String userName = bd.userNameED.getText().toString();

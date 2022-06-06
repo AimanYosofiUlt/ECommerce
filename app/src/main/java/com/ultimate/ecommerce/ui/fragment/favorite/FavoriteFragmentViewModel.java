@@ -11,6 +11,7 @@ import com.ultimate.ecommerce.repository.repos.cart.CartRepo;
 import com.ultimate.ecommerce.repository.repos.favorite.FavoriteRepo;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
 import com.ultimate.ecommerce.ui.fragment.favorite.views.product.FavoriteAdapterData;
+import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.Filter;
 
 import java.util.List;
 
@@ -37,5 +38,9 @@ public class FavoriteFragmentViewModel extends BaseViewModel {
 
     public void addToCart(ProductCart productCart) {
         cartRepo.addToCart(productCart);
+    }
+
+    public void filterFavorites(Filter filter) {
+        favoriteLiveData = favoriteRepo.getFavoriteProductsByFilter(filter);
     }
 }

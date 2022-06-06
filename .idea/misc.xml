@@ -23,11 +23,19 @@
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/ECommerce/app/src/main/res/layout/view_section.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/AndroidStudioProjects/ECommerce/app/src/main/res/menu/menu_home_bottom_nav.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/drawable/ic_close.xml" value="0.238" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/bottom_sheete_filter.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/dialog_edit_password.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/dialog_edit_profile.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/dialog_rete.xml" value="0.2359375" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_about_us.xml" value="0.25" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_about_us_placeholder.xml" value="0.25" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_address.xml" value="0.2359375" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_address_edit.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_category.xml" value="0.11041666666666666" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_favorite.xml" value="0.25" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_help.xml" value="0.25" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_help_placeholder.xml" value="0.2359375" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_lang_currency.xml" value="0.23177083333333334" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_login.xml" value="0.23489583333333333" />
@@ -38,13 +46,19 @@
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_order_confirm_done.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_order_confirm_payment_method.xml" value="0.23177083333333334" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_order_confirm_shipment_method.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_order_detail.xml" value="0.2359375" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_product_detail.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_product_list.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_product_search.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_profile.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_rate_order_inner.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_register.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_review.xml" value="0.25" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_sections.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_setting.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_subsections.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/fragment_train.xml" value="0.25" />
+        <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/subsections_toolbar_layout.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/tools_coupon.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/tools_edittext.xml" value="0.25" />
         <entry key="..\:/Users/Ultimate/StudioProjects/ECommerce/app/src/main/res/layout/tools_edittext_password.xml" value="0.25" />

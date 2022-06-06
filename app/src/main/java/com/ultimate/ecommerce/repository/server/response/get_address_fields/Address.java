@@ -2,7 +2,7 @@ package com.ultimate.ecommerce.repository.server.response.get_address_fields;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Billing_address {
+public class Address {
     @SerializedName("required")
     private boolean required;
     @SerializedName("keyboard_type")

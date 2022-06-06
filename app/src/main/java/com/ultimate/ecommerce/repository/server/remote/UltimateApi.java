@@ -37,8 +37,6 @@ import com.ultimate.ecommerce.repository.server.response.update_shipping_address
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -198,11 +196,10 @@ public interface UltimateApi {
     Call<CreateOrderResponse> createOrder(@Body RequestBody requestBody);
 
     @Headers({"lang: " + LANGUAGE,
-            "tokenKey: " + tokenKey,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("getUserProfile")
-    Call<GetUserProfileResponse> getUserProfile(@Body RequestBody requestBody);
+    Call<GetUserProfileResponse> getUserProfile(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
     @Headers({"lang: " + LANGUAGE,
             "secretKey: " + SECRET_KEY,

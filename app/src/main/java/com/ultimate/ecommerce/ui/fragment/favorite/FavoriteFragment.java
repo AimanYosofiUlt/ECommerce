@@ -14,6 +14,9 @@ import com.ultimate.ecommerce.repository.local.tables.favorite.Favorite;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.favorite.views.product.FavoriteProductAdapter;
 import com.ultimate.ecommerce.ui.fragment.favorite.views.product.FavoriteProductViewListener;
+import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.Filter;
+import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.FilterBottomSheet;
+import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.FilterBottomSheetListener;
 import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import javax.annotation.Nullable;
@@ -35,7 +38,22 @@ public class FavoriteFragment extends BaseFragment<FavoriteFragmentViewModel> {
 
     @Override
     public void initEvent() {
+        binding.backBtn.setOnClickListener(view ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack());
 
+        binding.filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FilterBottomSheet bottomSheet = new FilterBottomSheet(new FilterBottomSheetListener() {
+                    @Override
+                    public void onFilterReq(Filter filter) {
+                        viewModel.filterFavorites(filter);
+                    }
+                });
+                bottomSheet.show(requireActivity().getSupportFragmentManager(), "Filter");
+            }
+        });
     }
 
     @Override

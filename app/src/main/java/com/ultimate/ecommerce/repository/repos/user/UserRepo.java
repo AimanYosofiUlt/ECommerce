@@ -91,7 +91,7 @@ public class UserRepo extends BaseRepo {
     }
 
     private User convertResponseToUser(UserResponse response, String tokenkey) {
-        UserData userData = response.getData();
+        UserData userData = response.getUserData();
         String id = userData.getId();
         String name = userData.getDisplayName();
         String email = userData.getUserEmail();
@@ -102,13 +102,16 @@ public class UserRepo extends BaseRepo {
 
     public void getUserProfile(ResponsesCallBack<GetUserProfileResponse> callBack) {
         AsyncTask.execute(() -> {
+            String tokenKey = userDao.getTokenKey();
             RequestBody request = BaseRequest.getGetUserProfileRequest(userDao.getUserId());
-            api.getUserProfile(request).enqueue(new ResponsesCallBack<GetUserProfileResponse>() {
+            api.getUserProfile(request, tokenKey).enqueue(new ResponsesCallBack<GetUserProfileResponse>() {
                 @Override
                 public void onSuccess(GetUserProfileResponse response) {
-                    UserData userData = response.getData().getData();
-                    User user = convertUserDataToUser(userData);
-                    setAppUser(user);
+                    AsyncTask.execute(() -> {
+                        UserData userData = response.getData().getUserResponse().getUserData();
+                        User user = convertUserDataToUser(userData);
+                        setAppUser(user);
+                    });
                     callBack.onSuccess(response);
                 }
 

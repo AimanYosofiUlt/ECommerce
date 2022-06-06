@@ -55,8 +55,9 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
 
     @Override
     public void initEvent() {
-        binding.placeholder.backBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
-                .popBackStack());
+        binding.placeholder.backBtn.setOnClickListener(view ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack());
 
         binding.placeholder.addBtn.setOnClickListener(view -> {
             rateDialog = new RateDialog(requireContext(), new RateDialogListener() {

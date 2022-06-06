@@ -1,13 +1,13 @@
 package com.ultimate.ecommerce.ui.fragment.about_us;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
 import com.ultimate.ecommerce.R;
@@ -23,21 +23,23 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class AboutUsFragment extends BaseFragment<AboutUsFragmentViewModel> {
-    FragmentAboutUsBinding bd;
+    FragmentAboutUsBinding binding;
 
     private static final String TAG = "AboutUsFragment";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        bd = FragmentAboutUsBinding.inflate(getLayoutInflater());
-        return bd.getRoot();
+        binding = FragmentAboutUsBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
 
     @Override
     public void initEvent() {
-
+        binding.placeholder.backBtn.setOnClickListener(view ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack());
     }
 
     @Override
@@ -45,14 +47,14 @@ public class AboutUsFragment extends BaseFragment<AboutUsFragmentViewModel> {
         viewModel.aboutUsPageMDL.observe(getViewLifecycleOwner(), new Observer<AboutUsData>() {
             @Override
             public void onChanged(AboutUsData aboutUsData) {
-                bd.placeholder.pageTitleTV.setText(aboutUsData.getTitle());
-                bd.placeholder.content.setText(aboutUsData.getContent());
+                binding.placeholder.pageTitleTV.setText(aboutUsData.getTitle());
+                binding.placeholder.content.setText(aboutUsData.getContent());
                 Glide.with(requireContext())
                         .load(aboutUsData.getLogo())
                         .error(R.drawable.ic_baseline_error_24)
-                        .into(bd.placeholder.logoImg);
+                        .into(binding.placeholder.logoImg);
 
-                LayoutUtil.hideShimmer(bd.placeholder.placeholderCL, bd.shimmer.shimmerL);
+                LayoutUtil.hideShimmer(binding.placeholder.placeholderCL, binding.shimmer.shimmerL);
                 // todo handle social media buttons here
             }
         });
@@ -68,7 +70,7 @@ public class AboutUsFragment extends BaseFragment<AboutUsFragmentViewModel> {
 
     @Override
     public void initLoading() {
-        LayoutUtil.showShimmer(bd.placeholder.placeholderCL, bd.shimmer.shimmerL);
+        LayoutUtil.showShimmer(binding.placeholder.placeholderCL, binding.shimmer.shimmerL);
         viewModel.getAboutUsPage();
     }
 

@@ -39,8 +39,9 @@ public class RateOrderFragment extends BaseFragment<RateOrderFragmentViewModel> 
 
     @Override
     public void initEvent() {
-        binding.backBtn.setOnClickListener(view -> NavHostFragment.findNavController(requireParentFragment())
-                .popBackStack());
+        binding.backBtn.setOnClickListener(view ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack());
 
         binding.nextBtn.btnBody.setOnClickListener(view -> {
             binding.productVP.setCurrentItem(++currentItem);

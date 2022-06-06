@@ -21,7 +21,7 @@ import androidx.core.content.ContextCompat;
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.repository.server.response.get_auth.Field;
-import com.ultimate.ecommerce.utilities.AuthSt;
+import com.ultimate.ecommerce.utilities.views.server_fields.FieldSt;
 import com.ultimate.ecommerce.utilities.ValidateSt;
 
 public class AuthEdittext {
@@ -49,13 +49,13 @@ public class AuthEdittext {
     }
 
     private void initByType(Context context) {
-        if (field.getName().equals(AuthSt.PHONE)) {
+        if (field.getName().equals(FieldSt.PHONE)) {
             codePicker = view.findViewById(R.id.phoneCCP);
             codePicker.registerPhoneNumberTextView(fieldEd);
             return;
         }
 
-        if (field.getName().equals(AuthSt.EMAIL)) {
+        if (field.getName().equals(FieldSt.EMAIL)) {
             setStartDrawable(context, R.drawable.ic_email);
             return;
         }
@@ -83,13 +83,13 @@ public class AuthEdittext {
     }
 
     private int getLayoutId(String name) {
-        if (name.equals(AuthSt.PHONE))
-            return R.layout.tools_edittext_phone;
+        if (name.equals(FieldSt.PHONE))
+            return R.layout.view_edittext_phone;
 
-        if (name.equals(AuthSt.PASSWORD))
-            return R.layout.tools_edittext_password;
+        if (name.equals(FieldSt.PASSWORD))
+            return R.layout.view_edittext_password;
 
-        return R.layout.tools_edittext;
+        return R.layout.view_edittext;
     }
 
     public View getView() {
@@ -105,20 +105,20 @@ public class AuthEdittext {
     }
 
     public String getText() {
-        if (field.getName().equals(AuthSt.PHONE))
+        if (field.getName().equals(FieldSt.PHONE))
             return codePicker.getFullNumber();
 
         return fieldEd.getText().toString();
     }
 
     public String getValidation() {
-        if (field.getName().equals(AuthSt.EMAIL))
+        if (field.getName().equals(FieldSt.EMAIL))
             return getEmailValidation();
 
-        if (field.getName().equals(AuthSt.PHONE))
+        if (field.getName().equals(FieldSt.PHONE))
             return getPhoneValidation();
 
-        if (field.getName().equals(AuthSt.PASSWORD))
+        if (field.getName().equals(FieldSt.PASSWORD))
             return getPasswordValidation();
 
         boolean isEmpty = fieldEd.getText().toString().isEmpty() && field.isRequired();

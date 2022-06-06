@@ -7,6 +7,7 @@ import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 import com.ultimate.ecommerce.repository.server.request.create_order.CreateProductRequest;
 import com.ultimate.ecommerce.repository.server.request.create_order.OrderProducts;
 import com.ultimate.ecommerce.repository.server.request.update_cart.UpdateCartProductRequest;
+import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.Filter;
 import com.ultimate.ecommerce.ui.fragment.profile.dialogs.change_password.EPassword;
 import com.ultimate.ecommerce.ui.fragment.profile.dialogs.profile_edit.Profile;
 
@@ -94,12 +95,12 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getFilterProductRequest(String minPrice, String maxPrice, String catId) {
+    public static RequestBody getFilterProductRequest(int catId, Filter filter) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("minPrice", minPrice)
-                .addFormDataPart("maxPrice", maxPrice)
-                .addFormDataPart("catID", catId)
+                .addFormDataPart("minPrice", String.valueOf(filter.getMinimum()))
+                .addFormDataPart("maxPrice", String.valueOf(filter.getMaximum()))
+                .addFormDataPart("catID", String.valueOf(catId))
                 .build();
     }
 

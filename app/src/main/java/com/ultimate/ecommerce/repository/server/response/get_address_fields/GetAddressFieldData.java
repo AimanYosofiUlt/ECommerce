@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class GetAddressFieldData {
-    @SerializedName("billing_address")
-    private List<Billing_address> billing_address;
+    @SerializedName(value = "billing_address",alternate = {"shipping_address"})
+    private List<Address> addresses;
     @SerializedName("fields_count")
     private int fields_count;
     @SerializedName("title")
@@ -16,12 +16,12 @@ public class GetAddressFieldData {
     @SerializedName("hidden")
     private boolean hidden;
 
-    public List<Billing_address> getBilling_address() {
-        return billing_address;
+    public List<Address> getAddress() {
+        return addresses;
     }
 
-    public void setBilling_address(List<Billing_address> billing_address) {
-        this.billing_address = billing_address;
+    public void setAddress(List<Address> address) {
+        this.addresses = address;
     }
 
     public int getFields_count() {

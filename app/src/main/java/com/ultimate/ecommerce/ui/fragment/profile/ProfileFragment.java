@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentProfileBinding;
@@ -44,6 +45,10 @@ public class ProfileFragment extends BaseFragment<ProfileFragmentViewModel> {
 
     @Override
     public void initEvent() {
+        binding.backBtn.setOnClickListener(view ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack());
+
         binding.editBtn.btnBody.setOnClickListener(v -> {
             String name = binding.userNameED.getText().toString();
             String email = binding.emailED.getText().toString();
@@ -102,11 +107,6 @@ public class ProfileFragment extends BaseFragment<ProfileFragmentViewModel> {
 
         viewModel.updateProfileResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
             hideProgress();
-            if (!responseState.isSuccessful()) {
-                LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
-                return;
-            }
-
             profileDialog.cancel();
         });
     }

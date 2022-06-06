@@ -11,9 +11,11 @@ import com.ultimate.ecommerce.repository.repos.base.BaseRepo;
 import com.ultimate.ecommerce.repository.server.request.base.BaseRequest;
 import com.ultimate.ecommerce.repository.server.response.add_review.AddReviewResponse;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
+import com.ultimate.ecommerce.repository.server.response.filter_products.FilterProductResponse;
 import com.ultimate.ecommerce.repository.server.response.get_product.GetProductResponse;
 import com.ultimate.ecommerce.repository.server.response.get_products.GetProductsResponse;
 import com.ultimate.ecommerce.repository.server.response.search_product.SearchProductResponse;
+import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.Filter;
 import com.ultimate.ecommerce.ui.fragment.rate_order_inner.RateOrder;
 
 import javax.inject.Inject;
@@ -58,5 +60,11 @@ public class ProductRepo extends BaseRepo {
     public void searchProduct(String searchText, ResponsesCallBack<SearchProductResponse> callBack) {
         RequestBody request = BaseRequest.getSearchProductRequest(searchText);
         api.searchProduct(request).enqueue(callBack);
+    }
+
+    public void getProductsByFilter(Category category, Filter filter, ResponsesCallBack<FilterProductResponse> callBack) {
+        RequestBody request = BaseRequest.getFilterProductRequest(category.getId(), filter);
+        api.filterProducts(request).enqueue(callBack);
+
     }
 }

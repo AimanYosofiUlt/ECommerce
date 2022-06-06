@@ -25,6 +25,20 @@ public interface FavoriteDao extends BaseDao<Favorite> {
             "FROM Favorite favorite")
     LiveData<List<FavoriteAdapterData>> getFavoriteProducts();
 
+
+    @Query("SELECT  " +
+            "      (    SELECT CASE count(productQuantity) " +
+            "           WHEN 0  THEN 0 " +
+            "                   ELSE productQuantity  " +
+            "           END  " +
+            "           FROM ProductCart " +
+            "           WHERE productId = favorite.id" +
+            "       ) AS cartQuantity" +
+            "       ,favorite.*  " +
+            "FROM Favorite favorite WHERE price <= :minimum and price >= :maximum")
+    LiveData<List<FavoriteAdapterData>> getFavoriteProductsByFilter(int minimum, int maximum);
+
+
     @Query("  SELECT CASE count(id) " +
             "           WHEN 0  THEN 0 " +
             "                   ELSE 1  " +
@@ -38,4 +52,6 @@ public interface FavoriteDao extends BaseDao<Favorite> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addFavorite(Favorite favorite);
+
+
 }

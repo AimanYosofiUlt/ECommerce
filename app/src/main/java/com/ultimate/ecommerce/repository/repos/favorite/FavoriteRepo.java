@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import com.ultimate.ecommerce.repository.local.tables.favorite.Favorite;
 import com.ultimate.ecommerce.repository.local.tables.favorite.FavoriteDao;
 import com.ultimate.ecommerce.ui.fragment.favorite.views.product.FavoriteAdapterData;
+import com.ultimate.ecommerce.ui.fragment.product_list.bottomsheets.filter.Filter;
 
 import java.util.List;
 
@@ -34,5 +35,9 @@ public class FavoriteRepo {
 
     public boolean isInFavorite(int id) {
         return favoriteDao.isInFavorite(id);
+    }
+
+    public LiveData<List<FavoriteAdapterData>> getFavoriteProductsByFilter(Filter filter) {
+        return favoriteDao.getFavoriteProductsByFilter(filter.getMinimum(),filter.getMaximum());
     }
 }

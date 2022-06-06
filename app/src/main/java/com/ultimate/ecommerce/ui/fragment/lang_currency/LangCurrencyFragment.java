@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.DynamicTheme;
@@ -37,6 +38,10 @@ public class LangCurrencyFragment extends BaseFragment<LangCurrencyFragmentViewM
 
     @Override
     public void initEvent() {
+        binding.backBtn.setOnClickListener(view ->
+                NavHostFragment.findNavController(requireParentFragment())
+                        .popBackStack());
+
         binding.langRG.setOnCheckedChangeListener((group, checkedId) -> {
             binding.saveBtn.btnBody.setGradient(DynamicTheme.gradientStartColor, DynamicTheme.gradientEndColor);
             binding.saveBtn.btnTextTV.setTextColor(Color.BLACK);
