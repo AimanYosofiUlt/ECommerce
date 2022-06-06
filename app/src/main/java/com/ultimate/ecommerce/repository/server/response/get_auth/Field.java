@@ -2,7 +2,7 @@ package com.ultimate.ecommerce.repository.server.response.get_auth;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Fields {
+public class Field {
     @SerializedName("required")
     private boolean required;
     @SerializedName("keyboard_type")
@@ -16,10 +16,10 @@ public class Fields {
     @SerializedName("hidden")
     private boolean hidden;
 
-    public Fields() {
+    public Field() {
     }
 
-    public boolean getRequired() {
+    public boolean isRequired() {
         return required;
     }
 
@@ -59,7 +59,7 @@ public class Fields {
         this.name = name;
     }
 
-    public boolean getHidden() {
+    public boolean isHidden() {
         return hidden;
     }
 

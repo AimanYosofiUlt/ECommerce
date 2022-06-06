@@ -3,6 +3,8 @@ package com.ultimate.ecommerce.ui.fragment.home.views.search_slider_one;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +32,7 @@ public class SearchSliderOneAdapter extends RecyclerView.Adapter<SearchSliderOne
     @NonNull
     @Override
     public SearchSliderOneViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_banner2, parent, false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_image_slider, parent, false);
         return new SearchSliderOneViewHolder(inflate, listener);
     }
 

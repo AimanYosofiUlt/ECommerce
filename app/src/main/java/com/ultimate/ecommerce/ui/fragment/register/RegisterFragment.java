@@ -53,7 +53,7 @@ public class RegisterFragment extends BaseFragment<RegisterFragmentViewModel> {
 
         bd.registerBtn.btnBody.setOnClickListener(view -> {
             String userName = bd.userNameED.getText().toString();
-            String userPhone = bd.phoneCCP.getFullNumberWithPlus();
+            String userPhone = bd.phoneCCP.getFullNumber();
             String userEmail = bd.emailED.getText().toString();
             String userPassword = bd.passwordED.getText().toString();
             showProgress(requireContext(),getString(R.string.register),getString(R.string.loading));

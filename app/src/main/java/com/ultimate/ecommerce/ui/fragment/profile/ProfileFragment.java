@@ -1,32 +1,25 @@
 package com.ultimate.ecommerce.ui.fragment.profile;
 
 import static com.ultimate.ecommerce.utilities.ValidateSt.NO_INTERNET_CONNECTION;
-import static com.ultimate.ecommerce.utilities.ValidateSt.PASSWORD_EMPTY_FILED_ERROR;
-import static com.ultimate.ecommerce.utilities.ValidateSt.PHONE_EMPTY_FILED_ERROR;
-import static com.ultimate.ecommerce.utilities.ValidateSt.SMALL_PASSWORD_ERROR;
-import static com.ultimate.ecommerce.utilities.ValidateSt.WRONG_PASSWORD_ERROR;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentProfileBinding;
-import com.ultimate.ecommerce.repository.local.user.User;
-import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.profile.dialogs.change_password.ChangePasswordDialog;
 import com.ultimate.ecommerce.ui.fragment.profile.dialogs.change_password.ChangePasswordDialogListener;
+import com.ultimate.ecommerce.ui.fragment.profile.dialogs.change_password.EPassword;
 import com.ultimate.ecommerce.ui.fragment.profile.dialogs.profile_edit.Profile;
 import com.ultimate.ecommerce.ui.fragment.profile.dialogs.profile_edit.ProfileEditDialog;
-import com.ultimate.ecommerce.ui.fragment.profile.dialogs.profile_edit.ProfileEditDialogListener;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import javax.annotation.Nullable;
 
@@ -55,10 +48,10 @@ public class ProfileFragment extends BaseFragment<ProfileFragmentViewModel> {
             String name = binding.userNameED.getText().toString();
             String email = binding.emailED.getText().toString();
             String phone = binding.phoneED.getText().toString();
-            Profile profile = new Profile(name, email, phone);
-            profileEditDialogBuilder = new ProfileEditDialog(requireContext(), profile, profile1 -> {
+            Profile currentProfile = new Profile(name, email, phone);
+            profileEditDialogBuilder = new ProfileEditDialog(requireContext(), currentProfile, dialogProfile -> {
                 showProgress(requireContext(), getString(R.string.profile_edit), getString(R.string.loading));
-                viewModel.validateUpdateProfile(requireContext(), profile1);
+                viewModel.validateUpdateProfile(requireContext(), dialogProfile);
             });
 
             profileDialog = profileEditDialogBuilder.create();
@@ -66,9 +59,12 @@ public class ProfileFragment extends BaseFragment<ProfileFragmentViewModel> {
         });
 
         binding.changePasswordBtn.setOnClickListener(v -> {
-            passwordDialogBuilder = new ChangePasswordDialog(requireContext(), (currentPassword, newPassword, confirmPassword) -> {
-                showProgress(requireContext(), getString(R.string.change_password), getString(R.string.loading));
-                viewModel.validateChangePassword(requireContext(), currentPassword, newPassword, confirmPassword);
+            passwordDialogBuilder = new ChangePasswordDialog(requireContext(), new ChangePasswordDialogListener() {
+                @Override
+                public void onApply(String currentPassword, EPassword ePassword) {
+                    showProgress(requireContext(), getString(R.string.change_password), getString(R.string.loading));
+                    viewModel.validateChangePassword(requireContext(), ePassword);
+                }
             });
 
             changePasswordDialog = passwordDialogBuilder.create();
@@ -85,20 +81,33 @@ public class ProfileFragment extends BaseFragment<ProfileFragmentViewModel> {
             binding.emailED.setText(user.getUserEmail());
         });
 
-        viewModel.userMDL.observe(getViewLifecycleOwner(), userData -> {
-            binding.userNameED.setText(userData.getDisplayName());
-            binding.phoneED.setText(userData.getUserEmail());
-            binding.emailED.setText(userData.getUserLogin());
+        viewModel.getUserProfileResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
+            hideProgress();
+            if (!responseState.isSuccessful()) {
+                LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
+                return;
+            }
         });
-
-        viewModel.getUserProfileResponseMDL.observe(getViewLifecycleOwner(), responseState -> Log.d("ProfileFragment", "onChanged: 35445: " + responseState.getMessage()));
 
         viewModel.changePasswordResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
             hideProgress();
-            if (responseState.isSuccessful()) {
-                if (changePasswordDialog != null)
-                    changePasswordDialog.cancel();
+            if (!responseState.isSuccessful()) {
+                LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
+                return;
             }
+
+            Toast.makeText(requireContext(), getString(R.string.update_password_succss), Toast.LENGTH_SHORT).show();
+            changePasswordDialog.cancel();
+        });
+
+        viewModel.updateProfileResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
+            hideProgress();
+            if (!responseState.isSuccessful()) {
+                LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
+                return;
+            }
+
+            profileDialog.cancel();
         });
     }
 
@@ -113,6 +122,7 @@ public class ProfileFragment extends BaseFragment<ProfileFragmentViewModel> {
     @Override
     public void initLoading() {
         binding.editBtn.btnTextTV.setText(getString(R.string.profile_edit));
+        viewModel.validateGetProfile(requireContext());
     }
 
     @Override

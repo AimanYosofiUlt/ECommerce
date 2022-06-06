@@ -1,6 +1,6 @@
 package com.ultimate.ecommerce.ui.fragment.home;
 
-public class HomeSt {
+public class HomeFragmentSt {
     public static final String SEARCH_SLIDER_ONE = "searchSliderOne";
     public static final String MIN_SLIDER_TOW = "mainSliderTwo";
     public static final String MIN_SLIDER_THREE = "mainSliderThree";

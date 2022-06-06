@@ -33,9 +33,9 @@ public class ProfileEditDialog extends BaseDialog {
     @Override
     protected void initEvent() {
         binding.doneBtn.btnBody.setOnClickListener(v -> {
-            String name = binding.userNameED.getText().toString();
-            String email = binding.emailED.getText().toString();
-            String phone = binding.phoneED.getText().toString();
+            String name = binding.userNameED.getText().toString().trim();
+            String email = binding.emailED.getText().toString().trim();
+            String phone = binding.phoneED.getText().toString().trim();
             Profile profile = new Profile(name, email, phone);
             listener.onSave(profile);
         });

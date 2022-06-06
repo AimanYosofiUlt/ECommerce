@@ -31,4 +31,8 @@ public class FavoriteRepo {
     public void removeFavorite(Favorite favorite) {
         AsyncTask.execute(() -> favoriteDao.deleteFavorite(favorite.getId()));
     }
+
+    public boolean isInFavorite(int id) {
+        return favoriteDao.isInFavorite(id);
+    }
 }

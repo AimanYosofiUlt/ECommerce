@@ -4,17 +4,16 @@ import static com.ultimate.ecommerce.utilities.ValidateSt.NO_INTERNET_CONNECTION
 
 import android.app.Application;
 import android.content.Context;
+import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.bumptech.glide.load.engine.Resource;
-import com.bumptech.glide.request.ResourceCallback;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.repos.cart.CartRepo;
-import com.ultimate.ecommerce.repository.repos.product.ProductRepo;
 import com.ultimate.ecommerce.repository.repos.setting.AppSettingRepo;
+import com.ultimate.ecommerce.repository.repos.user.UserRepo;
 import com.ultimate.ecommerce.repository.server.request.update_cart.UpdateCartProductRequest;
 import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
@@ -38,10 +37,15 @@ public class CartFragmentViewModel extends BaseViewModel {
     @Inject
     CartRepo cartRepo;
 
+    @Inject
+    UserRepo userRepo;
+
     LiveData<List<ProductCart>> productCartLiveData;
     LiveData<Double> cartTotalLiveData;
     MutableLiveData<ResponseState> updateCartResponseMDL;
     MutableLiveData<UpdateCartData> cartDataMDL;
+
+    MutableLiveData<Boolean> userLoginCheckMDL;
 
     @Inject
     public CartFragmentViewModel(@NonNull Application application, CartRepo cartRepo) {
@@ -50,6 +54,7 @@ public class CartFragmentViewModel extends BaseViewModel {
         cartTotalLiveData = cartRepo.getCartTotal();
         updateCartResponseMDL = new MutableLiveData<>();
         cartDataMDL = new MutableLiveData<>();
+        userLoginCheckMDL = new MutableLiveData<>();
     }
 
     public void updateProductQty(Integer productId, int qty) {
@@ -108,5 +113,12 @@ public class CartFragmentViewModel extends BaseViewModel {
 
     public void clearCart() {
         cartRepo.clearCart();
+    }
+
+    public void validatePayment() {
+        AsyncTask.execute(() -> {
+            boolean isUserLogin = userRepo.isUserLogin();
+            userLoginCheckMDL.postValue(isUserLogin);
+        });
     }
 }

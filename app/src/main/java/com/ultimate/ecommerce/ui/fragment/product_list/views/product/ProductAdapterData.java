@@ -4,18 +4,19 @@ import com.ultimate.ecommerce.repository.server.response.get_products.ProductDat
 
 import java.io.Serializable;
 
-public class    ProductAdapterData implements Serializable {
-    int cartQuantity;
-    ProductData data;
+public class ProductAdapterData implements Serializable {
+    private ProductData data;
+    private int cartQuantity = 0;
+    private boolean isInFavorite = false;
 
-    public ProductAdapterData(ProductData data, int cartQuantity) {
+    public ProductAdapterData(ProductData data, int cartQuantity, boolean isInFavorite) {
         this.data = data;
         this.cartQuantity = cartQuantity;
+        this.isInFavorite = isInFavorite;
     }
 
     public ProductAdapterData(ProductData data) {
         this.data = data;
-        this.cartQuantity = 0;
     }
 
     public ProductData getData() {
@@ -28,5 +29,13 @@ public class    ProductAdapterData implements Serializable {
 
     public int getCartQuantity() {
         return cartQuantity;
+    }
+
+    public boolean isInFavorite() {
+        return isInFavorite;
+    }
+
+    public void setInFavorite(boolean inFavorite) {
+        isInFavorite = inFavorite;
     }
 }

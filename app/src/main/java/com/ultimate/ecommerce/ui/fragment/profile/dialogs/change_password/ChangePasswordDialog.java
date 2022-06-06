@@ -39,8 +39,8 @@ public class ChangePasswordDialog extends BaseDialog {
             String currentPassword = binding.currentPasswordED.getText().toString();
             String newPassword = binding.newPasswordED.getText().toString();
             String confirmPassword = binding.confirmPasswordED.getText().toString();
-
-            listener.onApply(currentPassword, newPassword, confirmPassword);
+            EPassword ePassword = new EPassword(currentPassword, newPassword, confirmPassword);
+            listener.onApply(currentPassword, ePassword);
         });
     }
 

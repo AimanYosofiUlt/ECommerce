@@ -15,7 +15,7 @@
         android:padding="16dp"
         android:paddingStart="12dp"
         android:paddingEnd="10dp"
-        android:src="@drawable/image"
+        android:src="@drawable/image2"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/nameTV"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"

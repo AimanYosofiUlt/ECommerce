@@ -3,7 +3,6 @@ package com.ultimate.ecommerce.ui.fragment.cart;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentCartBinding;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
-import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.update_cart.Products;
 import com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
@@ -50,7 +48,9 @@ public class CartFragment extends BaseFragment<CartFragmentViewModel> {
 
     @Override
     public void initEvent() {
-        binding.payBtn.btnBody.setOnClickListener(v -> listener.onOrderConfirmReq(cartData));
+        binding.payBtn.btnBody.setOnClickListener(v -> {
+            viewModel.validatePayment();
+        });
 
         binding.updateBtn.btnBody.setOnClickListener(v -> {
             showProgress(requireContext(), getString(R.string.update_cart), getString(R.string.loading));
@@ -93,13 +93,10 @@ public class CartFragment extends BaseFragment<CartFragmentViewModel> {
         viewModel.cartTotalLiveData.observe(getViewLifecycleOwner(),
                 total -> binding.coupon.totalAfterDiscountTV.setText(String.valueOf(total)));
 
-        viewModel.updateCartResponseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
-            @Override
-            public void onChanged(ResponseState responseState) {
-                hideProgress();
-                //todo handel server errors and validation error
-                Log.d(TAG, "onChanged: 9234" + responseState.getMessage());
-            }
+        viewModel.updateCartResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
+            hideProgress();
+            if (!responseState.isSuccessful())
+                LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
         });
 
         viewModel.cartDataMDL.observe(getViewLifecycleOwner(), new Observer<UpdateCartData>() {
@@ -197,7 +194,12 @@ public class CartFragment extends BaseFragment<CartFragmentViewModel> {
 
     @Override
     public void initErrorObserver() {
-
+        viewModel.userLoginCheckMDL.observe(getViewLifecycleOwner(), isUserLogin -> {
+            if (isUserLogin)
+                listener.onOrderConfirmReq(cartData);
+            else
+                listener.onLoginReq();
+        });
     }
 }
 

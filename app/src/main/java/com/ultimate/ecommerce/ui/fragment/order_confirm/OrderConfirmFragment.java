@@ -7,12 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentOrderConfirmBinding;
-import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.order_confirm.views.mainviewpager.OrderConfirmPagerAdapter;
@@ -21,6 +19,7 @@ import com.ultimate.ecommerce.ui.fragment.order_confirm_check.OrderConfirmCheckF
 import com.ultimate.ecommerce.ui.fragment.order_confirm_done.OrderConfirmDoneFragment;
 import com.ultimate.ecommerce.ui.fragment.order_confirm_payment_method.OrderConfirmPaymentMethodFragment;
 import com.ultimate.ecommerce.ui.fragment.order_confirm_shipment_method.OrderConfirmShipmentMethodFragment;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import javax.annotation.Nullable;
 
@@ -57,11 +56,11 @@ public class OrderConfirmFragment extends BaseFragment<OrderConfirmFragmentViewM
     public void initObservers() {
         viewModel.payCartResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
             hideProgress();
-            //todo handel server errors
             if (responseState.isSuccessful()) {
                 binding.stateVP.setCurrentItem(4);
                 binding.title.CL.setVisibility(View.GONE);
-            }
+            } else
+                LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
         });
     }
 

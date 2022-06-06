@@ -7,6 +7,7 @@ import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
 import com.ultimate.ecommerce.repository.server.request.create_order.CreateProductRequest;
 import com.ultimate.ecommerce.repository.server.request.create_order.OrderProducts;
 import com.ultimate.ecommerce.repository.server.request.update_cart.UpdateCartProductRequest;
+import com.ultimate.ecommerce.ui.fragment.profile.dialogs.change_password.EPassword;
 import com.ultimate.ecommerce.ui.fragment.profile.dialogs.profile_edit.Profile;
 
 import java.util.List;
@@ -199,8 +200,7 @@ public class BaseRequest {
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userID", userId)
                 .addFormDataPart("email", profile.getEmail())
-                .addFormDataPart("first_name", profile.getName())
-                .addFormDataPart("display_name", profile.getEmail())
+                .addFormDataPart("display_name", profile.getName())
                 .build();
     }
 
@@ -230,14 +230,15 @@ public class BaseRequest {
                 .build();
     }
 
-    public static RequestBody getUpdatePasswordRequest(String userId, String newPassword, String confirmPassword) {
+    public static RequestBody getUpdatePasswordRequest(String userId, EPassword ePassword) {
         return new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userID", userId)
-                .addFormDataPart("newPassword", newPassword)
-                .addFormDataPart("confirmNewPassword", confirmPassword)
+                .addFormDataPart("oldPassword", ePassword.getCurrentPassword())
+                .addFormDataPart("newPassword", ePassword.getNewPassword())
+                .addFormDataPart("confirmNewPassword", ePassword.getConfirmPassword())
                 // todo handel other user type
-                .addFormDataPart("userStatus", "guest")
+                .addFormDataPart("userStatus", "login")
                 .build();
     }
 

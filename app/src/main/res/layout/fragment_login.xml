@@ -210,88 +210,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/twitterRL" />
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/phoneCL"
+            <LinearLayout
+                android:id="@+id/fieldsLL"
+                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="12dp"
-                android:background="@drawable/back_edittext"
-                android:padding="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11">
-
-                <EditText
-                    android:id="@+id/phoneED"
-                    style="@style/shadow_edittext"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:drawableStart="@drawable/ic_phone"
-                    android:hint="@string/user_phone"
-                    android:inputType="phone"
-                    android:text="712813"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/phoneCCP"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <com.rilixtech.widget.countrycodepicker.CountryCodePicker
-                    android:id="@+id/phoneCCP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:padding="10dp"
-                    app:ccp_defaultCode="81"
-                    app:ccp_defaultNameCode="EG"
-                    app:ccp_hideNameCode="true"
-                    app:ccp_textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/phoneED"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/phoneED"
-                    app:layout_constraintVertical_bias="0.47" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/passwordCL"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/back_edittext"
-                android:padding="12dp"
-                app:layout_constraintEnd_toEndOf="@+id/phoneCL"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/phoneCL"
-                app:layout_constraintTop_toBottomOf="@+id/phoneCL">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:boxBackgroundMode="none"
-                    app:hintEnabled="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:passwordToggleEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/passwordED"
-                        style="@style/shadow_edittext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_lock"
-                        android:hint="@string/new_password"
-                        android:inputType="textPassword"
-                        android:textAlignment="viewStart" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
             <include
                 android:id="@+id/registerBtn"
@@ -351,14 +280,14 @@
                 android:id="@+id/forgetPasswordLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:text="@string/forget_password"
                 android:textColor="@{color.gradientStartColor}"
                 android:textSize="12sp"
                 android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="@+id/passwordCL"
-                app:layout_constraintStart_toStartOf="@+id/passwordCL"
-                app:layout_constraintTop_toBottomOf="@+id/passwordCL" />
+                app:layout_constraintEnd_toEndOf="@+id/fieldsLL"
+                app:layout_constraintStart_toStartOf="@+id/fieldsLL"
+                app:layout_constraintTop_toBottomOf="@+id/fieldsLL" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

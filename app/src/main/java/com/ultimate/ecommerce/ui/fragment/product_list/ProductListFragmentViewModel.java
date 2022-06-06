@@ -105,11 +105,11 @@ public class ProductListFragmentViewModel extends BaseViewModel {
 
     private void synchronizeWithCart(List<ProductData> products) {
         AsyncTask.execute(() -> {
-            Log.d(TAG, "synchronizeWithCart: 2ew39:"+products.size());
             ArrayList<ProductAdapterData> dataList = new ArrayList<>();
             for (ProductData product : products) {
                 int cartQuantity = productRepo.getProductCartQuantity(product.getId());
-                ProductAdapterData data = new ProductAdapterData(product, cartQuantity);
+                boolean isInFavorite = favoriteRepo.isInFavorite(product.getId());
+                ProductAdapterData data = new ProductAdapterData(product, cartQuantity,isInFavorite);
                 dataList.add(data);
             }
             productsMDL.postValue(dataList);
@@ -119,7 +119,6 @@ public class ProductListFragmentViewModel extends BaseViewModel {
     public void addToCart(ProductCart productCart) {
         cartRepo.addToCart(productCart);
     }
-
 
     public void addToFavorite(ProductAdapterData data) {
         Favorite favorite = convertProductToFavorite(data);

@@ -13,12 +13,12 @@ public class ResponseState {
     }
 
 
-    private ResponseState() {
+    protected ResponseState() {
         this.isSuccessful = true;
         this.message = "DONE";
     }
 
-    private ResponseState(String message) {
+    protected ResponseState(String message) {
         this.isSuccessful = false;
         this.message = message;
     }

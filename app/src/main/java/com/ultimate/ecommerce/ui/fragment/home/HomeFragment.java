@@ -1,21 +1,23 @@
 package com.ultimate.ecommerce.ui.fragment.home;
 
-import static com.ultimate.ecommerce.ui.fragment.home.HomeSt.BANNER_FOUR;
-import static com.ultimate.ecommerce.ui.fragment.home.HomeSt.BANNER_ONE;
-import static com.ultimate.ecommerce.ui.fragment.home.HomeSt.BANNER_THREE;
-import static com.ultimate.ecommerce.ui.fragment.home.HomeSt.BANNER_TOW;
-import static com.ultimate.ecommerce.ui.fragment.home.HomeSt.CATEGORIES;
-import static com.ultimate.ecommerce.ui.fragment.home.HomeSt.MIN_SLIDER_Four;
-import static com.ultimate.ecommerce.ui.fragment.home.HomeSt.MIN_SLIDER_THREE;
-import static com.ultimate.ecommerce.ui.fragment.home.HomeSt.MIN_SLIDER_TOW;
-import static com.ultimate.ecommerce.ui.fragment.home.HomeSt.PRODUCTS;
-import static com.ultimate.ecommerce.ui.fragment.home.HomeSt.SEARCH_SLIDER_ONE;
+import static com.ultimate.ecommerce.ui.fragment.home.HomeFragmentSt.BANNER_FOUR;
+import static com.ultimate.ecommerce.ui.fragment.home.HomeFragmentSt.BANNER_ONE;
+import static com.ultimate.ecommerce.ui.fragment.home.HomeFragmentSt.BANNER_THREE;
+import static com.ultimate.ecommerce.ui.fragment.home.HomeFragmentSt.BANNER_TOW;
+import static com.ultimate.ecommerce.ui.fragment.home.HomeFragmentSt.CATEGORIES;
+import static com.ultimate.ecommerce.ui.fragment.home.HomeFragmentSt.MIN_SLIDER_Four;
+import static com.ultimate.ecommerce.ui.fragment.home.HomeFragmentSt.MIN_SLIDER_THREE;
+import static com.ultimate.ecommerce.ui.fragment.home.HomeFragmentSt.MIN_SLIDER_TOW;
+import static com.ultimate.ecommerce.ui.fragment.home.HomeFragmentSt.PRODUCTS;
+import static com.ultimate.ecommerce.ui.fragment.home.HomeFragmentSt.SEARCH_SLIDER_ONE;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,11 +27,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.DynamicTheme;
 import com.ultimate.ecommerce.databinding.FragmentHomeBinding;
 import com.ultimate.ecommerce.databinding.ToolsTitleBinding;
+import com.ultimate.ecommerce.databinding.ViewBannerBinding;
+import com.ultimate.ecommerce.databinding.ViewImageBinding;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import com.ultimate.ecommerce.repository.server.response.get_products.ProductData;
@@ -38,14 +43,6 @@ import com.ultimate.ecommerce.repository.server.response.homepage.base.BaseSecti
 import com.ultimate.ecommerce.repository.server.response.homepage.base.CategorySection;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.category.views.CategoryAdapter;
-import com.ultimate.ecommerce.ui.fragment.home.views.banner_four.BannerFourAdapter;
-import com.ultimate.ecommerce.ui.fragment.home.views.banner_four.BannerFourViewListener;
-import com.ultimate.ecommerce.ui.fragment.home.views.banner_one.BannerOneAdapter;
-import com.ultimate.ecommerce.ui.fragment.home.views.banner_one.BannerOneViewListener;
-import com.ultimate.ecommerce.ui.fragment.home.views.banner_three.BannerThreeAdapter;
-import com.ultimate.ecommerce.ui.fragment.home.views.banner_three.BannerThreeViewListener;
-import com.ultimate.ecommerce.ui.fragment.home.views.banner_two.BannerTowAdapter;
-import com.ultimate.ecommerce.ui.fragment.home.views.banner_two.BannerTowViewListener;
 import com.ultimate.ecommerce.ui.fragment.home.views.mainslider_four.MinSliderFourAdapter;
 import com.ultimate.ecommerce.ui.fragment.home.views.mainslider_four.MinSliderFourViewListener;
 import com.ultimate.ecommerce.ui.fragment.home.views.mainslider_three.MinSliderThreeAdapter;
@@ -66,6 +63,11 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
     FragmentHomeBinding binding;
+    HomeFragmentListener listener;
+
+    public HomeFragment(HomeFragmentListener listener) {
+        this.listener = listener;
+    }
 
     @Nullable
     @Override
@@ -76,7 +78,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
 
     @Override
     public void initEvent() {
-
+        binding.searchImg.setOnClickListener(v -> {
+            String searchText = binding.searchEd.getText().toString();
+            listener.onSearchOpenReq(searchText);
+        });
     }
 
     @Override
@@ -115,15 +120,17 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
                 adapter.setList(bannerDate);
             }
             break;
+
             case MIN_SLIDER_THREE: {
                 addTitle(homeSection.getTitle());
-                MinSliderThreeAdapter adapter = new MinSliderThreeAdapter(new MinSliderThreeViewListener() {
+                MinSliderTowAdapter adapter = new MinSliderTowAdapter(new MinSliderTowViewListener() {
                 });
                 addSearchSliderOne(adapter);
                 ArrayList<Banner> bannerDate = getBannerDate(homeSection);
                 adapter.setList(bannerDate);
             }
             break;
+
             case MIN_SLIDER_Four: {
                 addTitle(homeSection.getTitle());
                 MinSliderFourAdapter adapter = new MinSliderFourAdapter(new MinSliderFourViewListener() {
@@ -135,44 +142,30 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
             break;
 
 
-            case BANNER_ONE: {
-                addTitle(homeSection.getTitle());
-                BannerOneAdapter adapter = new BannerOneAdapter(new BannerOneViewListener() {
-                });
-                addBanner(adapter);
+            case BANNER_ONE:{
+                addTitle("One Image shown");
                 ArrayList<Banner> bannerDate = getBannerDate(homeSection);
-                adapter.setList(bannerDate);
+                addBanners(bannerDate);
             }
             break;
-
-            case BANNER_TOW: {
-                addTitle(homeSection.getTitle());
-                BannerTowAdapter adapter = new BannerTowAdapter(new BannerTowViewListener() {
-                });
-                addBanner(adapter);
+            case BANNER_TOW:{
+                addTitle("One Images shown");
                 ArrayList<Banner> bannerDate = getBannerDate(homeSection);
-                adapter.setList(bannerDate);
+                addBanners(bannerDate);
             }
             break;
-            case BANNER_THREE: {
-                addTitle(homeSection.getTitle());
-                BannerThreeAdapter adapter = new BannerThreeAdapter(new BannerThreeViewListener() {
-                });
-                addBanner(adapter);
+            case BANNER_THREE:{
+                addTitle("Three Images shown");
                 ArrayList<Banner> bannerDate = getBannerDate(homeSection);
-                adapter.setList(bannerDate);
+                addBanners(bannerDate);
             }
             break;
             case BANNER_FOUR: {
                 addTitle(homeSection.getTitle());
-                BannerFourAdapter adapter = new BannerFourAdapter(new BannerFourViewListener() {
-                });
-                addBanner(adapter);
                 ArrayList<Banner> bannerDate = getBannerDate(homeSection);
-                adapter.setList(bannerDate);
+                addBanners(bannerDate);
             }
             break;
-
 
             case CATEGORIES: {
                 addTitle(homeSection.getTitle());
@@ -232,17 +225,35 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
         productAdapter.setList(list);
     }
 
-    private void addBanner(RecyclerView.Adapter adapter) {
-        RecyclerView recyclerView = getCustomRecyclerView();
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(),
-                LinearLayoutManager.HORIZONTAL, true));
-        recyclerView.setAdapter(adapter);
+    private void addBanners(ArrayList<Banner> bannerDate) {
+        ViewBannerBinding bannerBinding = ViewBannerBinding.inflate(LayoutInflater.from(requireContext()));
+        for (Banner banner : bannerDate) {
+            ViewImageBinding imageBinding = ViewImageBinding.inflate(LayoutInflater.from(requireContext()));
+            Glide.with(requireContext())
+                    .load(banner.getUrl())
+                    .error(R.drawable.ic_baseline_error_24)
+                    .into(imageBinding.image);
+
+            LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                    GridLayout.LayoutParams.MATCH_PARENT,
+                    GridLayout.LayoutParams.MATCH_PARENT, 1);
+
+            bannerBinding.bannerLL.addView(imageBinding.getRoot(), param);
+        }
+
+
+        binding.homeLL.addView(bannerBinding.getRoot());
     }
 
     private void addSearchSliderOne(RecyclerView.Adapter adapter) {
         RecyclerView recyclerView = getCustomRecyclerView();
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(),
-                LinearLayoutManager.HORIZONTAL, true));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(),
+                LinearLayoutManager.HORIZONTAL, true);
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                GridLayout.LayoutParams.MATCH_PARENT,
+                GridLayout.LayoutParams.MATCH_PARENT, 1);
+        layoutManager.generateLayoutParams(param);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
 
@@ -278,7 +289,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentViewModel> {
         CategoryAdapter categoryAdapter = new CategoryAdapter(category -> {
 
         });
-
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(categoryAdapter);
 
         ArrayList<Category> categories = new ArrayList<>();

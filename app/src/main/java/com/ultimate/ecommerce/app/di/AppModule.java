@@ -12,6 +12,7 @@ import com.ultimate.ecommerce.repository.local.tables.category.CategoryDao;
 import com.ultimate.ecommerce.repository.local.tables.configuration.ConfigurationDao;
 import com.ultimate.ecommerce.repository.local.tables.favorite.FavoriteDao;
 import com.ultimate.ecommerce.repository.local.tables.page.PageDao;
+import com.ultimate.ecommerce.repository.local.tables.auth.AuthDao;
 import com.ultimate.ecommerce.repository.local.tables.setting.AppSettingDao;
 import com.ultimate.ecommerce.repository.local.user.UserDao;
 import com.ultimate.ecommerce.repository.server.remote.UltimateApi;
@@ -136,6 +137,11 @@ public abstract class AppModule {
         return appDatabase.productCartDao();
     }
 
+    @ActivityScoped
+    @Provides
+    public static AuthDao provideAuthDao(AppDatabase appDatabase) {
+        return appDatabase.authDao();
+    }
 
     @ActivityScoped
     @Provides

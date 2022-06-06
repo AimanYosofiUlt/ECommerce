@@ -60,10 +60,8 @@ public class AboutUsFragment extends BaseFragment<AboutUsFragmentViewModel> {
         viewModel.responseStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {
-                Log.d("AboutUsFragment", "onChanged: 238762:" + responseState.getMessage());
-                if (!responseState.isSuccessful()) {
-                    // todo handle error
-                }
+                if (!responseState.isSuccessful())
+                    LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
             }
         });
     }

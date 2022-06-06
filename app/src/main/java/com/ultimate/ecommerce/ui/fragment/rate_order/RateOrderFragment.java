@@ -4,21 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.databinding.FragmentRateOrderBinding;
-import com.ultimate.ecommerce.repository.server.response.base.ResponseState;
 import com.ultimate.ecommerce.repository.server.response.get_order.GetOrderData;
 import com.ultimate.ecommerce.repository.server.response.get_order.Product;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.rate_order.views.mainviewpager.RateOrderPagerAdapter;
 import com.ultimate.ecommerce.ui.fragment.rate_order_inner.RateOrderInnerFragment;
 import com.ultimate.ecommerce.ui.fragment.rate_order_inner.RateOrderListener;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import javax.annotation.Nullable;
 
@@ -62,10 +60,9 @@ public class RateOrderFragment extends BaseFragment<RateOrderFragmentViewModel> 
             if (responseState.isSuccessful()) {
                 NavHostFragment.findNavController(requireParentFragment())
                         .popBackStack();
-            } else {
-                //todo handel server errors
-                Toast.makeText(requireContext(), responseState.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+            } else
+                LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
+
         });
     }
 

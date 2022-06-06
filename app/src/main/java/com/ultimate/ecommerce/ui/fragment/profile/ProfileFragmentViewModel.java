@@ -25,6 +25,7 @@ import com.ultimate.ecommerce.repository.server.response.get_user_profile.GetUse
 import com.ultimate.ecommerce.repository.server.response.update_password.UpdatePasswordResponse;
 import com.ultimate.ecommerce.repository.server.response.update_profile.UpdateProfileResponse;
 import com.ultimate.ecommerce.ui.base.BaseViewModel;
+import com.ultimate.ecommerce.ui.fragment.profile.dialogs.change_password.EPassword;
 import com.ultimate.ecommerce.ui.fragment.profile.dialogs.profile_edit.Profile;
 import com.ultimate.ecommerce.utilities.ValidateSt;
 import com.ultimate.ecommerce.utilities.state.CheckNetworkListener;
@@ -38,8 +39,6 @@ public class ProfileFragmentViewModel extends BaseViewModel {
     UserRepo userRepo;
 
     LiveData<User> profileLiveData;
-
-    MutableLiveData<UserData> userMDL;
     MutableLiveData<ResponseState> getUserProfileResponseMDL;
     MutableLiveData<ResponseState> validateChangeResponseMDL;
     MutableLiveData<ResponseState> changePasswordResponseMDL;
@@ -50,19 +49,39 @@ public class ProfileFragmentViewModel extends BaseViewModel {
     public ProfileFragmentViewModel(@NonNull Application application, UserRepo userRepo) {
         super(application);
         profileLiveData = userRepo.getUserProfile();
-        userMDL = new MutableLiveData<>();
         getUserProfileResponseMDL = new MutableLiveData<>();
         validateChangeResponseMDL = new MutableLiveData<>();
         changePasswordResponseMDL = new MutableLiveData<>();
         validateProfileEditResponseMDL = new MutableLiveData<>();
+        updateProfileResponseMDL = new MutableLiveData<>();
+    }
+
+    public void validateGetProfile(Context requireContext) {
+        StateUtil
+                .validate(new OnValidateListener() {
+                    @Override
+                    public boolean onValidate() {
+                        return OnValidateListener.super.onValidate();
+                    }
+                })
+                .checkNetwork(requireContext, new CheckNetworkListener() {
+                    @Override
+                    public void onConnect() {
+                        getUserProfile();
+                    }
+
+                    @Override
+                    public void onDisconnect() {
+                        getUserProfileResponseMDL.setValue(ResponseState.failureState(NO_INTERNET_CONNECTION));
+                    }
+                });
     }
 
     public void getUserProfile() {
         userRepo.getUserProfile(new ResponsesCallBack<GetUserProfileResponse>() {
             @Override
             public void onSuccess(GetUserProfileResponse response) {
-                UserData userData = response.getData().getData();
-                userMDL.setValue(userData);
+                getUserProfileResponseMDL.setValue(ResponseState.successState());
             }
 
             @Override
@@ -72,20 +91,18 @@ public class ProfileFragmentViewModel extends BaseViewModel {
         });
     }
 
-    public void validateChangePassword(Context requireContext, String currentPassword, String newPassword, String confirmPassword) {
+    public void validateChangePassword(Context requireContext, EPassword ePassword) {
         AsyncTask.execute(() -> StateUtil
                 .validate(new OnValidateListener() {
                     @Override
                     public boolean onValidate() {
-                        String password = userRepo.getUser().getPassword();
+                        String currentPassword = ePassword.getCurrentPassword();
                         if (currentPassword.trim().isEmpty()) {
                             validateChangeResponseMDL.postValue(ResponseState.failureState(PASSWORD_EMPTY_FILED_ERROR));
                             return false;
-                        } else if (!currentPassword.trim().equals(password)) {
-                            validateChangeResponseMDL.postValue(ResponseState.failureState(WRONG_PASSWORD_ERROR));
-                            return false;
                         }
 
+                        String newPassword = ePassword.getNewPassword();
                         if (newPassword.trim().isEmpty()) {
                             validateChangeResponseMDL.postValue(ResponseState.failureState(NEW_PASSWORD_EMPTY_FILED_ERROR));
                             return false;
@@ -94,10 +111,10 @@ public class ProfileFragmentViewModel extends BaseViewModel {
                             return false;
                         }
 
-                        if (confirmPassword.trim().isEmpty()) {
+                        if (ePassword.getConfirmPassword().trim().isEmpty()) {
                             validateChangeResponseMDL.postValue(ResponseState.failureState(CONFIRM_PASSWORD_EMPTY_FILED_ERROR));
                             return false;
-                        } else if (!confirmPassword.trim().equals(newPassword)) {
+                        } else if (!ePassword.getConfirmPassword().trim().equals(newPassword)) {
                             validateChangeResponseMDL.postValue(ResponseState.failureState(CONFIRM_NEW_PASSWORD_NO_SAME_ERROR));
                             return false;
                         }
@@ -107,7 +124,7 @@ public class ProfileFragmentViewModel extends BaseViewModel {
                 .checkNetwork(requireContext, new CheckNetworkListener() {
                     @Override
                     public void onConnect() {
-                        changePassword(newPassword.trim(), confirmPassword.trim());
+                        changePassword(ePassword);
                     }
 
                     @Override
@@ -117,8 +134,8 @@ public class ProfileFragmentViewModel extends BaseViewModel {
                 }));
     }
 
-    private void changePassword(String newPassword, String confirmPassword) {
-        userRepo.changePassword(newPassword, confirmPassword, new ResponsesCallBack<UpdatePasswordResponse>() {
+    private void changePassword(EPassword ePassword) {
+        userRepo.changePassword(ePassword, new ResponsesCallBack<UpdatePasswordResponse>() {
             @Override
             public void onSuccess(UpdatePasswordResponse response) {
                 changePasswordResponseMDL.postValue(ResponseState.successState());
@@ -136,7 +153,6 @@ public class ProfileFragmentViewModel extends BaseViewModel {
                 .validate(new OnValidateListener() {
                     @Override
                     public boolean onValidate() {
-                        //todo validate mobile number if there is update for it in the server
                         if (profile.getEmail().trim().isEmpty()) {
                             validateProfileEditResponseMDL.postValue(ResponseState.failureState(ValidateSt.EMAIL_EMPTY_FILED_ERROR));
                             return false;
@@ -170,4 +186,6 @@ public class ProfileFragmentViewModel extends BaseViewModel {
             }
         });
     }
+
+
 }

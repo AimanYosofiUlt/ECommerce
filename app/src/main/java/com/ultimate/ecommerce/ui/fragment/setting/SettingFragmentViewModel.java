@@ -24,7 +24,7 @@ public class SettingFragmentViewModel extends BaseViewModel {
     public SettingFragmentViewModel(@NonNull Application application, UserRepo userRepo) {
         super(application);
         this.userRepo = userRepo;
-        userIsLoginLiveData = userRepo.checkUser();
+        userIsLoginLiveData = userRepo.checkUserLogin();
         userMDL = new MutableLiveData<>();
     }
 

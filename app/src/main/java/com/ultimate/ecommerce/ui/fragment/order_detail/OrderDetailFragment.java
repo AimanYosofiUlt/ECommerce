@@ -84,8 +84,8 @@ public class OrderDetailFragment extends BaseFragment<OrderDetailFragmentViewMod
         viewModel.getDetailResponseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {
-                //todo handel the server erros
-                Log.d("OrderDetailFragment", "onChanged: 923879i:" + responseState.getMessage());
+                if (!responseState.isSuccessful())
+                    LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
             }
         });
 

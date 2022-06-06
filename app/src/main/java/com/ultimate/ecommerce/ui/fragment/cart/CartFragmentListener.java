@@ -4,4 +4,6 @@ import com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartD
 
 public interface CartFragmentListener {
     void onOrderConfirmReq(UpdateCartData data);
+
+    void onLoginReq();
 }

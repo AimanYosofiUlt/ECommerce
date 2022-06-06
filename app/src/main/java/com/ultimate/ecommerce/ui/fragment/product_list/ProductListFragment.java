@@ -38,7 +38,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class ProductListFragment extends BaseFragment<ProductListFragmentViewModel> {
-    FragmentProductListBinding bd;
+    FragmentProductListBinding binding;
     Category category;
 
     SubCategoryAdapter subCategoryAdapter;
@@ -47,15 +47,15 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        bd = FragmentProductListBinding.inflate(getLayoutInflater());
+        binding = FragmentProductListBinding.inflate(getLayoutInflater());
         category = ProductListFragmentArgs.fromBundle(getArguments()).getCategory();
-        return bd.getRoot();
+        return binding.getRoot();
     }
 
 
     @Override
     public void initEvent() {
-        bd.backBtn.setOnClickListener(new View.OnClickListener() {
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(requireParentFragment())
@@ -63,72 +63,56 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
             }
         });
 
-        bd.filterBtn.setOnClickListener(new View.OnClickListener() {
+        binding.filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FilterBottomSheet bottomSheet = new FilterBottomSheet();
                 bottomSheet.show(requireActivity().getSupportFragmentManager(), "Filter");
             }
         });
+
+        binding.searchBtn.setOnClickListener(v -> NavHostFragment.findNavController(requireParentFragment())
+                .navigate(ProductListFragmentDirections.actionProductListToProductSearch()));
     }
 
     @Override
     public void initObservers() {
-        viewModel.subCategoriesMDL.observe(getViewLifecycleOwner(), new Observer<List<Categories>>() {
-            @Override
-            public void onChanged(List<Categories> subCategoriesDataList) {
-                Log.d("ProductListFragment", "onChanged: 43524 listSize:" + subCategoriesDataList.size());
-                subCategoryAdapter.setList(subCategoriesDataList);
-                hideNoInternetProgress();
-            }
+        viewModel.subCategoriesMDL.observe(getViewLifecycleOwner(), subCategoriesDataList -> {
+            subCategoryAdapter.setList(subCategoriesDataList);
+            hideNoInternetProgress();
         });
 
-        viewModel.productsMDL.observe(getViewLifecycleOwner(), new Observer<List<ProductAdapterData>>() {
-            @Override
-            public void onChanged(List<ProductAdapterData> data) {
-                productAdapter.setList(data);
-                hideNoInternetProgress();
-            }
+        viewModel.productsMDL.observe(getViewLifecycleOwner(), data -> {
+            productAdapter.setList(data);
+            hideNoInternetProgress();
         });
 
-        viewModel.filtersMDL.observe(getViewLifecycleOwner(), new Observer<List<FiltersData>>() {
-            @Override
-            public void onChanged(List<FiltersData> filtersData) {
+        viewModel.filtersMDL.observe(getViewLifecycleOwner(), filtersData -> {
 
-            }
         });
 
-        viewModel.getProductResponseStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
-            @Override
-            public void onChanged(ResponseState responseState) {
-                bd.internetCheck.progressBar.setVisibility(View.GONE);
-                Log.d("ProductListFragment", "onChanged: 39287 :" + responseState.getMessage());
-            }
+        viewModel.getProductResponseStateMDL.observe(getViewLifecycleOwner(), responseState -> {
+            binding.internetCheck.progressBar.setVisibility(View.GONE);
         });
 
-        viewModel.updateCartResStateMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
-            @Override
-            public void onChanged(ResponseState responseState) {
-                Log.d("ProductListFragment", "onChanged: 245353 :" + responseState.getMessage());
-            }
-        });
+        viewModel.updateCartResStateMDL.observe(getViewLifecycleOwner(), responseState -> Log.d("ProductListFragment", "onChanged: 245353 :" + responseState.getMessage()));
     }
 
     public void hideNoInternetProgress() {
-        bd.internetCheck.progressBar.setVisibility(View.GONE);
-        bd.internetCheck.internetConnectionGroup.setVisibility(View.GONE);
+        binding.internetCheck.progressBar.setVisibility(View.GONE);
+        binding.internetCheck.internetConnectionGroup.setVisibility(View.GONE);
     }
 
     @Override
     public void initLoading() {
-        bd.pageTitleTV.setText(category.getTitle());
+        binding.pageTitleTV.setText(category.getTitle());
 
         subCategoryAdapter = new SubCategoryAdapter(new SubCategoryViewListener() {
         });
-        bd.subCategoryRV.setAdapter(subCategoryAdapter);
+        binding.subCategoryRV.setAdapter(subCategoryAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        bd.subCategoryRV.setLayoutManager(linearLayoutManager);
+        binding.subCategoryRV.setLayoutManager(linearLayoutManager);
 
 
         productAdapter = new ProductAdapter(new ProductViewListener() {
@@ -156,9 +140,9 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
                 viewModel.removeFromFavorite(data);
             }
         });
-        bd.productRV.setAdapter(productAdapter);
+        binding.productRV.setAdapter(productAdapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 2);
-        bd.productRV.setLayoutManager(gridLayoutManager);
+        binding.productRV.setLayoutManager(gridLayoutManager);
 
         //todo finish paging
         viewModel.validateGetProducts(requireContext(), category, 1);
@@ -178,8 +162,8 @@ public class ProductListFragment extends BaseFragment<ProductListFragmentViewMod
         switch (message) {
             case NO_INTERNET_CONNECTION:
                 Toast.makeText(requireContext(), getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
-                bd.internetCheck.progressBar.setVisibility(View.GONE);
-                bd.internetCheck.internetConnectionGroup.setVisibility(View.VISIBLE);
+                binding.internetCheck.progressBar.setVisibility(View.GONE);
+                binding.internetCheck.internetConnectionGroup.setVisibility(View.VISIBLE);
                 break;
         }
     }

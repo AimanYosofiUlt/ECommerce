@@ -42,7 +42,7 @@
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/image"
+                android:src="@drawable/image2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/gradiantView"
                 app:layout_constraintHorizontal_bias="1.0"

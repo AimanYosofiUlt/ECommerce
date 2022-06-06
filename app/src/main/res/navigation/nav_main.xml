@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.ultimate.ecommerce.ui.fragment.splash.SplashFragment"
@@ -51,6 +51,9 @@
         <action
             android:id="@+id/actionMainToOrderConfirm"
             app:destination="@id/orderConfirmFragment" />
+        <action
+            android:id="@+id/actionMainToProductSearch"
+            app:destination="@id/productSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactUsFragment"
@@ -117,6 +120,9 @@
         <action
             android:id="@+id/actionProductListToProductDetail"
             app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/actionProductListToProductSearch"
+            app:destination="@id/productSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -182,5 +188,18 @@
         <argument
             android:name="cartData"
             app:argType="com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartData" />
+    </fragment>
+    <fragment
+        android:id="@+id/productSearchFragment"
+        android:name="com.ultimate.ecommerce.ui.fragment.home.product_search.ProductSearchFragment"
+        android:label="ProductSearchFragment">
+        <action
+            android:id="@+id/actionProductSearchToProductDetail"
+            app:destination="@id/productDetailFragment" />
+        <argument
+            android:name="searchText"
+            android:defaultValue="   "
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

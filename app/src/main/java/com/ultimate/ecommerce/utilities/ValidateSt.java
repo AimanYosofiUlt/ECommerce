@@ -19,4 +19,10 @@ public class ValidateSt {
     public static final String COUPON_EMPTY_FILED_ERROR = "COUPON_EMPTY_FILED_ERROR";
     public static final String CART_PRODUCTS_EMPTY_ERROR = "CART_PRODUCTS_EMPTY_ERROR";
 
+    public static final String SEARCH_EMPTY_ERROR = "SEARCH_EMPTY_ERROR";
+
+    public static final String NO_VALIDATION = "NO_VALIDATION";
+    public static final String EMPTY_FILED_ERROR = "EMPTY_FILED_ERROR";
+    public static final String PASSWORD_NOT_STRUCTURE_WELL_ERROR = "PASSWORD_NOT_STRUCTURE_WELL_ERROR";
+    public static final String FILED_NOT_STRUCTURE_WELL_ERROR = "FILED_NOT_STRUCTURE_WELL_ERROR";
 }

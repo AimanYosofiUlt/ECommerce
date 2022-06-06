@@ -28,7 +28,6 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     ProductAdapterData data;
     ProductViewListener listener;
     ViewProductBinding binding;
-    boolean isInFavorite = false;
 
     public ProductViewHolder(@NonNull View itemView, ProductViewListener listener) {
         super(itemView);
@@ -46,40 +45,57 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
             );
             binding.cardBody.setLayoutParams(lp);
         }
-        binding.productNameTV.setText(data.getData().getTitle());
+        ProductData productData = data.getData();
+        binding.productNameTV.setText(productData.getTitle());
 
         Glide.with(itemView.getContext())
-                .load(data.getData().getImageUrl())
+                .load(productData.getImageUrl())
                 .error(R.drawable.ic_baseline_error_24)
                 .into(binding.productImage);
 
-        binding.priceTV.setText(data.getData().getPrice());
-        binding.oldPriceTV.setText(data.getData().getPrice());
-        binding.discountPercentageTV.setText(data.getData().getDiscountPercentage());
-        binding.rateTV.setText(String.valueOf(data.getData().getRatingCount()));
+        binding.priceTV.setText(productData.getPrice());
+        binding.oldPriceTV.setText(productData.getPrice());
+        binding.discountPercentageTV.setText(productData.getDiscountPercentage());
+        binding.rateTV.setText(String.valueOf(productData.getRatingCount()));
 
         String cartQuantityStr = String.valueOf(data.getCartQuantity());
         binding.countTV.setText(cartQuantityStr);
 
-//      todo here should calculate the discount and show the oldPrice or the price but the response don't give a percentage
-//        String discountMsg = itemView.getContext().getString(R.string.discountBy) + " " + data.getData().getDiscountPercentage() + "%";
-//        bd.discountPercentageTV.setText(discountMsg);
-//        int discountPrice = Integer.parseInt(data.getData().getPrice()) * Integer.parseInt(data.getData().getDiscountPercentage()) / 100;
-//        bd.priceTV.setText(String.valueOf(discountPrice));
-//        bd.oldPriceTV.setText(data.getData().getPrice());
+        if (data.isInFavorite()) {
+            binding.favBtn.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_favourite));
+            listener.removeFromFavorite(data);
+        } else {
+            setInFavorite();
+            listener.addToFavorite(data);
+        }
+
+        if (data.isInFavorite()) {
+            setInFavorite();
+        } else {
+            binding.favBtn.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_favourite));
+        }
+
+        boolean hasDiscount = !productData.getSalePrice().equalsIgnoreCase("0") || !productData.getSalePrice().equalsIgnoreCase("0.0");
+        if (hasDiscount) {
+            binding.priceTV.setText(productData.getSalePrice());
+            binding.oldPriceTV.setText(productData.getRegularPrice());
+        } else {
+            binding.priceTV.setText(String.valueOf(productData.getRegularPrice()));
+            binding.oldPriceTV.setVisibility(View.GONE);
+            binding.discountTile.setVisibility(View.GONE);
+        }
     }
 
     private void initEvent() {
         binding.favBtn.setOnClickListener(view -> {
-            if (!isInFavorite) {
-                setInFavorite();
-                isInFavorite = true;
-                listener.addToFavorite(data);
-            } else {
+            if (data.isInFavorite()) {
                 binding.favBtn.setImageDrawable(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_favourite));
-                isInFavorite = false;
                 listener.removeFromFavorite(data);
+            } else {
+                setInFavorite();
+                listener.addToFavorite(data);
             }
+            data.setInFavorite(!data.isInFavorite());
         });
 
         binding.addToCartBtn.setOnClickListener(view -> {

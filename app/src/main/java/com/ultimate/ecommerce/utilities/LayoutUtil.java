@@ -39,9 +39,9 @@ public class LayoutUtil {
 
 
         if (isCancelAble) {
-            bd.cancelBtn.btnBody.setVisibility(View.VISIBLE);
+            bd.cancelBtn.CL.setVisibility(View.VISIBLE);
         } else {
-            bd.cancelBtn.btnBody.setVisibility(View.GONE);
+            bd.cancelBtn.CL.setVisibility(View.GONE);
         }
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setView(view)
@@ -64,6 +64,10 @@ public class LayoutUtil {
                 dialog.dismiss();
             });
         }
+    }
+
+    public static void showErrorDialog(Context context, String message) {
+        showMassageDialogImpl(context, context.getString(R.string.error), message, false, null);
     }
 
     public static void showMassageDialog(Context context, String title, String message) {

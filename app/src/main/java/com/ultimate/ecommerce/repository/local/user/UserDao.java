@@ -11,6 +11,9 @@ public interface UserDao extends BaseDao<User> {
     @Query("SELECT COUNT(id) >= 1 FROM User")
     LiveData<Boolean> isUserLogin();
 
+    @Query("SELECT COUNT(id) >= 1 FROM User")
+    Boolean isUserLoginCheck();
+
     @Query("SELECT id From User")
     String getUserId();
 
@@ -29,6 +32,6 @@ public interface UserDao extends BaseDao<User> {
     @Query("SELECT * FROM User")
     LiveData<User> getUserProfile();
 
-    @Query("UPDATE User SET userName = :name and userEmail = :email")
+    @Query("UPDATE User SET userName = :name,userEmail = :email")
     void updateProfile(String name, String email);
 }

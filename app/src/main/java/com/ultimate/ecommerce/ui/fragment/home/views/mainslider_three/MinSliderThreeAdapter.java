@@ -30,7 +30,7 @@ public class MinSliderThreeAdapter extends RecyclerView.Adapter<MinSliderThreeVi
     @NonNull
     @Override
     public MinSliderThreeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_banner, parent, false);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_image, parent, false);
         return new MinSliderThreeViewHolder(inflate, listener);
     }
 

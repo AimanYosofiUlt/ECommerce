@@ -6,18 +6,18 @@ import java.util.List;
 
 public class GetAuthData {
     @SerializedName("fields")
-    private List<Fields> fields;
+    private List<Field> fields;
     @SerializedName("sms")
     private boolean sms;
 
     public GetAuthData() {
     }
 
-    public List<Fields> getFields() {
+    public List<Field> getFields() {
         return fields;
     }
 
-    public void setFields(List<Fields> fields) {
+    public void setFields(List<Field> fields) {
         this.fields = fields;
     }
 

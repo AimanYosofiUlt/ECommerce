@@ -48,8 +48,7 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentReviewBinding.inflate(getLayoutInflater());
-        //todo check this comment
-        //        product  ReviewFragmentArgs.fromBundle(getArguments()).getProduct();
+        product = ReviewFragmentArgs.fromBundle(getArguments()).getProduct();
         return binding.getRoot();
     }
 
@@ -72,13 +71,10 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
 
     @Override
     public void initObservers() {
-        viewModel.getReviewsResponseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
-            @Override
-            public void onChanged(ResponseState responseState) {
-                LayoutUtil.hideShimmer(binding.placeholder.placeholderCL, binding.shimmer.shimmerL);
-                //todo handel error from saever
-                Log.d("ReviewFragment", "onChanged: dq32323:" + responseState.getMessage());
-            }
+        viewModel.getReviewsResponseMDL.observe(getViewLifecycleOwner(), responseState -> {
+            LayoutUtil.hideShimmer(binding.placeholder.placeholderCL, binding.shimmer.shimmerL);
+            if (!responseState.isSuccessful())
+                LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
         });
 
         viewModel.reviewsMDL.observe(getViewLifecycleOwner(), new Observer<GetAllReviewsData>() {
@@ -144,7 +140,7 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
                         break;
 
                     default:
-                        //todo handel server error
+                        LayoutUtil.showErrorDialog(requireContext(), message);
                         Log.d("ReviewFragment", "handleErrorMessage: 23o4982:" + message);
                 }
             }
@@ -158,8 +154,7 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
         binding.placeholder.reviewRV.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.placeholder.reviewRV.setAdapter(reviewAdapter);
 
-        //todo set real product name
-        String productName = "Name";
+        String productName = product.getData().getTitle();
         binding.placeholder.pageTitleTV.setText(productName);
         binding.shimmer.pageTitleTV.setText(productName);
 
@@ -168,10 +163,7 @@ public class ReviewFragment extends BaseFragment<ReviewFragmentViewModel> {
 
     void loadingReviews() {
         LayoutUtil.showShimmer(binding.placeholder.placeholderCL, binding.shimmer.shimmerL);
-
-        //todo use user product not static id
-        //        viewModel.validateGetReviews(product.getData().getId(),requireContext());
-        viewModel.validateGetReviews(15782, requireContext());
+        viewModel.validateGetReviews(product.getData().getId(), requireContext());
     }
 
     @Override

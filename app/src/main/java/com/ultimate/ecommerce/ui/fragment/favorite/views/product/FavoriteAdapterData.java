@@ -1,6 +1,7 @@
 package com.ultimate.ecommerce.ui.fragment.favorite.views.product;
 
 import androidx.room.Embedded;
+import androidx.room.Ignore;
 
 import com.ultimate.ecommerce.repository.local.tables.favorite.Favorite;
 
@@ -12,10 +13,12 @@ public class FavoriteAdapterData {
     public FavoriteAdapterData() {
     }
 
+    @Ignore
     public FavoriteAdapterData(Favorite favorite) {
         this.favorite = favorite;
     }
 
+    @Ignore
     public FavoriteAdapterData(int cartQuantity, Favorite data) {
         this.cartQuantity = cartQuantity;
         this.favorite = data;

@@ -21,7 +21,9 @@ import com.ultimate.ecommerce.repository.server.response.logout.LogoutResponse;
 import com.ultimate.ecommerce.repository.server.response.payment_methods.PaymentMethodsResponse;
 import com.ultimate.ecommerce.repository.server.response.shipping_methods.ShippingMethodsResponse;
 import com.ultimate.ecommerce.repository.server.response.update_password.UpdatePasswordResponse;
+import com.ultimate.ecommerce.repository.server.response.update_profile.UpdateProfileData;
 import com.ultimate.ecommerce.repository.server.response.update_profile.UpdateProfileResponse;
+import com.ultimate.ecommerce.ui.fragment.profile.dialogs.change_password.EPassword;
 import com.ultimate.ecommerce.ui.fragment.profile.dialogs.profile_edit.Profile;
 
 import javax.inject.Inject;
@@ -43,7 +45,7 @@ public class UserRepo extends BaseRepo {
             @Override
             public void onSuccess(AddUserResponse response) {
                 AddUserData data = response.getData();
-                User user = convertResponseToUser(data.getUser(), userPassword, data.getTokenkey());
+                User user = convertResponseToUser(data.getUser(), data.getTokenkey());
                 setAppUser(user);
                 callBack.onSuccess(response);
             }
@@ -62,8 +64,12 @@ public class UserRepo extends BaseRepo {
         });
     }
 
-    public LiveData<Boolean> checkUser() {
+    public LiveData<Boolean> checkUserLogin() {
         return userDao.isUserLogin();
+    }
+
+    public boolean isUserLogin() {
+        return userDao.isUserLoginCheck();
     }
 
     public void login(String userPhone, String userPassword, ResponsesCallBack<LoginUserResponse> callBack) {
@@ -72,7 +78,7 @@ public class UserRepo extends BaseRepo {
             @Override
             public void onSuccess(LoginUserResponse response) {
                 AddUserData data = response.getData();
-                User user = convertResponseToUser(data.getUser(), userPassword, data.getTokenkey());
+                User user = convertResponseToUser(data.getUser(), data.getTokenkey());
                 setAppUser(user);
                 callBack.onSuccess(response);
             }
@@ -84,23 +90,32 @@ public class UserRepo extends BaseRepo {
         });
     }
 
-    private User convertResponseToUser(UserResponse response, String password, String tokenkey) {
+    private User convertResponseToUser(UserResponse response, String tokenkey) {
         UserData userData = response.getData();
         String id = userData.getId();
         String name = userData.getDisplayName();
         String email = userData.getUserEmail();
         String phone = userData.getUserLogin();
         boolean isSubs = response.getCaps().getSubscriber();
-        return new User(id, name, phone, email, password, tokenkey, isSubs);
+        return new User(id, name, phone, email, tokenkey);
     }
 
     public void getUserProfile(ResponsesCallBack<GetUserProfileResponse> callBack) {
         AsyncTask.execute(() -> {
-            RequestBody request = BaseRequest.getGetUserProfileRequest(getUserId());
+            RequestBody request = BaseRequest.getGetUserProfileRequest(userDao.getUserId());
             api.getUserProfile(request).enqueue(new ResponsesCallBack<GetUserProfileResponse>() {
                 @Override
                 public void onSuccess(GetUserProfileResponse response) {
+                    UserData userData = response.getData().getData();
+                    User user = convertUserDataToUser(userData);
+                    setAppUser(user);
                     callBack.onSuccess(response);
+                }
+
+                private User convertUserDataToUser(UserData userData) {
+                    String tokenKey = userDao.getTokenKey();
+                    return new User(userData.getId(), userData.getDisplayName()
+                            , userData.getUserLogin(), userData.getUserEmail(), tokenKey);
                 }
 
                 @Override
@@ -111,9 +126,6 @@ public class UserRepo extends BaseRepo {
         });
     }
 
-    private String getUserId() {
-        return userDao.getUserId();
-    }
 
     public String getTokenKey() {
         return userDao.getTokenKey();
@@ -123,9 +135,9 @@ public class UserRepo extends BaseRepo {
         return userDao.getUserPhone();
     }
 
-    public void changePassword(String newPassword, String confirmPassword, ResponsesCallBack<UpdatePasswordResponse> callBack) {
+    public void changePassword(EPassword ePassword, ResponsesCallBack<UpdatePasswordResponse> callBack) {
         AsyncTask.execute(() -> {
-            RequestBody request = BaseRequest.getUpdatePasswordRequest(userDao.getUserId(), newPassword, confirmPassword);
+            RequestBody request = BaseRequest.getUpdatePasswordRequest(userDao.getUserId(), ePassword);
             String tokenKey = userDao.getTokenKey();
             api.updatePassword(request, tokenKey).enqueue(callBack);
         });
@@ -178,7 +190,8 @@ public class UserRepo extends BaseRepo {
             api.updateProfile(request, tokenKey).enqueue(new ResponsesCallBack<UpdateProfileResponse>() {
                 @Override
                 public void onSuccess(UpdateProfileResponse response) {
-                    userDao.updateProfile(profile.getName(), profile.getEmail());
+                    UpdateProfileData data = response.getData();
+                    AsyncTask.execute(() -> userDao.updateProfile(data.getName(), profile.getEmail()));
                     callBack.onSuccess(response);
                 }
 
@@ -208,4 +221,6 @@ public class UserRepo extends BaseRepo {
             });
         });
     }
+
+
 }

@@ -30,8 +30,10 @@ import com.ultimate.ecommerce.R;
 import com.ultimate.ecommerce.app.DynamicTheme;
 import com.ultimate.ecommerce.app.GlobalVariable;
 import com.ultimate.ecommerce.databinding.FragmentMainBinding;
+import com.ultimate.ecommerce.repository.server.response.update_cart.UpdateCartData;
 import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.cart.CartFragment;
+import com.ultimate.ecommerce.ui.fragment.cart.CartFragmentListener;
 import com.ultimate.ecommerce.ui.fragment.category.CategoryFragment;
 import com.ultimate.ecommerce.ui.fragment.home.HomeFragment;
 import com.ultimate.ecommerce.ui.fragment.main.views.mainviewpager.MainPagerAdapter;
@@ -114,18 +116,32 @@ public class MainFragment extends BaseFragment<MainFragmentViewModel> {
     }
 
     private void initFragmentAdapter() {
+        HomeFragment homeFragment = new HomeFragment(searchText -> NavHostFragment.findNavController(requireParentFragment())
+                .navigate(MainFragmentDirections.actionMainToProductSearch().setSearchText(searchText)));
+
         CategoryFragment categoryFragment = new CategoryFragment(category ->
                 NavHostFragment.findNavController(requireParentFragment())
                         .navigate(MainFragmentDirections.actionMainToProductList().setCategory(category)));
 
-        CartFragment cartFragment = new CartFragment(data ->
+        CartFragment cartFragment = new CartFragment(new CartFragmentListener() {
+            @Override
+            public void onOrderConfirmReq(UpdateCartData data) {
                 NavHostFragment.findNavController(requireParentFragment())
-                        .navigate(MainFragmentDirections.actionMainToOrderConfirm(data)));
+                        .navigate(MainFragmentDirections.actionMainToOrderConfirm(data));
+            }
+
+            @Override
+            public void onLoginReq() {
+                Toast.makeText(requireContext(), getString(R.string.login_first), Toast.LENGTH_LONG).show();
+                NavHostFragment.findNavController(requireParentFragment())
+                        .navigate(MainFragmentDirections.actionMainToLogin());
+            }
+        });
 
         SettingFragment settingFragment = getSettingFragment();
 
         adapter = new MainPagerAdapter(requireParentFragment());
-        adapter.addFragment(new HomeFragment());
+        adapter.addFragment(homeFragment);
         adapter.addFragment(categoryFragment);
         adapter.addFragment(cartFragment);
         adapter.addFragment(settingFragment);

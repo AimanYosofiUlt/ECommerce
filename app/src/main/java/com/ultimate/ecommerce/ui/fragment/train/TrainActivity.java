@@ -104,7 +104,7 @@ public class TrainActivity extends BaseActivity<TrainActivityViewModel> {
 
     @Override
     public void initLoading() {
-        bd.LT.banner.gradiantView.isHasTopTriangle(true);
-        bd.LT.banner2.gradiantView.isHasTopTriangle(true);
+//        bd.LT.banner.gradiantView.isHasTopTriangle(true);
+//        bd.LT.banner2.gradiantView.isHasTopTriangle(true);
     }
 }

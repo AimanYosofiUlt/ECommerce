@@ -6,7 +6,8 @@
     <string name="tv_change_lang_header">Change Language</string>
     <string name="no_internet_connection">" No internet connection "</string>
 
-    <string name="empty_email_error">You should inter in Email</string>
+    <string name="empty_error">You should inter the field</string>
+    <string name="empty_email_error">You should inter an Email</string>
     <string name="empty_name_error">You should inter User Name</string>
     <string name="empty_phone_error">You should inter User Phone</string>
     <string name="empty_new_phone_error">You should inter the new-password</string>
@@ -15,6 +16,8 @@
     <string name="not_email_error">This is not an email address</string>
     <string name="empty_password_error">You Should Inter Your Password</string>
     <string name="small_password_error">Small Password not allowed</string>
+
+    <string name="server_error">Server Error</string>
 
     <string name="check_internet_connection">Check Internet Connection</string>
     <string name="couldnt_reach_server">Couldn\'t reach the server!</string>
@@ -191,5 +194,12 @@
     <string name="logout_msg">هل انت متأكد من تسجيل الخروج من هذا الحساب؟</string>
     <string name="favorite_delete_from">حذف من المفضلة</string>
     <string name="favorite_delete_from_msg">هل تريد حذف هذا الصنف من المفضلة؟</string>
+    <string name="search_empty_error">قم بإدخال نص ما للبحث عنه!</string>
+    <string name="search">بحث</string>
+    <string name="password_not_structure_well">هناك صعوبة في ايجاد الحقل المناسب لكلمة السر، يرجى التواصل مع المسؤول على التطبيق</string>
+    <string name="field_not_structure_well">هناك صعوبة في ايجاد الحقل المناسب، يرجى التواصل مع المسؤول على التطبيق</string>
+    <string name="error">خطاء</string>
+    <string name="login_first">يجب تسجيل الدخول اولا لإتمام العملية</string>
+    <string name="update_password_succss" >تم تغيير كلمة السر بنجاح</string>
 
 </resources>

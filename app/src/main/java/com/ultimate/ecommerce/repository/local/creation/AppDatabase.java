@@ -6,6 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.ultimate.ecommerce.repository.local.tables.auth.Auth;
+import com.ultimate.ecommerce.repository.local.tables.auth.AuthDao;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCartDao;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
@@ -22,8 +24,9 @@ import com.ultimate.ecommerce.repository.local.user.User;
 import com.ultimate.ecommerce.repository.local.user.UserDao;
 
 @Database(version = 1,
-        entities = {Configuration.class, Category.class, User.class,
-                AppSetting.class, Page.class, Favorite.class, ProductCart.class},
+        entities = {Configuration.class, Category.class, User.class
+                , AppSetting.class, Page.class, Favorite.class
+                , ProductCart.class, Auth.class},
         exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ConfigurationDao configurationDao();
@@ -39,6 +42,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract FavoriteDao favoriteDao();
 
     public abstract ProductCartDao productCartDao();
+
+    public abstract AuthDao authDao();
 
     public static AppDatabase INSTANCE = null;
 

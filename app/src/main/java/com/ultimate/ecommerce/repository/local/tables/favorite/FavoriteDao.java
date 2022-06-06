@@ -23,6 +23,14 @@ public interface FavoriteDao extends BaseDao<Favorite> {
             "FROM Favorite favorite")
     LiveData<List<FavoriteAdapterData>> getFavoriteProducts();
 
+    @Query("  SELECT CASE count(id) " +
+            "           WHEN 0  THEN 0 " +
+            "                   ELSE 1  " +
+            "           END  " +
+            "           FROM Favorite " +
+            "           WHERE id = :productId")
+    boolean isInFavorite(int productId);
+
     @Query("DELETE FROM Favorite WHERE id = :id")
     void deleteFavorite(Integer id);
 }

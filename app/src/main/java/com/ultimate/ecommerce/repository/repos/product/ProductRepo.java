@@ -3,22 +3,18 @@ package com.ultimate.ecommerce.repository.repos.product;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 
-import com.ultimate.ecommerce.repository.local.tables.cart.ProductCart;
 import com.ultimate.ecommerce.repository.local.tables.cart.ProductCartDao;
 import com.ultimate.ecommerce.repository.local.tables.category.Category;
 import com.ultimate.ecommerce.repository.local.user.UserDao;
 import com.ultimate.ecommerce.repository.repos.base.BaseRepo;
-import com.ultimate.ecommerce.repository.repos.cart.CartRepo;
 import com.ultimate.ecommerce.repository.server.request.base.BaseRequest;
 import com.ultimate.ecommerce.repository.server.response.add_review.AddReviewResponse;
 import com.ultimate.ecommerce.repository.server.response.base.ResponsesCallBack;
 import com.ultimate.ecommerce.repository.server.response.get_product.GetProductResponse;
 import com.ultimate.ecommerce.repository.server.response.get_products.GetProductsResponse;
+import com.ultimate.ecommerce.repository.server.response.search_product.SearchProductResponse;
 import com.ultimate.ecommerce.ui.fragment.rate_order_inner.RateOrder;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -59,4 +55,8 @@ public class ProductRepo extends BaseRepo {
     }
 
 
+    public void searchProduct(String searchText, ResponsesCallBack<SearchProductResponse> callBack) {
+        RequestBody request = BaseRequest.getSearchProductRequest(searchText);
+        api.searchProduct(request).enqueue(callBack);
+    }
 }

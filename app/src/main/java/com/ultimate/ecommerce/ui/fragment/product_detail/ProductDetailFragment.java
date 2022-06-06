@@ -42,6 +42,7 @@ import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductAdap
 import com.ultimate.ecommerce.ui.fragment.product_list.views.product.ProductViewListener;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.sub_category.SubCategoryAdapter;
 import com.ultimate.ecommerce.ui.fragment.product_list.views.sub_category.SubCategoryViewListener;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,8 +96,8 @@ public class ProductDetailFragment extends BaseFragment<ProductDetailFragmentVie
         viewModel.getDetailResponseMDL.observe(getViewLifecycleOwner(), new Observer<ResponseState>() {
             @Override
             public void onChanged(ResponseState responseState) {
-                Log.d("ProductDetailFragment", "onChanged: 9238742:" + responseState.getMessage());
-                // todo handle responseState
+                if (!responseState.isSuccessful())
+                    LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
             }
         });
 

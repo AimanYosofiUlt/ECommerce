@@ -37,9 +37,12 @@ import com.ultimate.ecommerce.repository.server.response.update_shipping_address
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface UltimateApi {
     String LANGUAGE = "en";
@@ -214,13 +217,12 @@ public interface UltimateApi {
     Call<GetAddressFieldsResponse> getAddressFields(@Body RequestBody requestBody, @Header("tokenKey") String tokenKey);
 
 
-    // todo in postman they use parameter like getAuth?page=register
     @Headers({"lang: " + LANGUAGE,
             "tokenKey: " + tokenKey,
             "secretKey: " + SECRET_KEY,
             "osType: android"})
     @POST("getAuth")
-    Call<GetAuthResponse> getAuth(@Body RequestBody requestBody);
+    Call<GetAuthResponse> getAuth(@Body RequestBody requestBody,@Query("page") String screenName);
 
     @Headers({"lang: " + LANGUAGE,
             "tokenKey: " + tokenKey,

@@ -24,6 +24,7 @@ import com.ultimate.ecommerce.ui.base.BaseFragment;
 import com.ultimate.ecommerce.ui.fragment.order.views.mainviewpager.OrderPagerAdapter;
 import com.ultimate.ecommerce.ui.fragment.order_inner.OrderInnerFragment;
 import com.ultimate.ecommerce.ui.fragment.order_inner.views.order.OrderViewListener;
+import com.ultimate.ecommerce.utilities.LayoutUtil;
 
 import javax.annotation.Nullable;
 
@@ -80,8 +81,8 @@ public class OrderFragment extends BaseFragment<OrderFragmentViewModel> {
             @Override
             public void onChanged(ResponseState responseState) {
                 binding.reloadOrdersBtn.clearAnimation();
-                //todo handel errors from server
-                Log.d("OrderFragment", "onChanged: 23098: " + responseState.getMessage());
+                if (!responseState.isSuccessful())
+                    LayoutUtil.showErrorDialog(requireContext(), responseState.getMessage());
             }
         });
     }

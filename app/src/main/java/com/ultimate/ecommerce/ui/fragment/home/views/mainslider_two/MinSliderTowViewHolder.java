@@ -25,11 +25,11 @@ public class MinSliderTowViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(Banner data) {
         this.data = data;
-        binding.bannerTitle.setText(data.getImagetitle());
-        Glide.with(binding.getRoot())
-                .load(data.getUrl())
-                .error(R.drawable.ic_baseline_error_24)
-                .into(binding.bannerImg);
+//        binding.bannerTitle.setText(data.getImagetitle());
+//        Glide.with(binding.getRoot())
+//                .load(data.getUrl())
+//                .error(R.drawable.ic_baseline_error_24)
+//                .into(binding.bannerImg);
     }
 
     private void initEvent() {
