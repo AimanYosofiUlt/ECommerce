@@ -29,6 +29,8 @@ import com.ultimate.ecommerce.repository.local.user.UserDao;
                 , ProductCart.class, Auth.class},
         exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
+    public static final String DB_NAME = "ECommerceDB";
+
     public abstract ConfigurationDao configurationDao();
 
     public abstract CategoryDao categoryDao();
@@ -52,10 +54,6 @@ public abstract class AppDatabase extends RoomDatabase {
         if (temp != null)
             return temp;
 
-        return Room.databaseBuilder(
-                context,
-                AppDatabase.class,
-                "ECommerceDB"
-        ).build();
+        return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
     }
 }

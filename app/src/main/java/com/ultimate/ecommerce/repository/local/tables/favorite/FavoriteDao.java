@@ -2,6 +2,8 @@ package com.ultimate.ecommerce.repository.local.tables.favorite;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.ultimate.ecommerce.repository.local.creation.BaseDao;
@@ -33,4 +35,7 @@ public interface FavoriteDao extends BaseDao<Favorite> {
 
     @Query("DELETE FROM Favorite WHERE id = :id")
     void deleteFavorite(Integer id);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void addFavorite(Favorite favorite);
 }

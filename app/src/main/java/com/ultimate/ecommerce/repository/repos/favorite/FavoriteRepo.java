@@ -25,7 +25,7 @@ public class FavoriteRepo {
     }
 
     public void addFavorite(Favorite favorite) {
-        AsyncTask.execute(() -> favoriteDao.insert(favorite));
+        AsyncTask.execute(() -> favoriteDao.addFavorite(favorite));
     }
 
     public void removeFavorite(Favorite favorite) {
